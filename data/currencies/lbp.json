@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 422,
+  "code": "LBP",
+  "name": "Lebanese Pound",
+  "symbol": "ل.ل",
+  "alternate_symbols": [
+    "£",
+    "L£"
+  ],
+  "subunit": "Piastre",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x00A3;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 25000
+}

@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 533,
+  "code": "AWG",
+  "name": "Aruban Florin",
+  "symbol": "ƒ",
+  "alternate_symbols": [
+    "Afl"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x0192;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

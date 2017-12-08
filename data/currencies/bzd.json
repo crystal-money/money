@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 84,
+  "code": "BZD",
+  "name": "Belize Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "BZ$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

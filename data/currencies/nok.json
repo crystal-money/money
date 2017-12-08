@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 578,
+  "code": "NOK",
+  "name": "Norwegian Krone",
+  "symbol": "kr",
+  "alternate_symbols": [
+    ",-"
+  ],
+  "subunit": "Øre",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "kr",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 100
+}

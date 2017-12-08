@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 428,
+  "code": "LVL",
+  "name": "Latvian Lats",
+  "symbol": "Ls",
+  "subunit": "Santīms",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

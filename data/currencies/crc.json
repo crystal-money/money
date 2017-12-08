@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 188,
+  "code": "CRC",
+  "name": "Costa Rican Colón",
+  "symbol": "₡",
+  "alternate_symbols": [
+    "¢"
+  ],
+  "subunit": "Céntimo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20A1;",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 500
+}

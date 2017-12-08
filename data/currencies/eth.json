@@ -1,0 +1,12 @@
+{
+  "priority": 100,
+  "code": "ETH",
+  "name": "Ethereum",
+  "symbol": "Ξ",
+  "subunit": "wei",
+  "subunit_to_unit": 1000000000000000000,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

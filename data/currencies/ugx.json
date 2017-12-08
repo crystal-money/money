@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 800,
+  "code": "UGX",
+  "name": "Ugandan Shilling",
+  "symbol": "USh",
+  "subunit": "Cent",
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1000
+}

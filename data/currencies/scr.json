@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 690,
+  "code": "SCR",
+  "name": "Seychellois Rupee",
+  "symbol": "₨",
+  "alternate_symbols": [
+    "SRe",
+    "SR"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x20A8;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 430,
+  "code": "LRD",
+  "name": "Liberian Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "L$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

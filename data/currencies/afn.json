@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 971,
+  "code": "AFN",
+  "name": "Afghan Afghani",
+  "symbol": "؋",
+  "alternate_symbols": [
+    "Af",
+    "Afs"
+  ],
+  "subunit": "Pul",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

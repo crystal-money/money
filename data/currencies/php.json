@@ -1,0 +1,19 @@
+{
+  "priority": 100,
+  "iso_numeric": 608,
+  "code": "PHP",
+  "name": "Philippine Peso",
+  "symbol": "₱",
+  "alternate_symbols": [
+    "PHP",
+    "PhP",
+    "P"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20B1;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 936,
+  "code": "GHS",
+  "name": "Ghanaian Cedi",
+  "symbol": "₵",
+  "alternate_symbols": [
+    "GH¢",
+    "GH₵"
+  ],
+  "subunit": "Pesewa",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20B5;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

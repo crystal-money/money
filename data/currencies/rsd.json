@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 941,
+  "code": "RSD",
+  "name": "Serbian Dinar",
+  "symbol": "РСД",
+  "alternate_symbols": [
+    "RSD",
+    "din",
+    "дин"
+  ],
+  "subunit": "Para",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

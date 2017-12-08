@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 232,
+  "code": "ERN",
+  "name": "Eritrean Nakfa",
+  "symbol": "Nfk",
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

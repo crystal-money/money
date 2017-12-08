@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 554,
+  "code": "NZD",
+  "name": "New Zealand Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "NZ$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 10
+}

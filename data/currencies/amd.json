@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 51,
+  "code": "AMD",
+  "name": "Armenian Dram",
+  "symbol": "դր.",
+  "alternate_symbols": [
+    "dram"
+  ],
+  "subunit": "Luma",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 10
+}

@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 901,
+  "code": "TWD",
+  "name": "New Taiwan Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "NT$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 50
+}

@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 756,
+  "code": "CHF",
+  "name": "Swiss Franc",
+  "symbol": "CHF",
+  "alternate_symbols": [
+    "SFr",
+    "Fr"
+  ],
+  "subunit": "Rappen",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

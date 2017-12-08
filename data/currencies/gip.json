@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 292,
+  "code": "GIP",
+  "name": "Gibraltar Pound",
+  "symbol": "£",
+  "subunit": "Penny",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x00A3;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

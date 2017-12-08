@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 454,
+  "code": "MWK",
+  "name": "Malawian Kwacha",
+  "symbol": "MK",
+  "subunit": "Tambala",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

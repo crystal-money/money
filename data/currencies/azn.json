@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 944,
+  "code": "AZN",
+  "name": "Azerbaijani Manat",
+  "symbol": "₼",
+  "alternate_symbols": [
+    "m",
+    "man"
+  ],
+  "subunit": "Qəpik",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

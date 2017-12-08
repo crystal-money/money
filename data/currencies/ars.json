@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 32,
+  "code": "ARS",
+  "name": "Argentine Peso",
+  "symbol": "$",
+  "alternate_symbols": [
+    "$m/n",
+    "m$n"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 1
+}

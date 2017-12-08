@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 704,
+  "code": "VND",
+  "name": "Vietnamese Đồng",
+  "symbol": "₫",
+  "subunit": "Hào",
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "html_entity": "&#x20AB;",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 100
+}

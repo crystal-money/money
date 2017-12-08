@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 262,
+  "code": "DJF",
+  "name": "Djiboutian Franc",
+  "symbol": "Fdj",
+  "subunit": "Centime",
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

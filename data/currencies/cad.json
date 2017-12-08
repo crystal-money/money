@@ -1,0 +1,18 @@
+{
+  "priority": 5,
+  "iso_numeric": 124,
+  "code": "CAD",
+  "name": "Canadian Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "C$",
+    "CAD$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

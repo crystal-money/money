@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 496,
+  "code": "MNT",
+  "name": "Mongolian Tögrög",
+  "symbol": "₮",
+  "subunit": "Möngö",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x20AE;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 2000
+}
