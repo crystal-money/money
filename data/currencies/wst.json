@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 882,
+  "code": "WST",
+  "name": "Samoan Tala",
+  "symbol": "T",
+  "alternate_symbols": [
+    "WS$",
+    "SAT",
+    "ST"
+  ],
+  "subunit": "Sene",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 10
+}

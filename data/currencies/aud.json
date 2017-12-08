@@ -1,0 +1,17 @@
+{
+  "priority": 4,
+  "iso_numeric": 36,
+  "code": "AUD",
+  "name": "Australian Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "A$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

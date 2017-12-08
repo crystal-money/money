@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 376,
+  "code": "ILS",
+  "name": "Israeli New Sheqel",
+  "symbol": "₪",
+  "alternate_symbols": [
+    "ש״ח",
+    "NIS"
+  ],
+  "subunit": "Agora",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20AA;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 10
+}

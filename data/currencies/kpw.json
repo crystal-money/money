@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 408,
+  "code": "KPW",
+  "name": "North Korean Won",
+  "symbol": "₩",
+  "subunit": "Chŏn",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x20A9;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

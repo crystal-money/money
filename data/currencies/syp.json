@@ -1,0 +1,20 @@
+{
+  "priority": 100,
+  "iso_numeric": 760,
+  "code": "SYP",
+  "name": "Syrian Pound",
+  "symbol": "£S",
+  "alternate_symbols": [
+    "£",
+    "ل.س",
+    "LS",
+    "الليرة السورية"
+  ],
+  "subunit": "Piastre",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x00A3;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 590,
+  "code": "PAB",
+  "name": "Panamanian Balboa",
+  "symbol": "B/.",
+  "subunit": "Centésimo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

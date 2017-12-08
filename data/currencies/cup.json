@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 192,
+  "code": "CUP",
+  "name": "Cuban Peso",
+  "symbol": "$",
+  "alternate_symbols": [
+    "$MN"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20B1;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

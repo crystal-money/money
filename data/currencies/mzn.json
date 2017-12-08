@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 943,
+  "code": "MZN",
+  "name": "Mozambican Metical",
+  "symbol": "MTn",
+  "alternate_symbols": [
+    "MZN"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 1
+}

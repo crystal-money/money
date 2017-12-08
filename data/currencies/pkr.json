@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 586,
+  "code": "PKR",
+  "name": "Pakistani Rupee",
+  "symbol": "₨",
+  "alternate_symbols": [
+    "Rs"
+  ],
+  "subunit": "Paisa",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20A8;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

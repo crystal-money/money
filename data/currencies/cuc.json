@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 931,
+  "code": "CUC",
+  "name": "Cuban Convertible Peso",
+  "symbol": "$",
+  "alternate_symbols": [
+    "CUC$"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 222,
+  "code": "SVC",
+  "name": "Salvadoran Colón",
+  "symbol": "₡",
+  "alternate_symbols": [
+    "¢"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20A1;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,19 @@
+{
+  "priority": 100,
+  "iso_numeric": 532,
+  "code": "ANG",
+  "name": "Netherlands Antillean Gulden",
+  "symbol": "ƒ",
+  "alternate_symbols": [
+    "NAƒ",
+    "NAf",
+    "f"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x0192;",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 1
+}

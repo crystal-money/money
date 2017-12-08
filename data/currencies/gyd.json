@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 328,
+  "code": "GYD",
+  "name": "Guyanese Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "G$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

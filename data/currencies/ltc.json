@@ -1,0 +1,11 @@
+{
+  "priority": 100,
+  "code": "LTC",
+  "name": "Litecoin",
+  "symbol": "Ł",
+  "subunit_to_unit": 100000000,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

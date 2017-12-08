@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 694,
+  "code": "SLL",
+  "name": "Sierra Leonean Leone",
+  "symbol": "Le",
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1000
+}

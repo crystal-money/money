@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 986,
+  "code": "BRL",
+  "name": "Brazilian Real",
+  "symbol": "R$",
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "R$",
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 5
+}

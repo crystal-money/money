@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 990,
+  "code": "CLF",
+  "name": "Unidad de Fomento",
+  "symbol": "UF",
+  "subunit": "Peso",
+  "subunit_to_unit": 10000,
+  "symbol_first": true,
+  "html_entity": "&#x20B1;",
+  "decimal_mark": ",",
+  "thousands_separator": "."
+}

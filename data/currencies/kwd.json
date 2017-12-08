@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 414,
+  "code": "KWD",
+  "name": "Kuwaiti Dinar",
+  "symbol": "د.ك",
+  "alternate_symbols": [
+    "K.D."
+  ],
+  "subunit": "Fils",
+  "subunit_to_unit": 1000,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

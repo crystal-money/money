@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 8,
+  "code": "ALL",
+  "name": "Albanian Lek",
+  "symbol": "L",
+  "alternate_symbols": [
+    "Lek"
+  ],
+  "subunit": "Qintar",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

@@ -1,0 +1,19 @@
+{
+  "priority": 100,
+  "iso_numeric": 975,
+  "code": "BGN",
+  "name": "Bulgarian Lev",
+  "symbol": "лв.",
+  "alternate_symbols": [
+    "lev",
+    "leva",
+    "лев",
+    "лева"
+  ],
+  "subunit": "Stotinka",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,19 @@
+{
+  "priority": 100,
+  "iso_numeric": 860,
+  "code": "UZS",
+  "name": "Uzbekistan Som",
+  "alternate_symbols": [
+    "so‘m",
+    "сўм",
+    "сум",
+    "s",
+    "с"
+  ],
+  "subunit": "Tiyin",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

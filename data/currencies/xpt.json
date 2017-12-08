@@ -1,0 +1,11 @@
+{
+  "priority": 100,
+  "iso_numeric": 962,
+  "code": "XPT",
+  "name": "Platinum",
+  "symbol": "oz t",
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ","
+}

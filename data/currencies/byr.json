@@ -1,0 +1,18 @@
+{
+  "priority": 50,
+  "iso_numeric": 974,
+  "code": "BYR",
+  "name": "Belarusian Ruble",
+  "symbol": "Br",
+  "alternate_symbols": [
+    "бел. руб.",
+    "б.р.",
+    "руб.",
+    "р."
+  ],
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "decimal_mark": ",",
+  "thousands_separator": " ",
+  "smallest_denomination": 100
+}

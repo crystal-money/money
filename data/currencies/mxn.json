@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 484,
+  "code": "MXN",
+  "name": "Mexican Peso",
+  "symbol": "$",
+  "alternate_symbols": [
+    "MEX$"
+  ],
+  "subunit": "Centavo",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

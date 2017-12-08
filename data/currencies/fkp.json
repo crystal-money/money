@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 238,
+  "code": "FKP",
+  "name": "Falkland Pound",
+  "symbol": "£",
+  "alternate_symbols": [
+    "FK£"
+  ],
+  "subunit": "Penny",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x00A3;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

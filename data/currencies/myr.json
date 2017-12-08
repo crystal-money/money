@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 458,
+  "code": "MYR",
+  "name": "Malaysian Ringgit",
+  "symbol": "RM",
+  "subunit": "Sen",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

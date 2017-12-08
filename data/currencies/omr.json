@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 512,
+  "code": "OMR",
+  "name": "Omani Rial",
+  "symbol": "ر.ع.",
+  "subunit": "Baisa",
+  "subunit_to_unit": 1000,
+  "symbol_first": true,
+  "html_entity": "&#xFDFC;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

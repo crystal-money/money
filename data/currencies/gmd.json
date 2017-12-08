@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 270,
+  "code": "GMD",
+  "name": "Gambian Dalasi",
+  "symbol": "D",
+  "subunit": "Butut",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 807,
+  "code": "MKD",
+  "name": "Macedonian Denar",
+  "symbol": "ден",
+  "subunit": "Deni",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

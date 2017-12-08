@@ -1,0 +1,18 @@
+{
+  "priority": 100,
+  "iso_numeric": 524,
+  "code": "NPR",
+  "name": "Nepalese Rupee",
+  "symbol": "₨",
+  "alternate_symbols": [
+    "Rs",
+    "रू"
+  ],
+  "subunit": "Paisa",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20A8;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

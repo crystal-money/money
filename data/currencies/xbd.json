@@ -1,0 +1,10 @@
+{
+  "priority": 100,
+  "iso_numeric": 958,
+  "code": "XBD",
+  "name": "European Unit of Account 17",
+  "subunit_to_unit": 1,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ","
+}

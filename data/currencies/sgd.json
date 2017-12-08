@@ -1,0 +1,17 @@
+{
+  "priority": 100,
+  "iso_numeric": 702,
+  "code": "SGD",
+  "name": "Singapore Dollar",
+  "symbol": "$",
+  "alternate_symbols": [
+    "S$"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

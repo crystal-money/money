@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 116,
+  "code": "KHR",
+  "name": "Cambodian Riel",
+  "symbol": "៛",
+  "subunit": "Sen",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x17DB;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5000
+}

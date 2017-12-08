@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "iso_numeric": 752,
+  "code": "SEK",
+  "name": "Swedish Krona",
+  "symbol": "kr",
+  "alternate_symbols": [
+    ":-"
+  ],
+  "subunit": "Öre",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ",",
+  "thousands_separator": " ",
+  "smallest_denomination": 100
+}

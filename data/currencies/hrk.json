@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "iso_numeric": 191,
+  "code": "HRK",
+  "name": "Croatian Kuna",
+  "symbol": "kn",
+  "subunit": "Lipa",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ",",
+  "thousands_separator": ".",
+  "smallest_denomination": 1
+}

@@ -1,0 +1,20 @@
+{
+  "priority": 100,
+  "iso_numeric": 144,
+  "code": "LKR",
+  "name": "Sri Lankan Rupee",
+  "symbol": "₨",
+  "alternate_symbols": [
+    "රු",
+    "ரூ",
+    "SLRs",
+    "/-"
+  ],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#8360;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}

@@ -1,0 +1,14 @@
+{
+  "priority": 100,
+  "iso_numeric": 728,
+  "code": "SSP",
+  "name": "South Sudanese Pound",
+  "symbol": "£",
+  "subunit": "piaster",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "&#x00A3;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}
