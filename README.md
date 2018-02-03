@@ -1,4 +1,5 @@
 # money [![Build Status](https://travis-ci.org/crystal-money/money.svg?branch=master)](https://travis-ci.org/crystal-money/money)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcrystal-money%2Fmoney.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcrystal-money%2Fmoney?ref=badge_shield)
 
 TODO: Write a description here
 
@@ -35,3 +36,7 @@ TODO: Write development instructions here
 ## Contributors
 
 - [Sija](https://github.com/Sija) Sijawusz Pur Rahnama - creator, maintainer
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcrystal-money%2Fmoney.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcrystal-money%2Fmoney?ref=badge_large)
