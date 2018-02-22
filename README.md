@@ -124,15 +124,16 @@ The pre-defined set of attributes includes:
 - `:iso_numeric` the international 3-digit code as defined by the ISO 4217 standard
 - `:name` the currency name
 - `:symbol` the currency symbol (UTF-8 encoded)
+- `:symbol_first` whether a money symbol should go before the amount
 - `:subunit` the name of the fractional monetary unit
 - `:subunit_to_unit` the proportion between the unit and the subunit
 - `:decimal_mark` character between the whole and fraction amounts
 - `:thousands_separator` character between each thousands place
 
-All attributes except `:code` are optional. Some attributes, such as
-`:symbol`, are used by the Money class to print out a representation of the
-object. Other attributes, such as `:name` or `:priority`, exist to provide a
-basic API you can take advantage of to build your application.
+All attributes except `:code` and `:subunit_to_unit` are optional.
+Some attributes, such as `:symbol`, are used by the `Money` class to print out a
+representation of the object. Other attributes, such as `:name` or `:priority`,
+exist to provide a basic API you can take advantage of to build your application.
 
 ### :priority
 
@@ -148,7 +149,7 @@ follows:
 ```crystal
 # Returns an array of currency id where priority < 10
 def major_currencies(hash)
-  hash.values.sort.take_while(&.priority.<(10)).map(&.id)
+  hash.values.sort.take_while(&.priority.try(&.<(10))).map(&.id)
 end
 
 # Returns an array of all currency id
