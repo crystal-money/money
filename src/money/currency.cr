@@ -50,7 +50,7 @@ class Money
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
     end
 
-    getter priority : Int32
+    getter priority : Int32?
     getter iso_numeric : UInt32?
     getter code : String
     getter name : String?
@@ -93,9 +93,16 @@ class Money
     # Compares `self` with *other* currency against the value of
     # `priority` and `id` attributes.
     def <=>(other : Currency) : Int32
-      comparison = priority <=> other.priority
-      return id <=> other.id if comparison == 0
-      comparison
+      case {(priority = self.priority), (other_priority = other.priority)}
+      when {Int32, Int32}
+        comparison = priority <=> other_priority
+        return id <=> other.id if comparison == 0
+        comparison
+      when {Int32, nil}
+        -1
+      else
+        id <=> other.id
+      end
     end
 
     # Compares `self` with *other* currency against the value of id` attribute.

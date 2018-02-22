@@ -2,7 +2,7 @@ require "json"
 
 class Money::Currency
   JSON.mapping({
-    priority:              {type: Int32, setter: false},
+    priority:              {type: Int32?, setter: false},
     iso_numeric:           {type: UInt32?, setter: false},
     code:                  {type: String, setter: false},
     name:                  {type: String?, setter: false},
