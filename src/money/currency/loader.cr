@@ -20,8 +20,7 @@ class Money
       private def parse_currency_file(filename)
         filepath = File.join(DATA_PATH, filename)
         if File.file?(filepath)
-          currency_json = File.read(filepath)
-          currency = Currency.from_json(currency_json)
+          Currency.from_json File.read(filepath)
         end
       rescue ex
       end
