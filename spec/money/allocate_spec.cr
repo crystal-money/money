@@ -10,13 +10,13 @@ describe Money::Allocate do
       Money.us_dollar(5).allocate({1}).should eq [Money.us_dollar(5)]
     end
 
-    it "does not lose pennies" do
+    pending "does not lose pennies" do
       moneys = Money.us_dollar(5).allocate({0.3, 0.7})
       moneys[0].should eq Money.us_dollar(2)
       moneys[1].should eq Money.us_dollar(3)
     end
 
-    it "does not lose pennies" do
+    pending "does not lose pennies" do
       moneys = Money.us_dollar(100).allocate({0.333, 0.333, 0.333})
       moneys[0].cents.should eq 34
       moneys[1].cents.should eq 33
