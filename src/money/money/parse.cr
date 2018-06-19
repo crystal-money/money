@@ -28,31 +28,33 @@ class Money
       if matched_pattern
         amount, symbol, sign = matched_pattern
       else
-        raise Error.new %(Invalid format)
+        raise Error.new "Invalid format"
       end
 
-      found_currencies = Currency.select do |c|
-        next true if c.symbol == symbol
-        next true if c.alternate_symbols.try(&.includes?(symbol))
+      currency = begin
+        matches = Currency.select(&.==(symbol))
+        matches = Currency.select(&.symbol.==(symbol)) if matches.empty?
+        matches = Currency.select(&.alternate_symbols.try(&.includes?(symbol))) if matches.empty?
+
+        case matches.size
+        when 0
+          raise Error.new "Symbol #{symbol.inspect} didn't matched any currency"
+        when 1
+          matches.first
+        else
+          unless allow_ambigous
+            raise Error.new "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
+          end
+          matches.first
+        end
       end
 
       amount = amount.gsub(',', '.')
       amount = "#{sign}#{amount}" if sign
-      currency = case found_currencies.size
-                 when 0
-                   Currency.find(symbol)
-                 when 1
-                   found_currencies.first
-                 else
-                   unless allow_ambigous
-                     raise Error.new %(Symbol "#{symbol}" matches multiple currencies: #{found_currencies.map(&.to_s)})
-                   end
-                   found_currencies.first
-                 end
 
       Money.from_amount(amount, currency)
     rescue ex : Money::Error
-      return yield Error.new %(Cannot parse "#{str}" => #{ex}), ex
+      return yield Error.new "Cannot parse #{str.inspect}", ex
     end
   end
 end
