@@ -98,6 +98,8 @@ class Money
         comparison = priority <=> other_priority
         return id <=> other.id if comparison == 0
         comparison
+      when {nil, Int32}
+        1
       when {Int32, nil}
         -1
       else
