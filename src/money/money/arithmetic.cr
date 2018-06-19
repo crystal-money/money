@@ -69,8 +69,8 @@ class Money
     # Money.new(100) + Money.new(100) # => #<Money @fractional=200>
     # ```
     def +(other : Money) : Money
-      with_same_currency(other) do |other|
-        Money.new(fractional + other.fractional, currency)
+      with_same_currency(other) do |converted_other|
+        Money.new(fractional + converted_other.fractional, currency)
       end
     end
 
@@ -81,8 +81,8 @@ class Money
     # Money.new(100) - Money.new(99) # => #<Money @fractional=1>
     # ```
     def -(other : Money) : Money
-      with_same_currency(other) do |other|
-        Money.new(fractional - other.fractional, currency)
+      with_same_currency(other) do |converted_other|
+        Money.new(fractional - converted_other.fractional, currency)
       end
     end
 
@@ -115,8 +115,8 @@ class Money
     # Money.new(100) / Money.new(10) # => 10.0
     # ```
     def /(other : Money) : Float64
-      with_same_currency(other) do |other|
-        fractional.to_f / other.fractional.to_f
+      with_same_currency(other) do |converted_other|
+        fractional.to_f / converted_other.fractional.to_f
       end
     end
 
@@ -128,8 +128,8 @@ class Money
     # Money.new(100).divmod(Money.new(9)) # => {11, #<Money @fractional=1>}
     # ```
     def divmod(other : Money) : {Int64, Money}
-      with_same_currency(other) do |other|
-        quotient, remainder = fractional.divmod(other.fractional)
+      with_same_currency(other) do |converted_other|
+        quotient, remainder = fractional.divmod(converted_other.fractional)
         {quotient, Money.new(remainder, currency)}
       end
     end

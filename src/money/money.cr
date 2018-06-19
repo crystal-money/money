@@ -87,8 +87,8 @@ class Money
   # Compares two `Money` objects.
   def <=>(other : Money) : Int32
     return 0 if zero? && other.zero?
-    with_same_currency(other) do |other|
-      fractional <=> other.fractional
+    with_same_currency(other) do |converted_other|
+      fractional <=> converted_other.fractional
     end
   end
 
