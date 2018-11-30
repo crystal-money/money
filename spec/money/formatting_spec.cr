@@ -35,6 +35,7 @@ describe Money::Formatting do
     it "returns the monetary value as a string" do
       Money.new(100, "CAD").format.should eq "$1.00"
       Money.new(40008).format.should eq "$400.08"
+      Money.new(1999_98, "BCH").format.should eq "0.00199998 ₿"
     end
 
     it "respects :subunit_to_unit currency property" do
