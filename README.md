@@ -1,4 +1,4 @@
-# money [![Build Status](https://travis-ci.org/crystal-money/money.svg?branch=master)](https://travis-ci.org/crystal-money/money)
+# money [![Build Status](https://travis-ci.org/crystal-money/money.svg?branch=master)](https://travis-ci.org/crystal-money/money) [![Releases](https://img.shields.io/github/release/crystal-money/money.svg)](https://github.com/crystal-money/money/releases) [![License](https://img.shields.io/github/license/crystal-money/money.svg)](https://github.com/crystal-money/money/blob/master/LICENSE)
 
 ## Introduction
 
