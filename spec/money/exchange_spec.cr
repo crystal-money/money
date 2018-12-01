@@ -18,7 +18,7 @@ describe Money::Arithmetic do
     it "does no exchange when the currencies are the same" do
       with_default_bank(bank) do
         money = Money.new(1, "USD")
-        money.exchange_to("USD").should be money
+        money.exchange_to("USD").should eq money
       end
     end
   end
