@@ -14,5 +14,8 @@ class Money
 
   # Raised when smallest denomination of a currency is not defined.
   class UndefinedSmallestDenominationError < Error
+    def initialize(message = "Smallest denomination of this currency is not defined")
+      super(message)
+    end
   end
 end

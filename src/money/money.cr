@@ -126,7 +126,7 @@ class Money
   def nearest_cash_value : Int64
     smallest_denomination = currency.smallest_denomination
     unless smallest_denomination
-      raise UndefinedSmallestDenominationError.new("Smallest denomination of this currency is not defined")
+      raise UndefinedSmallestDenominationError.new
     end
     rounded_value = (fractional.to_big_d / smallest_denomination).round * smallest_denomination
     rounded_value.to_i64
