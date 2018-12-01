@@ -1,4 +1,4 @@
-class Money
+struct Money
   module Formatting
     private DELIMITER_REGEX = /(\d)(?=(\d\d\d)+(?!\d))/
 

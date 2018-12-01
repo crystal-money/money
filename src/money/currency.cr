@@ -1,6 +1,6 @@
 require "./currency/*"
 
-class Money
+struct Money
   # Represents a specific currency unit.
   #
   # See [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).

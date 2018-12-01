@@ -1,4 +1,4 @@
-class Money
+struct Money
   abstract class Bank
     # It defaults to using an in-memory, thread safe store instance for
     # storing exchange rates.

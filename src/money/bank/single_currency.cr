@@ -1,4 +1,4 @@
-class Money
+struct Money
   # Class to ensure client code is operating in a single currency
   # by raising if an exchange attempts to happen.
   #

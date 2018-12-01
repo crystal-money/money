@@ -1,6 +1,6 @@
 require "json"
 
-class Money
+struct Money
   JSON.mapping({
     fractional: {type: Int64, setter: false},
     currency:   {type: Currency, setter: false},

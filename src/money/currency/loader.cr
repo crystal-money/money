@@ -1,6 +1,6 @@
 require "json"
 
-class Money
+struct Money
   class Currency
     module Loader
       DATA_PATH = File.expand_path("../../../../data/currencies", __FILE__)

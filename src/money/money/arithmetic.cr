@@ -1,6 +1,6 @@
 require "big"
 
-class Money
+struct Money
   module Arithmetic
     # Returns `true` if the money amount is greater than 0, `false` otherwise.
     #

@@ -1,4 +1,4 @@
-class Money
+struct Money
 end
 
 require "./money/*"

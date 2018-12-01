@@ -1,4 +1,4 @@
-class Money
+struct Money
   module Allocate
     # Splits money amongst parties evenly without losing pennies.
     #

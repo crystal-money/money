@@ -1,4 +1,4 @@
-class Money
+struct Money
   module Parse
     class Error < Money::Error
     end

@@ -1,4 +1,4 @@
-class Money
+struct Money
   class Error < Exception
   end
 

@@ -1,4 +1,4 @@
-class Money
+struct Money
   class Bank::VariableExchange < Bank
     def exchange(from : Money, to : Currency) : Money
       rate = store[from.currency, to]

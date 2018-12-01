@@ -1,4 +1,4 @@
-class Money
+struct Money
   module Casting
     # Returns the amount of money as a `BigDecimal`.
     #

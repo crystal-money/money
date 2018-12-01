@@ -1,4 +1,4 @@
-class Money
+struct Money
   module Constructors
     # Creates a new `Money` object of value given in the *unit* of the given
     # *currency*.

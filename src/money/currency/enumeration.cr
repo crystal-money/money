@@ -1,4 +1,4 @@
-class Money
+struct Money
   class Currency
     module Enumeration
       include Enumerable(Currency)

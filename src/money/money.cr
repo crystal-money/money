@@ -7,7 +7,7 @@ require "./money/*"
 # An instance of `Money` represents an amount of a specific currency.
 #
 # `Money` is a value object and should be treated as immutable.
-class Money
+struct Money
   extend Money::Constructors
   extend Money::Parse
 
