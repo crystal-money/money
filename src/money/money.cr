@@ -77,6 +77,9 @@ class Money
   # Money.new(1.to_big_r, "EUR") # => #<Money @fractional=100 @currency="EUR">
   # ```
   def initialize(fractional : Float | BigDecimal | BigRational, currency = Money.default_currency)
+    if fractional.responds_to?(:finite?) && !fractional.finite?
+      raise ArgumentError.new "Must be initialized with a finite value"
+    end
     @fractional = fractional.round.to_f64.to_i64
     @currency = Currency.wrap(currency)
   end

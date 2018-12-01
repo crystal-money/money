@@ -9,6 +9,19 @@ describe Money do
     end
 
     context "given the initializing value is a float" do
+      context "and the value is Infinity" do
+        it do
+          expect_raises(ArgumentError) { Money.new(-Float64::INFINITY) }
+          expect_raises(ArgumentError) { Money.new(Float64::INFINITY) }
+        end
+      end
+
+      context "and the value is NaN" do
+        it do
+          expect_raises(ArgumentError) { Money.new(Float64::NAN) }
+        end
+      end
+
       context "and the value is 1.00" do
         it { Money.new(1.00).should eq Money.new(1) }
       end
