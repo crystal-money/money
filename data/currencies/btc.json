@@ -1,7 +1,7 @@
 {
   "code": "BTC",
   "name": "Bitcoin",
-  "symbol": "฿",
+  "symbol": "₿",
   "subunit": "Satoshi",
   "subunit_to_unit": 100000000,
   "symbol_first": true,
