@@ -99,6 +99,11 @@ describe Money::Arithmetic do
   describe "#+" do
     it "adds other amount to current amount (same currency)" do
       (Money.new(10_00, "USD") + Money.new(90, "USD")).should eq Money.new(10_90, "USD")
+      (Money.new(0, "USD") + Money.new(10_00, "USD")).should eq Money.new(10_00, "USD")
+    end
+
+    it "returns self if other amount is zero" do
+      (Money.new(10_00, "USD") + Money.new(0, "EUR")).should eq Money.new(10_00, "USD")
     end
 
     it "converts other object amount to current currency and adds other amount to current amount (different currency)" do
@@ -116,6 +121,11 @@ describe Money::Arithmetic do
   describe "#-" do
     it "subtracts other amount from current amount (same currency)" do
       (Money.new(10_00, "USD") - Money.new(90, "USD")).should eq Money.new(9_10, "USD")
+      (Money.new(0, "USD") - Money.new(10_00, "USD")).should eq Money.new(-10_00, "USD")
+    end
+
+    it "returns self if other amount is zero" do
+      (Money.new(10_00, "USD") - Money.new(0, "EUR")).should eq Money.new(10_00, "USD")
     end
 
     it "converts other object amount to current currency and subtracts other amount to current amount (different currency)" do

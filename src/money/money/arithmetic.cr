@@ -69,6 +69,7 @@ struct Money
     # Money.new(100) + Money.new(100) # => #<Money @fractional=200>
     # ```
     def +(other : Money) : Money
+      return self if other.zero?
       with_same_currency(other) do |converted_other|
         Money.new(fractional + converted_other.fractional, currency)
       end
@@ -81,6 +82,7 @@ struct Money
     # Money.new(100) - Money.new(99) # => #<Money @fractional=1>
     # ```
     def -(other : Money) : Money
+      return self if other.zero?
       with_same_currency(other) do |converted_other|
         Money.new(fractional - converted_other.fractional, currency)
       end
