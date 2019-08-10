@@ -93,7 +93,6 @@ struct Money
     # Compares `self` with *other* currency against the value of
     # `priority` and `id` attributes.
     def <=>(other : Currency) : Int32
-      # ameba:disable Lint/LiteralInCondition
       case {(priority = self.priority), (other_priority = other.priority)}
       when {Int32, Int32}
         comparison = priority <=> other_priority

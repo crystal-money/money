@@ -54,7 +54,7 @@ struct Money
 
       Money.from_amount(amount, currency)
     rescue ex : Money::Error
-      return yield Error.new "Cannot parse #{str.inspect}", ex
+      yield Error.new "Cannot parse #{str.inspect}", ex
     end
   end
 end
