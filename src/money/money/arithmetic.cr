@@ -167,5 +167,14 @@ struct Money
         modulo(other) - Money.new(other, currency)
       end
     end
+
+    # Rounds the monetary amount to smallest unit of coinage.
+    #
+    # ```
+    # Money.new(10.1, "USD").round # => Money(@amount=10, @currency="USD")
+    # ```
+    def round(precision : Int? = 0) : Money
+      Money.new(@amount.round(precision), currency)
+    end
   end
 end
