@@ -25,4 +25,20 @@ class Money::Currency
       previous_def
     end
   end
+
+  struct Rate
+    JSON.mapping({
+      from:  {type: Currency, setter: false},
+      to:    {type: Currency, setter: false},
+      value: {type: Int64, setter: false},
+    })
+
+    def to_json(json : JSON::Builder)
+      json.object do
+        json.field "from", @from.to_s
+        json.field "to", @to.to_s
+        json.field "value", to_f
+      end
+    end
+  end
 end
