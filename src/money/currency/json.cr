@@ -37,7 +37,7 @@ class Money::Currency
       json.object do
         json.field "from", @from.to_s
         json.field "to", @to.to_s
-        json.field "value", to_f
+        json.field "value", @value
       end
     end
   end

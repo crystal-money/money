@@ -15,13 +15,13 @@ describe Money::Casting do
     end
   end
 
-  describe "#to_f" do
+  describe "#to_big_f" do
     it "works as documented" do
-      Money.new(10_00).to_f.should eq 10.0
+      Money.new(10_00).to_big_f.should eq 10.0
     end
 
     it "respects :subunit_to_unit currency property" do
-      Money.new(10_00, "BHD").to_f.should eq 1.0
+      Money.new(10_00, "BHD").to_big_f.should eq 1.0
     end
   end
 end

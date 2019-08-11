@@ -193,7 +193,7 @@ Money::Currency.find("MGA").exponent # => 1
 To find a given currency by ISO 4217 numeric code (three digits) you can do
 
 ```crystal
-Money::Currency.find(&.iso_numeric.==(978)) # => Money::Currency.find(:eur)
+Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @iso_numeric=978, @code="EUR", @name="Euro", @symbol="€", @subunit="Cent", @subunit_to_unit=100, @symbol_first=true ...>
 ```
 
 ## Currency Exchange
@@ -206,18 +206,18 @@ an example of how it works:
 Money.default_bank.store["USD", "EUR"] = 1.24515
 Money.default_bank.store["EUR", "USD"] = 0.803115
 
-Money.new(100, "USD").exchange_to("EUR") # => Money.new(124, "EUR")
-Money.new(100, "EUR").exchange_to("USD") # => Money.new(80,  "USD")
+Money.new(100, "USD").exchange_to("EUR") # => Money.new(@amount=1.24, @currency="EUR")
+Money.new(100, "EUR").exchange_to("USD") # => Money.new(@amount=0.8,  @currency="USD")
 ```
 
 Comparison and arithmetic operations work as expected:
 
 ```crystal
 Money.new(1000, "USD") <=> Money.new(900, "USD") # => 1; 9.00 USD is smaller
-Money.new(1000, "EUR") + Money.new(10, "EUR") == Money.new(1010, "EUR")
+Money.new(1000, "EUR") + Money.new(10, "EUR") # => Money.new(@amount=10.1, @currency="EUR")
 
 Money.default_bank.store["USD", "EUR"] = 0.5
-Money.new(1000, "EUR") + Money.new(1000, "USD") == Money.new(1500, "EUR")
+Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15, @currency="EUR")
 ```
 
 ### Exchange rate stores
@@ -240,7 +240,7 @@ Money.default_bank.store["USD", "CAD"] = 0.9
 Money.default_bank.store["USD", "CAD"] # => 0.9
 
 # Exchanging amounts just works
-Money.new(1000, "USD").exchange_to("CAD") # => #<Money @fractional=900 @currency="CAD">
+Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9 @currency="CAD")
 ```
 
 There is nothing stopping you from creating store objects which scrapes
@@ -271,7 +271,7 @@ There are several formatting rules for when `Money#format` is called. For more i
 If you wish to format money according to the EU's [Rules for expressing monetary units](http://publications.europa.eu/code/en/en-370303.htm#position) in either English, Irish, Latvian or Maltese:
 
 ```crystal
-money = Money.new(123, :gbp)               # => #<Money @fractional=123 @currency="GBP">
+money = Money.new(123, :gbp)               # => Money(@amount=1.23 @currency="GBP")
 money.format(symbol: "#{money.currency} ") # => "GBP 1.23"
 ```
 
@@ -280,8 +280,8 @@ money.format(symbol: "#{money.currency} ") # => "GBP 1.23"
 To parse a `String` containing amount with currency code or symbol you can do
 
 ```crystal
-Money.parse("$12.34")    == Money.from_amount(12.34, "USD")
-Money.parse("12.34 USD") == Money.from_amount(12.34, "USD")
+Money.parse("$12.34")    # => Money(@amount=12.34, @currency="USD")
+Money.parse("12.34 USD") # => Money(@amount=12.34, @currency="USD")
 ```
 
 ## Contributors

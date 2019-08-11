@@ -23,38 +23,36 @@ describe Money do
       end
 
       context "and the value is 1.00" do
-        it { Money.new(1.00).should eq Money.new(1) }
+        it { Money.new(1.00).should eq Money.new(1.0) }
       end
 
       context "and the value is 1.01" do
-        it { Money.new(1.01).should eq Money.new(1) }
+        it { Money.new(1.01).should eq Money.new(1.01) }
+      end
+
+      context "and the value is 1.007" do
+        it { Money.new(1.007).should eq Money.new(1.01) }
       end
 
       context "and the value is 1.50" do
-        it { Money.new(1.50).should eq Money.new(2) }
+        it { Money.new(1.50).should eq Money.new(1.5) }
       end
     end
 
     context "given the initializing value is a rational" do
-      it { Money.new(BigRational.new(1)).should eq Money.new(1) }
+      it { Money.new(BigRational.new(1)).should eq Money.new(1.0) }
     end
 
     context "given a currency is not provided" do
       it "should have the default currency" do
-        Money.new(1).currency.should eq Money.default_currency
+        Money.new(1).currency.should be Money.default_currency
       end
     end
 
     context "given a currency is provided" do
       context "and the currency is NZD" do
         it "should have NZD currency" do
-          Money.new(1, "NZD").currency.should eq Money::Currency.find("NZD")
-        end
-      end
-
-      context "and the currency is nil" do
-        it "should have the default currency" do
-          Money.new(1).currency.should eq Money.default_currency
+          Money.new(1, "NZD").currency.should be Money::Currency.find("NZD")
         end
       end
     end
@@ -86,10 +84,10 @@ describe Money do
     end
 
     it "rounds the given amount to subunits" do
-      Money.from_amount(4.444, "USD").amount.should eq "4.44".to_big_d
-      Money.from_amount(5.555, "USD").amount.should eq "5.56".to_big_d
-      Money.from_amount(444.4, "JPY").amount.should eq "444".to_big_d
-      Money.from_amount(555.5, "JPY").amount.should eq "556".to_big_d
+      Money.from_amount(4.444, "USD").amount.should eq 4.44
+      Money.from_amount(5.555, "USD").amount.should eq 5.56
+      Money.from_amount(444.4, "JPY").amount.should eq 444
+      Money.from_amount(555.5, "JPY").amount.should eq 556
     end
 
     it "accepts an optional currency" do
@@ -111,18 +109,14 @@ describe Money do
 
   describe "#fractional" do
     it "returns the amount in fractional unit" do
-      Money.new(1_00).fractional.should eq 1_00
-    end
-
-    it "stores fractional as an Int64 regardless of what is passed into the constructor" do
-      m = Money.new(100)
-      m.fractional.should eq 100.0.to_big_d
-      m.fractional.should be_a(Int64)
+      money = Money.new(1_00)
+      money.fractional.should eq 1_00
+      money.fractional.should be_a(BigInt)
     end
 
     context "loading a serialized Money via JSON" do
       money = Money.from_json(%q({
-        "fractional": 3300,
+        "amount": "33.00",
         "currency": "EUR"
       }))
 
@@ -138,69 +132,46 @@ describe Money do
 
   describe "#nearest_cash_value" do
     it "rounds to the nearest possible cash value" do
-      money = Money.new(2350, "AED")
-      money.nearest_cash_value.should eq 2350
-
-      money = Money.new(-2350, "AED")
-      money.nearest_cash_value.should eq(-2350)
-
-      money = Money.new(2213, "AED")
-      money.nearest_cash_value.should eq 2225
-
-      money = Money.new(-2213, "AED")
-      money.nearest_cash_value.should eq(-2225)
-
-      money = Money.new(2212, "AED")
-      money.nearest_cash_value.should eq 2200
-
-      money = Money.new(-2212, "AED")
-      money.nearest_cash_value.should eq(-2200)
-
-      money = Money.new(178, "CHF")
-      money.nearest_cash_value.should eq 180
-
-      money = Money.new(-178, "CHF")
-      money.nearest_cash_value.should eq(-180)
-
-      money = Money.new(177, "CHF")
-      money.nearest_cash_value.should eq 175
-
-      money = Money.new(-177, "CHF")
-      money.nearest_cash_value.should eq(-175)
-
-      money = Money.new(175, "CHF")
-      money.nearest_cash_value.should eq 175
-
-      money = Money.new(-175, "CHF")
-      money.nearest_cash_value.should eq(-175)
-
-      money = Money.new(299, "USD")
-      money.nearest_cash_value.should eq 299
-
-      money = Money.new(-299, "USD")
-      money.nearest_cash_value.should eq(-299)
-
-      money = Money.new(300, "USD")
-      money.nearest_cash_value.should eq 300
-
-      money = Money.new(-300, "USD")
-      money.nearest_cash_value.should eq(-300)
-
-      money = Money.new(301, "USD")
-      money.nearest_cash_value.should eq 301
-
-      money = Money.new(-301, "USD")
-      money.nearest_cash_value.should eq(-301)
+      sets = {
+        {2350, "AED", 2350},
+        {-2350, "AED", -2350},
+        {2213, "AED", 2225},
+        {-2213, "AED", -2225},
+        {2212, "AED", 2200},
+        {-2212, "AED", -2200},
+        {178, "CHF", 180},
+        {-178, "CHF", -180},
+        {177, "CHF", 175},
+        {-177, "CHF", -175},
+        {175, "CHF", 175},
+        {-175, "CHF", -175},
+        {299, "USD", 299},
+        {-299, "USD", -299},
+        {300, "USD", 300},
+        {-300, "USD", -300},
+        {301, "USD", 301},
+        {-301, "USD", -301},
+      }
+      sets.each do |(fractional, currency, expected)|
+        Money.new(fractional, currency).nearest_cash_value.should eq expected
+      end
     end
 
     it "raises an exception if smallest denomination is not defined" do
       money = Money.new(100, "XAG")
-      expect_raises(Money::UndefinedSmallestDenominationError) { money.nearest_cash_value }
+      expect_raises(Money::UndefinedSmallestDenominationError) do
+        money.nearest_cash_value
+      end
     end
 
-    it "returns an Int64" do
-      money = Money.new(100, "EUR")
-      money.nearest_cash_value.should be_a Int64
+    it "returns a BigInt" do
+      Money.new(100, "EUR").nearest_cash_value.should be_a BigInt
+    end
+  end
+
+  describe "#rounded_to_nearest_cash_value" do
+    it "rounds to the nearest possible cash value" do
+      Money.new(-2213, "AED").rounded_to_nearest_cash_value.cents.should eq -2225
     end
   end
 

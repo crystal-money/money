@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe Money do
   foo_json = %q({
-    "fractional": 1000,
+    "amount": "10.00",
     "currency": "USD"
   })
 

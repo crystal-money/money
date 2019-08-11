@@ -39,6 +39,69 @@ struct Money
     self.default_bank = Bank::SingleCurrency.new
   end
 
+  # Returns the numerical value of the money.
+  #
+  # ```
+  # Money.new(1_00, "USD").amount # => 1.0
+  # ```
+  #
+  # See `#to_big_d` and `#fractional`.
+  getter amount : BigDecimal
+
+  # The money's currency.
+  getter currency : Currency
+
+  # Creates a new `Money` object of value given as an *amount*
+  # of the given *currency*.
+  #
+  # ```
+  # Money.new(1.5)                 # => Money(@amount=1.5 @currency="USD")
+  # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
+  # Money.new(3.to_big_r, "EUR")   # => Money(@amount=3 @currency="EUR")
+  # ```
+  def initialize(amount : BigDecimal | BigRational, currency = Money.default_currency)
+    @currency = Currency.wrap(currency)
+    @amount = amount.to_big_d.round(@currency.exponent)
+  end
+
+  # :ditto:
+  def initialize(amount : Float, currency = Money.default_currency)
+    unless amount.finite?
+      raise ArgumentError.new "Must be initialized with a finite value"
+    end
+    initialize(amount.to_big_d, currency)
+  end
+
+  # Creates a new `Money` object of value given in the
+  # *fractional* unit of the given *currency*.
+  #
+  # ```
+  # Money.new(100)        # => Money(@amount=1 @currency="USD")
+  # Money.new(100, "USD") # => Money(@amount=1 @currency="USD")
+  # Money.new(100, "EUR") # => Money(@amount=1 @currency="EUR")
+  # ```
+  def initialize(fractional : Int, currency = Money.default_currency)
+    currency = Currency.wrap(currency)
+    amount = fractional.to_big_d / currency.subunit_to_unit
+    initialize(amount, currency)
+  end
+
+  # Returns hash value based on the `amount` and `currency` attributes.
+  def_hash amount, currency
+
+  # Compares two `Money` objects.
+  def <=>(other : Money) : Int32
+    return 0 if zero? && other.zero?
+    with_same_currency(other) do |converted_other|
+      amount <=> converted_other.amount
+    end
+  end
+
+  # The `Bank` object which currency exchanges are performed with.
+  def bank : Bank
+    Money.default_bank
+  end
+
   # The value of the monetary amount represented in the fractional or subunit
   # of the currency.
   #
@@ -50,65 +113,8 @@ struct Money
   # unit is the fils and there 1000 fils to one Kuwaiti dinar. So given the
   # `Money` representation of one Kuwaiti dinar, the fractional interpretation
   # is 1000.
-  getter fractional : Int64
-
-  # The money's currency.
-  getter currency : Currency
-
-  # Creates a new `Money` object of value given in the
-  # *fractional* unit of the given *currency*.
-  #
-  # ```
-  # Money.new(100)        # => #<Money @fractional=100 @currency="USD">
-  # Money.new(100, "USD") # => #<Money @fractional=100 @currency="USD">
-  # Money.new(100, "EUR") # => #<Money @fractional=100 @currency="EUR">
-  # ```
-  def initialize(fractional, currency = Money.default_currency)
-    @fractional = fractional.to_i64
-    @currency = Currency.wrap(currency)
-  end
-
-  # Creates a new `Money` object of value given in the
-  # *fractional* unit of the given *currency*.
-  #
-  # ```
-  # Money.new(1.0)               # => #<Money @fractional=100 @currency="USD">
-  # Money.new(1.to_big_d, "USD") # => #<Money @fractional=100 @currency="USD">
-  # Money.new(1.to_big_r, "EUR") # => #<Money @fractional=100 @currency="EUR">
-  # ```
-  def initialize(fractional : Float | BigDecimal | BigRational, currency = Money.default_currency)
-    if fractional.responds_to?(:finite?) && !fractional.finite?
-      raise ArgumentError.new "Must be initialized with a finite value"
-    end
-    @fractional = fractional.round.to_f64.to_i64
-    @currency = Currency.wrap(currency)
-  end
-
-  # Returns hash value based on the `fractional` and `currency` attributes.
-  def_hash @fractional, @currency
-
-  # Compares two `Money` objects.
-  def <=>(other : Money) : Int32
-    return 0 if zero? && other.zero?
-    with_same_currency(other) do |converted_other|
-      fractional <=> converted_other.fractional
-    end
-  end
-
-  # The `Bank` object which currency exchanges are performed with.
-  def bank : Bank
-    Money.default_bank
-  end
-
-  # Returns the numerical value of the money.
-  #
-  # ```
-  # Money.new(1_00, "USD").amount # => BigDecimal.new("1.00")
-  # ```
-  #
-  # See `#to_big_d` and `#fractional`.
-  def amount : BigDecimal
-    to_big_d
+  def fractional : BigInt
+    (amount * currency.subunit_to_unit).to_big_i
   end
 
   # Alias of `#amount`.
@@ -117,22 +123,22 @@ struct Money
   end
 
   # Alias of `#fractional`.
-  def cents : Int64
+  def cents : BigInt
     fractional
   end
 
-  # Returns the nearest possible amount in cash value.
+  # Returns the nearest possible amount in cash value (cents).
   #
   # For example, in Swiss franc (CHF), the smallest possible amount of
   # cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
   # and for CHF 0.08, CHF 0.10.
-  def nearest_cash_value : Int64
-    smallest_denomination = currency.smallest_denomination
-    unless smallest_denomination
+  def nearest_cash_value : BigInt
+    unless smallest_denomination = currency.smallest_denomination
       raise UndefinedSmallestDenominationError.new
     end
-    rounded_value = (fractional.to_big_d / smallest_denomination).round * smallest_denomination
-    rounded_value.to_i64
+    rounded_value = (fractional.to_big_d / smallest_denomination).round
+    rounded_value *= smallest_denomination
+    rounded_value.to_big_i
   end
 
   # See `#nearest_cash_value`.

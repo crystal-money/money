@@ -10,7 +10,7 @@ struct Money
     # Money.new(-1).positive? # => false
     # ```
     def positive?
-      fractional > 0
+      amount > 0
     end
 
     # Returns `true` if the money amount is less than 0, `false` otherwise.
@@ -21,7 +21,7 @@ struct Money
     # Money.new(1).negative?  # => false
     # ```
     def negative?
-      fractional < 0
+      amount < 0
     end
 
     # Returns `true` if the money amount is zero.
@@ -32,22 +32,22 @@ struct Money
     # Money.new(-100).zero? # => false
     # ```
     def zero?
-      fractional == 0
+      amount == 0
     end
 
     # Returns absolute value of `self` as a new `Money` object.
     #
     # ```
-    # Money.new(-100).abs # => #<Money @fractional=100>
+    # Money.new(-100).abs # => Money(@amount=1)
     # ```
     def abs : Money
-      Money.new(fractional.abs, currency)
+      Money.new(amount.abs, currency)
     end
 
     # Alias of `#abs`.
     #
     # ```
-    # +Money.new(-100) # => #<Money @fractional=100>
+    # +Money.new(-100) # => Money(@amount=1)
     # ```
     def + : Money
       abs
@@ -56,22 +56,22 @@ struct Money
     # Returns a new `Money` object with changed polarity.
     #
     # ```
-    # -Money.new(100) # => #<Money @fractional=-100>
+    # -Money.new(100) # => Money(@amount=-1)
     # ```
     def - : Money
-      Money.new(-fractional, currency)
+      Money.new(-amount, currency)
     end
 
     # Returns a new `Money` object containing the sum of the two
     # operands' monetary values.
     #
     # ```
-    # Money.new(100) + Money.new(100) # => #<Money @fractional=200>
+    # Money.new(100) + Money.new(100) # => Money(@amount=2)
     # ```
     def +(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        Money.new(fractional + converted_other.fractional, currency)
+        Money.new(amount + converted_other.amount, currency)
       end
     end
 
@@ -79,12 +79,12 @@ struct Money
     # operands' monetary values.
     #
     # ```
-    # Money.new(100) - Money.new(99) # => #<Money @fractional=1>
+    # Money.new(100) - Money.new(99) # => Money(@amount=0.01)
     # ```
     def -(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        Money.new(fractional - converted_other.fractional, currency)
+        Money.new(amount - converted_other.amount, currency)
       end
     end
 
@@ -92,22 +92,20 @@ struct Money
     # a new `Money` object with this monetary value and the same `#currency`.
     #
     # ```
-    # Money.new(100) * 2 # => #<Money @fractional=200>
+    # Money.new(100) * 2 # => Money(@amount=2)
     # ```
     def *(other : Number) : Money
-      new_amount = (fractional * other).to_i
-      Money.new(new_amount, currency)
+      Money.new(amount * other, currency)
     end
 
     # Divides the monetary value with the given *other* `Number` and returns
     # a new `Money` object with this monetary value and the same `#currency`.
     #
     # ```
-    # Money.new(100) / 10 # => #<Money @fractional=10>
+    # Money.new(100) / 10 # => Money(@amount=0.1)
     # ```
     def /(other : Number) : Money
-      new_amount = fractional.to_big_d / other.to_big_d
-      Money.new(new_amount, currency)
+      Money.new(amount / other, currency)
     end
 
     # Divides the monetary value with the given *other* `Money` object and
@@ -116,9 +114,9 @@ struct Money
     # ```
     # Money.new(100) / Money.new(10) # => 10.0
     # ```
-    def /(other : Money) : Float64
+    def /(other : Money) : BigDecimal
       with_same_currency(other) do |converted_other|
-        fractional.to_f / converted_other.fractional.to_f
+        amount / converted_other.amount
       end
     end
 
@@ -126,10 +124,10 @@ struct Money
     # quotient and modulus.
     #
     # ```
-    # Money.new(100).divmod(9)            # => {#<Money @fractional=11>, #<Money @fractional=1>}
-    # Money.new(100).divmod(Money.new(9)) # => {11, #<Money @fractional=1>}
+    # Money.new(100).divmod(9)            # => {Money(@amount=0.11), Money(@amount=0.01)}
+    # Money.new(100).divmod(Money.new(9)) # => {11, Money(@amount=0.01)}
     # ```
-    def divmod(other : Money) : {Int64, Money}
+    def divmod(other : Money) : {BigInt, Money}
       with_same_currency(other) do |converted_other|
         quotient, remainder = fractional.divmod(converted_other.fractional)
         {quotient, Money.new(remainder, currency)}
@@ -138,15 +136,15 @@ struct Money
 
     # ditto
     def divmod(other : Number) : {Money, Money}
-      quotient, remainder = fractional.divmod(other.to_i)
+      quotient, remainder = fractional.divmod(other.to_big_i)
       {Money.new(quotient, currency), Money.new(remainder, currency)}
     end
 
     # Equivalent to `#divmod(other)[1]`.
     #
     # ```
-    # Money.new(100).modulo(9)            # => #<Money @fractional=1>
-    # Money.new(100).modulo(Money.new(9)) # => #<Money @fractional=1>
+    # Money.new(100).modulo(9)            # => Money(@amount=0.01)
+    # Money.new(100).modulo(Money.new(9)) # => Money(@amount=0.01)
     # ```
     def modulo(other) : Money
       divmod(other)[1]
@@ -160,10 +158,10 @@ struct Money
     # If different signs `#modulo(other) - other`, otherwise `#modulo(other)`.
     #
     # ```
-    # Money.new(100).remainder(9) # => #<Money @fractional=1>
+    # Money.new(100).remainder(9) # => Money(@amount=0.01)
     # ```
     def remainder(other : Number) : Money
-      if (fractional < 0 && other < 0) || (fractional > 0 && other > 0)
+      if (amount < 0 && other < 0) || (amount > 0 && other > 0)
         modulo(other)
       else
         modulo(other) - Money.new(other, currency)

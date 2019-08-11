@@ -196,8 +196,11 @@ struct Money
         end
       end
 
-      unit, subunit = fractional.abs.divmod(currency.subunit_to_unit)
-      formatted = unit.to_s
+      parts = amount.abs.to_s.split('.')
+      unit, subunit = parts[0], parts[1]?
+      subunit = nil if subunit == "0"
+
+      formatted = unit
 
       delimiter = options[:delimiter]
       if delimiter
@@ -207,14 +210,14 @@ struct Money
       end
 
       display_cents = true
-      if options[:no_cents] || (options[:no_cents_if_whole] && subunit.zero?)
+      if options[:no_cents] || (options[:no_cents_if_whole] && !subunit)
         display_cents = false
       end
 
       decimal_places = currency.decimal_places
       if display_cents && decimal_places > 0
-        subunit = subunit.to_s.rjust(decimal_places, '0')
-        subunit = subunit.sub(/0+$/, "") if options[:drop_trailing_zeros]
+        subunit = subunit.to_s.ljust(decimal_places, '0')
+        subunit = subunit.rstrip('0') if options[:drop_trailing_zeros]
         unless subunit.empty?
           formatted += "#{options[:separator]}#{subunit}"
         end

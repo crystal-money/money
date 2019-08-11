@@ -1,9 +1,16 @@
+require "big/json"
 require "json"
+
+struct BigDecimal
+  def to_json(json : JSON::Builder)
+    json.string(to_s)
+  end
+end
 
 struct Money
   JSON.mapping({
-    fractional: {type: Int64, setter: false},
-    currency:   {type: Currency, setter: false},
+    amount:   {type: BigDecimal, setter: false},
+    currency: {type: Currency, setter: false},
   })
 
   def self.new(pull : JSON::PullParser)
