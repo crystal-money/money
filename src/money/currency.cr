@@ -71,7 +71,7 @@ struct Money
 
     # Returns the relation between subunit and unit as a base 10 exponent.
     #
-    # NOTE: MGA and MRO are exceptions and are rounded to 1.
+    # NOTE: MGA and MRU are exceptions and are rounded to 1.
     #
     # See [Active_codes](https://en.wikipedia.org/wiki/ISO_4217#Active_codes).
     def exponent : Int32

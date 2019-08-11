@@ -2,9 +2,9 @@
   "iso_numeric": 937,
   "code": "VEF",
   "name": "Venezuelan Bolívar",
-  "symbol": "Bs.F",
+  "symbol": "Bs",
   "alternate_symbols": [
-    "Bs"
+    "Bs.F"
   ],
   "subunit": "Céntimo",
   "subunit_to_unit": 100,

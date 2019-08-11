@@ -2,10 +2,10 @@
   "iso_numeric": 967,
   "code": "ZMW",
   "name": "Zambian Kwacha",
-  "symbol": "ZK",
+  "symbol": "K",
   "subunit": "Ngwee",
   "subunit_to_unit": 100,
-  "symbol_first": false,
+  "symbol_first": true,
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 5

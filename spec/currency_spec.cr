@@ -153,7 +153,7 @@ describe Money::Currency do
 
   describe "#decimal_places" do
     it "proper places for known currency" do
-      Money::Currency.find(:mro).decimal_places.should eq 1
+      Money::Currency.find(:mru).decimal_places.should eq 1
       Money::Currency.find(:usd).decimal_places.should eq 2
     end
   end
