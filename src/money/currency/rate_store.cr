@@ -6,7 +6,7 @@ class Money::Currency
     abstract def transaction(&block : -> _)
 
     # See `#[]=`.
-    abstract def add_rate(from : Currency, to : Currency, value : Int64) : Void
+    abstract def add_rate(from : Currency, to : Currency, value : Int64) : Nil
 
     # Registers a conversion rate and returns it.
     # NOTE: Uses `transaction` to synchronize data access.
@@ -16,7 +16,7 @@ class Money::Currency
     # store["USD", "CAD"] = 1.24515
     # store["CAD", "USD"] = 0.803115
     # ```
-    def []=(from, to, value : Number) : Void
+    def []=(from, to, value : Number) : Nil
       from, to = Currency.wrap(from), Currency.wrap(to)
       value = (value.to_big_d * to.subunit_to_unit).round
       transaction { add_rate(from, to, value.to_i64) }
@@ -54,11 +54,11 @@ class Money::Currency
     abstract def each(&block : T -> _)
 
     # See `#clear`.
-    abstract def clear_rates : Void
+    abstract def clear_rates : Nil
 
     # Empties currency rate index.
     # NOTE: Uses `transaction` to synchronize data access.
-    def clear : Void
+    def clear : Nil
       transaction { clear_rates }
     end
   end

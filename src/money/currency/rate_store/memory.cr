@@ -28,7 +28,7 @@ class Money::Currency
       @mutex.synchronize { yield }
     end
 
-    protected def add_rate(from : Currency, to : Currency, value : Int64) : Void
+    protected def add_rate(from : Currency, to : Currency, value : Int64) : Nil
       @index[rate_key_for(from, to)] = Rate.new(from, to, value)
     end
 
@@ -40,7 +40,7 @@ class Money::Currency
       @index.each { |_, rate| yield rate }
     end
 
-    protected def clear_rates : Void
+    protected def clear_rates : Nil
       @index.clear
     end
 

@@ -39,7 +39,7 @@ struct Money
         table.values.sort
       end
 
-      def each : Void
+      def each : Nil
         all.each do |*args|
           yield *args
         end
