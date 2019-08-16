@@ -19,6 +19,9 @@ struct Money
 
   include Comparable(Money)
 
+  # Use this to enable infinite precision cents
+  class_property? infinite_precision : Bool = false
+
   # Sets the default currency for creating new `Money` object.
   class_property default_currency : Currency { Currency.find("USD") }
 
@@ -39,15 +42,6 @@ struct Money
     self.default_bank = Bank::SingleCurrency.new
   end
 
-  # Returns the numerical value of the money.
-  #
-  # ```
-  # Money.new(1_00, "USD").amount # => 1.0
-  # ```
-  #
-  # See `#to_big_d` and `#fractional`.
-  getter amount : BigDecimal
-
   # The money's currency.
   getter currency : Currency
 
@@ -61,7 +55,7 @@ struct Money
   # ```
   def initialize(amount : BigDecimal | BigRational, currency = Money.default_currency)
     @currency = Currency.wrap(currency)
-    @amount = amount.to_big_d.round(@currency.exponent)
+    @amount = amount.to_big_d
   end
 
   # :ditto:
@@ -81,9 +75,8 @@ struct Money
   # Money.new(100, "EUR") # => Money(@amount=1 @currency="EUR")
   # ```
   def initialize(fractional : Int, currency = Money.default_currency)
-    currency = Currency.wrap(currency)
-    amount = fractional.to_big_d / currency.subunit_to_unit
-    initialize(amount, currency)
+    @currency = Currency.wrap(currency)
+    @amount = fractional.to_big_d / @currency.subunit_to_unit
   end
 
   # Returns hash value based on the `amount` and `currency` attributes.
@@ -102,6 +95,18 @@ struct Money
     Money.default_bank
   end
 
+  # Returns the numerical value of the money.
+  #
+  # ```
+  # Money.new(1_00, "USD").amount # => 1.0
+  # ```
+  #
+  # See `#to_big_d` and `#fractional`.
+  def amount : BigDecimal
+    return @amount if Money.infinite_precision?
+    @amount.round(currency.exponent)
+  end
+
   # The value of the monetary amount represented in the fractional or subunit
   # of the currency.
   #
@@ -113,6 +118,8 @@ struct Money
   # unit is the fils and there 1000 fils to one Kuwaiti dinar. So given the
   # `Money` representation of one Kuwaiti dinar, the fractional interpretation
   # is 1000.
+  #
+  # FIXME: Doesn't work with `Money.infinite_precision?` yet
   def fractional : BigInt
     (amount * currency.subunit_to_unit).to_big_i
   end

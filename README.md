@@ -264,6 +264,29 @@ currencies don't match:
 Money.disallow_currency_conversion!
 ```
 
+## Rounding
+
+By default, `Money` objects are rounded to the nearest cent and the additional precision is not preserved:
+
+```crystal
+Money.new(2.34567).to_s # => "$2.35"
+```
+
+To round to the nearest cent (or anything more precise), you can use the `Money#round` method.
+
+```crystal
+Money.new(2.34567).round(4).to_s # => "$2.35"
+```
+
+To retain the additional precision, you will also need to set `Money.infinite_precision` to `true`.
+
+```crystal
+Money.infinite_precision = true
+
+Money.new(2.34567).to_s          # => "$2.34567"
+Money.new(2.34567).round(4).to_s # => "$2.3457"
+```
+
 ## Formatting
 
 There are several formatting rules for when `Money#format` is called. For more information, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or read the latest release's [docs](http://crystal-money.github.io/money/Money/Formatting.html).

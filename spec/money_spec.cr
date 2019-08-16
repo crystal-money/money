@@ -90,6 +90,15 @@ describe Money do
       Money.from_amount(555.5, "JPY").amount.should eq 556
     end
 
+    it "does not round the given amount when .infinite_precision? is set" do
+      with_infinite_precision(true) do
+        Money.from_amount(4.444, "USD").amount.should eq 4.444
+        Money.from_amount(5.555, "USD").amount.should eq 5.555
+        Money.from_amount(444.4, "JPY").amount.should eq 444.4
+        Money.from_amount(555.5, "JPY").amount.should eq 555.5
+      end
+    end
+
     it "accepts an optional currency" do
       Money.from_amount(1).currency.should eq Money.default_currency
       Money::Currency["JPY"].tap do |jpy|

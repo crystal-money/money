@@ -313,10 +313,23 @@ describe Money::Arithmetic do
 
   describe "#round" do
     it "returns rounded value with given precision" do
-      Money.new(10.12, "USD").round.amount.should eq 10
-      Money.new(10.12, "USD").round(1).amount.should eq 10.1
-      Money.new(10.12, "USD").round(2).amount.should eq 10.12
-      Money.new(10.12, "USD").round(3).amount.should eq 10.12
+      Money.new(10.12345, "USD").round.amount.should eq 10
+      Money.new(10.12345, "USD").round(1).amount.should eq 10.1
+      Money.new(10.12345, "USD").round(2).amount.should eq 10.12
+      Money.new(10.12345, "USD").round(3).amount.should eq 10.12
+      Money.new(10.12345, "USD").round(4).amount.should eq 10.12
+    end
+
+    context "with Money.infinite_precision = true" do
+      with_infinite_precision(true) do
+        it "returns rounded value with given precision" do
+          Money.new(10.12345, "USD").round.amount.should eq 10
+          Money.new(10.12345, "USD").round(1).amount.should eq 10.1
+          Money.new(10.12345, "USD").round(2).amount.should eq 10.12
+          Money.new(10.12345, "USD").round(3).amount.should eq 10.123
+          Money.new(10.12345, "USD").round(4).amount.should eq 10.1235
+        end
+      end
     end
   end
 
