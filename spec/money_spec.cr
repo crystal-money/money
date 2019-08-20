@@ -43,9 +43,15 @@ describe Money do
       it { Money.new(BigRational.new(1)).should eq Money.new(1.0) }
     end
 
+    context "given there's no amount provided" do
+      it "should have zero amount" do
+        Money.new.amount.should eq 0
+      end
+    end
+
     context "given a currency is not provided" do
       it "should have the default currency" do
-        Money.new(1).currency.should be Money.default_currency
+        Money.zero.currency.should be Money.default_currency
       end
     end
 
@@ -54,6 +60,20 @@ describe Money do
         it "should have NZD currency" do
           Money.new(1, "NZD").currency.should be Money::Currency.find("NZD")
         end
+      end
+    end
+
+    context "given a bank is not provided" do
+      it "should return the default bank" do
+        Money.zero.bank.should be Money.default_bank
+      end
+    end
+
+    context "given a bank is provided" do
+      bank = Money::Bank::SingleCurrency.new
+
+      it "should return given bank" do
+        Money.new(1, "USD", bank).bank.should be bank
       end
     end
   end
@@ -102,15 +122,15 @@ describe Money do
     it "accepts an optional currency" do
       Money.from_amount(1).currency.should eq Money.default_currency
       Money::Currency["JPY"].tap do |jpy|
-        Money.from_amount(1, jpy).currency.should eq jpy
-        Money.from_amount(1, "JPY").currency.should eq jpy
+        Money.from_amount(1, jpy).currency.should be jpy
+        Money.from_amount(1, "JPY").currency.should be jpy
       end
     end
 
     context "given a currency is provided" do
       context "and the currency is nil" do
         it "should have the default currency" do
-          Money.from_amount(1).currency.should eq Money.default_currency
+          Money.from_amount(1).currency.should be Money.default_currency
         end
       end
     end
@@ -120,7 +140,7 @@ describe Money do
     it "returns the amount in fractional unit" do
       money = Money.new(1_00)
       money.fractional.should eq 1_00
-      money.fractional.should be_a(BigInt)
+      money.fractional.should be_a BigInt
     end
 
     context "loading a serialized Money via JSON" do
@@ -134,7 +154,7 @@ describe Money do
       end
 
       it "loads currency by string" do
-        money.currency.should eq Money::Currency["EUR"]
+        money.currency.should be Money::Currency["EUR"]
       end
     end
   end
@@ -201,13 +221,34 @@ describe Money do
     end
 
     it "produces a BigDecimal" do
-      Money.new(1_00).amount.should be_a BigDecimal
+      Money.zero.amount.should be_a BigDecimal
     end
   end
 
   describe "#currency" do
     it "returns the currency object" do
-      Money.new(1_00, "USD").currency.should eq Money::Currency.find("USD")
+      Money.zero.currency.should be Money::Currency.find("USD")
+    end
+  end
+
+  describe "#bank" do
+    it "returns default Bank object" do
+      Money.zero.bank.should be Money.default_bank
+    end
+
+    it "returns Bank object passed in #initialize" do
+      Money::Bank::SingleCurrency.new.tap do |bank|
+        Money.zero(bank: bank).bank.should be bank
+      end
+    end
+
+    it "takes Bank object" do
+      Money::Bank::SingleCurrency.new.tap do |bank|
+        Money.zero.tap do |zero|
+          zero.bank = bank
+          zero.bank.should be bank
+        end
+      end
     end
   end
 
@@ -229,13 +270,26 @@ describe Money do
   describe ".default_currency" do
     it "accepts a string" do
       with_default_currency("PLN") do
-        Money.default_currency.should eq Money::Currency.find("PLN")
+        Money.default_currency.should be Money::Currency.find("PLN")
       end
     end
 
     it "accepts a symbol" do
       with_default_currency(:eur) do
-        Money.default_currency.should eq Money::Currency.find(:eur)
+        Money.default_currency.should be Money::Currency.find(:eur)
+      end
+    end
+  end
+
+  describe ".default_bank" do
+    it "returns the Bank object" do
+      Money.default_bank.should be_a Money::Bank
+    end
+
+    it "sets the value to the given Bank object" do
+      bank = Money::Bank::SingleCurrency.new
+      with_default_bank(bank) do
+        Money.default_bank.should be bank
       end
     end
   end

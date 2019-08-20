@@ -6,11 +6,11 @@ describe Money::Currency do
       Money::Currency.wrap?(nil).should be_nil
     end
     it "returns passed object if object is Currency" do
-      Money::Currency.wrap?(Money::Currency.find(:usd)).should eq Money::Currency.find(:usd)
+      Money::Currency.wrap?(Money::Currency.find(:usd)).should be Money::Currency.find(:usd)
     end
     it "returns Currency object matching given id if object is String or Symbol" do
-      Money::Currency.wrap?("USD").should eq Money::Currency.find(:usd)
-      Money::Currency.wrap?(:usd).should eq Money::Currency.find(:usd)
+      Money::Currency.wrap?("USD").should be Money::Currency.find(:usd)
+      Money::Currency.wrap?(:usd).should be Money::Currency.find(:usd)
     end
   end
 

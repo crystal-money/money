@@ -9,8 +9,8 @@ struct Money
     # ```
     #
     # See `#initialize`.
-    def from_amount(amount : Number | String, currency = default_currency) : Money
-      new(amount.to_big_d, currency)
+    def from_amount(amount : Number | String, currency = default_currency, bank = nil) : Money
+      new(amount.to_big_d, currency, bank)
     end
 
     # Creates a new `Money` object with value `0`.
@@ -19,8 +19,8 @@ struct Money
     # Money.zero       # => Money(@amount=0)
     # Money.zero(:pln) # => Money(@amount=0 @currency="PLN")
     # ```
-    def zero(currency = default_currency) : Money
-      new(0, currency)
+    def zero(currency = default_currency, bank = nil) : Money
+      new(0, currency, bank)
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -29,8 +29,8 @@ struct Money
     # ```
     # Money.us_dollar(100) # => Money(@amount=1 @currency="USD")
     # ```
-    def us_dollar(cents)
-      new(cents, "USD")
+    def us_dollar(cents, bank = nil)
+      new(cents, "USD", bank)
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -39,8 +39,8 @@ struct Money
     # ```
     # Money.euro(100) # => Money(@amount=1 @currency="EUR")
     # ```
-    def euro(cents)
-      new(cents, "EUR")
+    def euro(cents, bank = nil)
+      new(cents, "EUR", bank)
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -49,8 +49,8 @@ struct Money
     # ```
     # Money.bitcoin(100) # => Money(@amount=0.000001 @currency="BTC")
     # ```
-    def bitcoin(cents)
-      new(cents, "BTC")
+    def bitcoin(cents, bank = nil)
+      new(cents, "BTC", bank)
     end
   end
 end

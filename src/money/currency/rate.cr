@@ -18,8 +18,8 @@ class Money::Currency
     end
 
     # Returns conversion rate `value` as `Money` object.
-    def to_money : Money
-      Money.new(@value, @to)
+    def to_money(bank = nil) : Money
+      Money.new(@value, @to, bank)
     end
 
     def to_s(io)

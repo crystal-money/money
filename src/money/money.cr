@@ -45,21 +45,38 @@ struct Money
   # The money's currency.
   getter currency : Currency
 
+  # The `Bank` object which currency exchanges are performed with.
+  #
+  # NOTE: Setting `nil` (the default) will delegate to `Money.default_bank`.
+  property bank : Bank?
+
+  # :ditto:
+  def bank : Bank
+    @bank || Money.default_bank
+  end
+
   # Creates a new `Money` object of value given as an *amount*
   # of the given *currency*.
   #
   # ```
+  # Money.new                      # => Money(@amount=0 @currency="USD")
   # Money.new(1.5)                 # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
   # Money.new(3.to_big_r, "EUR")   # => Money(@amount=3 @currency="EUR")
   # ```
-  def initialize(amount : BigDecimal | BigRational, currency = Money.default_currency)
-    @currency = Currency.wrap(currency)
-    @amount = amount.to_big_d
+  def initialize(amount : Number = 0, currency = Money.default_currency)
+    initialize(amount, currency, nil)
   end
 
   # :ditto:
-  def initialize(amount : Float, currency = Money.default_currency)
+  def initialize(amount : BigDecimal | BigRational, currency, bank)
+    @currency = Currency.wrap(currency)
+    @amount = amount.to_big_d
+    @bank = bank
+  end
+
+  # :ditto:
+  def initialize(amount : Float, currency, bank)
     unless amount.finite?
       raise ArgumentError.new "Must be initialized with a finite value"
     end
@@ -74,9 +91,10 @@ struct Money
   # Money.new(100, "USD") # => Money(@amount=1 @currency="USD")
   # Money.new(100, "EUR") # => Money(@amount=1 @currency="EUR")
   # ```
-  def initialize(fractional : Int, currency = Money.default_currency)
+  def initialize(fractional : Int, currency, bank)
     @currency = Currency.wrap(currency)
     @amount = fractional.to_big_d / @currency.subunit_to_unit
+    @bank = bank
   end
 
   # Returns hash value based on the `amount` and `currency` attributes.
@@ -88,11 +106,6 @@ struct Money
     with_same_currency(other) do |converted_other|
       amount <=> converted_other.amount
     end
-  end
-
-  # The `Bank` object which currency exchanges are performed with.
-  def bank : Bank
-    Money.default_bank
   end
 
   # Returns the numerical value of the money.
@@ -150,6 +163,6 @@ struct Money
 
   # See `#nearest_cash_value`.
   def rounded_to_nearest_cash_value : Money
-    Money.new(nearest_cash_value, currency)
+    Money.new(nearest_cash_value, currency, bank)
   end
 end

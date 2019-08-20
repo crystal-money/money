@@ -4,7 +4,7 @@ struct Money
       rate = store[from.currency, to]
       fractional = calculate_fractional(from, to)
       fractional = fractional * rate
-      Money.new(fractional.to_big_i, to)
+      Money.new(fractional.to_big_i, to, self)
     end
 
     def calculate_fractional(from : Money, to : Currency) : BigDecimal
