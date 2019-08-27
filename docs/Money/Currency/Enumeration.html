@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.29.0">
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../../";
+</script>
+
   <meta id="repository-name" content="github.com/crystal-money/money">
-  <link href="../../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../../js/doc.js"></script>
   <title>Money::Currency::Enumeration - github.com/crystal-money/money</title>
-  <script type="text/javascript">
-    CrystalDoc.base_path = "../../";
-  </script>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search..." spellcheck="false">
-  </div>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
 
-  <a href="../../index.html">README</a>
+    <div class="repository-links">
+      <a href="../../index.html">README</a>
+    </div>
+  </div>
 
   <div class="search-results" class="hidden">
     <ul class="search-list"></ul>
@@ -25,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/BigDecimal" data-name="bigdecimal">
+      <a href="../../BigDecimal.html">BigDecimal</a>
+      
+    </li>
   
   <li class="parent open current" data-id="github.com/crystal-money/money/Money" data-name="money">
       <a href="../../Money.html">Money</a>
@@ -171,7 +186,8 @@
   </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">module</span> Money::Currency::Enumeration
@@ -205,7 +221,9 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L3" target="_blank">money/currency/enumeration.cr</a>
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L3" target="_blank">
+        money/currency/enumeration.cr
+      </a>
     
     <br/>
   
@@ -222,38 +240,38 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%5B%5D%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#[]</strong>(key : String | Symbol) : Currency</a>
+        <a href="#[](key:String%7CSymbol):Currency-instance-method" class="signature"><strong>#[]</strong>(key : String | Symbol) : Currency</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3F%28key%3AString%7CSymbol%29%3ACurrency%3F-instance-method" class="signature"><strong>#[]?</strong>(key : String | Symbol) : Currency?</a>
+        <a href="#[]?(key:String%7CSymbol):Currency?-instance-method" class="signature"><strong>#[]?</strong>(key : String | Symbol) : Currency?</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, <code>nil</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#all%3AArray%28Currency%29-instance-method" class="signature"><strong>#all</strong> : Array(Currency)</a>
+        <a href="#all:Array(Currency)-instance-method" class="signature"><strong>#all</strong> : Array(Currency)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each%28%26block%29%3AVoid-instance-method" class="signature"><strong>#each</strong>(&block) : Void</a>
+        <a href="#each(&block):Nil-instance-method" class="signature"><strong>#each</strong>(&block) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#find</strong>(key : String | Symbol) : Currency</a>
+        <a href="#find(key:String%7CSymbol):Currency-instance-method" class="signature"><strong>#find</strong>(key : String | Symbol) : Currency</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find%3F%28key%3AString%7CSymbol%29%3ACurrency%3F-instance-method" class="signature"><strong>#find?</strong>(key : String | Symbol) : Currency?</a>
+        <a href="#find?(key:String%7CSymbol):Currency?-instance-method" class="signature"><strong>#find?</strong>(key : String | Symbol) : Currency?</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, <code>nil</code> otherwise.</p></div>
         
@@ -291,7 +309,7 @@
         
         def <strong>[]</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#%5B%5D%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#</a>
+        <a class="method-permalink" href="#[](key:String%7CSymbol):Currency-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
@@ -303,7 +321,7 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -313,7 +331,7 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
         
         def <strong>[]?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>?
 
-        <a class="method-permalink" href="#%5B%5D%3F%28key%3AString%7CSymbol%29%3ACurrency%3F-instance-method">#</a>
+        <a class="method-permalink" href="#[]?(key:String%7CSymbol):Currency?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
@@ -325,7 +343,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -335,29 +353,29 @@ success, <code>nil</code> otherwise.</p>
         
         def <strong>all</strong> : Array(<a href="../../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#all%3AArray%28Currency%29-instance-method">#</a>
+        <a class="method-permalink" href="#all:Array(Currency)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="each(&amp;block):Void-instance-method">
+    <div class="entry-detail" id="each(&amp;block):Nil-instance-method">
       <div class="signature">
         
-        def <strong>each</strong>(&block) : Void
+        def <strong>each</strong>(&block) : Nil
 
-        <a class="method-permalink" href="#each%28%26block%29%3AVoid-instance-method">#</a>
+        <a class="method-permalink" href="#each(&block):Nil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -367,7 +385,7 @@ success, <code>nil</code> otherwise.</p>
         
         def <strong>find</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#</a>
+        <a class="method-permalink" href="#find(key:String%7CSymbol):Currency-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
@@ -379,7 +397,7 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -389,7 +407,7 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
         
         def <strong>find?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>?
 
-        <a class="method-permalink" href="#find%3F%28key%3AString%7CSymbol%29%3ACurrency%3F-instance-method">#</a>
+        <a class="method-permalink" href="#find?(key:String%7CSymbol):Currency?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
@@ -401,7 +419,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

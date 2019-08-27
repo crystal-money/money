@@ -257,7 +257,7 @@ CrystalDoc.rankResults = function(results, query) {
   });
 
   if (results.length > 1) {
-    // if we have more than two search terms, only include results whith the most matches
+    // if we have more than two search terms, only include results with the most matches
     var bestMatchedTerms = uniqueArray(results[0].matched_terms).length;
 
     results = results.filter(function(result) {
@@ -840,10 +840,20 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 
-  var repositoryName = document.getElementById('repository-name').getAttribute('content');
-  var typesList = document.getElementById('types-list');
-  var searchInput = document.getElementById('search-input');
-  var parents = document.querySelectorAll('#types-list li.parent');
+  var repositoryName = document.querySelector('#repository-name').getAttribute('content');
+  var typesList = document.querySelector('.types-list');
+  var searchInput = document.querySelector('.search-input');
+  var parents = document.querySelectorAll('.types-list li.parent');
+
+  var scrollSidebarToOpenType = function(){
+    var openTypes = typesList.querySelectorAll('.current');
+    if (openTypes.length > 0) {
+      var lastOpenType = openTypes[openTypes.length - 1];
+      lastOpenType.scrollIntoView();
+    }
+  }
+
+  scrollSidebarToOpenType();
 
   var setPersistentSearchQuery = function(value){
     sessionStorage.setItem(repositoryName + '::search-input:value', value);
@@ -877,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.focus();
   }
 
-  var navigator = new Navigator(document.querySelector('#types-list'), searchInput, document.querySelector(".search-results"), leaveSearchScope);
+  var navigator = new Navigator(document.querySelector('.types-list'), searchInput, document.querySelector(".search-results"), leaveSearchScope);
 
   CrystalDoc.loadIndex();
   var searchTimeout;

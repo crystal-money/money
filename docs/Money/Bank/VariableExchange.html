@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.29.0">
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../../";
+</script>
+
   <meta id="repository-name" content="github.com/crystal-money/money">
-  <link href="../../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../../js/doc.js"></script>
   <title>Money::Bank::VariableExchange - github.com/crystal-money/money</title>
-  <script type="text/javascript">
-    CrystalDoc.base_path = "../../";
-  </script>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search..." spellcheck="false">
-  </div>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
 
-  <a href="../../index.html">README</a>
+    <div class="repository-links">
+      <a href="../../index.html">README</a>
+    </div>
+  </div>
 
   <div class="search-results" class="hidden">
     <ul class="search-list"></ul>
@@ -25,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/BigDecimal" data-name="bigdecimal">
+      <a href="../../BigDecimal.html">BigDecimal</a>
+      
+    </li>
   
   <li class="parent open current" data-id="github.com/crystal-money/money/Money" data-name="money">
       <a href="../../Money.html">Money</a>
@@ -171,7 +186,8 @@
   </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Money::Bank::VariableExchange
@@ -200,7 +216,9 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/bank/variable_exchange.cr#L2" target="_blank">money/bank/variable_exchange.cr</a>
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L2" target="_blank">
+        money/bank/variable_exchange.cr
+      </a>
     
     <br/>
   
@@ -217,12 +235,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#calculate_fractional%28from%3AMoney%2Cto%3ACurrency%29%3ABigDecimal-instance-method" class="signature"><strong>#calculate_fractional</strong>(from : Money, to : Currency) : BigDecimal</a>
+        <a href="#calculate_fractional(from:Money,to:Currency):BigDecimal-instance-method" class="signature"><strong>#calculate_fractional</strong>(from : Money, to : Currency) : BigDecimal</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        <a href="#exchange(from:Money,to:Currency):Money-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
         
       </li>
     
@@ -239,7 +257,7 @@
   <h3>Instance methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="tooltip">
+    <a href="../../Money/Bank.html#exchange(from:Money,to:Currency):Money-instance-method" class="tooltip">
       <span>exchange(from : Money, to : Currency) : Money</span>
     exchange</a>, 
     
@@ -249,7 +267,7 @@
     store</a>, 
     
   
-    <a href="../../Money/Bank.html#store%3D%28store%3ACurrency%3A%3ARateStore%29-instance-method" class="tooltip">
+    <a href="../../Money/Bank.html#store=(store:Currency::RateStore)-instance-method" class="tooltip">
       <span>store=(store : Currency::RateStore)</span>
     store=</a>
     
@@ -261,7 +279,7 @@
   <h3>Constructor methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#new%28store%3Dnil%29-class-method" class="tooltip">
+    <a href="../../Money/Bank.html#new(store=nil)-class-method" class="tooltip">
       <span>new(store = <span class="n">nil</span>)</span>
     new</a>
     
@@ -278,7 +296,7 @@
     default_store</a>, 
     
   
-    <a href="../../Money/Bank.html#default_store%3D%28default_store%3ACurrency%3A%3ARateStore%29-class-method" class="tooltip">
+    <a href="../../Money/Bank.html#default_store=(default_store:Currency::RateStore)-class-method" class="tooltip">
       <span>default_store=(default_store : Currency::RateStore)</span>
     default_store=</a>
     
@@ -318,15 +336,15 @@
     <div class="entry-detail" id="calculate_fractional(from:Money,to:Currency):BigDecimal-instance-method">
       <div class="signature">
         
-        def <strong>calculate_fractional</strong>(from : <a href="../../Money.html">Money</a>, to : <a href="../../Money/Currency.html">Currency</a>) : BigDecimal
+        def <strong>calculate_fractional</strong>(from : <a href="../../Money.html">Money</a>, to : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../BigDecimal.html">BigDecimal</a>
 
-        <a class="method-permalink" href="#calculate_fractional%28from%3AMoney%2Cto%3ACurrency%29%3ABigDecimal-instance-method">#</a>
+        <a class="method-permalink" href="#calculate_fractional(from:Money,to:Currency):BigDecimal-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/bank/variable_exchange.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -336,13 +354,13 @@
         
         def <strong>exchange</strong>(from : <a href="../../Money.html">Money</a>, to : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../Money.html">Money</a>
 
-        <a class="method-permalink" href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#exchange(from:Money,to:Currency):Money-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/bank/variable_exchange.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>

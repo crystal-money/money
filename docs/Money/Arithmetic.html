@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.29.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/crystal-money/money">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Money::Arithmetic - github.com/crystal-money/money</title>
-  <script type="text/javascript">
-    CrystalDoc.base_path = "../";
-  </script>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search..." spellcheck="false">
-  </div>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
 
-  <a href="../index.html">README</a>
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
+  </div>
 
   <div class="search-results" class="hidden">
     <ul class="search-list"></ul>
@@ -25,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/BigDecimal" data-name="bigdecimal">
+      <a href="../BigDecimal.html">BigDecimal</a>
+      
+    </li>
   
   <li class="parent open current" data-id="github.com/crystal-money/money/Money" data-name="money">
       <a href="../Money.html">Money</a>
@@ -171,7 +186,8 @@
   </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">module</span> Money::Arithmetic
@@ -205,7 +221,9 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L4" target="_blank">money/money/arithmetic.cr</a>
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L4" target="_blank">
+        money/money/arithmetic.cr
+      </a>
     
     <br/>
   
@@ -222,112 +240,119 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%25%28other%29%3AMoney-instance-method" class="signature"><strong>#%</strong>(other) : Money</a>
+        <a href="#%25(other):Money-instance-method" class="signature"><strong>#%</strong>(other) : Money</a>
         
-          <div class="summary"><p>Alias of <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo</a></code>.</p></div>
+          <div class="summary"><p>Alias of <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2A%28other%3ANumber%29%3AMoney-instance-method" class="signature"><strong>#*</strong>(other : Number) : Money</a>
+        <a href="#*(other:Number):Money-instance-method" class="signature"><strong>#*</strong>(other : Number) : Money</a>
         
           <div class="summary"><p>Multiplies the monetary value with the given <em>other</em> <code>Number</code> and returns a new <code><a href="../Money.html">Money</a></code> object with this monetary value and the same <code>#currency</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2B%28other%3AMoney%29%3AMoney-instance-method" class="signature"><strong>#+</strong>(other : Money) : Money</a>
+        <a href="#+(other:Money):Money-instance-method" class="signature"><strong>#+</strong>(other : Money) : Money</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> object containing the sum of the two operands' monetary values.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2B%3AMoney-instance-method" class="signature"><strong>#+</strong> : Money</a>
+        <a href="#+:Money-instance-method" class="signature"><strong>#+</strong> : Money</a>
         
-          <div class="summary"><p>Alias of <code><a href="../Money/Arithmetic.html#abs%3AMoney-instance-method">#abs</a></code>.</p></div>
+          <div class="summary"><p>Alias of <code><a href="../Money/Arithmetic.html#abs:Money-instance-method">#abs</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#-%28other%3AMoney%29%3AMoney-instance-method" class="signature"><strong>#-</strong>(other : Money) : Money</a>
+        <a href="#-(other:Money):Money-instance-method" class="signature"><strong>#-</strong>(other : Money) : Money</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> object containing the difference between the two operands' monetary values.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#-%3AMoney-instance-method" class="signature"><strong>#-</strong> : Money</a>
+        <a href="#-:Money-instance-method" class="signature"><strong>#-</strong> : Money</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> object with changed polarity.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2F%28other%3ANumber%29%3AMoney-instance-method" class="signature"><strong>#/</strong>(other : Number) : Money</a>
+        <a href="#/(other:Number):Money-instance-method" class="signature"><strong>#/</strong>(other : Number) : Money</a>
         
           <div class="summary"><p>Divides the monetary value with the given <em>other</em> <code>Number</code> and returns a new <code><a href="../Money.html">Money</a></code> object with this monetary value and the same <code>#currency</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2F%28other%3AMoney%29%3AFloat64-instance-method" class="signature"><strong>#/</strong>(other : Money) : Float64</a>
+        <a href="#/(other:Money):BigDecimal-instance-method" class="signature"><strong>#/</strong>(other : Money) : BigDecimal</a>
         
           <div class="summary"><p>Divides the monetary value with the given <em>other</em> <code><a href="../Money.html">Money</a></code> object and returns a ratio.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#abs%3AMoney-instance-method" class="signature"><strong>#abs</strong> : Money</a>
+        <a href="#abs:Money-instance-method" class="signature"><strong>#abs</strong> : Money</a>
         
           <div class="summary"><p>Returns absolute value of <code>self</code> as a new <code><a href="../Money.html">Money</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#divmod%28other%3AMoney%29%3A%3A%3ATuple%28Int64%2CMoney%29-instance-method" class="signature"><strong>#divmod</strong>(other : Money) : ::Tuple(Int64, Money)</a>
+        <a href="#divmod(other:Money):::Tuple(BigInt,Money)-instance-method" class="signature"><strong>#divmod</strong>(other : Money) : ::Tuple(BigInt, Money)</a>
         
           <div class="summary"><p>Divide by <code><a href="../Money.html">Money</a></code> or <code>Number</code> and return <code>Tuple</code> containing quotient and modulus.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#divmod%28other%3ANumber%29%3A%3A%3ATuple%28Money%2CMoney%29-instance-method" class="signature"><strong>#divmod</strong>(other : Number) : ::Tuple(Money, Money)</a>
+        <a href="#divmod(other:Number):::Tuple(Money,Money)-instance-method" class="signature"><strong>#divmod</strong>(other : Number) : ::Tuple(Money, Money)</a>
         
           <div class="summary"><p>Divide by <code><a href="../Money.html">Money</a></code> or <code>Number</code> and return <code>Tuple</code> containing quotient and modulus.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#modulo%28other%29%3AMoney-instance-method" class="signature"><strong>#modulo</strong>(other) : Money</a>
+        <a href="#modulo(other):Money-instance-method" class="signature"><strong>#modulo</strong>(other) : Money</a>
         
-          <div class="summary"><p>Equivalent to <code><a href="../Money/Arithmetic.html#divmod%28other%3AMoney%29%3A%3A%3ATuple%28Int64%2CMoney%29-instance-method">#divmod(other)</a>[1]</code>.</p></div>
+          <div class="summary"><p>Equivalent to <code><a href="../Money/Arithmetic.html#divmod(other:Money):::Tuple(BigInt,Money)-instance-method">#divmod(other)</a>[1]</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#negative%3F-instance-method" class="signature"><strong>#negative?</strong></a>
+        <a href="#negative?-instance-method" class="signature"><strong>#negative?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the money amount is less than 0, <code>false</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#positive%3F-instance-method" class="signature"><strong>#positive?</strong></a>
+        <a href="#positive?-instance-method" class="signature"><strong>#positive?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the money amount is greater than 0, <code>false</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#remainder%28other%3ANumber%29%3AMoney-instance-method" class="signature"><strong>#remainder</strong>(other : Number) : Money</a>
+        <a href="#remainder(other:Number):Money-instance-method" class="signature"><strong>#remainder</strong>(other : Number) : Money</a>
         
-          <div class="summary"><p>If different signs <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo(other)</a> - other</code>, otherwise <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo(other)</a></code>.</p></div>
+          <div class="summary"><p>If different signs <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo(other)</a> - other</code>, otherwise <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo(other)</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#zero%3F-instance-method" class="signature"><strong>#zero?</strong></a>
+        <a href="#round(precision:Int?=0):Money-instance-method" class="signature"><strong>#round</strong>(precision : Int? = <span class="n">0</span>) : Money</a>
+        
+          <div class="summary"><p>Rounds the monetary amount to smallest unit of coinage.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zero?-instance-method" class="signature"><strong>#zero?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the money amount is zero.</p></div>
         
@@ -355,15 +380,15 @@
         
         def <strong>%</strong>(other) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#%25%28other%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#%25(other):Money-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Alias of <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo</a></code>.</p></div>
+        <div class="doc"><p>Alias of <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L154" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L154" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -373,18 +398,18 @@
         
         def <strong>*</strong>(other : Number) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#%2A%28other%3ANumber%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#*(other:Number):Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Multiplies the monetary value with the given <em>other</em> <code>Number</code> and returns
 a new <code><a href="../Money.html">Money</a></code> object with this monetary value and the same <code>#currency</code>.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">*</span> <span class="n">2</span> <span class="c"># =&gt; #&lt;Money @fractional=200&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">*</span> <span class="n">2</span> <span class="c"># =&gt; Money(@amount=2)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -394,18 +419,18 @@ a new <code><a href="../Money.html">Money</a></code> object with this monetary v
         
         def <strong>+</strong>(other : <a href="../Money.html">Money</a>) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#%2B%28other%3AMoney%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#+(other:Money):Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns a new <code><a href="../Money.html">Money</a></code> object containing the sum of the two
 operands' monetary values.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">+</span> <span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="c"># =&gt; #&lt;Money @fractional=200&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">+</span> <span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="c"># =&gt; Money(@amount=2)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -415,17 +440,17 @@ operands' monetary values.</p>
         
         def <strong>+</strong> : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#%2B%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#+:Money-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Alias of <code><a href="../Money/Arithmetic.html#abs%3AMoney-instance-method">#abs</a></code>.</p>
+        <div class="doc"><p>Alias of <code><a href="../Money/Arithmetic.html#abs:Money-instance-method">#abs</a></code>.</p>
 
-<pre><code><span class="o">+</span><span class="t">Money</span>.<span class="k">new</span>(<span class="n">-100</span>) <span class="c"># =&gt; #&lt;Money @fractional=100&gt;</span></code></pre></div>
+<pre><code><span class="o">+</span><span class="t">Money</span>.<span class="k">new</span>(<span class="n">-100</span>) <span class="c"># =&gt; Money(@amount=1)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -435,18 +460,18 @@ operands' monetary values.</p>
         
         def <strong>-</strong>(other : <a href="../Money.html">Money</a>) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#-%28other%3AMoney%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#-(other:Money):Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns a new <code><a href="../Money.html">Money</a></code> object containing the difference between the two
 operands' monetary values.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">-</span> <span class="t">Money</span>.<span class="k">new</span>(<span class="n">99</span>) <span class="c"># =&gt; #&lt;Money @fractional=1&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">-</span> <span class="t">Money</span>.<span class="k">new</span>(<span class="n">99</span>) <span class="c"># =&gt; Money(@amount=0.01)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -456,17 +481,17 @@ operands' monetary values.</p>
         
         def <strong>-</strong> : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#-%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#-:Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns a new <code><a href="../Money.html">Money</a></code> object with changed polarity.</p>
 
-<pre><code><span class="o">-</span><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="c"># =&gt; #&lt;Money @fractional=-100&gt;</span></code></pre></div>
+<pre><code><span class="o">-</span><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="c"># =&gt; Money(@amount=-1)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -476,28 +501,28 @@ operands' monetary values.</p>
         
         def <strong>/</strong>(other : Number) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#%2F%28other%3ANumber%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#/(other:Number):Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Divides the monetary value with the given <em>other</em> <code>Number</code> and returns
 a new <code><a href="../Money.html">Money</a></code> object with this monetary value and the same <code>#currency</code>.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">/</span> <span class="n">10</span> <span class="c"># =&gt; #&lt;Money @fractional=10&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>) <span class="o">/</span> <span class="n">10</span> <span class="c"># =&gt; Money(@amount=0.1)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L106" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="/(other:Money):Float64-instance-method">
+    <div class="entry-detail" id="/(other:Money):BigDecimal-instance-method">
       <div class="signature">
         
-        def <strong>/</strong>(other : <a href="../Money.html">Money</a>) : Float64
+        def <strong>/</strong>(other : <a href="../Money.html">Money</a>) : <a href="../BigDecimal.html">BigDecimal</a>
 
-        <a class="method-permalink" href="#%2F%28other%3AMoney%29%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#/(other:Money):BigDecimal-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Divides the monetary value with the given <em>other</em> <code><a href="../Money.html">Money</a></code> object and
@@ -508,7 +533,7 @@ returns a ratio.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L117" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L117" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -518,39 +543,39 @@ returns a ratio.</p>
         
         def <strong>abs</strong> : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#abs%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#abs:Money-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns absolute value of <code>self</code> as a new <code><a href="../Money.html">Money</a></code> object.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">-100</span>).abs <span class="c"># =&gt; #&lt;Money @fractional=100&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">-100</span>).abs <span class="c"># =&gt; Money(@amount=1)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="divmod(other:Money):::Tuple(Int64,Money)-instance-method">
+    <div class="entry-detail" id="divmod(other:Money):::Tuple(BigInt,Money)-instance-method">
       <div class="signature">
         
-        def <strong>divmod</strong>(other : <a href="../Money.html">Money</a>) : ::Tuple(Int64, <a href="../Money.html">Money</a>)
+        def <strong>divmod</strong>(other : <a href="../Money.html">Money</a>) : ::Tuple(BigInt, <a href="../Money.html">Money</a>)
 
-        <a class="method-permalink" href="#divmod%28other%3AMoney%29%3A%3A%3ATuple%28Int64%2CMoney%29-instance-method">#</a>
+        <a class="method-permalink" href="#divmod(other:Money):::Tuple(BigInt,Money)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Divide by <code><a href="../Money.html">Money</a></code> or <code>Number</code> and return <code>Tuple</code> containing
 quotient and modulus.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="n">9</span>)            <span class="c"># =&gt; {#&lt;Money @fractional=11&gt;, #&lt;Money @fractional=1&gt;}</span>
-<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; {11, #&lt;Money @fractional=1&gt;}</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="n">9</span>)            <span class="c"># =&gt; {Money(@amount=0.11), Money(@amount=0.01)}</span>
+<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; {11, Money(@amount=0.01)}</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -560,19 +585,19 @@ quotient and modulus.</p>
         
         def <strong>divmod</strong>(other : Number) : ::Tuple(<a href="../Money.html">Money</a>, <a href="../Money.html">Money</a>)
 
-        <a class="method-permalink" href="#divmod%28other%3ANumber%29%3A%3A%3ATuple%28Money%2CMoney%29-instance-method">#</a>
+        <a class="method-permalink" href="#divmod(other:Number):::Tuple(Money,Money)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Divide by <code><a href="../Money.html">Money</a></code> or <code>Number</code> and return <code>Tuple</code> containing
 quotient and modulus.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="n">9</span>)            <span class="c"># =&gt; {#&lt;Money @fractional=11&gt;, #&lt;Money @fractional=1&gt;}</span>
-<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; {11, #&lt;Money @fractional=1&gt;}</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="n">9</span>)            <span class="c"># =&gt; {Money(@amount=0.11), Money(@amount=0.01)}</span>
+<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).divmod(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; {11, Money(@amount=0.01)}</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L138" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L138" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -582,18 +607,18 @@ quotient and modulus.</p>
         
         def <strong>modulo</strong>(other) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#modulo%28other%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#modulo(other):Money-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Equivalent to <code><a href="../Money/Arithmetic.html#divmod%28other%3AMoney%29%3A%3A%3ATuple%28Int64%2CMoney%29-instance-method">#divmod(other)</a>[1]</code>.</p>
+        <div class="doc"><p>Equivalent to <code><a href="../Money/Arithmetic.html#divmod(other:Money):::Tuple(BigInt,Money)-instance-method">#divmod(other)</a>[1]</code>.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).modulo(<span class="n">9</span>)            <span class="c"># =&gt; #&lt;Money @fractional=1&gt;</span>
-<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).modulo(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; #&lt;Money @fractional=1&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).modulo(<span class="n">9</span>)            <span class="c"># =&gt; Money(@amount=0.01)</span>
+<span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).modulo(<span class="t">Money</span>.<span class="k">new</span>(<span class="n">9</span>)) <span class="c"># =&gt; Money(@amount=0.01)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L149" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -603,7 +628,7 @@ quotient and modulus.</p>
         
         def <strong>negative?</strong>
 
-        <a class="method-permalink" href="#negative%3F-instance-method">#</a>
+        <a class="method-permalink" href="#negative?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the money amount is less than 0, <code>false</code> otherwise.</p>
@@ -615,7 +640,7 @@ quotient and modulus.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,7 +650,7 @@ quotient and modulus.</p>
         
         def <strong>positive?</strong>
 
-        <a class="method-permalink" href="#positive%3F-instance-method">#</a>
+        <a class="method-permalink" href="#positive?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the money amount is greater than 0, <code>false</code> otherwise.</p>
@@ -637,7 +662,7 @@ quotient and modulus.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -647,17 +672,37 @@ quotient and modulus.</p>
         
         def <strong>remainder</strong>(other : Number) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#remainder%28other%3ANumber%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#remainder(other:Number):Money-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>If different signs <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo(other)</a> - other</code>, otherwise <code><a href="../Money/Arithmetic.html#modulo%28other%29%3AMoney-instance-method">#modulo(other)</a></code>.</p>
+        <div class="doc"><p>If different signs <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo(other)</a> - other</code>, otherwise <code><a href="../Money/Arithmetic.html#modulo(other):Money-instance-method">#modulo(other)</a></code>.</p>
 
-<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).remainder(<span class="n">9</span>) <span class="c"># =&gt; #&lt;Money @fractional=1&gt;</span></code></pre></div>
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">100</span>).remainder(<span class="n">9</span>) <span class="c"># =&gt; Money(@amount=0.01)</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L163" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="round(precision:Int?=0):Money-instance-method">
+      <div class="signature">
+        
+        def <strong>round</strong>(precision : Int? = <span class="n">0</span>) : <a href="../Money.html">Money</a>
+
+        <a class="method-permalink" href="#round(precision:Int?=0):Money-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Rounds the monetary amount to smallest unit of coinage.</p>
+
+<pre><code><span class="t">Money</span>.<span class="k">new</span>(<span class="n">10.1</span>, <span class="s">&quot;USD&quot;</span>).round <span class="c"># =&gt; Money(@amount=10, @currency=&quot;USD&quot;)</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L176" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -667,7 +712,7 @@ quotient and modulus.</p>
         
         def <strong>zero?</strong>
 
-        <a class="method-permalink" href="#zero%3F-instance-method">#</a>
+        <a class="method-permalink" href="#zero?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the money amount is zero.</p>
@@ -679,7 +724,7 @@ quotient and modulus.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9acbad0114422f4c13b61540a826e90ccd807ace/src/money/money/arithmetic.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/money/arithmetic.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
