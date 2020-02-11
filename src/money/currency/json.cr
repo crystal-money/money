@@ -19,7 +19,7 @@ class Money::Currency
 
   def self.new(pull : JSON::PullParser)
     case pull.kind
-    when :string
+    when .string?
       find(pull.read_string)
     else
       previous_def
