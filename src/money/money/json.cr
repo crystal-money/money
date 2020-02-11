@@ -15,7 +15,7 @@ struct Money
 
   def self.new(pull : JSON::PullParser)
     case pull.kind
-    when :string
+    when JSON::PullParser::Kind::String
       parse(pull.read_string)
     else
       previous_def
