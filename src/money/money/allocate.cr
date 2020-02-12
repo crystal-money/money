@@ -8,7 +8,7 @@ struct Money
     def split(num : Int) : Array(Money)
       raise ArgumentError.new("Need at least one party") if num < 1
 
-      low = Money.new(fractional / num, currency, bank)
+      low = Money.new(fractional // num, currency, bank)
       high = Money.new(low.fractional + 1, currency, bank)
 
       remainder = fractional % num
