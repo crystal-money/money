@@ -2,9 +2,9 @@
   "iso_numeric": 952,
   "code": "XOF",
   "name": "West African Cfa Franc",
-  "symbol": "Fr",
+  "symbol": "CFA",
   "alternate_symbols": [
-    "CFA"
+    "FCFA"
   ],
   "subunit": "Centime",
   "subunit_to_unit": 1,
