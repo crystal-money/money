@@ -179,7 +179,7 @@ describe Money::Arithmetic do
       end
     end
 
-    it "divides Money by Money (different currency) and returns Float" do
+    it "divides Money by Money (different currency) and returns BigDecimal" do
       bank = Money::Bank::VariableExchange.new.tap do |bank|
         store = bank.store = Money::Currency::RateStore::Memory.new
         store["EUR", "USD"] = 2

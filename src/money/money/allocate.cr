@@ -63,7 +63,7 @@ struct Money
     private def amounts_from_splits(allocations, splits)
       fractional, left_over = fractional.to_big_d, fractional
       amounts = splits.map do |ratio|
-        (fractional * ratio.to_big_d / allocations).round.tap do |fraction|
+        ((fractional * ratio.to_big_d) / allocations).round.tap do |fraction|
           left_over -= fraction
         end
         # fractional * ratio.to_big_d
