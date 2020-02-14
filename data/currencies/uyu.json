@@ -2,14 +2,11 @@
   "iso_numeric": 858,
   "code": "UYU",
   "name": "Uruguayan Peso",
-  "symbol": "$",
-  "alternate_symbols": [
-    "$U"
-  ],
+  "symbol": "$U",
   "subunit": "Centésimo",
   "subunit_to_unit": 100,
   "symbol_first": true,
-  "html_entity": "&#x20B1;",
+  "html_entity": "$U",
   "decimal_mark": ",",
   "thousands_separator": ".",
   "smallest_denomination": 100

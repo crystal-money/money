@@ -1,5 +1,5 @@
 name: money
-version: 1.0.0
+version: 1.0.1
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
@@ -7,7 +7,7 @@ authors:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 0.10.0
+    version: ~> 0.11.0
 
 crystal: 0.30.1
 

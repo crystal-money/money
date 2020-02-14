@@ -8,7 +8,7 @@ struct Money
     def split(num : Int) : Array(Money)
       raise ArgumentError.new("Need at least one party") if num < 1
 
-      low = Money.new(fractional / num, currency, bank)
+      low = Money.new(fractional // num, currency, bank)
       high = Money.new(low.fractional + 1, currency, bank)
 
       remainder = fractional % num
@@ -63,7 +63,7 @@ struct Money
     private def amounts_from_splits(allocations, splits)
       fractional, left_over = fractional.to_big_d, fractional
       amounts = splits.map do |ratio|
-        (fractional * ratio.to_big_d / allocations).round.tap do |fraction|
+        ((fractional * ratio.to_big_d) / allocations).round.tap do |fraction|
           left_over -= fraction
         end
         # fractional * ratio.to_big_d

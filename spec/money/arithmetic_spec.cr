@@ -179,7 +179,7 @@ describe Money::Arithmetic do
       end
     end
 
-    it "divides Money by Money (different currency) and returns Float" do
+    it "divides Money by Money (different currency) and returns BigDecimal" do
       bank = Money::Bank::VariableExchange.new.tap do |bank|
         store = bank.store = Money::Currency::RateStore::Memory.new
         store["EUR", "USD"] = 2
@@ -321,8 +321,8 @@ describe Money::Arithmetic do
     end
 
     context "with Money.infinite_precision = true" do
-      with_infinite_precision(true) do
-        it "returns rounded value with given precision" do
+      it "returns rounded value with given precision" do
+        with_infinite_precision(true) do
           Money.new(10.12345, "USD").round.amount.should eq 10
           Money.new(10.12345, "USD").round(1).amount.should eq 10.1
           Money.new(10.12345, "USD").round(2).amount.should eq 10.12
