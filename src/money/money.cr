@@ -64,8 +64,8 @@ struct Money
   # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
   # ```
-  def initialize(amount : Number = 0, currency = Money.default_currency)
-    initialize(amount, currency, nil)
+  def initialize(amount : Number = 0, currency = Money.default_currency, bank = nil)
+    initialize(amount, currency, bank)
   end
 
   # :nodoc:
