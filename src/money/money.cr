@@ -97,6 +97,13 @@ struct Money
     @bank = bank
   end
 
+  # Returns a new `Money` instance with same `currency` and `bank`
+  # properties set as in `self`.
+  protected def copy_with(**options) : Money
+    options = {currency: currency, bank: bank}.merge(options)
+    Money.new(**options)
+  end
+
   # Returns hash value based on the `amount` and `currency` attributes.
   def_hash amount, currency
 
@@ -163,6 +170,6 @@ struct Money
 
   # See `#nearest_cash_value`.
   def rounded_to_nearest_cash_value : Money
-    Money.new(nearest_cash_value, currency, bank)
+    copy_with(fractional: nearest_cash_value)
   end
 end
