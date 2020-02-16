@@ -3,7 +3,7 @@ struct Money
     def exchange(from : Money, to : Currency) : Money
       rate = store[from.currency, to]
       fractional = calculate_fractional(from, to)
-      fractional = fractional * rate
+      fractional *= rate
       Money.new(fractional.to_big_i, to, self)
     end
 

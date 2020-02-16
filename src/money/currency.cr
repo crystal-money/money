@@ -14,6 +14,25 @@ struct Money
     # List of known currencies.
     class_getter table : Hash(String, Currency) { load_currencies }
 
+    getter priority : Int32?
+    getter iso_numeric : UInt32?
+    getter code : String
+    getter name : String?
+    getter symbol : String?
+    getter alternate_symbols : Array(String)?
+    getter subunit : String?
+    getter subunit_to_unit : UInt64
+    getter? symbol_first : Bool?
+    getter html_entity : String?
+    getter decimal_mark : String?
+    getter thousands_separator : String?
+    getter smallest_denomination : UInt32?
+
+    # Currency ID, for time being lower-cased `#code`.
+    getter id : String { code.downcase }
+
+    def_equals_and_hash id
+
     def self.register(currency : Currency)
       table[currency.id] = currency
     end
@@ -50,25 +69,6 @@ struct Money
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
     end
 
-    getter priority : Int32?
-    getter iso_numeric : UInt32?
-    getter code : String
-    getter name : String?
-    getter symbol : String?
-    getter alternate_symbols : Array(String)?
-    getter subunit : String?
-    getter subunit_to_unit : UInt64
-    getter? symbol_first : Bool?
-    getter html_entity : String?
-    getter decimal_mark : String?
-    getter thousands_separator : String?
-    getter smallest_denomination : UInt32?
-
-    # Currency ID, for time being lower-cased `#code`.
-    getter id : String { code.downcase }
-
-    def_equals_and_hash id
-
     # Returns the relation between subunit and unit as a base 10 exponent.
     #
     # NOTE: MGA and MRU are exceptions and are rounded to 1.
@@ -98,10 +98,8 @@ struct Money
         comparison = priority <=> other_priority
         return id <=> other.id if comparison == 0
         comparison
-      when {nil, Int32}
-        1
-      when {Int32, nil}
-        -1
+      when {Int32, nil} then -1
+      when {nil, Int32} then 1
       else
         id <=> other.id
       end
