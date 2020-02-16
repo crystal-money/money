@@ -173,7 +173,7 @@ struct Money
     # ```
     # Money.new(10.1, "USD").round # => Money(@amount=10, @currency="USD")
     # ```
-    def round(precision : Int? = 0) : Money
+    def round(precision : Int = 0) : Money
       copy_with(amount: @amount.round(precision))
     end
   end
