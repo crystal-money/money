@@ -254,7 +254,7 @@ struct Money
     end
 
     # See `#format`.
-    def to_s(io)
+    def to_s(io : IO) : Nil
       io << format
     end
   end

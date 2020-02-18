@@ -117,7 +117,7 @@ struct Money
     # Money::Currency.find(:usd).to_s # => "USD"
     # Money::Currency.find(:eur).to_s # => "EUR"
     # ```
-    def to_s(io)
+    def to_s(io : IO) : Nil
       io << code
     end
   end

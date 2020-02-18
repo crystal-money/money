@@ -22,7 +22,7 @@ class Money::Currency
       Money.new(@value, @to, bank)
     end
 
-    def to_s(io)
+    def to_s(io : IO) : Nil
       io << @from << " -> " << @to << ": " << to_big_d
     end
   end
