@@ -14,7 +14,7 @@ struct Money
         table[key.to_s.downcase]?
       end
 
-      # ditto
+      # :ditto:
       def []?(key : String | Symbol) : Currency?
         find?(key)
       end
@@ -30,7 +30,7 @@ struct Money
         table[key.to_s.downcase]? || raise UnknownCurrencyError.new("Can't find currency: #{key}")
       end
 
-      # ditto
+      # :ditto:
       def [](key : String | Symbol) : Currency
         find(key)
       end

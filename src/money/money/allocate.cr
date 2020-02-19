@@ -51,7 +51,7 @@ struct Money
       end
     end
 
-    # ditto
+    # :ditto:
     def allocate(*splits : Number) : Array(Money)
       allocate(splits)
     end

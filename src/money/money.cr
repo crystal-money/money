@@ -25,7 +25,7 @@ struct Money
   # Sets the default currency for creating new `Money` object.
   class_property default_currency : Currency { Currency.find("USD") }
 
-  # ditto
+  # :ditto:
   def self.default_currency=(currency_code : String | Symbol)
     self.default_currency = Currency.find(currency_code)
   end

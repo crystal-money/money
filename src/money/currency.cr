@@ -64,7 +64,7 @@ struct Money
       end
     end
 
-    # ditto
+    # :ditto:
     def self.wrap(value : String | Symbol | Currency | Nil) : Currency
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
     end

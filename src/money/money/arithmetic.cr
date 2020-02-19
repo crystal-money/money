@@ -134,7 +134,7 @@ struct Money
       end
     end
 
-    # ditto
+    # :ditto:
     def divmod(other : Number) : {Money, Money}
       quotient, remainder = fractional.divmod(other.to_big_i)
       {copy_with(fractional: quotient), copy_with(fractional: remainder)}
