@@ -1,5 +1,3 @@
-require "big"
-
 struct Money
   module Arithmetic
     # Returns `true` if the money amount is greater than 0, `false` otherwise.
