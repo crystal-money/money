@@ -1,16 +1,6 @@
 require "big/json"
 require "json"
-
-# https://github.com/crystal-lang/crystal/issues/7856
-struct BigDecimal
-  def to_json(json : JSON::Builder)
-    json.string(self)
-  end
-
-  def to_json_object_key
-    to_s
-  end
-end
+require "../../ext/big_decimal"
 
 struct Money
   JSON.mapping({
