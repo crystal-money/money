@@ -1,11 +1,6 @@
 require "big/json"
 require "json"
-
-struct BigDecimal
-  def to_json(json : JSON::Builder)
-    json.string(to_s)
-  end
-end
+require "../../ext/big_decimal"
 
 struct Money
   JSON.mapping({

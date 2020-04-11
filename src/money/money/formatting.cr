@@ -248,13 +248,13 @@ struct Money
       formatted
     end
 
-    # ditto
+    # :ditto:
     def format(**options) : String
       format(options)
     end
 
     # See `#format`.
-    def to_s(io)
+    def to_s(io : IO) : Nil
       io << format
     end
   end

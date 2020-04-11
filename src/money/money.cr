@@ -25,7 +25,7 @@ struct Money
   # Sets the default currency for creating new `Money` object.
   class_property default_currency : Currency { Currency.find("USD") }
 
-  # ditto
+  # :ditto:
   def self.default_currency=(currency_code : String | Symbol)
     self.default_currency = Currency.find(currency_code)
   end
@@ -56,26 +56,26 @@ struct Money
   end
 
   # Creates a new `Money` object of value given as an *amount*
-  # of the given *currency*.
+  # of the given *currency* (as fractional if `Int`, or whole amount otherwise)
   #
   # ```
   # Money.new                      # => Money(@amount=0 @currency="USD")
-  # Money.new(1.5)                 # => Money(@amount=1.5 @currency="USD")
+  # Money.new(1_50)                # => Money(@amount=1.5 @currency="USD")
+  # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
-  # Money.new(3.to_big_r, "EUR")   # => Money(@amount=3 @currency="EUR")
   # ```
-  def initialize(amount : Number = 0, currency = Money.default_currency)
-    initialize(amount, currency, nil)
+  def initialize(amount : Number = 0, currency = Money.default_currency, bank = nil)
+    initialize(amount, currency, bank)
   end
 
-  # :ditto:
+  # :nodoc:
   def initialize(amount : BigDecimal | BigRational, currency, bank)
     @currency = Currency.wrap(currency)
     @amount = amount.to_big_d
     @bank = bank
   end
 
-  # :ditto:
+  # :nodoc:
   def initialize(amount : Float, currency, bank)
     unless amount.finite?
       raise ArgumentError.new "Must be initialized with a finite value"
@@ -83,18 +83,18 @@ struct Money
     initialize(amount.to_big_d, currency)
   end
 
-  # Creates a new `Money` object of value given in the
-  # *fractional* unit of the given *currency*.
-  #
-  # ```
-  # Money.new(100)        # => Money(@amount=1 @currency="USD")
-  # Money.new(100, "USD") # => Money(@amount=1 @currency="USD")
-  # Money.new(100, "EUR") # => Money(@amount=1 @currency="EUR")
-  # ```
+  # :nodoc:
   def initialize(fractional : Int, currency, bank)
     @currency = Currency.wrap(currency)
     @amount = fractional.to_big_d / @currency.subunit_to_unit
     @bank = bank
+  end
+
+  # Returns a new `Money` instance with same `currency` and `bank`
+  # properties set as in `self`.
+  protected def copy_with(**options) : Money
+    options = {currency: currency, bank: bank}.merge(options)
+    Money.new(**options)
   end
 
   # Returns hash value based on the `amount` and `currency` attributes.
@@ -163,6 +163,6 @@ struct Money
 
   # See `#nearest_cash_value`.
   def rounded_to_nearest_cash_value : Money
-    Money.new(nearest_cash_value, currency, bank)
+    copy_with(fractional: nearest_cash_value)
   end
 end

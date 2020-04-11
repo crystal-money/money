@@ -8,8 +8,8 @@ struct Money
     def split(num : Int) : Array(Money)
       raise ArgumentError.new("Need at least one party") if num < 1
 
-      low = Money.new(fractional // num, currency, bank)
-      high = Money.new(low.fractional + 1, currency, bank)
+      low = copy_with(fractional: fractional // num)
+      high = copy_with(fractional: low.fractional + 1)
 
       remainder = fractional % num
 
@@ -47,11 +47,11 @@ struct Money
         amounts[i % size] += delta
       end
       amounts.map do |fractional|
-        Money.new(fractional.to_big_i, currency, bank)
+        copy_with(fractional: fractional.to_big_i)
       end
     end
 
-    # ditto
+    # :ditto:
     def allocate(*splits : Number) : Array(Money)
       allocate(splits)
     end

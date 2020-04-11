@@ -1,5 +1,3 @@
-require "big"
-
 struct Money
   module Arithmetic
     # Returns `true` if the money amount is greater than 0, `false` otherwise.
@@ -41,7 +39,7 @@ struct Money
     # Money.new(-100).abs # => Money(@amount=1)
     # ```
     def abs : Money
-      Money.new(amount.abs, currency, bank)
+      copy_with(amount: amount.abs)
     end
 
     # Alias of `#abs`.
@@ -59,7 +57,7 @@ struct Money
     # -Money.new(100) # => Money(@amount=-1)
     # ```
     def - : Money
-      Money.new(-amount, currency, bank)
+      copy_with(amount: -amount)
     end
 
     # Returns a new `Money` object containing the sum of the two
@@ -71,7 +69,7 @@ struct Money
     def +(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        Money.new(amount + converted_other.amount, currency, bank)
+        copy_with(amount: amount + converted_other.amount)
       end
     end
 
@@ -84,7 +82,7 @@ struct Money
     def -(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        Money.new(amount - converted_other.amount, currency, bank)
+        copy_with(amount: amount - converted_other.amount)
       end
     end
 
@@ -95,7 +93,7 @@ struct Money
     # Money.new(100) * 2 # => Money(@amount=2)
     # ```
     def *(other : Number) : Money
-      Money.new(amount * other, currency, bank)
+      copy_with(amount: amount * other)
     end
 
     # Divides the monetary value with the given *other* `Number` and returns
@@ -105,7 +103,7 @@ struct Money
     # Money.new(100) / 10 # => Money(@amount=0.1)
     # ```
     def /(other : Number) : Money
-      Money.new(amount / other, currency, bank)
+      copy_with(amount: amount / other)
     end
 
     # Divides the monetary value with the given *other* `Money` object and
@@ -130,14 +128,14 @@ struct Money
     def divmod(other : Money) : {BigInt, Money}
       with_same_currency(other) do |converted_other|
         quotient, remainder = fractional.divmod(converted_other.fractional)
-        {quotient, Money.new(remainder, currency, bank)}
+        {quotient, copy_with(fractional: remainder)}
       end
     end
 
-    # ditto
+    # :ditto:
     def divmod(other : Number) : {Money, Money}
       quotient, remainder = fractional.divmod(other.to_big_i)
-      {Money.new(quotient, currency, bank), Money.new(remainder, currency, bank)}
+      {copy_with(fractional: quotient), copy_with(fractional: remainder)}
     end
 
     # Equivalent to `#divmod(other)[1]`.
@@ -164,7 +162,7 @@ struct Money
       if (amount < 0 && other < 0) || (amount > 0 && other > 0)
         modulo(other)
       else
-        modulo(other) - Money.new(other, currency, bank)
+        modulo(other) - copy_with(amount: other)
       end
     end
 
@@ -173,8 +171,8 @@ struct Money
     # ```
     # Money.new(10.1, "USD").round # => Money(@amount=10, @currency="USD")
     # ```
-    def round(precision : Int? = 0) : Money
-      Money.new(@amount.round(precision), currency, bank)
+    def round(precision : Int = 0) : Money
+      copy_with(amount: @amount.round(precision))
     end
   end
 end

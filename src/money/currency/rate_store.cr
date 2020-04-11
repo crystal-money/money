@@ -38,7 +38,7 @@ class Money::Currency
       transaction { get_rate?(from, to).try(&.to_big_d) }
     end
 
-    # ditto
+    # :ditto:
     def [](from, to) : BigDecimal
       from, to = Currency.wrap(from), Currency.wrap(to)
       self[from, to]? || raise UnknownRateError.new("No conversion rate known for #{from} -> #{to}")
