@@ -42,6 +42,9 @@ struct Money
     self.default_bank = Bank::SingleCurrency.new
   end
 
+  # Numerical value of the money.
+  getter amount : BigDecimal
+
   # The money's currency.
   getter currency : Currency
 
