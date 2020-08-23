@@ -54,11 +54,12 @@ struct Money
     # Money::Currency.wrap?(c1)    # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?("usd") # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?(:usd)  # => #<Money::Currency @id="usd">
+    # Money::Currency.wrap?(:foo)  # => nil
     # Money::Currency.wrap?(nil)   # => nil
     # ```
     def self.wrap?(value : String | Symbol | Currency | Nil) : Currency?
       case value
-      when String, Symbol then find(value)
+      when String, Symbol then find?(value)
       when Currency       then value
       when Nil            then nil
       end
