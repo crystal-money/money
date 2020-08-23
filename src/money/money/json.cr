@@ -1,12 +1,12 @@
-require "big/json"
 require "json"
+require "big/json"
 require "../../ext/big_decimal"
 
 struct Money
-  JSON.mapping({
-    amount:   {type: BigDecimal, setter: false},
-    currency: {type: Currency, setter: false},
-  })
+  include JSON::Serializable
+
+  @[JSON::Field(ignore: true)]
+  @bank : Bank?
 
   def self.new(pull : JSON::PullParser)
     case pull.kind

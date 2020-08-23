@@ -1,4 +1,10 @@
-require "./money/*"
+require "./money/allocate"
+require "./money/arithmetic"
+require "./money/casting"
+require "./money/constructors"
+require "./money/exchange"
+require "./money/formatting"
+require "./money/parse"
 
 # "Money is any object or record that is generally accepted as payment for
 # goods and services and repayment of debts in a given socio-economic context
@@ -169,3 +175,5 @@ struct Money
     copy_with(fractional: nearest_cash_value)
   end
 end
+
+require "./money/json"

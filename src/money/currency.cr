@@ -1,4 +1,7 @@
-require "./currency/*"
+require "./currency/enumeration"
+require "./currency/loader"
+require "./currency/rate"
+require "./currency/rate_store"
 
 struct Money
   # Represents a specific currency unit.
@@ -126,3 +129,5 @@ struct Money
     end
   end
 end
+
+require "./currency/json"
