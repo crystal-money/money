@@ -36,7 +36,7 @@ struct Money
       end
 
       def all : Array(Currency)
-        table.values.sort
+        table.values.sort!
       end
 
       def each : Nil
