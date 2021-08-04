@@ -112,7 +112,7 @@ struct Money
 
     # Compares `self` with *other* currency against the value of id` attribute.
     def <=>(other : String | Symbol) : Int32
-      id <=> other.to_s.downcase
+      id.compare(other.to_s, case_insensitive: true)
     end
 
     # Appends a string representation corresponding to the `#code` property
