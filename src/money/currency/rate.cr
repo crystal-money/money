@@ -1,5 +1,3 @@
-require "json"
-
 class Money::Currency
   record Rate, from : Currency, to : Currency, value : Int64 do
     # Returns conversion rate `value` as `Int64`.

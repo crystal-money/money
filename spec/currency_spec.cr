@@ -2,8 +2,8 @@ require "./spec_helper"
 
 describe Money::Currency do
   describe ".wrap?" do
-    it "returns nil if object is nil" do
-      Money::Currency.wrap?(nil).should be_nil
+    it "returns nil for invalid ids" do
+      Money::Currency.wrap?(:foo).should be_nil
     end
     it "returns passed object if object is Currency" do
       Money::Currency.wrap?(Money::Currency.find(:usd)).should be Money::Currency.find(:usd)
@@ -15,8 +15,8 @@ describe Money::Currency do
   end
 
   describe ".wrap" do
-    it "raises UnknownCurrencyError if object is nil" do
-      expect_raises(Money::UnknownCurrencyError) { Money::Currency.wrap(nil) }
+    it "raises UnknownCurrencyError for invalid ids" do
+      expect_raises(Money::UnknownCurrencyError) { Money::Currency.wrap(:foo) }
     end
   end
 

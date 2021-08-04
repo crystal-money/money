@@ -166,13 +166,16 @@ struct Money
       end
     end
 
-    # Rounds the monetary amount to smallest unit of coinage.
+    # Rounds the monetary amount to smallest unit of coinage, using
+    # rounding *mode* if given, or `Money.rounding_mode` otherwise.
     #
     # ```
-    # Money.new(10.1, "USD").round # => Money(@amount=10, @currency="USD")
+    # Money.new(10.1, "USD").round                   # => Money(@amount=10, @currency="USD")
+    # Money.new(10.5, "USD").round(mode: :ties_even) # => Money(@amount=10, @currency="USD")
+    # Money.new(10.5, "USD").round(mode: :ties_away) # => Money(@amount=11, @currency="USD")
     # ```
-    def round(precision : Int = 0) : Money
-      copy_with(amount: @amount.round(precision))
+    def round(precision : Int = 0, mode : Number::RoundingMode = Money.rounding_mode) : Money
+      copy_with(amount: @amount.round(precision, mode: mode))
     end
   end
 end

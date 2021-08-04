@@ -1,4 +1,7 @@
-require "./currency/*"
+require "./currency/enumeration"
+require "./currency/loader"
+require "./currency/rate"
+require "./currency/rate_store"
 
 struct Money
   # Represents a specific currency unit.
@@ -54,19 +57,21 @@ struct Money
     # Money::Currency.wrap?(c1)    # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?("usd") # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?(:usd)  # => #<Money::Currency @id="usd">
-    # Money::Currency.wrap?(nil)   # => nil
+    # Money::Currency.wrap?(:foo)  # => nil
     # ```
-    def self.wrap?(value : String | Symbol | Currency | Nil) : Currency?
+    def self.wrap?(value : String | Symbol | Currency) : Currency?
       case value
-      when String, Symbol then find(value)
+      when String, Symbol then find?(value)
       when Currency       then value
-      when Nil            then nil
       end
     end
 
     # :ditto:
-    def self.wrap(value : String | Symbol | Currency | Nil) : Currency
+    def self.wrap(value : String | Symbol | Currency) : Currency
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
+    end
+
+    def initialize(@code, @subunit_to_unit)
     end
 
     # Returns the relation between subunit and unit as a base 10 exponent.
@@ -107,7 +112,7 @@ struct Money
 
     # Compares `self` with *other* currency against the value of id` attribute.
     def <=>(other : String | Symbol) : Int32
-      id <=> other.to_s.downcase
+      id.compare(other.to_s, case_insensitive: true)
     end
 
     # Appends a string representation corresponding to the `#code` property
@@ -122,3 +127,5 @@ struct Money
     end
   end
 end
+
+require "./currency/json"

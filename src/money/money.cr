@@ -1,4 +1,10 @@
-require "./money/*"
+require "./money/allocate"
+require "./money/arithmetic"
+require "./money/casting"
+require "./money/constructors"
+require "./money/exchange"
+require "./money/formatting"
+require "./money/parse"
 
 # "Money is any object or record that is generally accepted as payment for
 # goods and services and repayment of debts in a given socio-economic context
@@ -22,6 +28,20 @@ struct Money
   # Use this to enable infinite precision cents
   class_property? infinite_precision : Bool = false
 
+  # Default rounding mode
+  class_property rounding_mode : Number::RoundingMode = :ties_even
+
+  # Sets the given rounding *mode* within the scope of the given block
+  def self.with_rounding_mode(mode : Number::RoundingMode, &)
+    prev_rounding_mode = rounding_mode
+    self.rounding_mode = mode
+    begin
+      yield
+    ensure
+      self.rounding_mode = prev_rounding_mode
+    end
+  end
+
   # Sets the default currency for creating new `Money` object.
   class_property default_currency : Currency { Currency.find("USD") }
 
@@ -41,6 +61,9 @@ struct Money
   def self.disallow_currency_conversion!
     self.default_bank = Bank::SingleCurrency.new
   end
+
+  # Numerical value of the money.
+  getter amount : BigDecimal
 
   # The money's currency.
   getter currency : Currency
@@ -114,10 +137,10 @@ struct Money
   # Money.new(1_00, "USD").amount # => 1.0
   # ```
   #
-  # See `#to_big_d` and `#fractional`.
+  # See `#to_big_d` and `#fractional`, also `Money.rounding_mode`.
   def amount : BigDecimal
     return @amount if Money.infinite_precision?
-    @amount.round(currency.exponent)
+    @amount.round(currency.exponent, mode: Money.rounding_mode)
   end
 
   # The value of the monetary amount represented in the fractional or subunit
@@ -152,11 +175,14 @@ struct Money
   # For example, in Swiss franc (CHF), the smallest possible amount of
   # cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
   # and for CHF 0.08, CHF 0.10.
+  #
+  # See `Currency#smallest_denomination`, also `Money.rounding_mode`.
   def nearest_cash_value : BigInt
     unless smallest_denomination = currency.smallest_denomination
       raise UndefinedSmallestDenominationError.new
     end
-    rounded_value = (fractional.to_big_d / smallest_denomination).round
+    rounded_value =
+      (fractional.to_big_d / smallest_denomination).round(mode: Money.rounding_mode)
     rounded_value *= smallest_denomination
     rounded_value.to_big_i
   end
@@ -166,3 +192,5 @@ struct Money
     copy_with(fractional: nearest_cash_value)
   end
 end
+
+require "./money/json"

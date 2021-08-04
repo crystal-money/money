@@ -327,7 +327,18 @@ describe Money::Arithmetic do
           Money.new(10.12345, "USD").round(1).amount.should eq 10.1
           Money.new(10.12345, "USD").round(2).amount.should eq 10.12
           Money.new(10.12345, "USD").round(3).amount.should eq 10.123
-          Money.new(10.12345, "USD").round(4).amount.should eq 10.1235
+          Money.new(10.12345, "USD").round(4).amount.should eq 10.1234
+        end
+      end
+
+      it "returns rounded value with given precision and rounding mode" do
+        with_infinite_precision(true) do
+          Money.new(10.12345, "USD").round.amount.should eq 10
+          Money.new(10.12345, "USD").round(1, mode: :ties_even).amount.should eq 10.1
+          Money.new(10.12345, "USD").round(2, mode: :ties_even).amount.should eq 10.12
+          Money.new(10.12345, "USD").round(3, mode: :ties_even).amount.should eq 10.123
+          Money.new(10.12345, "USD").round(4, mode: :ties_even).amount.should eq 10.1234
+          Money.new(10.12345, "USD").round(4, mode: :ties_away).amount.should eq 10.1235
         end
       end
     end
