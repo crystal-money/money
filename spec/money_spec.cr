@@ -1,5 +1,17 @@
 require "./spec_helper"
 
+ROUNDING_CONVERSIONS = {
+  Number::RoundingMode::TO_ZERO => [
+    {10.885, 10.88},
+  ],
+  Number::RoundingMode::TIES_EVEN => [
+    {10.885, 10.88},
+  ],
+  Number::RoundingMode::TIES_AWAY => [
+    {10.885, 10.89},
+  ],
+}
+
 describe Money do
   describe ".new" do
     context "given the initializing value is an integer" do
@@ -74,6 +86,28 @@ describe Money do
 
       it "should return given bank" do
         Money.new(1, "USD", bank).bank.should be bank
+      end
+    end
+  end
+
+  describe ".with_rounding_mode" do
+    ROUNDING_CONVERSIONS.each do |mode, values|
+      values.each do |(value, expected)|
+        it "sets `Money.rounding_mode` to `#{mode}` " \
+           "within the yielded block and rounds #{value} to #{expected}" do
+          prev_rounding_mode = Money.rounding_mode
+          begin
+            Money.with_rounding_mode(mode) do
+              Money.new(value, "USD").round(2).should eq(Money.new(expected, "USD"))
+              Money.new(value, "USD").amount.should eq(expected)
+              Money.new(value, "USD")
+                .rounded_to_nearest_cash_value
+                .should eq(Money.new(expected, "USD"))
+            end
+          ensure
+            Money.rounding_mode.should eq(prev_rounding_mode)
+          end
+        end
       end
     end
   end
