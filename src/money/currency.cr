@@ -58,18 +58,16 @@ struct Money
     # Money::Currency.wrap?("usd") # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?(:usd)  # => #<Money::Currency @id="usd">
     # Money::Currency.wrap?(:foo)  # => nil
-    # Money::Currency.wrap?(nil)   # => nil
     # ```
-    def self.wrap?(value : String | Symbol | Currency | Nil) : Currency?
+    def self.wrap?(value : String | Symbol | Currency) : Currency?
       case value
       when String, Symbol then find?(value)
       when Currency       then value
-      when Nil            then nil
       end
     end
 
     # :ditto:
-    def self.wrap(value : String | Symbol | Currency | Nil) : Currency
+    def self.wrap(value : String | Symbol | Currency) : Currency
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
     end
 
