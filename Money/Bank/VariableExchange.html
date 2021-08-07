@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_name" content="money">
 
 
-<link href="../../css/style.css" rel="stylesheet" type="text/css">
 
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../../js/doc.js"></script>
-<script type="text/javascript">
-  CrystalDoc.base_path = "../../";
-</script>
 
-  <meta id="repository-name" content="github.com/crystal-money/money">
-  <title>Money::Bank::VariableExchange - github.com/crystal-money/money</title>
+  <meta name="repository-name" content="money">
+  <title>Money::Bank::VariableExchange - money master</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
 </head>
 <body>
 
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
       <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
     </div>
 
-    <div class="repository-links">
-      <a href="../../index.html">README</a>
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          money
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master
+      </span>
     </div>
   </div>
 
-  <div class="search-results" class="hidden">
+  <div class="search-results hidden">
     <ul class="search-list"></ul>
   </div>
 
   <div class="types-list">
     <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/BigDecimal" data-name="bigdecimal">
+  <li class=" " data-id="money/BigDecimal" data-name="bigdecimal">
       <a href="../../BigDecimal.html">BigDecimal</a>
       
     </li>
   
-  <li class="parent open current" data-id="github.com/crystal-money/money/Money" data-name="money">
+  <li class="parent open current" data-id="money/Money" data-name="money">
       <a href="../../Money.html">Money</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Allocate" data-name="money::allocate">
+  <li class=" " data-id="money/Money/Allocate" data-name="money::allocate">
       <a href="../../Money/Allocate.html">Allocate</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Arithmetic" data-name="money::arithmetic">
+  <li class=" " data-id="money/Money/Arithmetic" data-name="money::arithmetic">
       <a href="../../Money/Arithmetic.html">Arithmetic</a>
       
     </li>
   
-  <li class="parent open current" data-id="github.com/crystal-money/money/Money/Bank" data-name="money::bank">
+  <li class="parent open current" data-id="money/Money/Bank" data-name="money::bank">
       <a href="../../Money/Bank.html">Bank</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Bank/SingleCurrency" data-name="money::bank::singlecurrency">
+  <li class=" " data-id="money/Money/Bank/SingleCurrency" data-name="money::bank::singlecurrency">
       <a href="../../Money/Bank/SingleCurrency.html">SingleCurrency</a>
       
     </li>
   
-  <li class=" current" data-id="github.com/crystal-money/money/Money/Bank/VariableExchange" data-name="money::bank::variableexchange">
+  <li class=" current" data-id="money/Money/Bank/VariableExchange" data-name="money::bank::variableexchange">
       <a href="../../Money/Bank/VariableExchange.html">VariableExchange</a>
       
     </li>
@@ -76,42 +91,42 @@
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Casting" data-name="money::casting">
+  <li class=" " data-id="money/Money/Casting" data-name="money::casting">
       <a href="../../Money/Casting.html">Casting</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Constructors" data-name="money::constructors">
+  <li class=" " data-id="money/Money/Constructors" data-name="money::constructors">
       <a href="../../Money/Constructors.html">Constructors</a>
       
     </li>
   
-  <li class="parent " data-id="github.com/crystal-money/money/Money/Currency" data-name="money::currency">
+  <li class="parent " data-id="money/Money/Currency" data-name="money::currency">
       <a href="../../Money/Currency.html">Currency</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Enumeration" data-name="money::currency::enumeration">
+  <li class=" " data-id="money/Money/Currency/Enumeration" data-name="money::currency::enumeration">
       <a href="../../Money/Currency/Enumeration.html">Enumeration</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Loader" data-name="money::currency::loader">
+  <li class=" " data-id="money/Money/Currency/Loader" data-name="money::currency::loader">
       <a href="../../Money/Currency/Loader.html">Loader</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Rate" data-name="money::currency::rate">
+  <li class=" " data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
       <a href="../../Money/Currency/Rate.html">Rate</a>
       
     </li>
   
-  <li class="parent " data-id="github.com/crystal-money/money/Money/Currency/RateStore" data-name="money::currency::ratestore">
+  <li class="parent " data-id="money/Money/Currency/RateStore" data-name="money::currency::ratestore">
       <a href="../../Money/Currency/RateStore.html">RateStore</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
+  <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../Money/Currency/RateStore/Memory.html">Memory</a>
       
     </li>
@@ -126,32 +141,32 @@
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/DifferentCurrencyError" data-name="money::differentcurrencyerror">
+  <li class=" " data-id="money/Money/DifferentCurrencyError" data-name="money::differentcurrencyerror">
       <a href="../../Money/DifferentCurrencyError.html">DifferentCurrencyError</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Error" data-name="money::error">
+  <li class=" " data-id="money/Money/Error" data-name="money::error">
       <a href="../../Money/Error.html">Error</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Exchange" data-name="money::exchange">
+  <li class=" " data-id="money/Money/Exchange" data-name="money::exchange">
       <a href="../../Money/Exchange.html">Exchange</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Formatting" data-name="money::formatting">
+  <li class=" " data-id="money/Money/Formatting" data-name="money::formatting">
       <a href="../../Money/Formatting.html">Formatting</a>
       
     </li>
   
-  <li class="parent " data-id="github.com/crystal-money/money/Money/Parse" data-name="money::parse">
+  <li class="parent " data-id="money/Money/Parse" data-name="money::parse">
       <a href="../../Money/Parse.html">Parse</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/Parse/Error" data-name="money::parse::error">
+  <li class=" " data-id="money/Money/Parse/Error" data-name="money::parse::error">
       <a href="../../Money/Parse/Error.html">Error</a>
       
     </li>
@@ -161,17 +176,17 @@
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/UndefinedSmallestDenominationError" data-name="money::undefinedsmallestdenominationerror">
+  <li class=" " data-id="money/Money/UndefinedSmallestDenominationError" data-name="money::undefinedsmallestdenominationerror">
       <a href="../../Money/UndefinedSmallestDenominationError.html">UndefinedSmallestDenominationError</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
+  <li class=" " data-id="money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
       <a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a>
       
     </li>
   
-  <li class=" " data-id="github.com/crystal-money/money/Money/UnknownRateError" data-name="money::unknownrateerror">
+  <li class=" " data-id="money/Money/UnknownRateError" data-name="money::unknownrateerror">
       <a href="../../Money/UnknownRateError.html">UnknownRateError</a>
       
     </li>
@@ -213,10 +228,17 @@
 
 
 
-  <h2>Defined in:</h2>
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank/variable_exchange.cr#L2" target="_blank">
         money/bank/variable_exchange.cr
       </a>
     
@@ -231,7 +253,14 @@
 
 
 
-  <h2>Instance Method Summary</h2>
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
@@ -241,6 +270,8 @@
     
       <li class="entry-summary">
         <a href="#exchange(from:Money,to:Currency):Money-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        
+          <div class="summary"><p>Exchanges the given <code><a href="../../Money.html">Money</a></code> object to a new <code><a href="../../Money.html">Money</a></code> object in <em>to</em> <code><a href="../../Money/Currency.html">Currency</a></code>.</p></div>
         
       </li>
     
@@ -262,8 +293,8 @@
     exchange</a>, 
     
   
-    <a href="../../Money/Bank.html#store-instance-method" class="tooltip">
-      <span>store</span>
+    <a href="../../Money/Bank.html#store:Currency::RateStore-instance-method" class="tooltip">
+      <span>store : Currency::RateStore</span>
     store</a>, 
     
   
@@ -291,8 +322,8 @@
   <h3>Class methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#default_store-class-method" class="tooltip">
-      <span>default_store</span>
+    <a href="../../Money/Bank.html#default_store:Currency::RateStore-class-method" class="tooltip">
+      <span>default_store : Currency::RateStore</span>
     default_store</a>, 
     
   
@@ -331,7 +362,14 @@
 
 
 
-  <h2>Instance Method Detail</h2>
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
   
     <div class="entry-detail" id="calculate_fractional(from:Money,to:Currency):BigDecimal-instance-method">
       <div class="signature">
@@ -344,7 +382,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank/variable_exchange.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -357,10 +395,20 @@
         <a class="method-permalink" href="#exchange(from:Money,to:Currency):Money-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../Money/Bank.html">Money::Bank</a>
+            </div>
+          
+          <p>Exchanges the given <code><a href="../../Money.html">Money</a></code> object to a new <code><a href="../../Money.html">Money</a></code> object in
+<em>to</em> <code><a href="../../Money/Currency.html">Currency</a></code>.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/bank/variable_exchange.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank/variable_exchange.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
