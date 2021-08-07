@@ -38,6 +38,10 @@ struct Money
       allocations = allocations_from_splits(splits)
       raise ArgumentError.new("Splits add to more then 100%") if allocations > 1.0
 
+      if splits.all?(&.zero?)
+        allocations = splits.size.to_f
+      end
+
       amounts, left_over = amounts_from_splits(allocations, splits)
       delta = left_over > 0 ? 1 : -1
       size = amounts.size

@@ -2,6 +2,12 @@ require "../spec_helper"
 
 describe Money::Allocate do
   describe "#allocate" do
+    context "with all zeros" do
+      it "allocates evenly" do
+        Money.us_dollar(100).allocate([0, 0]).map(&.cents).should eq [50, 50]
+      end
+    end
+
     it "takes no action when one gets all" do
       Money.us_dollar(5).allocate({1.0}).map(&.cents).should eq [5]
     end
