@@ -2,10 +2,11 @@
   "iso_numeric": 524,
   "code": "NPR",
   "name": "Nepalese Rupee",
-  "symbol": "₨",
+  "symbol": "Rs.",
   "alternate_symbols": [
     "Rs",
-    "रू"
+    "रू",
+    "₨"
   ],
   "subunit": "Paisa",
   "subunit_to_unit": 100,

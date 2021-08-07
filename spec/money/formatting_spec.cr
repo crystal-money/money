@@ -70,7 +70,7 @@ describe Money::Formatting do
 
       # Rupees
       one_thousand.call("INR").should eq "₹1,000.00"
-      one_thousand.call("NPR").should eq "₨1,000.00"
+      one_thousand.call("NPR").should eq "Rs.1,000.00"
       one_thousand.call("SCR").should eq "1,000.00 ₨"
       one_thousand.call("LKR").should eq "1,000.00 ₨"
 
@@ -194,7 +194,7 @@ describe Money::Formatting do
 
           # Rupees
           one.call("INR").should eq "₹1.00"
-          one.call("NPR").should eq "₨1.00"
+          one.call("NPR").should eq "Rs.1.00"
           one.call("SCR").should eq "1.00 ₨"
           one.call("LKR").should eq "1.00 ₨"
 
