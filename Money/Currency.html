@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.29.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
+  <meta id="repository-name" content="github.com/crystal-money/money">
+  <title>Money::Currency - github.com/crystal-money/money</title>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/BigDecimal" data-name="bigdecimal">
+      <a href="../BigDecimal.html">BigDecimal</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/crystal-money/money/Money" data-name="money">
+      <a href="../Money.html">Money</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Allocate" data-name="money::allocate">
+      <a href="../Money/Allocate.html">Allocate</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Arithmetic" data-name="money::arithmetic">
+      <a href="../Money/Arithmetic.html">Arithmetic</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/crystal-money/money/Money/Bank" data-name="money::bank">
+      <a href="../Money/Bank.html">Bank</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Bank/SingleCurrency" data-name="money::bank::singlecurrency">
+      <a href="../Money/Bank/SingleCurrency.html">SingleCurrency</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Bank/VariableExchange" data-name="money::bank::variableexchange">
+      <a href="../Money/Bank/VariableExchange.html">VariableExchange</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Casting" data-name="money::casting">
+      <a href="../Money/Casting.html">Casting</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Constructors" data-name="money::constructors">
+      <a href="../Money/Constructors.html">Constructors</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/crystal-money/money/Money/Currency" data-name="money::currency">
+      <a href="../Money/Currency.html">Currency</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Enumeration" data-name="money::currency::enumeration">
+      <a href="../Money/Currency/Enumeration.html">Enumeration</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Loader" data-name="money::currency::loader">
+      <a href="../Money/Currency/Loader.html">Loader</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/Rate" data-name="money::currency::rate">
+      <a href="../Money/Currency/Rate.html">Rate</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/crystal-money/money/Money/Currency/RateStore" data-name="money::currency::ratestore">
+      <a href="../Money/Currency/RateStore.html">RateStore</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
+      <a href="../Money/Currency/RateStore/Memory.html">Memory</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/DifferentCurrencyError" data-name="money::differentcurrencyerror">
+      <a href="../Money/DifferentCurrencyError.html">DifferentCurrencyError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Error" data-name="money::error">
+      <a href="../Money/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Exchange" data-name="money::exchange">
+      <a href="../Money/Exchange.html">Exchange</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Formatting" data-name="money::formatting">
+      <a href="../Money/Formatting.html">Formatting</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/crystal-money/money/Money/Parse" data-name="money::parse">
+      <a href="../Money/Parse.html">Parse</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/Parse/Error" data-name="money::parse::error">
+      <a href="../Money/Parse/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/UndefinedSmallestDenominationError" data-name="money::undefinedsmallestdenominationerror">
+      <a href="../Money/UndefinedSmallestDenominationError.html">UndefinedSmallestDenominationError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
+      <a href="../Money/UnknownCurrencyError.html">UnknownCurrencyError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/crystal-money/money/Money/UnknownRateError" data-name="money::unknownrateerror">
+      <a href="../Money/UnknownRateError.html">UnknownRateError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Money::Currency
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/Currency.html">Money::Currency</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>Represents a specific currency unit.</p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217</a>.</p>
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type">Comparable(String | Symbol)</li>
+  
+    <li class="other-type">Comparable(<a href="../Money/Currency.html">Money::Currency</a>)</li>
+  
+  </ul>
+
+
+
+  <h2>Extended Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../Money/Currency/Enumeration.html">Money::Currency::Enumeration</a></li>
+  
+    <li class="other-type"><a href="../Money/Currency/Loader.html">Money::Currency::Loader</a></li>
+  
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/enumeration.cr#L2" target="_blank">
+        money/currency/enumeration.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/json.cr#L3" target="_blank">
+        money/currency/json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/loader.cr#L4" target="_blank">
+        money/currency/loader.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/rate.cr#L3" target="_blank">
+        money/currency/rate.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/rate_store.cr#L1" target="_blank">
+        money/currency/rate_store.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/rate_store/memory.cr#L1" target="_blank">
+        money/currency/rate_store/memory.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L7" target="_blank">
+        money/currency.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(pull:JSON::PullParser)-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#wrap(value:String%7CSymbol%7CCurrency%7CNil):Currency-class-method" class="signature"><strong>.wrap</strong>(value : String | Symbol | Currency | Nil) : Currency</a>
+        
+          <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#wrap?(value:String%7CSymbol%7CCurrency%7CNil):Currency?-class-method" class="signature"><strong>.wrap?</strong>(value : String | Symbol | Currency | Nil) : Currency?</a>
+        
+          <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#register(currency:Currency)-class-method" class="signature"><strong>.register</strong>(currency : Currency)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#table-class-method" class="signature"><strong>.table</strong></a>
+        
+          <div class="summary"><p>List of known currencies.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unregister(currency:Currency)-class-method" class="signature"><strong>.unregister</strong>(currency : Currency)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unregister(currency_code:String%7CSymbol)-class-method" class="signature"><strong>.unregister</strong>(currency_code : String | Symbol)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#(other:Currency):Int32-instance-method" class="signature"><strong>#<=></strong>(other : Currency) : Int32</a>
+        
+          <div class="summary"><p>Compares <code>self</code> with <em>other</em> currency against the value of <code><a href="../Money/Currency.html#priority:Int32?-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id-instance-method">#id</a></code> attributes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#(other:String%7CSymbol):Int32-instance-method" class="signature"><strong>#<=></strong>(other : String | Symbol) : Int32</a>
+        
+          <div class="summary"><p>Compares <code>self</code> with <em>other</em> currency against the value of id` attribute.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#==(other:self)-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#alternate_symbols:Array(String)?-instance-method" class="signature"><strong>#alternate_symbols</strong> : Array(String)?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#code:String-instance-method" class="signature"><strong>#code</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decimal_mark:String?-instance-method" class="signature"><strong>#decimal_mark</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decimal_places:Int32-instance-method" class="signature"><strong>#decimal_places</strong> : Int32</a>
+        
+          <div class="summary"><p>Alias of <code><a href="../Money/Currency.html#exponent:Int32-instance-method">#exponent</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exponent:Int32-instance-method" class="signature"><strong>#exponent</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the relation between subunit and unit as a base 10 exponent.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash(hasher)-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#html_entity:String?-instance-method" class="signature"><strong>#html_entity</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#id-instance-method" class="signature"><strong>#id</strong></a>
+        
+          <div class="summary"><p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#iso?-instance-method" class="signature"><strong>#iso?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if iso currency.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#iso_numeric:UInt32?-instance-method" class="signature"><strong>#iso_numeric</strong> : UInt32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name:String?-instance-method" class="signature"><strong>#name</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#priority:Int32?-instance-method" class="signature"><strong>#priority</strong> : Int32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#smallest_denomination:UInt32?-instance-method" class="signature"><strong>#smallest_denomination</strong> : UInt32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#subunit:String?-instance-method" class="signature"><strong>#subunit</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#subunit_to_unit:UInt64-instance-method" class="signature"><strong>#subunit_to_unit</strong> : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symbol:String?-instance-method" class="signature"><strong>#symbol</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#symbol_first?:Bool?-instance-method" class="signature"><strong>#symbol_first?</strong> : Bool?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#thousands_separator:String?-instance-method" class="signature"><strong>#thousands_separator</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json(json:JSON::Builder)-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        
+          <div class="summary"><p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code> property to the given <em>io</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Constructor Detail</h2>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new(pull:JSON::PullParser)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/json.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="wrap(value:String|Symbol|Currency|Nil):Currency-class-method">
+      <div class="signature">
+        
+        def self.<strong>wrap</strong>(value : String | Symbol | <a href="../Money/Currency.html">Currency</a> | Nil) : <a href="../Money/Currency.html">Currency</a>
+
+        <a class="method-permalink" href="#wrap(value:String%7CSymbol%7CCurrency%7CNil):Currency-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p>
+
+<pre><code>c1 <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>)
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(c1)    <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="s">&quot;usd&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:usd</span>)  <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">nil</span>)   <span class="c"># =&gt; nil</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="wrap?(value:String|Symbol|Currency|Nil):Currency?-class-method">
+      <div class="signature">
+        
+        def self.<strong>wrap?</strong>(value : String | Symbol | <a href="../Money/Currency.html">Currency</a> | Nil) : <a href="../Money/Currency.html">Currency</a>?
+
+        <a class="method-permalink" href="#wrap?(value:String%7CSymbol%7CCurrency%7CNil):Currency?-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p>
+
+<pre><code>c1 <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>)
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(c1)    <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="s">&quot;usd&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:usd</span>)  <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">nil</span>)   <span class="c"># =&gt; nil</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="register(currency:Currency)-class-method">
+      <div class="signature">
+        
+        def self.<strong>register</strong>(currency : <a href="../Money/Currency.html">Currency</a>)
+
+        <a class="method-permalink" href="#register(currency:Currency)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="table-class-method">
+      <div class="signature">
+        
+        def self.<strong>table</strong>
+
+        <a class="method-permalink" href="#table-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>List of known currencies.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unregister(currency:Currency)-class-method">
+      <div class="signature">
+        
+        def self.<strong>unregister</strong>(currency : <a href="../Money/Currency.html">Currency</a>)
+
+        <a class="method-permalink" href="#unregister(currency:Currency)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unregister(currency_code:String|Symbol)-class-method">
+      <div class="signature">
+        
+        def self.<strong>unregister</strong>(currency_code : String | Symbol)
+
+        <a class="method-permalink" href="#unregister(currency_code:String%7CSymbol)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="(other:Currency):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="../Money/Currency.html">Currency</a>) : Int32
+
+        <a class="method-permalink" href="#(other:Currency):Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Compares <code>self</code> with <em>other</em> currency against the value of
+<code><a href="../Money/Currency.html#priority:Int32?-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id-instance-method">#id</a></code> attributes.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="(other:String|Symbol):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : String | Symbol) : Int32
+
+        <a class="method-permalink" href="#(other:String%7CSymbol):Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Compares <code>self</code> with <em>other</em> currency against the value of id` attribute.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L111" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#==(other:self)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="alternate_symbols:Array(String)?-instance-method">
+      <div class="signature">
+        
+        def <strong>alternate_symbols</strong> : Array(String)?
+
+        <a class="method-permalink" href="#alternate_symbols:Array(String)?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="code:String-instance-method">
+      <div class="signature">
+        
+        def <strong>code</strong> : String
+
+        <a class="method-permalink" href="#code:String-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decimal_mark:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>decimal_mark</strong> : String?
+
+        <a class="method-permalink" href="#decimal_mark:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decimal_places:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>decimal_places</strong> : Int32
+
+        <a class="method-permalink" href="#decimal_places:Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Alias of <code><a href="../Money/Currency.html#exponent:Int32-instance-method">#exponent</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L82" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exponent:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>exponent</strong> : Int32
+
+        <a class="method-permalink" href="#exponent:Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the relation between subunit and unit as a base 10 exponent.</p>
+
+<p><span class="flag purple">NOTE</span>  MGA and MRU are exceptions and are rounded to 1.</p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes" target="_blank">Active_codes</a>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash(hasher)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="html_entity:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>html_entity</strong> : String?
+
+        <a class="method-permalink" href="#html_entity:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L64" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="id-instance-method">
+      <div class="signature">
+        
+        def <strong>id</strong>
+
+        <a class="method-permalink" href="#id-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="iso?-instance-method">
+      <div class="signature">
+        
+        def <strong>iso?</strong>
+
+        <a class="method-permalink" href="#iso?-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns <code>true</code> if iso currency.</p>
+
+<p>See <code><a href="../Money/Currency.html#iso_numeric:UInt32?-instance-method">#iso_numeric</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="iso_numeric:UInt32?-instance-method">
+      <div class="signature">
+        
+        def <strong>iso_numeric</strong> : UInt32?
+
+        <a class="method-permalink" href="#iso_numeric:UInt32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String?
+
+        <a class="method-permalink" href="#name:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="priority:Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>priority</strong> : Int32?
+
+        <a class="method-permalink" href="#priority:Int32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="smallest_denomination:UInt32?-instance-method">
+      <div class="signature">
+        
+        def <strong>smallest_denomination</strong> : UInt32?
+
+        <a class="method-permalink" href="#smallest_denomination:UInt32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="subunit:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>subunit</strong> : String?
+
+        <a class="method-permalink" href="#subunit:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="subunit_to_unit:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>subunit_to_unit</strong> : UInt64
+
+        <a class="method-permalink" href="#subunit_to_unit:UInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symbol:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>symbol</strong> : String?
+
+        <a class="method-permalink" href="#symbol:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L59" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="symbol_first?:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>symbol_first?</strong> : Bool?
+
+        <a class="method-permalink" href="#symbol_first?:Bool?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L63" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="thousands_separator:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>thousands_separator</strong> : String?
+
+        <a class="method-permalink" href="#thousands_separator:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json(json:JSON::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : JSON::Builder)
+
+        <a class="method-permalink" href="#to_json(json:JSON::Builder)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency/json.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code> property
+to the given <em>io</em>.</p>
+
+<pre><code><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>).to_s <span class="c"># =&gt; &quot;USD&quot;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:eur</span>).to_s <span class="c"># =&gt; &quot;EUR&quot;</span></code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/61aa3f285431720eb748563b075f64f66e2c836d/src/money/currency.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
