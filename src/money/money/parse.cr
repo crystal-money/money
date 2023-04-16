@@ -18,7 +18,7 @@ struct Money
       parse(str, allow_ambiguous) { nil }
     end
 
-    private def parse(str : String, allow_ambiguous : Bool)
+    private def parse(str : String, allow_ambiguous : Bool, &)
       matched_pattern = PATTERNS.each do |pattern|
         if str =~ pattern
           break $~["amount"], $~["symbol"], $~["sign"]?

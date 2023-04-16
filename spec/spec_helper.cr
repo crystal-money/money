@@ -1,7 +1,7 @@
 require "spec"
 require "../src/money"
 
-def with_infinite_precision(enabled = true)
+def with_infinite_precision(enabled = true, &)
   previous_value = Money.infinite_precision?
   begin
     Money.infinite_precision = enabled
@@ -11,7 +11,7 @@ def with_infinite_precision(enabled = true)
   end
 end
 
-def with_default_currency(currency = nil)
+def with_default_currency(currency = nil, &)
   previous_currency = Money.default_currency
   begin
     Money.default_currency = currency if currency
@@ -21,7 +21,7 @@ def with_default_currency(currency = nil)
   end
 end
 
-def with_registered_currency(*currencies)
+def with_registered_currency(*currencies, &)
   currencies.each do |currency|
     Money::Currency.register(currency)
   end
@@ -32,7 +32,7 @@ ensure
   end
 end
 
-def with_default_bank(bank = nil)
+def with_default_bank(bank = nil, &)
   previous_bank = Money.default_bank
   begin
     Money.default_bank = bank if bank

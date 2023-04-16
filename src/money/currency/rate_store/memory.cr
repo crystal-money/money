@@ -24,7 +24,7 @@ class Money::Currency
 
     # Wraps block execution in a thread-safe transaction.
     # NOTE: Uses `Mutex` to synchronize data access.
-    def transaction(&block : -> _)
+    def transaction(& : -> _)
       @mutex.synchronize { yield }
     end
 
@@ -36,7 +36,7 @@ class Money::Currency
       @index[rate_key_for(from, to)]?
     end
 
-    def each
+    def each(&)
       @index.each { |_, rate| yield rate }
     end
 
