@@ -10,15 +10,15 @@ struct Money
       /(?<sign>\+|\-)?(?<symbol>[^0-9,.]+)\s*(?<amount>\d+(?:[.,]\d+)?)/,
     }
 
-    def parse(str : String, allow_ambigous = true) : Money
-      parse(str, allow_ambigous) { |ex| raise ex }
+    def parse(str : String, allow_ambiguous = true) : Money
+      parse(str, allow_ambiguous) { |ex| raise ex }
     end
 
-    def parse?(str : String, allow_ambigous = true) : Money?
-      parse(str, allow_ambigous) { nil }
+    def parse?(str : String, allow_ambiguous = true) : Money?
+      parse(str, allow_ambiguous) { nil }
     end
 
-    private def parse(str : String, allow_ambigous : Bool)
+    private def parse(str : String, allow_ambiguous : Bool)
       matched_pattern = PATTERNS.each do |pattern|
         if str =~ pattern
           break $~["amount"], $~["symbol"], $~["sign"]?
@@ -42,7 +42,7 @@ struct Money
         when 1
           matches.first
         else
-          unless allow_ambigous
+          unless allow_ambiguous
             raise Error.new "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
           end
           matches.first

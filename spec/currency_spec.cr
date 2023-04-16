@@ -91,7 +91,7 @@ describe Money::Currency do
       currency.should eq currency
     end
 
-    it "returns true if the id is equal ignorning case" do
+    it "returns true if the id is equal ignoring case" do
       Money::Currency.find(:eur).should eq Money::Currency.find(:eur)
       Money::Currency.find(:eur).should eq Money::Currency.find(:EUR)
       Money::Currency.find(:eur).should_not eq Money::Currency.find(:usd)
