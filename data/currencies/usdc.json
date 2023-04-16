@@ -1,0 +1,13 @@
+{
+  "code": "USDC",
+  "name": "USD Coin",
+  "symbol": "USDC",
+  "disambiguate_symbol": "USDC",
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
