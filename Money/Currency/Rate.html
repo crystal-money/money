@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -252,14 +252,14 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/json.cr#L15" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/json.cr#L15" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L2" target="_blank">
         money/currency/rate.cr
       </a>
     
@@ -281,12 +281,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(from:Currency,to:Currency,value:Int64)-class-method" class="signature"><strong>.new</strong>(from : Currency, to : Currency, value : Int64)</a>
+        <a href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3AInt64%29-class-method" class="signature"><strong>.new</strong>(from : Currency, to : Currency, value : Int64)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new(pull:JSON::PullParser)-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
       </li>
     
@@ -312,62 +312,60 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#copy_with(from_from=@from,to_to=@to,value_value=@value)-instance-method" class="signature"><strong>#copy_with</strong>(from _from = @from, to _to = @to, value _value = @value)</a>
+        <a href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%29-instance-method" class="signature"><strong>#copy_with</strong>(from _from = @from, to _to = @to, value _value = @value)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from:Currency-instance-method" class="signature"><strong>#from</strong> : Currency</a>
+        <a href="#from%3ACurrency-instance-method" class="signature"><strong>#from</strong> : Currency</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to:Currency-instance-method" class="signature"><strong>#to</strong> : Currency</a>
+        <a href="#to%3ACurrency-instance-method" class="signature"><strong>#to</strong> : Currency</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_big_d:BigDecimal-instance-method" class="signature"><strong>#to_big_d</strong> : BigDecimal</a>
+        <a href="#to_big_d%3ABigDecimal-instance-method" class="signature"><strong>#to_big_d</strong> : BigDecimal</a>
         
-          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code><a href="../../BigDecimal.html">BigDecimal</a></code> object.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_f64:Float64-instance-method" class="signature"><strong>#to_f64</strong> : Float64</a>
-        
-          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code>Float64</code>.</p></div>
+          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code><a href="../../BigDecimal.html">BigDecimal</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_i64:Int64-instance-method" class="signature"><strong>#to_i64</strong> : Int64</a>
+        <a href="#to_f64%3AFloat64-instance-method" class="signature"><strong>#to_f64</strong> : Float64</a>
         
-          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code>Int64</code>.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_json(json:JSON::Builder)-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code>Float64</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_money(bank=nil):Money-instance-method" class="signature"><strong>#to_money</strong>(bank = <span class="n">nil</span>) : Money</a>
-        
-          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code><a href="../../Money.html">Money</a></code> object.</p></div>
+        <a href="#to_i64%3AInt64-instance-method" class="signature"><strong>#to_i64</strong> : Int64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(io:IO):Nil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_money%28bank%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#to_money</strong>(bank = <span class="n">nil</span>) : Money</a>
+        
+          <div class="summary"><p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code><a href="../../Money.html">Money</a></code> object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
         
           <div class="summary"><p>Same as <code>#inspect(io)</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#value:Int64-instance-method" class="signature"><strong>#value</strong> : Int64</a>
+        <a href="#value%3AInt64-instance-method" class="signature"><strong>#value</strong> : Int64</a>
         
       </li>
     
@@ -436,13 +434,13 @@
         
         def self.<strong>new</strong>(from : <a href="../../Money/Currency.html">Currency</a>, to : <a href="../../Money/Currency.html">Currency</a>, value : Int64)
 
-        <a class="method-permalink" href="#new(from:Currency,to:Currency,value:Int64)-class-method">#</a>
+        <a class="method-permalink" href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3AInt64%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -452,13 +450,13 @@
         
         def self.<strong>new</strong>(pull : JSON::PullParser)
 
-        <a class="method-permalink" href="#new(pull:JSON::PullParser)-class-method">#</a>
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/json.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/json.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -488,7 +486,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -498,13 +496,13 @@
         
         def <strong>copy_with</strong>(from _from = @from, to _to = @to, value _value = @value)
 
-        <a class="method-permalink" href="#copy_with(from_from=@from,to_to=@to,value_value=@value)-instance-method">#</a>
+        <a class="method-permalink" href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -514,7 +512,7 @@
         
         def <strong>from</strong> : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#from:Currency-instance-method">#</a>
+        <a class="method-permalink" href="#from%3ACurrency-instance-method">#</a>
       </div>
       
       <br/>
@@ -528,7 +526,7 @@
         
         def <strong>to</strong> : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#to:Currency-instance-method">#</a>
+        <a class="method-permalink" href="#to%3ACurrency-instance-method">#</a>
       </div>
       
       <br/>
@@ -542,18 +540,18 @@
         
         def <strong>to_big_d</strong> : <a href="../../BigDecimal.html">BigDecimal</a>
 
-        <a class="method-permalink" href="#to_big_d:BigDecimal-instance-method">#</a>
+        <a class="method-permalink" href="#to_big_d%3ABigDecimal-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code><a href="../../BigDecimal.html">BigDecimal</a></code> object.</p>
+          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code><a href="../../BigDecimal.html">BigDecimal</a></code> object.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -563,18 +561,18 @@
         
         def <strong>to_f64</strong> : Float64
 
-        <a class="method-permalink" href="#to_f64:Float64-instance-method">#</a>
+        <a class="method-permalink" href="#to_f64%3AFloat64-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code>Float64</code>.</p>
+          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code>Float64</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -584,18 +582,13 @@
         
         def <strong>to_i64</strong> : Int64
 
-        <a class="method-permalink" href="#to_i64:Int64-instance-method">#</a>
+        <a class="method-permalink" href="#to_i64%3AInt64-instance-method">#</a>
       </div>
-      
-        <div class="doc">
-          
-          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code>Int64</code>.</p>
-        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -605,13 +598,13 @@
         
         def <strong>to_json</strong>(json : JSON::Builder)
 
-        <a class="method-permalink" href="#to_json(json:JSON::Builder)-instance-method">#</a>
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/json.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/json.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,18 +614,18 @@
         
         def <strong>to_money</strong>(bank = <span class="n">nil</span>) : <a href="../../Money.html">Money</a>
 
-        <a class="method-permalink" href="#to_money(bank=nil):Money-instance-method">#</a>
+        <a class="method-permalink" href="#to_money%28bank%3Dnil%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value:Int64-instance-method">#value</a></code> as <code><a href="../../Money.html">Money</a></code> object.</p>
+          <p>Returns conversion rate <code><a href="../../Money/Currency/Rate.html#value%3AInt64-instance-method">#value</a></code> as <code><a href="../../Money.html">Money</a></code> object.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -642,7 +635,7 @@
         
         def <strong>to_s</strong>(io : IO) : Nil
 
-        <a class="method-permalink" href="#to_s(io:IO):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -657,7 +650,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -667,7 +660,7 @@
         
         def <strong>value</strong> : Int64
 
-        <a class="method-permalink" href="#value:Int64-instance-method">#</a>
+        <a class="method-permalink" href="#value%3AInt64-instance-method">#</a>
       </div>
       
       <br/>

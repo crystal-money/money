@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -225,7 +225,6 @@
   </h2>
 
   <p>Represents a specific currency unit.</p>
-
 <p>See <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</p>
 
 
@@ -285,49 +284,49 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L10" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L10" target="_blank">
         money/currency.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L2" target="_blank">
         money/currency/enumeration.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/json.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/json.cr#L3" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/loader.cr#L4" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/loader.cr#L4" target="_blank">
         money/currency/loader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate.cr#L1" target="_blank">
         money/currency/rate.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate_store.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate_store.cr#L1" target="_blank">
         money/currency/rate_store.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/rate_store/memory.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/rate_store/memory.cr#L1" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -349,24 +348,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(code,subunit_to_unit)-class-method" class="signature"><strong>.new</strong>(code, subunit_to_unit)</a>
+        <a href="#new%28code%3AString%2Csubunit_to_unit%3AUInt64%29-class-method" class="signature"><strong>.new</strong>(code : String, subunit_to_unit : UInt64)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new(pull:JSON::PullParser)-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#wrap(value:String%7CSymbol%7CCurrency):Currency-class-method" class="signature"><strong>.wrap</strong>(value : String | Symbol | Currency) : Currency</a>
-        
-          <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#wrap?(value:String%7CSymbol%7CCurrency):Currency?-class-method" class="signature"><strong>.wrap?</strong>(value : String | Symbol | Currency) : Currency?</a>
+        <a href="#wrap%28value%3AString%7CSymbol%7CCurrency%29%3ACurrency-class-method" class="signature"><strong>.wrap</strong>(value : String | Symbol | Currency) : Currency</a>
         
           <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
         
@@ -387,24 +379,31 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#register(currency:Currency)-class-method" class="signature"><strong>.register</strong>(currency : Currency)</a>
+        <a href="#register%28currency%3ACurrency%29-class-method" class="signature"><strong>.register</strong>(currency : Currency)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#table:Hash(String,Currency)-class-method" class="signature"><strong>.table</strong> : Hash(String, Currency)</a>
+        <a href="#table%3AHash%28String%2CCurrency%29-class-method" class="signature"><strong>.table</strong> : Hash(String, Currency)</a>
         
           <div class="summary"><p>List of known currencies.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#unregister(currency:Currency)-class-method" class="signature"><strong>.unregister</strong>(currency : Currency)</a>
+        <a href="#unregister%28currency%3ACurrency%29-class-method" class="signature"><strong>.unregister</strong>(currency : Currency)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#unregister(currency_code:String%7CSymbol)-class-method" class="signature"><strong>.unregister</strong>(currency_code : String | Symbol)</a>
+        <a href="#unregister%28currency_code%3AString%7CSymbol%29-class-method" class="signature"><strong>.unregister</strong>(currency_code : String | Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#wrap%3F%28value%3AString%7CSymbol%7CCurrency%29%3ACurrency%7CNil-class-method" class="signature"><strong>.wrap?</strong>(value : String | Symbol | Currency) : Currency | Nil</a>
+        
+          <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
         
       </li>
     
@@ -423,130 +422,130 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%3C=%3E(other:Currency):Int32-instance-method" class="signature"><strong>#<=></strong>(other : Currency) : Int32</a>
+        <a href="#%3C%3D%3E%28other%3ACurrency%29%3AInt32-instance-method" class="signature"><strong>#<=></strong>(other : Currency) : Int32</a>
         
-          <div class="summary"><p>Compares <code>self</code> with <em>other</em> currency against the value of <code><a href="../Money/Currency.html#priority:Int32?-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id:String-instance-method">#id</a></code> attributes.</p></div>
+          <div class="summary"><p>Compares <code>self</code> with <em>other</em> currency against the value of <code><a href="../Money/Currency.html#priority%3AInt32%7CNil-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id%3AString-instance-method">#id</a></code> attributes.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%3C=%3E(other:String%7CSymbol):Int32-instance-method" class="signature"><strong>#<=></strong>(other : String | Symbol) : Int32</a>
+        <a href="#%3C%3D%3E%28other%3AString%7CSymbol%29%3AInt32-instance-method" class="signature"><strong>#<=></strong>(other : String | Symbol) : Int32</a>
         
           <div class="summary"><p>Compares <code>self</code> with <em>other</em> currency against the value of id` attribute.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#==(other:self)-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
+        <a href="#%3D%3D%28other%3Aself%29-instance-method" class="signature"><strong>#==</strong>(other : <span class="k">self</span>)</a>
         
           <div class="summary"><p>Returns <code>true</code> if this reference is the same as <em>other</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#alternate_symbols:Array(String)?-instance-method" class="signature"><strong>#alternate_symbols</strong> : Array(String)?</a>
+        <a href="#alternate_symbols%3AArray%28String%29%7CNil-instance-method" class="signature"><strong>#alternate_symbols</strong> : Array(String) | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#code:String-instance-method" class="signature"><strong>#code</strong> : String</a>
+        <a href="#code%3AString-instance-method" class="signature"><strong>#code</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#decimal_mark:String?-instance-method" class="signature"><strong>#decimal_mark</strong> : String?</a>
+        <a href="#decimal_mark%3AString%7CNil-instance-method" class="signature"><strong>#decimal_mark</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#decimal_places:Int32-instance-method" class="signature"><strong>#decimal_places</strong> : Int32</a>
+        <a href="#decimal_places%3AInt32-instance-method" class="signature"><strong>#decimal_places</strong> : Int32</a>
         
-          <div class="summary"><p>Alias of <code><a href="../Money/Currency.html#exponent:Int32-instance-method">#exponent</a></code>.</p></div>
+          <div class="summary"><p>Alias of <code><a href="../Money/Currency.html#exponent%3AInt32-instance-method">#exponent</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#exponent:Int32-instance-method" class="signature"><strong>#exponent</strong> : Int32</a>
+        <a href="#exponent%3AInt32-instance-method" class="signature"><strong>#exponent</strong> : Int32</a>
         
           <div class="summary"><p>Returns the relation between subunit and unit as a base 10 exponent.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#hash(hasher)-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        <a href="#hash%28hasher%29-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
         
           <div class="summary"><p>See <code>Object#hash(hasher)</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#html_entity:String?-instance-method" class="signature"><strong>#html_entity</strong> : String?</a>
+        <a href="#html_entity%3AString%7CNil-instance-method" class="signature"><strong>#html_entity</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#id:String-instance-method" class="signature"><strong>#id</strong> : String</a>
+        <a href="#id%3AString-instance-method" class="signature"><strong>#id</strong> : String</a>
         
-          <div class="summary"><p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code>.</p></div>
+          <div class="summary"><p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code%3AString-instance-method">#code</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#iso?-instance-method" class="signature"><strong>#iso?</strong></a>
+        <a href="#iso%3F-instance-method" class="signature"><strong>#iso?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if iso currency.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#iso_numeric:UInt32?-instance-method" class="signature"><strong>#iso_numeric</strong> : UInt32?</a>
+        <a href="#iso_numeric%3AUInt32%7CNil-instance-method" class="signature"><strong>#iso_numeric</strong> : UInt32 | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name:String?-instance-method" class="signature"><strong>#name</strong> : String?</a>
+        <a href="#name%3AString%7CNil-instance-method" class="signature"><strong>#name</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#priority:Int32?-instance-method" class="signature"><strong>#priority</strong> : Int32?</a>
+        <a href="#priority%3AInt32%7CNil-instance-method" class="signature"><strong>#priority</strong> : Int32 | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#smallest_denomination:UInt32?-instance-method" class="signature"><strong>#smallest_denomination</strong> : UInt32?</a>
+        <a href="#smallest_denomination%3AUInt32%7CNil-instance-method" class="signature"><strong>#smallest_denomination</strong> : UInt32 | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#subunit:String?-instance-method" class="signature"><strong>#subunit</strong> : String?</a>
+        <a href="#subunit%3AString%7CNil-instance-method" class="signature"><strong>#subunit</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#subunit_to_unit:UInt64-instance-method" class="signature"><strong>#subunit_to_unit</strong> : UInt64</a>
+        <a href="#subunit_to_unit%3AUInt64-instance-method" class="signature"><strong>#subunit_to_unit</strong> : UInt64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#symbol:String?-instance-method" class="signature"><strong>#symbol</strong> : String?</a>
+        <a href="#symbol%3AString%7CNil-instance-method" class="signature"><strong>#symbol</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#symbol_first?:Bool?-instance-method" class="signature"><strong>#symbol_first?</strong> : Bool?</a>
+        <a href="#symbol_first%3F%3ABool%7CNil-instance-method" class="signature"><strong>#symbol_first?</strong> : Bool | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#thousands_separator:String?-instance-method" class="signature"><strong>#thousands_separator</strong> : String?</a>
+        <a href="#thousands_separator%3AString%7CNil-instance-method" class="signature"><strong>#thousands_separator</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(io:IO):Nil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
         
-          <div class="summary"><p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code> property to the given <em>io</em>.</p></div>
+          <div class="summary"><p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code%3AString-instance-method">#code</a></code> property to the given <em>io</em>.</p></div>
         
       </li>
     
@@ -620,18 +619,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(code,subunit_to_unit)-class-method">
+    <div class="entry-detail" id="new(code:String,subunit_to_unit:UInt64)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(code, subunit_to_unit)
+        def self.<strong>new</strong>(code : String, subunit_to_unit : UInt64)
 
-        <a class="method-permalink" href="#new(code,subunit_to_unit)-class-method">#</a>
+        <a class="method-permalink" href="#new%28code%3AString%2Csubunit_to_unit%3AUInt64%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -641,13 +640,13 @@
         
         def self.<strong>new</strong>(pull : JSON::PullParser)
 
-        <a class="method-permalink" href="#new(pull:JSON::PullParser)-class-method">#</a>
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/json.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/json.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -657,13 +656,12 @@
         
         def self.<strong>wrap</strong>(value : String | Symbol | <a href="../Money/Currency.html">Currency</a>) : <a href="../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#wrap(value:String%7CSymbol%7CCurrency):Currency-class-method">#</a>
+        <a class="method-permalink" href="#wrap%28value%3AString%7CSymbol%7CCurrency%29%3ACurrency-class-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p>
-
 <pre><code class="language-crystal">c1 <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>)
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(c1)    <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="s">&quot;usd&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
@@ -674,34 +672,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L70" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="wrap?(value:String|Symbol|Currency):Currency?-class-method">
-      <div class="signature">
-        
-        def self.<strong>wrap?</strong>(value : String | Symbol | <a href="../Money/Currency.html">Currency</a>) : <a href="../Money/Currency.html">Currency</a>?
-
-        <a class="method-permalink" href="#wrap?(value:String%7CSymbol%7CCurrency):Currency?-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p>
-
-<pre><code class="language-crystal">c1 <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>)
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(c1)    <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="s">&quot;usd&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:usd</span>)  <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:foo</span>)  <span class="c"># =&gt; nil</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -723,13 +694,13 @@
         
         def self.<strong>register</strong>(currency : <a href="../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#register(currency:Currency)-class-method">#</a>
+        <a class="method-permalink" href="#register%28currency%3ACurrency%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -739,7 +710,7 @@
         
         def self.<strong>table</strong> : Hash(String, <a href="../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#table:Hash(String,Currency)-class-method">#</a>
+        <a class="method-permalink" href="#table%3AHash%28String%2CCurrency%29-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -750,7 +721,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -760,13 +731,13 @@
         
         def self.<strong>unregister</strong>(currency : <a href="../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#unregister(currency:Currency)-class-method">#</a>
+        <a class="method-permalink" href="#unregister%28currency%3ACurrency%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -776,13 +747,39 @@
         
         def self.<strong>unregister</strong>(currency_code : String | Symbol)
 
-        <a class="method-permalink" href="#unregister(currency_code:String%7CSymbol)-class-method">#</a>
+        <a class="method-permalink" href="#unregister%28currency_code%3AString%7CSymbol%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="wrap?(value:String|Symbol|Currency):Currency|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>wrap?</strong>(value : String | Symbol | <a href="../Money/Currency.html">Currency</a>) : <a href="../Money/Currency.html">Currency</a> | Nil
+
+        <a class="method-permalink" href="#wrap%3F%28value%3AString%7CSymbol%7CCurrency%29%3ACurrency%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p>
+<pre><code class="language-crystal">c1 <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>)
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(c1)    <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="s">&quot;usd&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:usd</span>)  <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;usd&quot;&gt;</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.wrap?(<span class="n">:foo</span>)  <span class="c"># =&gt; nil</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -804,19 +801,19 @@
         
         def <strong><=></strong>(other : <a href="../Money/Currency.html">Currency</a>) : Int32
 
-        <a class="method-permalink" href="#%3C=%3E(other:Currency):Int32-instance-method">#</a>
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ACurrency%29%3AInt32-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Compares <code>self</code> with <em>other</em> currency against the value of
-<code><a href="../Money/Currency.html#priority:Int32?-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id:String-instance-method">#id</a></code> attributes.</p>
+<code><a href="../Money/Currency.html#priority%3AInt32%7CNil-instance-method">#priority</a></code> and <code><a href="../Money/Currency.html#id%3AString-instance-method">#id</a></code> attributes.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -826,7 +823,7 @@
         
         def <strong><=></strong>(other : String | Symbol) : Int32
 
-        <a class="method-permalink" href="#%3C=%3E(other:String%7CSymbol):Int32-instance-method">#</a>
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3AString%7CSymbol%29%3AInt32-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -837,7 +834,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +844,7 @@
         
         def <strong>==</strong>(other : <span class="k">self</span>)
 
-        <a class="method-permalink" href="#==(other:self)-instance-method">#</a>
+        <a class="method-permalink" href="#%3D%3D%28other%3Aself%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -865,18 +862,18 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="alternate_symbols:Array(String)?-instance-method">
+    <div class="entry-detail" id="alternate_symbols:Array(String)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>alternate_symbols</strong> : Array(String)?
+        def <strong>alternate_symbols</strong> : Array(String) | Nil
 
-        <a class="method-permalink" href="#alternate_symbols:Array(String)?-instance-method">#</a>
+        <a class="method-permalink" href="#alternate_symbols%3AArray%28String%29%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -886,29 +883,29 @@
         
         def <strong>code</strong> : String
 
-        <a class="method-permalink" href="#code:String-instance-method">#</a>
+        <a class="method-permalink" href="#code%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="decimal_mark:String?-instance-method">
+    <div class="entry-detail" id="decimal_mark:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>decimal_mark</strong> : String?
+        def <strong>decimal_mark</strong> : String | Nil
 
-        <a class="method-permalink" href="#decimal_mark:String?-instance-method">#</a>
+        <a class="method-permalink" href="#decimal_mark%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -918,18 +915,18 @@
         
         def <strong>decimal_places</strong> : Int32
 
-        <a class="method-permalink" href="#decimal_places:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#decimal_places%3AInt32-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Alias of <code><a href="../Money/Currency.html#exponent:Int32-instance-method">#exponent</a></code>.</p>
+          <p>Alias of <code><a href="../Money/Currency.html#exponent%3AInt32-instance-method">#exponent</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -939,22 +936,20 @@
         
         def <strong>exponent</strong> : Int32
 
-        <a class="method-permalink" href="#exponent:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#exponent%3AInt32-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Returns the relation between subunit and unit as a base 10 exponent.</p>
-
 <p><span class="flag purple">NOTE</span>  MGA and MRU are exceptions and are rounded to 1.</p>
-
 <p>See <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">Active_codes</a>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -964,7 +959,7 @@
         
         def <strong>hash</strong>(hasher)
 
-        <a class="method-permalink" href="#hash(hasher)-instance-method">#</a>
+        <a class="method-permalink" href="#hash%28hasher%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -982,18 +977,18 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="html_entity:String?-instance-method">
+    <div class="entry-detail" id="html_entity:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>html_entity</strong> : String?
+        def <strong>html_entity</strong> : String | Nil
 
-        <a class="method-permalink" href="#html_entity:String?-instance-method">#</a>
+        <a class="method-permalink" href="#html_entity%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1003,18 +998,18 @@
         
         def <strong>id</strong> : String
 
-        <a class="method-permalink" href="#id:String-instance-method">#</a>
+        <a class="method-permalink" href="#id%3AString-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code>.</p>
+          <p>Currency ID, for time being lower-cased <code><a href="../Money/Currency.html#code%3AString-instance-method">#code</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1024,100 +1019,99 @@
         
         def <strong>iso?</strong>
 
-        <a class="method-permalink" href="#iso?-instance-method">#</a>
+        <a class="method-permalink" href="#iso%3F-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Returns <code>true</code> if iso currency.</p>
-
-<p>See <code><a href="../Money/Currency.html#iso_numeric:UInt32?-instance-method">#iso_numeric</a></code>.</p>
+<p>See <code><a href="../Money/Currency.html#iso_numeric%3AUInt32%7CNil-instance-method">#iso_numeric</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="iso_numeric:UInt32?-instance-method">
+    <div class="entry-detail" id="iso_numeric:UInt32|Nil-instance-method">
       <div class="signature">
         
-        def <strong>iso_numeric</strong> : UInt32?
+        def <strong>iso_numeric</strong> : UInt32 | Nil
 
-        <a class="method-permalink" href="#iso_numeric:UInt32?-instance-method">#</a>
+        <a class="method-permalink" href="#iso_numeric%3AUInt32%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name:String?-instance-method">
+    <div class="entry-detail" id="name:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>name</strong> : String?
+        def <strong>name</strong> : String | Nil
 
-        <a class="method-permalink" href="#name:String?-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="priority:Int32?-instance-method">
+    <div class="entry-detail" id="priority:Int32|Nil-instance-method">
       <div class="signature">
         
-        def <strong>priority</strong> : Int32?
+        def <strong>priority</strong> : Int32 | Nil
 
-        <a class="method-permalink" href="#priority:Int32?-instance-method">#</a>
+        <a class="method-permalink" href="#priority%3AInt32%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="smallest_denomination:UInt32?-instance-method">
+    <div class="entry-detail" id="smallest_denomination:UInt32|Nil-instance-method">
       <div class="signature">
         
-        def <strong>smallest_denomination</strong> : UInt32?
+        def <strong>smallest_denomination</strong> : UInt32 | Nil
 
-        <a class="method-permalink" href="#smallest_denomination:UInt32?-instance-method">#</a>
+        <a class="method-permalink" href="#smallest_denomination%3AUInt32%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="subunit:String?-instance-method">
+    <div class="entry-detail" id="subunit:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>subunit</strong> : String?
+        def <strong>subunit</strong> : String | Nil
 
-        <a class="method-permalink" href="#subunit:String?-instance-method">#</a>
+        <a class="method-permalink" href="#subunit%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1127,61 +1121,61 @@
         
         def <strong>subunit_to_unit</strong> : UInt64
 
-        <a class="method-permalink" href="#subunit_to_unit:UInt64-instance-method">#</a>
+        <a class="method-permalink" href="#subunit_to_unit%3AUInt64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="symbol:String?-instance-method">
+    <div class="entry-detail" id="symbol:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>symbol</strong> : String?
+        def <strong>symbol</strong> : String | Nil
 
-        <a class="method-permalink" href="#symbol:String?-instance-method">#</a>
+        <a class="method-permalink" href="#symbol%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="symbol_first?:Bool?-instance-method">
+    <div class="entry-detail" id="symbol_first?:Bool|Nil-instance-method">
       <div class="signature">
         
-        def <strong>symbol_first?</strong> : Bool?
+        def <strong>symbol_first?</strong> : Bool | Nil
 
-        <a class="method-permalink" href="#symbol_first?:Bool?-instance-method">#</a>
+        <a class="method-permalink" href="#symbol_first%3F%3ABool%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="thousands_separator:String?-instance-method">
+    <div class="entry-detail" id="thousands_separator:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>thousands_separator</strong> : String?
+        def <strong>thousands_separator</strong> : String | Nil
 
-        <a class="method-permalink" href="#thousands_separator:String?-instance-method">#</a>
+        <a class="method-permalink" href="#thousands_separator%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1191,14 +1185,13 @@
         
         def <strong>to_s</strong>(io : IO) : Nil
 
-        <a class="method-permalink" href="#to_s(io:IO):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code:String-instance-method">#code</a></code> property
+          <p>Appends a string representation corresponding to the <code><a href="../Money/Currency.html#code%3AString-instance-method">#code</a></code> property
 to the given <em>io</em>.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:usd</span>).to_s <span class="c"># =&gt; &quot;USD&quot;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:eur</span>).to_s <span class="c"># =&gt; &quot;EUR&quot;</span></code></pre>
         </div>
@@ -1206,7 +1199,7 @@ to the given <em>io</em>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>

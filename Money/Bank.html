@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -254,7 +254,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L2" target="_blank">
         money/bank.cr
       </a>
     
@@ -276,7 +276,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(store=nil)-class-method" class="signature"><strong>.new</strong>(store = <span class="n">nil</span>)</a>
+        <a href="#new%28store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(store : Money::Currency::RateStore | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -295,14 +295,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#default_store:Currency::RateStore-class-method" class="signature"><strong>.default_store</strong> : Currency::RateStore</a>
+        <a href="#default_store%3ACurrency%3A%3ARateStore-class-method" class="signature"><strong>.default_store</strong> : Currency::RateStore</a>
         
           <div class="summary"><p>It defaults to using an in-memory, thread safe store instance for storing exchange rates.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_store=(default_store:Currency::RateStore)-class-method" class="signature"><strong>.default_store=</strong>(default_store : Currency::RateStore)</a>
+        <a href="#default_store%3D%28default_store%3ACurrency%3A%3ARateStore%29-class-method" class="signature"><strong>.default_store=</strong>(default_store : Currency::RateStore)</a>
         
           <div class="summary"><p>It defaults to using an in-memory, thread safe store instance for storing exchange rates.</p></div>
         
@@ -323,21 +323,21 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#exchange(from:Money,to:Currency):Money-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
         
           <div class="summary"><p>Exchanges the given <code><a href="../Money.html">Money</a></code> object to a new <code><a href="../Money.html">Money</a></code> object in <em>to</em> <code><a href="../Money/Currency.html">Currency</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#store:Currency::RateStore-instance-method" class="signature"><strong>#store</strong> : Currency::RateStore</a>
+        <a href="#store%3ACurrency%3A%3ARateStore-instance-method" class="signature"><strong>#store</strong> : Currency::RateStore</a>
         
           <div class="summary"><p>An exchange <code><a href="../Money/Currency/RateStore.html">Currency::RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#store=(store:Currency::RateStore)-instance-method" class="signature"><strong>#store=</strong>(store : Currency::RateStore)</a>
+        <a href="#store%3D%28store%3ACurrency%3A%3ARateStore%29-instance-method" class="signature"><strong>#store=</strong>(store : Currency::RateStore)</a>
         
           <div class="summary"><p>An exchange <code><a href="../Money/Currency/RateStore.html">Currency::RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
         
@@ -383,18 +383,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(store=nil)-class-method">
+    <div class="entry-detail" id="new(store:Money::Currency::RateStore|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(store = <span class="n">nil</span>)
+        def self.<strong>new</strong>(store : <a href="../Money/Currency/RateStore.html">Money::Currency::RateStore</a> | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new(store=nil)-class-method">#</a>
+        <a class="method-permalink" href="#new%28store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -416,7 +416,7 @@
         
         def self.<strong>default_store</strong> : <a href="../Money/Currency/RateStore.html">Currency::RateStore</a>
 
-        <a class="method-permalink" href="#default_store:Currency::RateStore-class-method">#</a>
+        <a class="method-permalink" href="#default_store%3ACurrency%3A%3ARateStore-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -428,7 +428,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -438,7 +438,7 @@ storing exchange rates.</p>
         
         def self.<strong>default_store=</strong>(default_store : <a href="../Money/Currency/RateStore.html">Currency::RateStore</a>)
 
-        <a class="method-permalink" href="#default_store=(default_store:Currency::RateStore)-class-method">#</a>
+        <a class="method-permalink" href="#default_store%3D%28default_store%3ACurrency%3A%3ARateStore%29-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -450,7 +450,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -472,7 +472,7 @@ storing exchange rates.</p>
         abstract 
         def <strong>exchange</strong>(from : <a href="../Money.html">Money</a>, to : <a href="../Money/Currency.html">Currency</a>) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#exchange(from:Money,to:Currency):Money-instance-method">#</a>
+        <a class="method-permalink" href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -484,7 +484,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -494,7 +494,7 @@ storing exchange rates.</p>
         
         def <strong>store</strong> : <a href="../Money/Currency/RateStore.html">Currency::RateStore</a>
 
-        <a class="method-permalink" href="#store:Currency::RateStore-instance-method">#</a>
+        <a class="method-permalink" href="#store%3ACurrency%3A%3ARateStore-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -505,7 +505,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -515,7 +515,7 @@ storing exchange rates.</p>
         
         def <strong>store=</strong>(store : <a href="../Money/Currency/RateStore.html">Currency::RateStore</a>)
 
-        <a class="method-permalink" href="#store=(store:Currency::RateStore)-instance-method">#</a>
+        <a class="method-permalink" href="#store%3D%28store%3ACurrency%3A%3ARateStore%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -526,7 +526,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>

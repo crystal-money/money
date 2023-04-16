@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -250,7 +250,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/money/casting.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/money/casting.cr#L2" target="_blank">
         money/money/casting.cr
       </a>
     
@@ -276,14 +276,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#to_big_d:BigDecimal-instance-method" class="signature"><strong>#to_big_d</strong> : BigDecimal</a>
+        <a href="#to_big_d%3ABigDecimal-instance-method" class="signature"><strong>#to_big_d</strong> : BigDecimal</a>
         
           <div class="summary"><p>Returns the amount of money as a <code><a href="../BigDecimal.html">BigDecimal</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_big_f:BigFloat-instance-method" class="signature"><strong>#to_big_f</strong> : BigFloat</a>
+        <a href="#to_big_f%3ABigFloat-instance-method" class="signature"><strong>#to_big_f</strong> : BigFloat</a>
         
           <div class="summary"><p>Returns the amount of money as a <code>BigFloat</code>.</p></div>
         
@@ -318,20 +318,19 @@
         
         def <strong>to_big_d</strong> : <a href="../BigDecimal.html">BigDecimal</a>
 
-        <a class="method-permalink" href="#to_big_d:BigDecimal-instance-method">#</a>
+        <a class="method-permalink" href="#to_big_d%3ABigDecimal-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Returns the amount of money as a <code><a href="../BigDecimal.html">BigDecimal</a></code>.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">1_00</span>).to_big_d <span class="c"># =&gt; BigDecimal.new(&quot;1.00&quot;)</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/money/casting.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/money/casting.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -341,7 +340,7 @@
         
         def <strong>to_big_f</strong> : BigFloat
 
-        <a class="method-permalink" href="#to_big_f:BigFloat-instance-method">#</a>
+        <a class="method-permalink" href="#to_big_f%3ABigFloat-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -350,14 +349,13 @@
 precision. Therefore, this function should only be used when you no longer
 need to represent currency or working with another system that requires
 floats.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">100</span>).to_big_f <span class="c"># =&gt; 1.0</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/money/casting.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/money/casting.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>

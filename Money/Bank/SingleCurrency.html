@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -226,7 +226,6 @@
 
   <p>Class to ensure client code is operating in a single currency
 by raising if an exchange attempts to happen.</p>
-
 <p>This is useful when an application uses multiple currencies but
 it usually deals with only one currency at a time so any arithmetic
 where exchanges happen are erroneous. Using this as the default bank
@@ -255,7 +254,7 @@ means that that these mistakes don't silently do the wrong thing.</p>
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank/single_currency.cr#L9" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank/single_currency.cr#L9" target="_blank">
         money/bank/single_currency.cr
       </a>
     
@@ -281,7 +280,7 @@ means that that these mistakes don't silently do the wrong thing.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#exchange(from:Money,to:Currency):Money-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
         
           <div class="summary"><p>Raises a <code><a href="../../Money/DifferentCurrencyError.html">DifferentCurrencyError</a></code> to remove possibility of accidentally exchanging currencies.</p></div>
         
@@ -300,17 +299,17 @@ means that that these mistakes don't silently do the wrong thing.</p>
   <h3>Instance methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#exchange(from:Money,to:Currency):Money-instance-method" class="tooltip">
+    <a href="../../Money/Bank.html#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="tooltip">
       <span>exchange(from : Money, to : Currency) : Money</span>
     exchange</a>, 
     
   
-    <a href="../../Money/Bank.html#store:Currency::RateStore-instance-method" class="tooltip">
+    <a href="../../Money/Bank.html#store%3ACurrency%3A%3ARateStore-instance-method" class="tooltip">
       <span>store : Currency::RateStore</span>
     store</a>, 
     
   
-    <a href="../../Money/Bank.html#store=(store:Currency::RateStore)-instance-method" class="tooltip">
+    <a href="../../Money/Bank.html#store%3D%28store%3ACurrency%3A%3ARateStore%29-instance-method" class="tooltip">
       <span>store=(store : Currency::RateStore)</span>
     store=</a>
     
@@ -322,8 +321,8 @@ means that that these mistakes don't silently do the wrong thing.</p>
   <h3>Constructor methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#new(store=nil)-class-method" class="tooltip">
-      <span>new(store = <span class="n">nil</span>)</span>
+    <a href="../../Money/Bank.html#new%28store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%29-class-method" class="tooltip">
+      <span>new(store : Money::Currency::RateStore | Nil = <span class="n">nil</span>)</span>
     new</a>
     
   
@@ -334,12 +333,12 @@ means that that these mistakes don't silently do the wrong thing.</p>
   <h3>Class methods inherited from class <code><a href="../../Money/Bank.html">Money::Bank</a></code></h3>
   
   
-    <a href="../../Money/Bank.html#default_store:Currency::RateStore-class-method" class="tooltip">
+    <a href="../../Money/Bank.html#default_store%3ACurrency%3A%3ARateStore-class-method" class="tooltip">
       <span>default_store : Currency::RateStore</span>
     default_store</a>, 
     
   
-    <a href="../../Money/Bank.html#default_store=(default_store:Currency::RateStore)-class-method" class="tooltip">
+    <a href="../../Money/Bank.html#default_store%3D%28default_store%3ACurrency%3A%3ARateStore%29-class-method" class="tooltip">
       <span>default_store=(default_store : Currency::RateStore)</span>
     default_store=</a>
     
@@ -388,7 +387,7 @@ means that that these mistakes don't silently do the wrong thing.</p>
         
         def <strong>exchange</strong>(from : <a href="../../Money.html">Money</a>, to : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../Money.html">Money</a>
 
-        <a class="method-permalink" href="#exchange(from:Money,to:Currency):Money-instance-method">#</a>
+        <a class="method-permalink" href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -400,7 +399,7 @@ exchanging currencies.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/bank/single_currency.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/bank/single_currency.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>

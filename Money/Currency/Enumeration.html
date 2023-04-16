@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="generator" content="Crystal Docs 1.7.3">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="money">
 
@@ -250,7 +250,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L3" target="_blank">
         money/currency/enumeration.cr
       </a>
     
@@ -276,40 +276,40 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#[](key:String%7CSymbol):Currency-instance-method" class="signature"><strong>#[]</strong>(key : String | Symbol) : Currency</a>
+        <a href="#%5B%5D%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#[]</strong>(key : String | Symbol) : Currency</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#[]?(key:String%7CSymbol):Currency?-instance-method" class="signature"><strong>#[]?</strong>(key : String | Symbol) : Currency?</a>
+        <a href="#%5B%5D%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method" class="signature"><strong>#[]?</strong>(key : String | Symbol) : Currency | Nil</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, <code>nil</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#all:Array(Currency)-instance-method" class="signature"><strong>#all</strong> : Array(Currency)</a>
+        <a href="#all%3AArray%28Currency%29-instance-method" class="signature"><strong>#all</strong> : Array(Currency)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each(&):Nil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
+        <a href="#each%28%26%29%3ANil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
         
           <div class="summary"><p>Must yield this collection's elements to the block.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find(key:String%7CSymbol):Currency-instance-method" class="signature"><strong>#find</strong>(key : String | Symbol) : Currency</a>
+        <a href="#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#find</strong>(key : String | Symbol) : Currency</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find?(key:String%7CSymbol):Currency?-instance-method" class="signature"><strong>#find?</strong>(key : String | Symbol) : Currency?</a>
+        <a href="#find%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method" class="signature"><strong>#find?</strong>(key : String | Symbol) : Currency | Nil</a>
         
           <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, <code>nil</code> otherwise.</p></div>
         
@@ -354,14 +354,13 @@
         
         def <strong>[]</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#[](key:String%7CSymbol):Currency-instance-method">#</a>
+        <a class="method-permalink" href="#%5B%5D%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
 success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; raises UnknownCurrencyError</span></code></pre>
         </div>
@@ -369,24 +368,23 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="[]?(key:String|Symbol):Currency?-instance-method">
+    <div class="entry-detail" id="[]?(key:String|Symbol):Currency|Nil-instance-method">
       <div class="signature">
         
-        def <strong>[]?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>?
+        def <strong>[]?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a> | Nil
 
-        <a class="method-permalink" href="#[]?(key:String%7CSymbol):Currency?-instance-method">#</a>
+        <a class="method-permalink" href="#%5B%5D%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
 success, <code>nil</code> otherwise.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
         </div>
@@ -394,7 +392,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -404,13 +402,13 @@ success, <code>nil</code> otherwise.</p>
         
         def <strong>all</strong> : Array(<a href="../../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#all:Array(Currency)-instance-method">#</a>
+        <a class="method-permalink" href="#all%3AArray%28Currency%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -420,7 +418,7 @@ success, <code>nil</code> otherwise.</p>
         
         def <strong>each</strong>(&) : Nil
 
-        <a class="method-permalink" href="#each(&):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#each%28%26%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -435,7 +433,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -445,14 +443,13 @@ success, <code>nil</code> otherwise.</p>
         
         def <strong>find</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#find(key:String%7CSymbol):Currency-instance-method">#</a>
+        <a class="method-permalink" href="#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
 success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; raises UnknownCurrencyError</span></code></pre>
         </div>
@@ -460,24 +457,23 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="find?(key:String|Symbol):Currency?-instance-method">
+    <div class="entry-detail" id="find?(key:String|Symbol):Currency|Nil-instance-method">
       <div class="signature">
         
-        def <strong>find?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a>?
+        def <strong>find?</strong>(key : String | Symbol) : <a href="../../Money/Currency.html">Currency</a> | Nil
 
-        <a class="method-permalink" href="#find?(key:String%7CSymbol):Currency?-instance-method">#</a>
+        <a class="method-permalink" href="#find%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
 success, <code>nil</code> otherwise.</p>
-
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
         </div>
@@ -485,7 +481,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/70ff552a/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f656d1e/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
