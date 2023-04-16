@@ -1,9 +1,8 @@
 {
-  "iso_numeric": 694,
-  "code": "SLL",
-  "name": "Sierra Leonean Leone",
+  "iso_numeric": 925,
+  "code": "SLE",
+  "name": "New Leone",
   "symbol": "Le",
-  "disambiguate_symbol": "SLL",
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,
