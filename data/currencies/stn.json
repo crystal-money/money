@@ -1,0 +1,13 @@
+{
+  "iso_numeric": 930,
+  "code": "STN",
+  "name": "São Tomé and Príncipe Second Dobra",
+  "symbol": "Db",
+  "disambiguate_symbol": "STN",
+  "subunit": "Cêntimo",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 10
+}
