@@ -250,7 +250,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/6deaa68/src/money/money/formatting.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/25f11d3/src/money/money/formatting.cr#L2" target="_blank">
         money/money/formatting.cr
       </a>
     
@@ -384,7 +384,14 @@ This method attempts to pick a symbol that's suitable for the given currency.</p
 
 <span class="c"># You can specify a string as value to enforce using a particular symbol.</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;XBC&quot;</span>).format(symbol: <span class="s">&quot;ƒ&quot;</span>) <span class="c"># =&gt; &quot;1.00 ƒ&quot;</span></code></pre>
-<p><strong>symbol_before_without_space</strong> (<code>Bool | Nil</code>) - default: <code>true</code></p>
+<p><strong>disambiguate</strong> (<code>Bool</code>) - default: <code>false</code></p>
+<p>Prevents the result from being ambiguous due to equal symbols for different currencies.
+Uses the <code>disambiguate_symbol</code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;C$100.00&quot;</span></code></pre>
+<p><strong>symbol_before_without_space</strong> (<code>Bool</code>) - default: <code>true</code></p>
 <p>Whether a space between the money symbol and the amount should be inserted
 when <code>:symbol_first</code> is <code>true</code>. The default is <code>true</code> (meaning no space).
 Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>false</code>.</p>
@@ -396,7 +403,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
 
 <span class="c"># If set to false, will insert a space.</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_before_without_space: <span class="n">false</span>) <span class="c"># =&gt; &quot;$ 1.00&quot;</span></code></pre>
-<p><strong>symbol_after_without_space</strong> (<code>Bool | Nil</code>) - default: <code>false</code></p>
+<p><strong>symbol_after_without_space</strong> (<code>Bool</code>) - default: <code>false</code></p>
 <p>Whether a space between the amount and the money symbol should be inserted
 when <code>:symbol_first</code> is <code>false</code>. The default is <code>false</code> (meaning space).
 Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>true</code>.</p>
@@ -426,7 +433,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
 <span class="c"># If the delimiter for a given currency isn&#39;t known, then it will</span>
 <span class="c"># default to &quot;,&quot; as delimiter.</span>
 <span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;FOO&quot;</span>).format <span class="c"># =&gt; &quot;$1,000.00&quot;</span></code></pre>
-<p><strong>html</strong> (<code>Bool | Nil</code>) — default: <code>false</code></p>
+<p><strong>html</strong> (<code>Bool</code>) — default: <code>false</code></p>
 <p>Whether the currency should be HTML-formatted.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1999</span>, <span class="s">&quot;RUB&quot;</span>).format(html: <span class="n">true</span>, no_cents: <span class="n">true</span>) <span class="c"># =&gt; &quot;19 &amp;#x20BD;&quot;</span></code></pre>
         </div>
@@ -434,7 +441,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/6deaa68/src/money/money/formatting.cr#L168" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/25f11d3/src/money/money/formatting.cr#L180" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -503,7 +510,14 @@ This method attempts to pick a symbol that's suitable for the given currency.</p
 
 <span class="c"># You can specify a string as value to enforce using a particular symbol.</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;XBC&quot;</span>).format(symbol: <span class="s">&quot;ƒ&quot;</span>) <span class="c"># =&gt; &quot;1.00 ƒ&quot;</span></code></pre>
-<p><strong>symbol_before_without_space</strong> (<code>Bool | Nil</code>) - default: <code>true</code></p>
+<p><strong>disambiguate</strong> (<code>Bool</code>) - default: <code>false</code></p>
+<p>Prevents the result from being ambiguous due to equal symbols for different currencies.
+Uses the <code>disambiguate_symbol</code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;C$100.00&quot;</span></code></pre>
+<p><strong>symbol_before_without_space</strong> (<code>Bool</code>) - default: <code>true</code></p>
 <p>Whether a space between the money symbol and the amount should be inserted
 when <code>:symbol_first</code> is <code>true</code>. The default is <code>true</code> (meaning no space).
 Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>false</code>.</p>
@@ -515,7 +529,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
 
 <span class="c"># If set to false, will insert a space.</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_before_without_space: <span class="n">false</span>) <span class="c"># =&gt; &quot;$ 1.00&quot;</span></code></pre>
-<p><strong>symbol_after_without_space</strong> (<code>Bool | Nil</code>) - default: <code>false</code></p>
+<p><strong>symbol_after_without_space</strong> (<code>Bool</code>) - default: <code>false</code></p>
 <p>Whether a space between the amount and the money symbol should be inserted
 when <code>:symbol_first</code> is <code>false</code>. The default is <code>false</code> (meaning space).
 Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>true</code>.</p>
@@ -545,7 +559,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
 <span class="c"># If the delimiter for a given currency isn&#39;t known, then it will</span>
 <span class="c"># default to &quot;,&quot; as delimiter.</span>
 <span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;FOO&quot;</span>).format <span class="c"># =&gt; &quot;$1,000.00&quot;</span></code></pre>
-<p><strong>html</strong> (<code>Bool | Nil</code>) — default: <code>false</code></p>
+<p><strong>html</strong> (<code>Bool</code>) — default: <code>false</code></p>
 <p>Whether the currency should be HTML-formatted.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1999</span>, <span class="s">&quot;RUB&quot;</span>).format(html: <span class="n">true</span>, no_cents: <span class="n">true</span>) <span class="c"># =&gt; &quot;19 &amp;#x20BD;&quot;</span></code></pre>
         </div>
@@ -553,7 +567,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/6deaa68/src/money/money/formatting.cr#L252" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/25f11d3/src/money/money/formatting.cr#L282" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -574,7 +588,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/6deaa68/src/money/money/formatting.cr#L257" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/25f11d3/src/money/money/formatting.cr#L287" target="_blank">View source</a>]
         
       </div>
     </div>
