@@ -101,7 +101,7 @@ To define a new `Money::Currency` use `Money::Currency.register` as shown
 below.
 
 ```crystal
-currency = Money::Currency.from_json({
+currency = Money::Currency.new(
   priority:            1,
   code:                "USD",
   iso_numeric:         840,
@@ -112,7 +112,7 @@ currency = Money::Currency.from_json({
   subunit_to_unit:     100,
   decimal_mark:        ".",
   thousands_separator: ","
-}.to_json)
+)
 
 Money::Currency.register(currency)
 ```
