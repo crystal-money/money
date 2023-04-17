@@ -4,9 +4,8 @@
   "code": "AUD",
   "name": "Australian Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "A$"
-  ],
+  "disambiguate_symbol": "A$",
+  "alternate_symbols": ["A$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

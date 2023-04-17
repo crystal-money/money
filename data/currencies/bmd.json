@@ -3,9 +3,8 @@
   "code": "BMD",
   "name": "Bermudian Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "BD$"
-  ],
+  "disambiguate_symbol": "BD$",
+  "alternate_symbols": ["BD$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

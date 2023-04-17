@@ -4,9 +4,8 @@
   "code": "USD",
   "name": "United States Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "US$"
-  ],
+  "disambiguate_symbol": "US$",
+  "alternate_symbols": ["US$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

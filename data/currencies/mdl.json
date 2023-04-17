@@ -3,9 +3,7 @@
   "code": "MDL",
   "name": "Moldovan Leu",
   "symbol": "L",
-  "alternate_symbols": [
-    "lei"
-  ],
+  "alternate_symbols": ["lei"],
   "subunit": "Ban",
   "subunit_to_unit": 100,
   "symbol_first": false,

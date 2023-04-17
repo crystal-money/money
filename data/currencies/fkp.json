@@ -3,9 +3,8 @@
   "code": "FKP",
   "name": "Falkland Pound",
   "symbol": "£",
-  "alternate_symbols": [
-    "FK£"
-  ],
+  "disambiguate_symbol": "FK£",
+  "alternate_symbols": ["FK£"],
   "subunit": "Penny",
   "subunit_to_unit": 100,
   "symbol_first": false,

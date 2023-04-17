@@ -3,11 +3,8 @@
   "code": "WST",
   "name": "Samoan Tala",
   "symbol": "T",
-  "alternate_symbols": [
-    "WS$",
-    "SAT",
-    "ST"
-  ],
+  "disambiguate_symbol": "WS$",
+  "alternate_symbols": ["WS$", "SAT", "ST"],
   "subunit": "Sene",
   "subunit_to_unit": 100,
   "symbol_first": false,

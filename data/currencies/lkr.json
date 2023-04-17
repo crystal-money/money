@@ -3,12 +3,8 @@
   "code": "LKR",
   "name": "Sri Lankan Rupee",
   "symbol": "₨",
-  "alternate_symbols": [
-    "රු",
-    "ரூ",
-    "SLRs",
-    "/-"
-  ],
+  "disambiguate_symbol": "SLRs",
+  "alternate_symbols": ["රු", "ரூ", "SLRs", "/-"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

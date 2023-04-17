@@ -3,9 +3,8 @@
   "code": "BIF",
   "name": "Burundian Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "FBu"
-  ],
+  "disambiguate_symbol": "FBu",
+  "alternate_symbols": ["FBu"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

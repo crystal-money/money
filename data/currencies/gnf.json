@@ -3,10 +3,8 @@
   "code": "GNF",
   "name": "Guinean Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "FG",
-    "GFr"
-  ],
+  "disambiguate_symbol": "FG",
+  "alternate_symbols": ["FG", "GFr"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

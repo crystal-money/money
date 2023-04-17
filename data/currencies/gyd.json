@@ -3,9 +3,8 @@
   "code": "GYD",
   "name": "Guyanese Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "G$"
-  ],
+  "disambiguate_symbol": "G$",
+  "alternate_symbols": ["G$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

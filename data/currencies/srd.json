@@ -3,6 +3,7 @@
   "code": "SRD",
   "name": "Surinamese Dollar",
   "symbol": "$",
+  "disambiguate_symbol": "SRD",
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

@@ -3,9 +3,8 @@
   "code": "CUP",
   "name": "Cuban Peso",
   "symbol": "$",
-  "alternate_symbols": [
-    "$MN"
-  ],
+  "disambiguate_symbol": "$MN",
+  "alternate_symbols": ["$MN"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

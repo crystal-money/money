@@ -1,6 +1,7 @@
 {
   "code": "GBX",
   "name": "British Penny",
+  "disambiguate_symbol": "GBX",
   "subunit_to_unit": 1,
   "symbol_first": true,
   "decimal_mark": ".",

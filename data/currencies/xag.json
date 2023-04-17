@@ -3,6 +3,7 @@
   "code": "XAG",
   "name": "Silver (Troy Ounce)",
   "symbol": "oz t",
+  "disambiguate_symbol": "XAG",
   "subunit": "oz",
   "subunit_to_unit": 1,
   "symbol_first": false,

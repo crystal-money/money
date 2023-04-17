@@ -3,9 +3,8 @@
   "code": "XCD",
   "name": "East Caribbean Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "EC$"
-  ],
+  "disambiguate_symbol": "EX$",
+  "alternate_symbols": ["EC$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

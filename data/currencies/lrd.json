@@ -3,9 +3,8 @@
   "code": "LRD",
   "name": "Liberian Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "L$"
-  ],
+  "disambiguate_symbol": "L$",
+  "alternate_symbols": ["L$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

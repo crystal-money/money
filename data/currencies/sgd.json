@@ -3,9 +3,8 @@
   "code": "SGD",
   "name": "Singapore Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "S$"
-  ],
+  "disambiguate_symbol": "S$",
+  "alternate_symbols": ["S$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

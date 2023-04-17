@@ -3,9 +3,8 @@
   "code": "HKD",
   "name": "Hong Kong Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "HK$"
-  ],
+  "disambiguate_symbol": "HK$",
+  "alternate_symbols": ["HK$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

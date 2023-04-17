@@ -3,9 +3,8 @@
   "code": "COP",
   "name": "Colombian Peso",
   "symbol": "$",
-  "alternate_symbols": [
-    "COL$"
-  ],
+  "disambiguate_symbol": "COL$",
+  "alternate_symbols": ["COL$"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

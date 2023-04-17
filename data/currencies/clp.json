@@ -3,6 +3,7 @@
   "code": "CLP",
   "name": "Chilean Peso",
   "symbol": "$",
+  "disambiguate_symbol": "CLP",
   "subunit": "Peso",
   "subunit_to_unit": 1,
   "symbol_first": true,

@@ -3,9 +3,8 @@
   "code": "XAF",
   "name": "Central African Cfa Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "FCFA"
-  ],
+  "disambiguate_symbol": "FCFA",
+  "alternate_symbols": ["FCFA"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

@@ -3,6 +3,7 @@
   "code": "HNL",
   "name": "Honduran Lempira",
   "symbol": "L",
+  "disambiguate_symbol": "HNL",
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,
