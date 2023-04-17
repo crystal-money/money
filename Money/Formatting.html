@@ -250,7 +250,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/34c7ff6/src/money/money/formatting.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/86f9d10/src/money/money/formatting.cr#L2" target="_blank">
         money/money/formatting.cr
       </a>
     
@@ -389,7 +389,7 @@ This method attempts to pick a symbol that's suitable for the given currency.</p
 Uses the <code>disambiguate_symbol</code>.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;US$100.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;C$100.00&quot;</span></code></pre>
 <p><strong>symbol_before_without_space</strong> (<code>Bool</code>) — default: <code>true</code></p>
 <p>Whether a space between the money symbol and the amount should be inserted
@@ -441,7 +441,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/34c7ff6/src/money/money/formatting.cr#L180" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/86f9d10/src/money/money/formatting.cr#L180" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -515,7 +515,7 @@ This method attempts to pick a symbol that's suitable for the given currency.</p
 Uses the <code>disambiguate_symbol</code>.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$100.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;US$100.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;C$100.00&quot;</span></code></pre>
 <p><strong>symbol_before_without_space</strong> (<code>Bool</code>) — default: <code>true</code></p>
 <p>Whether a space between the money symbol and the amount should be inserted
@@ -567,7 +567,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/34c7ff6/src/money/money/formatting.cr#L282" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/86f9d10/src/money/money/formatting.cr#L282" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -588,7 +588,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/34c7ff6/src/money/money/formatting.cr#L287" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/86f9d10/src/money/money/formatting.cr#L287" target="_blank">View source</a>]
         
       </div>
     </div>
