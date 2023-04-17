@@ -99,13 +99,13 @@ struct Money
     # `priority` and `id` attributes.
     def <=>(other : Currency) : Int32
       case {(priority = self.priority), (other_priority = other.priority)}
-      when {Int32, Int32}
+      in {Int32, Int32}
         comparison = priority <=> other_priority
-        return id <=> other.id if comparison == 0
+        comparison = id <=> other.id if comparison.zero?
         comparison
-      when {Int32, nil} then -1
-      when {nil, Int32} then 1
-      else
+      in {Int32, nil} then -1
+      in {nil, Int32} then 1
+      in {nil, nil}
         id <=> other.id
       end
     end
