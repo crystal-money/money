@@ -313,7 +313,7 @@ currency.code <span class="c"># =&gt; &quot;USD&quot;</span>
 currency.name <span class="c"># =&gt; &quot;United States Dollar&quot;</span></code></pre>
 <p>To define a new <code><a href="Money/Currency.html">Money::Currency</a></code> use <code>Money::Currency.register</code> as shown
 below.</p>
-<pre><code class="language-crystal">currency <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.from_json({
+<pre><code class="language-crystal">currency <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.new(
   priority:            <span class="n">1</span>,
   code:                <span class="s">&quot;USD&quot;</span>,
   iso_numeric:         <span class="n">840</span>,
@@ -324,7 +324,7 @@ below.</p>
   subunit_to_unit:     <span class="n">100</span>,
   decimal_mark:        <span class="s">&quot;.&quot;</span>,
   thousands_separator: <span class="s">&quot;,&quot;</span>
-}.to_json)
+)
 
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.register(currency)</code></pre>
 <p>The pre-defined set of attributes includes:</p>

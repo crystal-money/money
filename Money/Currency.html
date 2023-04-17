@@ -284,49 +284,49 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L10" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L10" target="_blank">
         money/currency.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/enumeration.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/enumeration.cr#L2" target="_blank">
         money/currency/enumeration.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/json.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/json.cr#L3" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/loader.cr#L4" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/loader.cr#L4" target="_blank">
         money/currency/loader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/rate.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/rate.cr#L1" target="_blank">
         money/currency/rate.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/rate_store.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/rate_store.cr#L1" target="_blank">
         money/currency/rate_store.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/rate_store/memory.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/rate_store/memory.cr#L1" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -348,12 +348,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28code%3AString%2Csubunit_to_unit%3AUInt64%29-class-method" class="signature"><strong>.new</strong>(code : String, subunit_to_unit : UInt64)</a>
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        <a href="#new%28%2A%2Cpriority%3AInt32%7CNil%3Dnil%2Ciso_numeric%3AUInt32%7CNil%3Dnil%2Ccode%3AString%2Cname%3ANil%7CString%3Dnil%2Csymbol%3ANil%7CString%3Dnil%2Calternate_symbols%3ANil%7CArray%28String%29%3Dnil%2Csubunit%3ANil%7CString%3Dnil%2Csubunit_to_unit%3AUInt64%2Csymbol_first%3ABool%7CNil%3Dnil%2Chtml_entity%3ANil%7CString%3Dnil%2Cdecimal_mark%3ANil%7CString%3Dnil%2Cthousands_separator%3ANil%7CString%3Dnil%2Csmallest_denomination%3AUInt32%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, priority : Int32 | Nil = <span class="n">nil</span>, iso_numeric : UInt32 | Nil = <span class="n">nil</span>, code : String, name : Nil | String = <span class="n">nil</span>, symbol : Nil | String = <span class="n">nil</span>, alternate_symbols : Nil | Array(String) = <span class="n">nil</span>, subunit : Nil | String = <span class="n">nil</span>, subunit_to_unit : UInt64, symbol_first : Bool | Nil = <span class="n">nil</span>, html_entity : Nil | String = <span class="n">nil</span>, decimal_mark : Nil | String = <span class="n">nil</span>, thousands_separator : Nil | String = <span class="n">nil</span>, smallest_denomination : UInt32 | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -619,22 +619,6 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(code:String,subunit_to_unit:UInt64)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(code : String, subunit_to_unit : UInt64)
-
-        <a class="method-permalink" href="#new%28code%3AString%2Csubunit_to_unit%3AUInt64%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L74" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
       <div class="signature">
         
@@ -646,7 +630,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency/json.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency/json.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*,priority:Int32|Nil=nil,iso_numeric:UInt32|Nil=nil,code:String,name:Nil|String=nil,symbol:Nil|String=nil,alternate_symbols:Nil|Array(String)=nil,subunit:Nil|String=nil,subunit_to_unit:UInt64,symbol_first:Bool|Nil=nil,html_entity:Nil|String=nil,decimal_mark:Nil|String=nil,thousands_separator:Nil|String=nil,smallest_denomination:UInt32|Nil=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, priority : Int32 | Nil = <span class="n">nil</span>, iso_numeric : UInt32 | Nil = <span class="n">nil</span>, code : String, name : Nil | String = <span class="n">nil</span>, symbol : Nil | String = <span class="n">nil</span>, alternate_symbols : Nil | Array(String) = <span class="n">nil</span>, subunit : Nil | String = <span class="n">nil</span>, subunit_to_unit : UInt64, symbol_first : Bool | Nil = <span class="n">nil</span>, html_entity : Nil | String = <span class="n">nil</span>, decimal_mark : Nil | String = <span class="n">nil</span>, thousands_separator : Nil | String = <span class="n">nil</span>, smallest_denomination : UInt32 | Nil = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Cpriority%3AInt32%7CNil%3Dnil%2Ciso_numeric%3AUInt32%7CNil%3Dnil%2Ccode%3AString%2Cname%3ANil%7CString%3Dnil%2Csymbol%3ANil%7CString%3Dnil%2Calternate_symbols%3ANil%7CArray%28String%29%3Dnil%2Csubunit%3ANil%7CString%3Dnil%2Csubunit_to_unit%3AUInt64%2Csymbol_first%3ABool%7CNil%3Dnil%2Chtml_entity%3ANil%7CString%3Dnil%2Cdecimal_mark%3ANil%7CString%3Dnil%2Cthousands_separator%3ANil%7CString%3Dnil%2Csmallest_denomination%3AUInt32%7CNil%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,7 +672,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L70" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,7 +700,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -721,7 +721,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -737,7 +737,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -753,7 +753,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -779,7 +779,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -813,7 +813,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -834,7 +834,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -873,7 +873,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -889,7 +889,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -905,7 +905,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -926,7 +926,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -949,7 +949,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -988,7 +988,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1009,7 +1009,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1031,7 +1031,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1047,7 +1047,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1063,7 +1063,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1079,7 +1079,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1095,7 +1095,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1111,7 +1111,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1127,7 +1127,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1143,7 +1143,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1159,7 +1159,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1175,7 +1175,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1199,7 +1199,7 @@ to the given <em>io</em>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4ebdc5e/src/money/currency.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f63640/src/money/currency.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
