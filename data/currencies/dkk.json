@@ -3,9 +3,8 @@
   "code": "DKK",
   "name": "Danish Krone",
   "symbol": "kr.",
-  "alternate_symbols": [
-    ",-"
-  ],
+  "disambiguate_symbol": "DKK",
+  "alternate_symbols": [",-"],
   "subunit": "Øre",
   "subunit_to_unit": 100,
   "symbol_first": false,

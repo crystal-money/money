@@ -3,9 +3,8 @@
   "code": "TWD",
   "name": "New Taiwan Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "NT$"
-  ],
+  "disambiguate_symbol": "NT$",
+  "alternate_symbols": ["NT$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

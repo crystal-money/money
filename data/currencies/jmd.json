@@ -3,9 +3,8 @@
   "code": "JMD",
   "name": "Jamaican Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "J$"
-  ],
+  "disambiguate_symbol": "J$",
+  "alternate_symbols": ["J$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

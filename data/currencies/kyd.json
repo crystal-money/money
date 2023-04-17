@@ -3,9 +3,8 @@
   "code": "KYD",
   "name": "Cayman Islands Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "CI$"
-  ],
+  "disambiguate_symbol": "CI$",
+  "alternate_symbols": ["CI$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

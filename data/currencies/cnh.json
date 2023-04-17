@@ -2,11 +2,8 @@
   "code": "CNH",
   "name": "Chinese Renminbi Yuan Offshore",
   "symbol": "¥",
-  "alternate_symbols": [
-    "CN¥",
-    "元",
-    "CN元"
-  ],
+  "disambiguate_symbol": "CNH",
+  "alternate_symbols": ["CN¥", "元", "CN元"],
   "subunit": "Fen",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,6 +3,7 @@
   "code": "MMK",
   "name": "Myanmar Kyat",
   "symbol": "K",
+  "disambiguate_symbol": "MMK",
   "subunit": "Pya",
   "subunit_to_unit": 100,
   "symbol_first": false,

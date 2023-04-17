@@ -3,6 +3,7 @@
   "code": "XPD",
   "name": "Palladium",
   "symbol": "oz t",
+  "disambiguate_symbol": "XPD",
   "subunit": "oz",
   "subunit_to_unit": 1,
   "symbol_first": false,

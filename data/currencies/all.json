@@ -3,9 +3,8 @@
   "code": "ALL",
   "name": "Albanian Lek",
   "symbol": "L",
-  "alternate_symbols": [
-    "Lek"
-  ],
+  "disambiguate_symbol": "Lek",
+  "alternate_symbols": ["Lek"],
   "subunit": "Qintar",
   "subunit_to_unit": 100,
   "symbol_first": false,

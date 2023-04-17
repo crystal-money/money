@@ -3,10 +3,8 @@
   "code": "ARS",
   "name": "Argentine Peso",
   "symbol": "$",
-  "alternate_symbols": [
-    "$m/n",
-    "m$n"
-  ],
+  "disambiguate_symbol": "$m/n",
+  "alternate_symbols": ["$m/n", "m$n"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

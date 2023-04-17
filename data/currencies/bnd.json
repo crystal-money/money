@@ -3,9 +3,8 @@
   "code": "BND",
   "name": "Brunei Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "B$"
-  ],
+  "disambiguate_symbol": "BND",
+  "alternate_symbols": ["B$"],
   "subunit": "Sen",
   "subunit_to_unit": 100,
   "symbol_first": true,

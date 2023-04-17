@@ -3,10 +3,8 @@
   "code": "SCR",
   "name": "Seychellois Rupee",
   "symbol": "₨",
-  "alternate_symbols": [
-    "SRe",
-    "SR"
-  ],
+  "disambiguate_symbol": "SRe",
+  "alternate_symbols": ["SRe", "SR"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

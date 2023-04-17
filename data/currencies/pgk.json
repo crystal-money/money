@@ -3,6 +3,7 @@
   "code": "PGK",
   "name": "Papua New Guinean Kina",
   "symbol": "K",
+  "disambiguate_symbol": "PGK",
   "subunit": "Toea",
   "subunit_to_unit": 100,
   "symbol_first": false,

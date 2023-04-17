@@ -3,9 +3,8 @@
   "code": "NOK",
   "name": "Norwegian Krone",
   "symbol": "kr",
-  "alternate_symbols": [
-    ",-"
-  ],
+  "disambiguate_symbol": "NOK",
+  "alternate_symbols": [",-"],
   "subunit": "Øre",
   "subunit_to_unit": 100,
   "symbol_first": false,

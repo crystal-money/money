@@ -3,9 +3,8 @@
   "code": "BBD",
   "name": "Barbadian Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "Bds$"
-  ],
+  "disambiguate_symbol": "Bds$",
+  "alternate_symbols": ["Bds$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

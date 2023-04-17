@@ -3,9 +3,8 @@
   "code": "SBD",
   "name": "Solomon Islands Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "SI$"
-  ],
+  "disambiguate_symbol": "SI$",
+  "alternate_symbols": ["SI$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

@@ -2,6 +2,7 @@
   "iso_numeric": 957,
   "code": "XBC",
   "name": "European Unit of Account 9",
+  "disambiguate_symbol": "XBC",
   "subunit_to_unit": 1,
   "symbol_first": false,
   "decimal_mark": ".",

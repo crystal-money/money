@@ -3,9 +3,8 @@
   "code": "FJD",
   "name": "Fijian Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "FJ$"
-  ],
+  "disambiguate_symbol": "FJ$",
+  "alternate_symbols": ["FJ$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

@@ -3,9 +3,8 @@
   "code": "CUC",
   "name": "Cuban Convertible Peso",
   "symbol": "$",
-  "alternate_symbols": [
-    "CUC$"
-  ],
+  "disambiguate_symbol": "CUC$",
+  "alternate_symbols": ["CUC$"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": false,

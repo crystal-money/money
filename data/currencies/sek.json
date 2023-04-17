@@ -3,9 +3,8 @@
   "code": "SEK",
   "name": "Swedish Krona",
   "symbol": "kr",
-  "alternate_symbols": [
-    ":-"
-  ],
+  "disambiguate_symbol": "SEK",
+  "alternate_symbols": [":-"],
   "subunit": "Öre",
   "subunit_to_unit": 100,
   "symbol_first": false,

@@ -3,9 +3,8 @@
   "code": "NZD",
   "name": "New Zealand Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "NZ$"
-  ],
+  "disambiguate_symbol": "NZ$",
+  "alternate_symbols": ["NZ$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

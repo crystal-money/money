@@ -96,7 +96,19 @@ struct Money
     # Money.new(100, "XBC").format(symbol: "ƒ") # => "1.00 ƒ"
     # ```
     #
-    # **symbol_before_without_space** (`Bool | Nil`) - default: `true`
+    # **disambiguate** (`Bool`) - default: `false`
+    #
+    # Prevents the result from being ambiguous due to equal symbols for different currencies.
+    # Uses the `disambiguate_symbol`.
+    #
+    # ```
+    # Money.new(100, "USD").format(disambiguate: false) # => "$100.00"
+    # Money.new(100, "CAD").format(disambiguate: false) # => "$100.00"
+    # Money.new(100, "USD").format(disambiguate: true)  # => "$100.00"
+    # Money.new(100, "CAD").format(disambiguate: true)  # => "C$100.00"
+    # ```
+    #
+    # **symbol_before_without_space** (`Bool`) - default: `true`
     #
     # Whether a space between the money symbol and the amount should be inserted
     # when `:symbol_first` is `true`. The default is `true` (meaning no space).
@@ -113,7 +125,7 @@ struct Money
     # Money.new(100, "USD").format(symbol_before_without_space: false) # => "$ 1.00"
     # ```
     #
-    # **symbol_after_without_space** (`Bool | Nil`) - default: `false`
+    # **symbol_after_without_space** (`Bool`) - default: `false`
     #
     # Whether a space between the amount and the money symbol should be inserted
     # when `:symbol_first` is `false`. The default is `false` (meaning space).
@@ -158,7 +170,7 @@ struct Money
     # Money.new(100000, "FOO").format # => "$1,000.00"
     # ```
     #
-    # **html** (`Bool | Nil`) — default: `false`
+    # **html** (`Bool`) — default: `false`
     #
     # Whether the currency should be HTML-formatted.
     #
@@ -174,18 +186,18 @@ struct Money
         no_cents:                    false,
         no_cents_if_whole:           false,
         drop_trailing_zeros:         false,
+        disambiguate:                false,
         symbol_before_without_space: true,
         symbol_after_without_space:  false,
         symbol_first:                currency.symbol_first? || false,
-        symbol:                      currency.symbol || "¤",
         separator:                   currency.decimal_mark || ".",
         delimiter:                   currency.thousands_separator || ",",
       }
       options = default_options.merge(options)
 
-      {% for key in %i(symbol separator delimiter) %}
-        if options[{{key}}] === true
-          options = options.merge {{key.id}}: default_options[{{key}}]
+      {% for key in %i(separator delimiter) %}
+        if options[{{ key }}] === true
+          options = options.merge {{ key.id }}: default_options[{{ key }}]
         end
       {% end %}
 
@@ -224,7 +236,25 @@ struct Money
       end
 
       sign = negative? ? '-' : (options[:sign_positive] && positive?) ? '+' : nil
-      symbol = options[:symbol]
+
+      default_symbol =
+        if options[:disambiguate] && currency.disambiguate_symbol
+          currency.disambiguate_symbol
+        else
+          currency.symbol || "¤"
+        end
+
+      symbol =
+        if options.has_key?(:symbol)
+          case options[:symbol]?
+          when true
+            default_symbol
+          when String
+            options[:symbol]?
+          end
+        else
+          default_symbol
+        end
 
       if options[:html]
         if html_entity = currency.html_entity

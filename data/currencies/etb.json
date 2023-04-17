@@ -3,6 +3,7 @@
   "code": "ETB",
   "name": "Ethiopian Birr",
   "symbol": "Br",
+  "disambiguate_symbol": "ETB",
   "subunit": "Santim",
   "subunit_to_unit": 100,
   "symbol_first": false,

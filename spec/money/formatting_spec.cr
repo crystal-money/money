@@ -438,4 +438,70 @@ describe Money::Formatting do
       end
     end
   end
+
+  context "currencies with ambiguous signs" do
+    it "returns ambiguous signs when disambiguate is not set" do
+      Money.new(1999_98, "USD").format.should eq("$1,999.98")
+      Money.new(1999_98, "CAD").format.should eq("$1,999.98")
+      Money.new(1999_98, "DKK").format.should eq("1.999,98 kr.")
+      Money.new(1999_98, "NOK").format.should eq("1.999,98 kr")
+      Money.new(1999_98, "SEK").format.should eq("1 999,98 kr")
+      Money.new(1999_98, "BCH").format.should eq("0.00199998 ₿")
+      Money.new(1999_98, "USDC").format.should eq("1,999.98 USDC")
+    end
+
+    it "returns ambiguous signs when disambiguate: false" do
+      Money.new(1999_98, "USD").format(disambiguate: false).should eq("$1,999.98")
+      Money.new(1999_98, "CAD").format(disambiguate: false).should eq("$1,999.98")
+      Money.new(1999_98, "DKK").format(disambiguate: false).should eq("1.999,98 kr.")
+      Money.new(1999_98, "NOK").format(disambiguate: false).should eq("1.999,98 kr")
+      Money.new(1999_98, "SEK").format(disambiguate: false).should eq("1 999,98 kr")
+      Money.new(1999_98, "BCH").format(disambiguate: false).should eq("0.00199998 ₿")
+      Money.new(1999_98, "USDC").format(disambiguate: false).should eq("1,999.98 USDC")
+    end
+
+    it "returns disambiguate signs when disambiguate: true" do
+      Money.new(1999_98, "USD").format(disambiguate: true).should eq("US$1,999.98")
+      Money.new(1999_98, "CAD").format(disambiguate: true).should eq("C$1,999.98")
+      Money.new(1999_98, "DKK").format(disambiguate: true).should eq("1.999,98 DKK")
+      Money.new(1999_98, "NOK").format(disambiguate: true).should eq("1.999,98 NOK")
+      Money.new(1999_98, "SEK").format(disambiguate: true).should eq("1 999,98 SEK")
+      Money.new(1999_98, "BCH").format(disambiguate: true).should eq("0.00199998 ₿CH")
+      Money.new(1999_98, "USDC").format(disambiguate: true).should eq("1,999.98 USDC")
+    end
+
+    it "returns disambiguate signs when disambiguate: true and symbol: true" do
+      Money.new(1999_98, "USD").format(disambiguate: true, symbol: true).should eq("US$1,999.98")
+      Money.new(1999_98, "CAD").format(disambiguate: true, symbol: true).should eq("C$1,999.98")
+      Money.new(1999_98, "DKK").format(disambiguate: true, symbol: true).should eq("1.999,98 DKK")
+      Money.new(1999_98, "NOK").format(disambiguate: true, symbol: true).should eq("1.999,98 NOK")
+      Money.new(1999_98, "SEK").format(disambiguate: true, symbol: true).should eq("1 999,98 SEK")
+      Money.new(1999_98, "BCH").format(disambiguate: true, symbol: true).should eq("0.00199998 ₿CH")
+      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: true).should eq("1,999.98 USDC")
+    end
+
+    it "returns no signs when disambiguate: true and symbol: false" do
+      Money.new(1999_98, "USD").format(disambiguate: true, symbol: false).should eq("1,999.98")
+      Money.new(1999_98, "CAD").format(disambiguate: true, symbol: false).should eq("1,999.98")
+      Money.new(1999_98, "DKK").format(disambiguate: true, symbol: false).should eq("1.999,98")
+      Money.new(1999_98, "NOK").format(disambiguate: true, symbol: false).should eq("1.999,98")
+      Money.new(1999_98, "SEK").format(disambiguate: true, symbol: false).should eq("1 999,98")
+      Money.new(1999_98, "BCH").format(disambiguate: true, symbol: false).should eq("0.00199998")
+      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: false).should eq("1,999.98")
+    end
+
+    it "should never return an ambiguous format with disambiguate: true" do
+      results = {} of String => Money::Currency
+
+      # When we format the same amount in all known currencies, disambiguate
+      # should return all different values
+      Money::Currency.all.each do |currency|
+        format = Money.new(1999_98, currency).format(disambiguate: true)
+        if found = results[format]?
+          fail "Format '#{format}' for #{currency} is ambiguous with currency #{found}"
+        end
+        results[format] = currency
+      end
+    end
+  end
 end

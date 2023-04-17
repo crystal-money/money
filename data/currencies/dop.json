@@ -3,9 +3,8 @@
   "code": "DOP",
   "name": "Dominican Peso",
   "symbol": "$",
-  "alternate_symbols": [
-    "RD$"
-  ],
+  "disambiguate_symbol": "RD$",
+  "alternate_symbols": ["RD$"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

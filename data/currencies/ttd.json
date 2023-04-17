@@ -3,9 +3,8 @@
   "code": "TTD",
   "name": "Trinidad and Tobago Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "TT$"
-  ],
+  "disambiguate_symbol": "TT$",
+  "alternate_symbols": ["TT$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

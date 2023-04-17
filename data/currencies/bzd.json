@@ -3,9 +3,8 @@
   "code": "BZD",
   "name": "Belize Dollar",
   "symbol": "$",
-  "alternate_symbols": [
-    "BZ$"
-  ],
+  "disambiguate_symbol": "BZ$",
+  "alternate_symbols": ["BZ$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

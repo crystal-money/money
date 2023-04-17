@@ -3,6 +3,7 @@
   "code": "SZL",
   "name": "Swazi Lilangeni",
   "symbol": "E",
+  "disambiguate_symbol": "SZL",
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

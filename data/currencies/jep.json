@@ -2,6 +2,7 @@
   "code": "JEP",
   "name": "Jersey Pound",
   "symbol": "£",
+  "disambiguate_symbol": "JEP",
   "subunit": "Penny",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,9 +3,8 @@
   "code": "KMF",
   "name": "Comorian Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "CF"
-  ],
+  "disambiguate_symbol": "CF",
+  "alternate_symbols": ["CF"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

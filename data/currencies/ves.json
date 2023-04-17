@@ -3,9 +3,7 @@
   "code": "VES",
   "name": "Venezuelan Bolívar Soberano",
   "symbol": "Bs",
-  "alternate_symbols": [
-    "Bs.S"
-  ],
+  "alternate_symbols": ["Bs.S"],
   "subunit": "Céntimo",
   "subunit_to_unit": 100,
   "symbol_first": true,

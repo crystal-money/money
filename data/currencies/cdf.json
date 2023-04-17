@@ -3,9 +3,8 @@
   "code": "CDF",
   "name": "Congolese Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "FC"
-  ],
+  "disambiguate_symbol": "FC",
+  "alternate_symbols": ["FC"],
   "subunit": "Centime",
   "subunit_to_unit": 100,
   "symbol_first": false,

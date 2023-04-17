@@ -3,6 +3,7 @@
   "code": "SDG",
   "name": "Sudanese Pound",
   "symbol": "£",
+  "disambiguate_symbol": "SDG",
   "subunit": "Piastre",
   "subunit_to_unit": 100,
   "symbol_first": true,

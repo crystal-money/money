@@ -3,11 +3,8 @@
   "code": "NPR",
   "name": "Nepalese Rupee",
   "symbol": "Rs.",
-  "alternate_symbols": [
-    "Rs",
-    "रू",
-    "₨"
-  ],
+  "disambiguate_symbol": "NPR",
+  "alternate_symbols": ["Rs", "रू", "₨"],
   "subunit": "Paisa",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,6 +3,7 @@
   "code": "MRO",
   "name": "Mauritanian Ouguiya",
   "symbol": "UM",
+  "disambiguate_symbol": "A-UM",
   "subunit": "Khoums",
   "subunit_to_unit": 5,
   "symbol_first": false,

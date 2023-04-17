@@ -3,9 +3,8 @@
   "code": "LSL",
   "name": "Lesotho Loti",
   "symbol": "L",
-  "alternate_symbols": [
-    "M"
-  ],
+  "disambiguate_symbol": "M",
+  "alternate_symbols": ["M"],
   "subunit": "Sente",
   "subunit_to_unit": 100,
   "symbol_first": false,
