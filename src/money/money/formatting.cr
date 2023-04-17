@@ -67,7 +67,7 @@ struct Money
     # Money.new(10000, "USD").format(symbol_first: false) # => "100.00 $"
     # ```
     #
-    # **symbol** (`Bool | String | Nil`) — default: `true`
+    # **symbol** (`Bool | String`) — default: `true`
     #
     # Whether a money symbol should be prepended to the result string.
     # This method attempts to pick a symbol that's suitable for the given currency.
@@ -96,7 +96,7 @@ struct Money
     # Money.new(100, "XBC").format(symbol: "ƒ") # => "1.00 ƒ"
     # ```
     #
-    # **disambiguate** (`Bool`) - default: `false`
+    # **disambiguate** (`Bool`) — default: `false`
     #
     # Prevents the result from being ambiguous due to equal symbols for different currencies.
     # Uses the `disambiguate_symbol`.
@@ -104,11 +104,11 @@ struct Money
     # ```
     # Money.new(100, "USD").format(disambiguate: false) # => "$100.00"
     # Money.new(100, "CAD").format(disambiguate: false) # => "$100.00"
-    # Money.new(100, "USD").format(disambiguate: true)  # => "$100.00"
+    # Money.new(100, "USD").format(disambiguate: true)  # => "US$100.00"
     # Money.new(100, "CAD").format(disambiguate: true)  # => "C$100.00"
     # ```
     #
-    # **symbol_before_without_space** (`Bool`) - default: `true`
+    # **symbol_before_without_space** (`Bool`) — default: `true`
     #
     # Whether a space between the money symbol and the amount should be inserted
     # when `:symbol_first` is `true`. The default is `true` (meaning no space).
@@ -125,7 +125,7 @@ struct Money
     # Money.new(100, "USD").format(symbol_before_without_space: false) # => "$ 1.00"
     # ```
     #
-    # **symbol_after_without_space** (`Bool`) - default: `false`
+    # **symbol_after_without_space** (`Bool`) — default: `false`
     #
     # Whether a space between the amount and the money symbol should be inserted
     # when `:symbol_first` is `false`. The default is `false` (meaning space).
@@ -139,7 +139,7 @@ struct Money
     # Money.new(100, "USD").format(symbol_first: false, symbol_after_without_space: true) # => "1.00$"
     # ```
     #
-    # **separator** (`Bool | String | Nil`) — default: `true`
+    # **separator** (`Bool | String`) — default: `true`
     #
     # Whether the currency should be separated by the specified character or ".".
     #
@@ -152,12 +152,12 @@ struct Money
     # Money.new(100, "FOO").format # => "$1.00"
     # ```
     #
-    # **delimiter** (`Bool | String | Nil`) — default: `true`
+    # **delimiter** (`Bool | String`) — default: `true`
     #
     # Whether the currency should be delimited by the specified character or ",".
     #
     # ```
-    # # If false is specified, no delimiter is used.
+    # # If falsy value is specified, no delimiter is used.
     # Money.new(100000, "USD").format(delimiter: false) # => "1000.00"
     # Money.new(100000, "USD").format(delimiter: nil)   # => "1000.00"
     # Money.new(100000, "USD").format(delimiter: "")    # => "1000.00"
