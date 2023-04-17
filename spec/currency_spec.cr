@@ -22,14 +22,14 @@ describe Money::Currency do
 
   describe ".register" do
     it "registers a new currency" do
-      currency = Money::Currency.from_json(%q({
-        "priority": 1,
-        "code": "XXX",
-        "name": "Golden Doubloon",
-        "symbol": "%",
-        "symbol_first": false,
-        "subunit_to_unit": 100
-      }))
+      currency = Money::Currency.new(
+        priority: 1,
+        code: "XXX",
+        name: "Golden Doubloon",
+        symbol: "%",
+        symbol_first: false,
+        subunit_to_unit: 100
+      )
       with_registered_currency(currency) do
         new_currency = Money::Currency.find("XXX")
         new_currency.should_not be_nil
@@ -41,14 +41,14 @@ describe Money::Currency do
   end
 
   describe ".unregister" do
-    currency = Money::Currency.from_json(%q({
-      "priority": 1,
-      "code": "XXX",
-      "name": "Golden Doubloon",
-      "symbol": "%",
-      "symbol_first": false,
-      "subunit_to_unit": 100
-    }))
+    currency = Money::Currency.new(
+      priority: 1,
+      code: "XXX",
+      name: "Golden Doubloon",
+      symbol: "%",
+      symbol_first: false,
+      subunit_to_unit: 100
+    )
 
     it "unregisters a currency" do
       Money::Currency.register(currency)

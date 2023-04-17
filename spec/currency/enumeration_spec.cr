@@ -1,20 +1,20 @@
 require "../spec_helper"
 
 describe Money::Currency::Enumeration do
-  foo_currency = Money::Currency.from_json(%q({
-    "priority": 1,
-    "code": "FOO",
-    "iso_numeric": 840,
-    "name": "United States Dollar",
-    "symbol": "$",
-    "subunit": "Cent",
-    "subunit_to_unit": 1000,
-    "symbol_first": true,
-    "html_entity": "$",
-    "decimal_mark": ".",
-    "thousands_separator": ",",
-    "smallest_denomination": 1
-  }))
+  foo_currency = Money::Currency.new(
+    priority: 1,
+    code: "FOO",
+    iso_numeric: 840,
+    name: "United States Dollar",
+    symbol: "$",
+    subunit: "Cent",
+    subunit_to_unit: 1000,
+    symbol_first: true,
+    html_entity: "$",
+    decimal_mark: ".",
+    thousands_separator: ",",
+    smallest_denomination: 1
+  )
 
   describe ".find" do
     it "returns currency matching given id" do
