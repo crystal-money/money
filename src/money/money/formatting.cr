@@ -245,7 +245,10 @@ struct Money
         end
 
       symbol =
-        if options.has_key?(:symbol)
+        case
+        when options[:html] && currency.html_entity
+          currency.html_entity
+        when options.has_key?(:symbol)
           case options[:symbol]?
           when true
             default_symbol
@@ -255,12 +258,6 @@ struct Money
         else
           default_symbol
         end
-
-      if options[:html]
-        if html_entity = currency.html_entity
-          symbol = html_entity
-        end
-      end
 
       if symbol.is_a?(String) && !symbol.empty?
         if options[:symbol_first]
