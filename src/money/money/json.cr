@@ -1,6 +1,5 @@
 require "json"
 require "big/json"
-require "../../ext/big_decimal"
 
 struct Money
   include JSON::Serializable
