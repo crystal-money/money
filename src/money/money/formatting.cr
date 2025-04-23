@@ -195,7 +195,7 @@ struct Money
       }
       options = default_options.merge(options)
 
-      {% for key in %i(separator delimiter) %}
+      {% for key in %i[separator delimiter] %}
         if options[{{ key }}] === true
           options = options.merge {{ key.id }}: default_options[{{ key }}]
         end
