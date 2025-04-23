@@ -49,7 +49,9 @@ describe Money::Arithmetic do
           it "raises currency error" do
             with_default_bank do
               Money.disallow_currency_conversion!
-              expect_raises(Money::DifferentCurrencyError) { Money.us_dollar(1_00) <=> Money.euro(1_00) }
+              expect_raises(Money::DifferentCurrencyError) do
+                Money.us_dollar(1_00) <=> Money.euro(1_00)
+              end
             end
           end
         end
@@ -58,7 +60,7 @@ describe Money::Arithmetic do
           it "considers them equal" do
             with_default_bank do
               Money.disallow_currency_conversion!
-              (Money.us_dollar(0) <=> Money.euro(0)).should eq(0)
+              (Money.us_dollar(0) <=> Money.euro(0)).should eq 0
             end
           end
         end
@@ -301,38 +303,38 @@ describe Money::Arithmetic do
 
   describe "#round" do
     it "returns rounded value with given precision" do
-      Money.new(10.12345, "USD").round.amount.should eq BigDecimal.new(10)
-      Money.new(10.12345, "USD").round(1).amount.should eq BigDecimal.new(10.1)
-      Money.new(10.12345, "USD").round(2).amount.should eq BigDecimal.new(10.12)
-      Money.new(10.12345, "USD").round(3).amount.should eq BigDecimal.new(10.12)
-      Money.new(10.12345, "USD").round(4).amount.should eq BigDecimal.new(10.12)
+      Money.new(10.12345, "USD").round.amount.should eq 10.to_big_d
+      Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
+      Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
+      Money.new(10.12345, "USD").round(3).amount.should eq 10.12.to_big_d
+      Money.new(10.12345, "USD").round(4).amount.should eq 10.12.to_big_d
     end
 
     context "with Money.infinite_precision = true" do
       it "returns rounded value with given precision" do
         with_infinite_precision(true) do
-          Money.new(10.12345, "USD").round.amount.should eq BigDecimal.new(10)
-          Money.new(10.12345, "USD").round(1).amount.should eq BigDecimal.new(10.1)
-          Money.new(10.12345, "USD").round(2).amount.should eq BigDecimal.new(10.12)
-          Money.new(10.12345, "USD").round(3).amount.should eq BigDecimal.new(10.123)
-          Money.new(10.12345, "USD").round(4).amount.should eq BigDecimal.new(10.1234)
+          Money.new(10.12345, "USD").round.amount.should eq 10.to_big_d
+          Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
+          Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
+          Money.new(10.12345, "USD").round(3).amount.should eq 10.123.to_big_d
+          Money.new(10.12345, "USD").round(4).amount.should eq 10.1234.to_big_d
         end
       end
 
       it "returns rounded value with given precision and rounding mode" do
         with_infinite_precision(true) do
           Money.new(10.12345, "USD").round.amount
-            .should eq BigDecimal.new(10)
+            .should eq 10.to_big_d
           Money.new(10.12345, "USD").round(1, mode: :ties_even).amount
-            .should eq BigDecimal.new(10.1)
+            .should eq 10.1.to_big_d
           Money.new(10.12345, "USD").round(2, mode: :ties_even).amount
-            .should eq BigDecimal.new(10.12)
+            .should eq 10.12.to_big_d
           Money.new(10.12345, "USD").round(3, mode: :ties_even).amount
-            .should eq BigDecimal.new(10.123)
+            .should eq 10.123.to_big_d
           Money.new(10.12345, "USD").round(4, mode: :ties_even).amount
-            .should eq BigDecimal.new(10.1234)
+            .should eq 10.1234.to_big_d
           Money.new(10.12345, "USD").round(4, mode: :ties_away).amount
-            .should eq BigDecimal.new(10.1235)
+            .should eq 10.1235.to_big_d
         end
       end
     end

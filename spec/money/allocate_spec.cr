@@ -26,7 +26,7 @@ describe Money::Allocate do
     end
 
     it "does not round rationals" do
-      splits = 7.times.map { BigRational.new(950, 6650) }.to_a
+      splits = Array.new(7) { BigRational.new(950, 6650) }
       moneys = Money.us_dollar(6650).allocate(splits)
       moneys.map(&.cents).should eq [950] * 7
     end
@@ -57,7 +57,7 @@ describe Money::Allocate do
   end
 
   describe "#split" do
-    it "needs at least one party" do
+    it "needs at least one part" do
       expect_raises(ArgumentError) { Money.us_dollar(1).split(0) }
       expect_raises(ArgumentError) { Money.us_dollar(1).split(-1) }
     end

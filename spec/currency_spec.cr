@@ -124,8 +124,8 @@ describe Money::Currency do
 
   describe "#to_s" do
     it "works as documented" do
-      Money::Currency.find(:usd).to_s.should eq("USD")
-      Money::Currency.find(:eur).to_s.should eq("EUR")
+      Money::Currency.find(:usd).to_s.should eq "USD"
+      Money::Currency.find(:eur).to_s.should eq "EUR"
     end
   end
 

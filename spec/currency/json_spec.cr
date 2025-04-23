@@ -27,7 +27,7 @@ describe Money::Currency do
 
   describe "#to_json" do
     it "works as intended" do
-      Money::Currency.from_json(foo_json).to_json.should eq(foo_json.gsub(/\s+/, ""))
+      Money::Currency.from_json(foo_json).to_json.should eq foo_json.gsub(/\s+/, "")
     end
   end
 end

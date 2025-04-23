@@ -6,7 +6,7 @@ describe Money::Currency::RateStore::Memory do
 
     it "stores rate in memory" do
       store["USD", "CAD"] = 0.9
-      store["USD", "CAD"].should eq BigDecimal.new(0.9)
+      store["USD", "CAD"].should eq 0.9.to_big_d
     end
   end
 
@@ -21,8 +21,16 @@ describe Money::Currency::RateStore::Memory do
         rates << rate
       end
       rates.should eq [
-        Money::Currency::Rate.new(Money::Currency.find("USD"), Money::Currency.find("CAD"), 90_i64),
-        Money::Currency::Rate.new(Money::Currency.find("CAD"), Money::Currency.find("USD"), 110_i64),
+        Money::Currency::Rate.new(
+          Money::Currency.find("USD"),
+          Money::Currency.find("CAD"),
+          90_i64
+        ),
+        Money::Currency::Rate.new(
+          Money::Currency.find("CAD"),
+          Money::Currency.find("USD"),
+          110_i64
+        ),
       ]
     end
 

@@ -98,14 +98,14 @@ describe Money do
           prev_rounding_mode = Money.rounding_mode
           begin
             Money.with_rounding_mode(mode) do
-              Money.new(value, "USD").round(2).should eq(Money.new(expected, "USD"))
-              Money.new(value, "USD").amount.should eq(BigDecimal.new(expected))
+              Money.new(value, "USD").round(2).should eq Money.new(expected, "USD")
+              Money.new(value, "USD").amount.should eq expected.to_big_d
               Money.new(value, "USD")
                 .rounded_to_nearest_cash_value
-                .should eq(Money.new(expected, "USD"))
+                .should eq Money.new(expected, "USD")
             end
           ensure
-            Money.rounding_mode.should eq(prev_rounding_mode)
+            Money.rounding_mode.should eq prev_rounding_mode
           end
         end
       end
@@ -138,18 +138,18 @@ describe Money do
     end
 
     it "rounds the given amount to subunits" do
-      Money.from_amount(4.444, "USD").amount.should eq BigDecimal.new(4.44)
-      Money.from_amount(5.555, "USD").amount.should eq BigDecimal.new(5.56)
-      Money.from_amount(444.4, "JPY").amount.should eq BigDecimal.new(444)
-      Money.from_amount(555.5, "JPY").amount.should eq BigDecimal.new(556)
+      Money.from_amount(4.444, "USD").amount.should eq 4.44.to_big_d
+      Money.from_amount(5.555, "USD").amount.should eq 5.56.to_big_d
+      Money.from_amount(444.4, "JPY").amount.should eq 444.to_big_d
+      Money.from_amount(555.5, "JPY").amount.should eq 556.to_big_d
     end
 
     it "does not round the given amount when .infinite_precision? is set" do
       with_infinite_precision(true) do
-        Money.from_amount(4.444, "USD").amount.should eq BigDecimal.new(4.444)
-        Money.from_amount(5.555, "USD").amount.should eq BigDecimal.new(5.555)
-        Money.from_amount(444.4, "JPY").amount.should eq BigDecimal.new(444.4)
-        Money.from_amount(555.5, "JPY").amount.should eq BigDecimal.new(555.5)
+        Money.from_amount(4.444, "USD").amount.should eq 4.444.to_big_d
+        Money.from_amount(5.555, "USD").amount.should eq 5.555.to_big_d
+        Money.from_amount(444.4, "JPY").amount.should eq 444.4.to_big_d
+        Money.from_amount(555.5, "JPY").amount.should eq 555.5.to_big_d
       end
     end
 
@@ -251,7 +251,7 @@ describe Money do
     end
 
     it "does not lose precision" do
-      Money.new(100_37).amount.should eq BigDecimal.new(100.37)
+      Money.new(100_37).amount.should eq 100.37.to_big_d
     end
 
     it "produces a BigDecimal" do

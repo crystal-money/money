@@ -41,7 +41,7 @@ describe Money::Currency::Enumeration do
     end
 
     it "caches instances" do
-      Money::Currency.find("USD").object_id.should eq Money::Currency.table["usd"].object_id
+      Money::Currency.find("USD").should be Money::Currency.table["usd"]
     end
 
     it "raises UnknownCurrency with unknown currency" do
