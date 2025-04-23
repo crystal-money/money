@@ -447,7 +447,7 @@ describe Money::Formatting do
       Money.new(1999_98, "NOK").format.should eq("1.999,98 kr")
       Money.new(1999_98, "SEK").format.should eq("1 999,98 kr")
       Money.new(1999_98, "BCH").format.should eq("0.00199998 ₿")
-      Money.new(1999_98, "USDC").format.should eq("1,999.98 USDC")
+      Money.new(1999_98, "USDC").format.should eq("0.199998 USDC")
     end
 
     it "returns ambiguous signs when disambiguate: false" do
@@ -457,7 +457,7 @@ describe Money::Formatting do
       Money.new(1999_98, "NOK").format(disambiguate: false).should eq("1.999,98 kr")
       Money.new(1999_98, "SEK").format(disambiguate: false).should eq("1 999,98 kr")
       Money.new(1999_98, "BCH").format(disambiguate: false).should eq("0.00199998 ₿")
-      Money.new(1999_98, "USDC").format(disambiguate: false).should eq("1,999.98 USDC")
+      Money.new(1999_98, "USDC").format(disambiguate: false).should eq("0.199998 USDC")
     end
 
     it "returns disambiguate signs when disambiguate: true" do
@@ -467,7 +467,7 @@ describe Money::Formatting do
       Money.new(1999_98, "NOK").format(disambiguate: true).should eq("1.999,98 NOK")
       Money.new(1999_98, "SEK").format(disambiguate: true).should eq("1 999,98 SEK")
       Money.new(1999_98, "BCH").format(disambiguate: true).should eq("0.00199998 ₿CH")
-      Money.new(1999_98, "USDC").format(disambiguate: true).should eq("1,999.98 USDC")
+      Money.new(1999_98, "USDC").format(disambiguate: true).should eq("0.199998 USDC")
     end
 
     it "returns disambiguate signs when disambiguate: true and symbol: true" do
@@ -477,7 +477,7 @@ describe Money::Formatting do
       Money.new(1999_98, "NOK").format(disambiguate: true, symbol: true).should eq("1.999,98 NOK")
       Money.new(1999_98, "SEK").format(disambiguate: true, symbol: true).should eq("1 999,98 SEK")
       Money.new(1999_98, "BCH").format(disambiguate: true, symbol: true).should eq("0.00199998 ₿CH")
-      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: true).should eq("1,999.98 USDC")
+      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: true).should eq("0.199998 USDC")
     end
 
     it "returns no signs when disambiguate: true and symbol: false" do
@@ -487,7 +487,7 @@ describe Money::Formatting do
       Money.new(1999_98, "NOK").format(disambiguate: true, symbol: false).should eq("1.999,98")
       Money.new(1999_98, "SEK").format(disambiguate: true, symbol: false).should eq("1 999,98")
       Money.new(1999_98, "BCH").format(disambiguate: true, symbol: false).should eq("0.00199998")
-      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: false).should eq("1,999.98")
+      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: false).should eq("0.199998")
     end
 
     it "should never return an ambiguous format with disambiguate: true" do
