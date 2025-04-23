@@ -61,6 +61,7 @@ struct Money
     end
 
     private def allocations_from_splits(splits)
+      # ameba:disable Naming/BlockParameterName
       splits.reduce(0.to_big_d) { |sum, n| sum + n.to_big_d }
     end
 

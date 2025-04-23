@@ -2,11 +2,9 @@ require "../spec_helper"
 
 describe Money::Arithmetic do
   describe "#exchange_to" do
-    bank = Money::Bank::VariableExchange.new.tap do |bank|
-      store = bank.store = Money::Currency::RateStore::Memory.new
-      store["EUR", "USD"] = 1.23
-      store["USD", "EUR"] = 3.21
-    end
+    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank.store["EUR", "USD"] = 1.23
+    bank.store["USD", "EUR"] = 3.21
 
     it "exchanges the amount properly" do
       with_default_bank(bank) do

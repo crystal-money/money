@@ -19,11 +19,9 @@ describe Money::Arithmetic do
   end
 
   describe "#<=>" do
-    bank = Money::Bank::VariableExchange.new.tap do |bank|
-      store = bank.store = Money::Currency::RateStore::Memory.new
-      store["EUR", "USD"] = 1.5
-      store["USD", "EUR"] = 2
-    end
+    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank.store["EUR", "USD"] = 1.5
+    bank.store["USD", "EUR"] = 2
 
     it "compares the two object amounts (same currency)" do
       (Money.new(1_00, "USD") <=> Money.new(1_00, "USD")).should eq 0
@@ -107,10 +105,8 @@ describe Money::Arithmetic do
     end
 
     it "converts other object amount to current currency and adds other amount to current amount (different currency)" do
-      bank = Money::Bank::VariableExchange.new.tap do |bank|
-        store = bank.store = Money::Currency::RateStore::Memory.new
-        store["EUR", "USD"] = 10
-      end
+      bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+      bank.store["EUR", "USD"] = 10
 
       with_default_bank(bank) do
         (Money.new(10_00, "USD") + Money.new(90, "EUR")).should eq Money.new(19_00, "USD")
@@ -129,10 +125,8 @@ describe Money::Arithmetic do
     end
 
     it "converts other object amount to current currency and subtracts other amount to current amount (different currency)" do
-      bank = Money::Bank::VariableExchange.new.tap do |bank|
-        store = bank.store = Money::Currency::RateStore::Memory.new
-        store["EUR", "USD"] = 10
-      end
+      bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+      bank.store["EUR", "USD"] = 10
 
       with_default_bank(bank) do
         (Money.new(10_00, "USD") - Money.new(90, "EUR")).should eq Money.new(1_00, "USD")
@@ -180,10 +174,8 @@ describe Money::Arithmetic do
     end
 
     it "divides Money by Money (different currency) and returns BigDecimal" do
-      bank = Money::Bank::VariableExchange.new.tap do |bank|
-        store = bank.store = Money::Currency::RateStore::Memory.new
-        store["EUR", "USD"] = 2
-      end
+      bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+      bank.store["EUR", "USD"] = 2
 
       with_default_bank(bank) do
         tests = {
@@ -225,10 +217,8 @@ describe Money::Arithmetic do
     end
 
     it "calculates division and modulo with Money (different currency)" do
-      bank = Money::Bank::VariableExchange.new.tap do |bank|
-        store = bank.store = Money::Currency::RateStore::Memory.new
-        store["EUR", "USD"] = 2
-      end
+      bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+      bank.store["EUR", "USD"] = 2
 
       with_default_bank(bank) do
         tests = {
@@ -270,10 +260,8 @@ describe Money::Arithmetic do
     end
 
     it "calculates modulo with Money (different currency)" do
-      bank = Money::Bank::VariableExchange.new.tap do |bank|
-        store = bank.store = Money::Currency::RateStore::Memory.new
-        store["EUR", "USD"] = 2
-      end
+      bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+      bank.store["EUR", "USD"] = 2
 
       with_default_bank(bank) do
         tests = {

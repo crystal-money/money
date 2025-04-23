@@ -1,10 +1,8 @@
 require "../spec_helper"
 
 describe Money::Bank::VariableExchange do
-  bank = Money::Bank::VariableExchange.new.tap do |bank|
-    store = bank.store = Money::Currency::RateStore::Memory.new
-    store["USD", "EUR"] = 1.33
-  end
+  bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+  bank.store["USD", "EUR"] = 1.33
 
   context "#exchange" do
     it "exchanges one currency to another" do
