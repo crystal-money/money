@@ -6,7 +6,7 @@ struct Money
     # Money.new(100, "USD").split(3).map(&.cents) # => [34, 33, 33]
     # ```
     def split(num : Int) : Array(Money)
-      raise ArgumentError.new("Need at least one party") if num < 1
+      raise ArgumentError.new("Need at least one part") if num < 1
 
       low = copy_with(fractional: fractional // num)
       high = copy_with(fractional: low.fractional + 1)
