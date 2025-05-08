@@ -1,79 +1,77 @@
 struct Money
   module Allocate
-    # Splits money amongst parties evenly without losing pennies.
-    #
-    # ```
-    # Money.new(100, "USD").split(3).map(&.cents) # => [34, 33, 33]
-    # ```
-    def split(num : Int) : Array(Money)
-      raise ArgumentError.new("Need at least one part") if num < 1
+    # Splits a given amount in parts. The allocation is based on the parts' proportions.
+    # The results should always add up to the original amount.
+    protected def self.generate(amount, parts, *, whole_amounts = true) : Array(BigDecimal)
+      raise ArgumentError.new("Need at least one part") if parts.empty?
 
-      low = copy_with(fractional: fractional // num)
-      high = copy_with(fractional: low.fractional + 1)
+      parts =
+        if parts.all?(&.zero?)
+          Array.new(parts.size, 1.to_big_d)
+        else
+          Array.new(parts.size) { |idx| parts[idx].to_big_d }
+        end
 
-      remainder = fractional % num
+      result = [] of BigDecimal
+      remaining_amount = amount
 
-      Array(Money).new(num) do |index|
-        index < remainder ? high : low
+      until parts.empty?
+        parts_sum = parts.sum
+        part = parts.pop
+
+        if parts_sum.positive?
+          current_split = remaining_amount * part / parts_sum
+          current_split = current_split.round(:to_zero) if whole_amounts
+        else
+          current_split = 0.to_big_d
+        end
+
+        result.unshift current_split
+        remaining_amount -= current_split
       end
+
+      result
     end
 
-    # Allocates money between different parties without losing pennies.
-    # After the mathematical split has been performed, leftover pennies will
-    # be distributed round-robin amongst the parties. This means that parties
-    # listed first will likely receive more pennies than ones that are listed later.
+    # Splits a given amount in parts without losing pennies.
+    #
+    # The left-over pennies will be distributed round-robin amongst the parties.
+    # This means that parts listed first will likely receive more pennies than
+    # ones listed later.
+    #
+    # Pass `{2, 1, 1}` as input to give twice as much to _part1_ as _part2_ or _part3_
+    # which results in **50%** of the cash assigned to _part1_, **25%** to _part2_,
+    # and **25%** to _part3_.
+    #
+    # The results should always add up to the original amount.
     #
     # ```
-    # # Give 50% of the cash to party 1, 25% to party 2, and 25% to party 3.
-    # Money.new(10_00, "USD").allocate([0.5, 0.25, 0.25]).map(&.cents)
-    # # => [5_00, 2_50, 2_50]
-    #
-    # Money.new(5, "USD").allocate({0.3, 0.7}).map(&.cents)
-    # # => [2, 3]
-    #
-    # Money.new(100, "USD").allocate(0.33, 0.33, 0.33).map(&.cents)
-    # # => [34, 33, 33]
+    # Money.new(5, "USD").allocate(3, 7).map(&.cents)      # => [2, 3]
+    # Money.new(100, "USD").allocate(1, 1, 1).map(&.cents) # => [34, 33, 33]
     # ```
-    def allocate(splits : Enumerable(Number)) : Array(Money)
-      allocations = allocations_from_splits(splits)
-      raise ArgumentError.new("Splits add to more then 100%") if allocations > 1.0
-
-      if splits.all?(&.zero?)
-        allocations = splits.size.to_f
-      end
-
-      amounts, left_over = amounts_from_splits(allocations, splits)
-      delta = left_over > 0 ? 1 : -1
-      size = amounts.size
-
-      # Distribute left over pennies amongst allocations
-      left_over.to_i64.abs.times do |i|
-        amounts[i % size] += delta
-      end
-      amounts.map do |fractional|
-        copy_with(fractional: fractional.to_big_i)
-      end
+    def allocate(parts : Enumerable(Number)) : Array(Money)
+      # FIXME: Doesn't work with `Money.infinite_precision?` yet
+      Money::Allocate
+        .generate(fractional, parts, whole_amounts: !Money.infinite_precision?)
+        .map { |amount| copy_with(fractional: amount.to_i) }
     end
 
     # :ditto:
-    def allocate(*splits : Number) : Array(Money)
-      allocate(splits)
+    def allocate(*parts : Number) : Array(Money)
+      allocate(parts)
     end
 
-    private def allocations_from_splits(splits)
-      # ameba:disable Naming/BlockParameterName
-      splits.reduce(0.to_big_d) { |sum, n| sum + n.to_big_d }
-    end
-
-    private def amounts_from_splits(allocations, splits)
-      fractional, left_over = fractional.to_big_d, fractional
-      amounts = splits.map do |ratio|
-        ((fractional * ratio.to_big_d) / allocations).round.tap do |fraction|
-          left_over -= fraction
-        end
-        # fractional * ratio.to_big_d
+    # Splits money evenly amongst parties without losing pennies.
+    #
+    # ```
+    # Money.new(100, "USD").split(2).map(&.cents) # => [50, 50]
+    # Money.new(100, "USD").split(3).map(&.cents) # => [34, 33, 33]
+    # ```
+    def split(parts : Int) : Array(Money)
+      unless parts.positive?
+        raise ArgumentError.new("Need at least one part")
       end
-      {amounts.to_a, left_over}
+      allocate(Array.new(parts, 1))
     end
   end
 end
