@@ -255,7 +255,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/2592ebc/src/money/money/allocate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fb75785/src/money/money/allocate.cr#L2" target="_blank">
         money/money/allocate.cr
       </a>
     
@@ -284,23 +284,23 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#allocate%28splits%3AEnumerable%28Number%29%29%3AArray%28Money%29-instance-method" class="signature"><strong>#allocate</strong>(splits : Enumerable(Number)) : Array(Money)</a>
+        <a href="#allocate%28parts%3AEnumerable%28Number%29%29%3AArray%28Money%29-instance-method" class="signature"><strong>#allocate</strong>(parts : Enumerable(Number)) : Array(Money)</a>
         
-          <div class="summary"><p>Allocates money between different parties without losing pennies.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#allocate%28%2Asplits%3ANumber%29%3AArray%28Money%29-instance-method" class="signature"><strong>#allocate</strong>(*splits : Number) : Array(Money)</a>
-        
-          <div class="summary"><p>Allocates money between different parties without losing pennies.</p></div>
+          <div class="summary"><p>Splits a given amount in parts without losing pennies.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#split%28num%3AInt%29%3AArray%28Money%29-instance-method" class="signature"><strong>#split</strong>(num : Int) : Array(Money)</a>
+        <a href="#allocate%28%2Aparts%3ANumber%29%3AArray%28Money%29-instance-method" class="signature"><strong>#allocate</strong>(*parts : Number) : Array(Money)</a>
         
-          <div class="summary"><p>Splits money amongst parties evenly without losing pennies.</p></div>
+          <div class="summary"><p>Splits a given amount in parts without losing pennies.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#split%28parts%3AInt%29%3AArray%28Money%29-instance-method" class="signature"><strong>#split</strong>(parts : Int) : Array(Money)</a>
+        
+          <div class="summary"><p>Splits money evenly amongst parties without losing pennies.</p></div>
         
       </li>
     
@@ -328,90 +328,85 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="allocate(splits:Enumerable(Number)):Array(Money)-instance-method">
+    <div class="entry-detail" id="allocate(parts:Enumerable(Number)):Array(Money)-instance-method">
       <div class="signature">
         
-        def <strong>allocate</strong>(splits : Enumerable(Number)) : Array(<a href="../Money.html">Money</a>)
+        def <strong>allocate</strong>(parts : Enumerable(Number)) : Array(<a href="../Money.html">Money</a>)
 
-        <a class="method-permalink" href="#allocate%28splits%3AEnumerable%28Number%29%29%3AArray%28Money%29-instance-method">#</a>
+        <a class="method-permalink" href="#allocate%28parts%3AEnumerable%28Number%29%29%3AArray%28Money%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Allocates money between different parties without losing pennies.
-After the mathematical split has been performed, leftover pennies will
-be distributed round-robin amongst the parties. This means that parties
-listed first will likely receive more pennies than ones that are listed later.</p>
-<pre><code class="language-crystal"><span class="c"># Give 50% of the cash to party 1, 25% to party 2, and 25% to party 3.</span>
-<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>).allocate([<span class="n">0.5</span>, <span class="n">0.25</span>, <span class="n">0.25</span>]).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [5_00, 2_50, 2_50]</span>
-
-<span class="t">Money</span>.new(<span class="n">5</span>, <span class="s">&quot;USD&quot;</span>).allocate({<span class="n">0.3</span>, <span class="n">0.7</span>}).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [2, 3]</span>
-
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">0.33</span>, <span class="n">0.33</span>, <span class="n">0.33</span>).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [34, 33, 33]</span></code></pre>
+          <p>Splits a given amount in parts without losing pennies.</p>
+<p>The left-over pennies will be distributed round-robin amongst the parties.
+This means that parts listed first will likely receive more pennies than
+ones listed later.</p>
+<p>Pass <code>{2, 1, 1}</code> as input to give twice as much to <em>part1</em> as <em>part2</em> or <em>part3</em>
+which results in <strong>50%</strong> of the cash assigned to <em>part1</em>, <strong>25%</strong> to <em>part2</em>,
+and <strong>25%</strong> to <em>part3</em>.</p>
+<p>The results should always add up to the original amount.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">5</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">3</span>, <span class="n">7</span>).map(<span class="o">&amp;</span>.cents)      <span class="c"># =&gt; [2, 3]</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>).map(<span class="o">&amp;</span>.cents) <span class="c"># =&gt; [34, 33, 33]</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2592ebc/src/money/money/allocate.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fb75785/src/money/money/allocate.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="allocate(*splits:Number):Array(Money)-instance-method">
+    <div class="entry-detail" id="allocate(*parts:Number):Array(Money)-instance-method">
       <div class="signature">
         
-        def <strong>allocate</strong>(*splits : Number) : Array(<a href="../Money.html">Money</a>)
+        def <strong>allocate</strong>(*parts : Number) : Array(<a href="../Money.html">Money</a>)
 
-        <a class="method-permalink" href="#allocate%28%2Asplits%3ANumber%29%3AArray%28Money%29-instance-method">#</a>
+        <a class="method-permalink" href="#allocate%28%2Aparts%3ANumber%29%3AArray%28Money%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Allocates money between different parties without losing pennies.
-After the mathematical split has been performed, leftover pennies will
-be distributed round-robin amongst the parties. This means that parties
-listed first will likely receive more pennies than ones that are listed later.</p>
-<pre><code class="language-crystal"><span class="c"># Give 50% of the cash to party 1, 25% to party 2, and 25% to party 3.</span>
-<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>).allocate([<span class="n">0.5</span>, <span class="n">0.25</span>, <span class="n">0.25</span>]).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [5_00, 2_50, 2_50]</span>
-
-<span class="t">Money</span>.new(<span class="n">5</span>, <span class="s">&quot;USD&quot;</span>).allocate({<span class="n">0.3</span>, <span class="n">0.7</span>}).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [2, 3]</span>
-
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">0.33</span>, <span class="n">0.33</span>, <span class="n">0.33</span>).map(<span class="o">&amp;</span>.cents)
-<span class="c"># =&gt; [34, 33, 33]</span></code></pre>
+          <p>Splits a given amount in parts without losing pennies.</p>
+<p>The left-over pennies will be distributed round-robin amongst the parties.
+This means that parts listed first will likely receive more pennies than
+ones listed later.</p>
+<p>Pass <code>{2, 1, 1}</code> as input to give twice as much to <em>part1</em> as <em>part2</em> or <em>part3</em>
+which results in <strong>50%</strong> of the cash assigned to <em>part1</em>, <strong>25%</strong> to <em>part2</em>,
+and <strong>25%</strong> to <em>part3</em>.</p>
+<p>The results should always add up to the original amount.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">5</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">3</span>, <span class="n">7</span>).map(<span class="o">&amp;</span>.cents)      <span class="c"># =&gt; [2, 3]</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).allocate(<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>).map(<span class="o">&amp;</span>.cents) <span class="c"># =&gt; [34, 33, 33]</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2592ebc/src/money/money/allocate.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fb75785/src/money/money/allocate.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="split(num:Int):Array(Money)-instance-method">
+    <div class="entry-detail" id="split(parts:Int):Array(Money)-instance-method">
       <div class="signature">
         
-        def <strong>split</strong>(num : Int) : Array(<a href="../Money.html">Money</a>)
+        def <strong>split</strong>(parts : Int) : Array(<a href="../Money.html">Money</a>)
 
-        <a class="method-permalink" href="#split%28num%3AInt%29%3AArray%28Money%29-instance-method">#</a>
+        <a class="method-permalink" href="#split%28parts%3AInt%29%3AArray%28Money%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Splits money amongst parties evenly without losing pennies.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).split(<span class="n">3</span>).map(<span class="o">&amp;</span>.cents) <span class="c"># =&gt; [34, 33, 33]</span></code></pre>
+          <p>Splits money evenly amongst parties without losing pennies.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).split(<span class="n">2</span>).map(<span class="o">&amp;</span>.cents) <span class="c"># =&gt; [50, 50]</span>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).split(<span class="n">3</span>).map(<span class="o">&amp;</span>.cents) <span class="c"># =&gt; [34, 33, 33]</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2592ebc/src/money/money/allocate.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fb75785/src/money/money/allocate.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
