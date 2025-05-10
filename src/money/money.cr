@@ -103,7 +103,7 @@ struct Money
     unless amount.finite?
       raise ArgumentError.new "Must be initialized with a finite value"
     end
-    initialize(amount.to_big_d, currency)
+    initialize(amount.to_big_d, currency, bank)
   end
 
   # :nodoc:
