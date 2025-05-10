@@ -128,7 +128,7 @@ describe Money do
     it "accepts numeric values" do
       Money.from_amount(1, "USD").should eq Money.new(1_00, "USD")
       Money.from_amount(1.0, "USD").should eq Money.new(1_00, "USD")
-      Money.from_amount("1".to_big_d, "USD").should eq Money.new(1_00, "USD")
+      Money.from_amount(1.to_big_d, "USD").should eq Money.new(1_00, "USD")
     end
 
     it "converts given amount to subunits according to currency" do
