@@ -10,7 +10,8 @@ struct Money
     # Raises a `DifferentCurrencyError` to remove possibility of accidentally
     # exchanging currencies.
     def exchange(from : Money, to : Currency) : Money
-      raise DifferentCurrencyError.new("No exchanging of currencies allowed: #{from} #{from.currency} to #{to}")
+      raise DifferentCurrencyError.new \
+        "No exchanging of currencies allowed: #{from} #{from.currency} to #{to}"
     end
   end
 end
