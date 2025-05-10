@@ -174,7 +174,19 @@ describe Money do
     it "returns the amount in fractional unit" do
       money = Money.new(1_00)
       money.fractional.should eq 1_00
-      money.fractional.should be_a BigInt
+      money.fractional.should be_a BigDecimal
+    end
+
+    it "rounds the amount to smallest unit of coinage" do
+      money = Money.new(fractional: 1_00.555.to_big_d)
+      money.fractional.should eq 1_01
+    end
+
+    it "does not round the given amount when .infinite_precision? is set" do
+      with_infinite_precision(true) do
+        money = Money.new(fractional: 1_00.555.to_big_d)
+        money.fractional.should eq 1_00.555.to_big_d
+      end
     end
 
     context "loading a serialized Money via JSON" do
@@ -227,8 +239,8 @@ describe Money do
       end
     end
 
-    it "returns a BigInt" do
-      Money.new(100, "EUR").nearest_cash_value.should be_a BigInt
+    it "returns a BigDecimal" do
+      Money.new(100, "EUR").nearest_cash_value.should be_a BigDecimal
     end
   end
 

@@ -125,7 +125,7 @@ struct Money
     # Money.new(100).divmod(9)            # => {Money(@amount=0.11), Money(@amount=0.01)}
     # Money.new(100).divmod(Money.new(9)) # => {11, Money(@amount=0.01)}
     # ```
-    def divmod(other : Money) : {BigInt, Money}
+    def divmod(other : Money) : {BigDecimal, Money}
       with_same_currency(other) do |converted_other|
         quotient, remainder = fractional.divmod(converted_other.fractional)
         {quotient, copy_with(fractional: remainder)}
