@@ -296,8 +296,10 @@ describe Money do
     end
 
     pending "can be used to return the intersection of Money object arrays" do
-      intersection = [Money.new(1_00, "EUR"), Money.new(1_00, "USD")] & [Money.new(1_00, "EUR")]
-      intersection.should eq [Money.new(1_00, "EUR")]
+      moneys_a = [Money.new(1_00, "EUR"), Money.new(1_00, "USD")]
+      moneys_b = [Money.new(1_00, "EUR")]
+
+      (moneys_a & moneys_b).should eq [Money.new(1_00, "EUR")]
     end
   end
 
