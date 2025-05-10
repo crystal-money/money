@@ -131,8 +131,8 @@ describe Money::Formatting do
         it "works as documented" do
           Money.new(10000, "VUV").format(no_cents_if_whole: true, symbol: false).should eq "10,000"
           Money.new(10034, "VUV").format(no_cents_if_whole: true, symbol: false).should eq "10,034"
-          Money.new(10000, "MGA").format(no_cents_if_whole: true, symbol: false).should eq "2,000"
-          Money.new(10034, "MGA").format(no_cents_if_whole: true, symbol: false).should eq "2,006.8"
+          Money.new(10000, "MGA").format(no_cents_if_whole: true, symbol: false).should eq "10,000"
+          Money.new(10034, "MGA").format(no_cents_if_whole: true, symbol: false).should eq "10,034"
           Money.new(10000, "VND").format(no_cents_if_whole: true, symbol: false).should eq "10.000"
           Money.new(10034, "VND").format(no_cents_if_whole: true, symbol: false).should eq "10.034"
           Money.new(10000, "USD").format(no_cents_if_whole: true, symbol: false).should eq "100"
@@ -146,8 +146,8 @@ describe Money::Formatting do
         it "works as documented" do
           Money.new(10000, "VUV").format(no_cents_if_whole: false, symbol: false).should eq "10,000"
           Money.new(10034, "VUV").format(no_cents_if_whole: false, symbol: false).should eq "10,034"
-          Money.new(10000, "MGA").format(no_cents_if_whole: false, symbol: false).should eq "2,000.0"
-          Money.new(10034, "MGA").format(no_cents_if_whole: false, symbol: false).should eq "2,006.8"
+          Money.new(10000, "MGA").format(no_cents_if_whole: false, symbol: false).should eq "10,000"
+          Money.new(10034, "MGA").format(no_cents_if_whole: false, symbol: false).should eq "10,034"
           Money.new(10000, "VND").format(no_cents_if_whole: false, symbol: false).should eq "10.000"
           Money.new(10034, "VND").format(no_cents_if_whole: false, symbol: false).should eq "10.034"
           Money.new(10000, "USD").format(no_cents_if_whole: false, symbol: false).should eq "100.00"

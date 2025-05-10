@@ -4,7 +4,7 @@
   "name": "Malagasy Ariary",
   "symbol": "Ar",
   "subunit": "Iraimbilanja",
-  "subunit_to_unit": 5,
+  "subunit_to_unit": 1,
   "symbol_first": true,
   "decimal_mark": ".",
   "thousands_separator": ",",
