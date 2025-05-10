@@ -50,10 +50,9 @@ struct Money
     # Money.new(100, "USD").allocate(1, 1, 1).map(&.cents) # => [34, 33, 33]
     # ```
     def allocate(parts : Enumerable(Number)) : Array(Money)
-      # FIXME: Doesn't work with `Money.infinite_precision?` yet
       Money::Allocate
         .generate(fractional, parts, whole_amounts: !Money.infinite_precision?)
-        .map { |amount| copy_with(fractional: amount.to_i) }
+        .map { |amount| copy_with(fractional: amount) }
     end
 
     # :ditto:

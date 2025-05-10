@@ -107,10 +107,19 @@ struct Money
   end
 
   # :nodoc:
-  def initialize(fractional : Int, currency, bank)
+  def initialize(*, fractional : BigDecimal, currency = Money.default_currency, bank = nil)
     @currency = Currency.wrap(currency)
-    @amount = fractional.to_big_d / @currency.subunit_to_unit
+    @amount = fractional / @currency.subunit_to_unit
     @bank = bank
+  end
+
+  # :nodoc:
+  def initialize(fractional : Int, currency, bank)
+    initialize(
+      fractional: fractional.to_big_d,
+      currency: currency,
+      bank: bank,
+    )
   end
 
   # Returns a new `Money` instance with same `currency` and `bank`
@@ -154,10 +163,8 @@ struct Money
   # unit is the fils and there 1000 fils to one Kuwaiti dinar. So given the
   # `Money` representation of one Kuwaiti dinar, the fractional interpretation
   # is 1000.
-  #
-  # FIXME: Doesn't work with `Money.infinite_precision?` yet
-  def fractional : BigInt
-    (amount * currency.subunit_to_unit).to_big_i
+  def fractional : BigDecimal
+    amount * currency.subunit_to_unit
   end
 
   # Alias of `#amount`.
@@ -166,7 +173,7 @@ struct Money
   end
 
   # Alias of `#fractional`.
-  def cents : BigInt
+  def cents : BigDecimal
     fractional
   end
 
@@ -177,14 +184,14 @@ struct Money
   # and for CHF 0.08, CHF 0.10.
   #
   # See `Currency#smallest_denomination`, also `Money.rounding_mode`.
-  def nearest_cash_value : BigInt
+  def nearest_cash_value : BigDecimal
     unless smallest_denomination = currency.smallest_denomination
       raise UndefinedSmallestDenominationError.new
     end
     rounded_value =
-      (fractional.to_big_d / smallest_denomination).round(mode: Money.rounding_mode)
+      (fractional / smallest_denomination).round(mode: Money.rounding_mode)
     rounded_value *= smallest_denomination
-    rounded_value.to_big_i
+    rounded_value
   end
 
   # See `#nearest_cash_value`.
