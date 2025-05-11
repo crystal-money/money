@@ -14,9 +14,9 @@
 <script type="text/javascript" src="js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>money master</title>
+  <title>Fiber - money master</title>
   <script type="text/javascript">
-  CrystalDocs.base_path = "";
+    CrystalDocs.base_path = "";
   </script>
 </head>
 <body>
@@ -57,7 +57,7 @@
   <div class="types-list">
     <ul>
   
-  <li class=" " data-id="money/Fiber" data-name="fiber">
+  <li class=" current" data-id="money/Fiber" data-name="fiber">
       <a href="Fiber.html">Fiber</a>
       
     </li>
@@ -225,18 +225,148 @@
 
 <div class="main-content">
 <h1 class="type-name">
-  404 Not Found
+
+  <span class="kind">
+    class
+  </span> Fiber
+
 </h1>
 
-<p>
-  This page is unavailable in this version of the API docs.
-</p>
 
-<p>
-  You can use the sidebar to search for your page, or try a different
-  Crystal version.
-</p>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Fiber.html">Fiber</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A <code><a href="Fiber.html">Fiber</a></code> is a light-weight execution unit managed by the Crystal runtime.</p>
+<p>It is conceptually similar to an operating system thread but with less
+overhead and completely internal to the Crystal process. The runtime includes
+a scheduler which schedules execution of fibers.</p>
+<p>A <code><a href="Fiber.html">Fiber</a></code> has a stack size of <code>8 MiB</code> which is usually also assigned
+to an operating system thread. But only <code>4KiB</code> are actually allocated at first
+so the memory footprint is very small.</p>
+<p>Communication between fibers is usually passed through <code>Channel</code>.</p>
+<h2><a id="cooperative" class="anchor" href="#cooperative">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Cooperative</h2>
+<p>Fibers are cooperative. That means execution can only be drawn from a fiber
+when it offers it. It can't be interrupted in its execution at random.
+In order to make concurrency work, fibers must make sure to occasionally
+provide hooks for the scheduler to swap in other fibers.
+IO operations like reading from a file descriptor are natural implementations
+for this and the developer does not need to take further action on that. When
+IO access can't be served immediately by a buffer, the fiber will
+automatically wait and yield execution. When IO is ready it's going to be
+resumed through the event loop.</p>
+<p>When a computation-intensive task has none or only rare IO operations, a fiber
+should explicitly offer to yield execution from time to time using
+<code>Fiber.yield</code> to break up tight loops. The frequency of this call depends on
+the application and concurrency model.</p>
+<h2><a id="event-loop" class="anchor" href="#event-loop">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Event loop</h2>
+<p>The event loop is responsible for keeping track of sleeping fibers waiting for
+notifications that IO is ready or a timeout reached. When a fiber can be woken,
+the event loop enqueues it in the scheduler</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/ext/fiber.cr#L1" target="_blank">
+        ext/fiber.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+
+  
+
+  
+
+  
+
 
 </div>
+
 </body>
 </html>
