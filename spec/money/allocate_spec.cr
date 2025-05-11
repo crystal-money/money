@@ -1,14 +1,6 @@
 require "../spec_helper"
 
-class Money::Allocate::Test
-  def self.generate(*args, **kwargs) : Array(BigDecimal)
-    Money::Allocate.generate(*args, **kwargs)
-  end
-end
-
 describe Money::Allocate do
-  described_class = Money::Allocate::Test
-
   describe "#allocate" do
     it "needs at least one part" do
       expect_raises(ArgumentError, "Need at least one part") do
@@ -73,34 +65,42 @@ describe Money::Allocate do
 
     context "fractional amounts" do
       it "returns the amount when array contains only one element" do
-        described_class.generate(100, {1}, whole_amounts: false).should eq [100]
-        described_class.generate(100, {5}, whole_amounts: false).should eq [100]
+        with_infinite_precision(true) do
+          Money.new(100).allocate({1}).map(&.cents).should eq [100]
+          Money.new(100).allocate({5}).map(&.cents).should eq [100]
+        end
       end
 
       it "splits the amount into whole parts respecting the order" do
-        described_class.generate(100, {1, 1}, whole_amounts: false).should eq [50, 50]
-        described_class.generate(100, {1, 1, 2}, whole_amounts: false).should eq [25, 25, 50]
-        described_class.generate(100, {7, 3}, whole_amounts: false).should eq [70, 30]
+        with_infinite_precision(true) do
+          Money.new(100).allocate({1, 1}).map(&.cents).should eq [50, 50]
+          Money.new(100).allocate({1, 1, 2}).map(&.cents).should eq [25, 25, 50]
+          Money.new(100).allocate({7, 3}).map(&.cents).should eq [70, 30]
+        end
       end
 
       it "splits the amount proportionally to the given parts" do
-        described_class.generate(10, {1, 1, 2}, whole_amounts: false).should eq [2.5, 2.5, 5]
-        described_class.generate(7, {1, 1}, whole_amounts: false).should eq [3.5, 3.5]
+        with_infinite_precision(true) do
+          Money.new(10).allocate({1, 1, 2}).map(&.cents).should eq [2.5, 2.5, 5]
+          Money.new(7).allocate({1, 1}).map(&.cents).should eq [3.5, 3.5]
+        end
       end
 
       it "handles splits into repeating decimals" do
-        amount = 100
-        parts = described_class.generate(amount, {1, 1, 1}, whole_amounts: false)
+        with_infinite_precision(true) do
+          amount = 100
+          parts = Money.new(amount).allocate({1, 1, 1}).map(&.cents)
 
-        # Rounding due to inconsistent BigDecimal size. In reality the
-        # first 2 elements will look like the last one with a "5" at the end,
-        # compensating for a missing fraction.
-        parts.map(&.round(10)).should eq [
-          "33.3333333333".to_big_d,
-          "33.3333333333".to_big_d,
-          "33.3333333333".to_big_d,
-        ]
-        parts.sum.should eq amount
+          # Rounding due to inconsistent BigDecimal size. In reality the
+          # first 2 elements will look like the last one with a "5" at the end,
+          # compensating for a missing fraction.
+          parts.map(&.round(10)).should eq [
+            "33.3333333333".to_big_d,
+            "33.3333333333".to_big_d,
+            "33.3333333333".to_big_d,
+          ]
+          parts.sum.should eq amount
+        end
       end
     end
 
@@ -182,39 +182,41 @@ describe Money::Allocate do
 
     context "fractional amounts" do
       it "returns the amount when 1 is given" do
-        described_class.generate(100, Array.new(1, 1), whole_amounts: false)
-          .should eq [100]
+        with_infinite_precision(true) do
+          Money.new(100).split(1).map(&.cents).should eq [100]
+        end
       end
 
       it "splits the amount into equal parts" do
-        described_class.generate(100, Array.new(2, 1), whole_amounts: false)
-          .should eq [50, 50]
-        described_class.generate(100, Array.new(4, 1), whole_amounts: false)
-          .should eq [25, 25, 25, 25]
-        described_class.generate(100, Array.new(5, 1), whole_amounts: false)
-          .should eq [20, 20, 20, 20, 20]
+        with_infinite_precision(true) do
+          Money.new(100).split(2).map(&.cents).should eq [50, 50]
+          Money.new(100).split(4).map(&.cents).should eq [25, 25, 25, 25]
+          Money.new(100).split(5).map(&.cents).should eq [20, 20, 20, 20, 20]
+        end
       end
 
       it "splits the amount into equal fractions" do
-        described_class.generate(5, Array.new(2, 1), whole_amounts: false)
-          .should eq [2.5, 2.5]
-        described_class.generate(5, Array.new(4, 1), whole_amounts: false)
-          .should eq [1.25, 1.25, 1.25, 1.25]
+        with_infinite_precision(true) do
+          Money.new(5).split(2).map(&.cents).should eq [2.5, 2.5]
+          Money.new(5).split(4).map(&.cents).should eq [1.25, 1.25, 1.25, 1.25]
+        end
       end
 
       it "handles splits into repeating decimals" do
-        amount = 100
-        parts = described_class.generate(amount, Array.new(3, 1), whole_amounts: false)
+        with_infinite_precision(true) do
+          amount = 100
+          parts = Money.new(amount).split(3).map(&.cents)
 
-        # Rounding due to inconsistent BigDecimal size. In reality the
-        # first 2 elements will look like the last one with a '5' at the end,
-        # compensating for a missing fraction.
-        parts.map(&.round(10)).should eq [
-          "33.3333333333".to_big_d,
-          "33.3333333333".to_big_d,
-          "33.3333333333".to_big_d,
-        ]
-        parts.sum.should eq amount
+          # Rounding due to inconsistent BigDecimal size. In reality the
+          # first 2 elements will look like the last one with a '5' at the end,
+          # compensating for a missing fraction.
+          parts.map(&.round(10)).should eq [
+            "33.3333333333".to_big_d,
+            "33.3333333333".to_big_d,
+            "33.3333333333".to_big_d,
+          ]
+          parts.sum.should eq amount
+        end
       end
     end
   end
