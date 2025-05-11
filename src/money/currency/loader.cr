@@ -3,7 +3,7 @@ require "json"
 struct Money
   class Currency
     module Loader
-      private DATA_PATH = File.expand_path("../../../../data/currencies", __FILE__)
+      private DATA_PATH = Path["../../../data/currencies"].expand(__DIR__)
 
       # Loads and returns the currencies stored in JSON files
       # inside of `data/currencies` directory.
@@ -18,9 +18,11 @@ struct Money
       end
 
       private def parse_currency_file(filename)
-        filepath = File.join(DATA_PATH, filename)
+        filepath = DATA_PATH / filename
         if File.file?(filepath)
-          Currency.from_json File.read(filepath)
+          File.open(filepath) do |file|
+            Currency.from_json(file)
+          end
         end
       rescue ex
       end
