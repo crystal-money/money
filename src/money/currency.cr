@@ -41,13 +41,13 @@ struct Money
 
     def_equals_and_hash id
 
-    def self.register(currency : Currency)
+    def self.register(currency : Currency) : Currency
       table_mutex.synchronize do
         table[currency.id] = currency
       end
     end
 
-    def self.unregister(currency : String | Symbol | Currency)
+    def self.unregister(currency : String | Symbol | Currency) : Currency?
       if currency = wrap?(currency)
         table_mutex.synchronize do
           table.delete(currency.id)

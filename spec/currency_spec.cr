@@ -51,16 +51,16 @@ describe Money::Currency do
     )
 
     it "unregisters a currency" do
-      Money::Currency.register(currency)
+      Money::Currency.register(currency).should eq currency
       Money::Currency.find?("XXX").should_not be_nil # Sanity check
-      Money::Currency.unregister(currency)
+      Money::Currency.unregister("XXX").should eq currency
       Money::Currency.find?("XXX").should be_nil
     end
 
     it "returns true if the currency existed" do
-      Money::Currency.register(currency)
-      Money::Currency.unregister(currency).should be_truthy
-      Money::Currency.unregister(currency).should be_falsey
+      Money::Currency.register(currency).should eq currency
+      Money::Currency.unregister(currency).should eq currency
+      Money::Currency.unregister(currency).should be_nil
     end
 
     it "can be passed an ISO code as a string" do
