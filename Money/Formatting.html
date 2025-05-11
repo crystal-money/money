@@ -275,7 +275,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/money/formatting.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/money/formatting.cr#L2" target="_blank">
         money/money/formatting.cr
       </a>
     
@@ -311,16 +311,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#format%28%2A%2Aoptions%29%3AString-instance-method" class="signature"><strong>#format</strong>(**options) : String</a>
-        
-          <div class="summary"><p>Creates a formatted price string according to several rules.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
         
-          <div class="summary"><p>See <code><a href="../Money/Formatting.html#format%28%2A%2Aoptions%29%3AString-instance-method">#format</a></code>.</p></div>
+          <div class="summary"><p>See <code><a href="../Money/Formatting.html#format%28options%3ANamedTuple%29%3AString-instance-method">#format</a></code>.</p></div>
         
       </li>
     
@@ -469,133 +462,7 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/money/formatting.cr#L180" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="format(**options):String-instance-method">
-      <div class="signature">
-        
-        def <strong>format</strong>(**options) : String
-
-        <a class="method-permalink" href="#format%28%2A%2Aoptions%29%3AString-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a formatted price string according to several rules.</p>
-<p><strong>display_free</strong> (<code>Bool | String</code>) — default: <code>false</code></p>
-<p>Whether a zero amount of money should be formatted as the supplied string.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">0</span>).format(display_free: <span class="s">&quot;gratis&quot;</span>) <span class="c"># =&gt; &quot;gratis&quot;</span>
-<span class="t">Money</span>.us_dollar(<span class="n">0</span>).format                         <span class="c"># =&gt; &quot;$0.00&quot;</span></code></pre>
-<p><strong>sign_positive</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether positive numbers should be signed, too.</p>
-<pre><code class="language-crystal"><span class="c"># You can specify to display the sign with positive numbers</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format(sign_positive: <span class="n">true</span>) <span class="c"># =&gt; &quot;+£1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format                      <span class="c"># =&gt; &quot;£1.00&quot;</span></code></pre>
-<p><strong>with_currency</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether the currency name should be appended to the result string.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">100</span>).format                      <span class="c"># =&gt; &quot;$1.00&quot;</span>
-<span class="t">Money</span>.us_dollar(<span class="n">100</span>).format(with_currency: <span class="n">true</span>) <span class="c"># =&gt; &quot;$1.00 USD&quot;</span>
-<span class="t">Money</span>.us_dollar(<span class="n">85</span>).format(with_currency: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$0.85 USD&quot;</span></code></pre>
-<p><strong>no_cents</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether cents should be omitted.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">100</span>).format(no_cents: <span class="n">true</span>) <span class="c"># =&gt; &quot;$1&quot;</span>
-<span class="t">Money</span>.us_dollar(<span class="n">599</span>).format(no_cents: <span class="n">true</span>) <span class="c"># =&gt; &quot;$5&quot;</span></code></pre>
-<p><strong>no_cents_if_whole</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether cents should be omitted if the cent value is zero.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.us_dollar(<span class="n">10000</span>).format(no_cents_if_whole: <span class="n">true</span>) <span class="c"># =&gt; &quot;$100&quot;</span>
-<span class="t">Money</span>.us_dollar(<span class="n">10034</span>).format(no_cents_if_whole: <span class="n">true</span>) <span class="c"># =&gt; &quot;$100.34&quot;</span></code></pre>
-<p><strong>drop_trailing_zeros</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">89000</span>, <span class="n">:btc</span>).format(drop_trailing_zeros: <span class="n">true</span>) <span class="c"># =&gt; ฿0.00089</span>
-<span class="t">Money</span>.new(<span class="n">110</span>, <span class="n">:usd</span>).format(drop_trailing_zeros: <span class="n">true</span>)   <span class="c"># =&gt; $1.1</span></code></pre>
-<p><strong>symbol_first</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether a money symbol should go before the amount.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10000</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_first: <span class="n">true</span>)  <span class="c"># =&gt; &quot;$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">10000</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_first: <span class="n">false</span>) <span class="c"># =&gt; &quot;100.00 $&quot;</span></code></pre>
-<p><strong>symbol</strong> (<code>Bool | String</code>) — default: <code>true</code></p>
-<p>Whether a money symbol should be prepended to the result string.
-This method attempts to pick a symbol that's suitable for the given currency.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; &quot;$1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>) <span class="c"># =&gt; &quot;£1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; &quot;€1.00&quot;</span>
-
-<span class="c"># Same thing.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol: <span class="n">true</span>) <span class="c"># =&gt; &quot;$1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format(symbol: <span class="n">true</span>) <span class="c"># =&gt; &quot;£1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).format(symbol: <span class="n">true</span>) <span class="c"># =&gt; &quot;€1.00&quot;</span>
-
-<span class="c"># You can pass `false` or an empty string to disable</span>
-<span class="c"># prepending a money symbol.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format(symbol: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).format(symbol: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;1.00&quot;</span>
-
-<span class="c"># If the symbol for the given currency isn&#39;t known, then it will default</span>
-<span class="c"># to &quot;¤&quot; as symbol.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;XBC&quot;</span>).format(symbol: <span class="n">true</span>) <span class="c"># =&gt; &quot;1.00 ¤&quot;</span>
-
-<span class="c"># You can specify a string as value to enforce using a particular symbol.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;XBC&quot;</span>).format(symbol: <span class="s">&quot;ƒ&quot;</span>) <span class="c"># =&gt; &quot;1.00 ƒ&quot;</span></code></pre>
-<p><strong>disambiguate</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Prevents the result from being ambiguous due to equal symbols for different currencies.
-Uses the <code>disambiguate_symbol</code>.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;US$100.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;CAD&quot;</span>).format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;C$100.00&quot;</span></code></pre>
-<p><strong>symbol_before_without_space</strong> (<code>Bool</code>) — default: <code>true</code></p>
-<p>Whether a space between the money symbol and the amount should be inserted
-when <code>:symbol_first</code> is <code>true</code>. The default is <code>true</code> (meaning no space).
-Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>false</code>.</p>
-<pre><code class="language-crystal"><span class="c"># Default is to not insert a space.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$1.00&quot;</span>
-
-<span class="c"># Same thing.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_before_without_space: <span class="n">true</span>) <span class="c"># =&gt; &quot;$1.00&quot;</span>
-
-<span class="c"># If set to false, will insert a space.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_before_without_space: <span class="n">false</span>) <span class="c"># =&gt; &quot;$ 1.00&quot;</span></code></pre>
-<p><strong>symbol_after_without_space</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether a space between the amount and the money symbol should be inserted
-when <code>:symbol_first</code> is <code>false</code>. The default is <code>false</code> (meaning space).
-Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</code> is <code>true</code>.</p>
-<pre><code class="language-crystal"><span class="c"># Default is to insert a space.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_first: <span class="n">false</span>) <span class="c"># =&gt; &quot;1.00 $&quot;</span>
-
-<span class="c"># If set to true, will not insert a space.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(symbol_first: <span class="n">false</span>, symbol_after_without_space: <span class="n">true</span>) <span class="c"># =&gt; &quot;1.00$&quot;</span></code></pre>
-<p><strong>separator</strong> (<code>Bool | String</code>) — default: <code>true</code></p>
-<p>Whether the currency should be separated by the specified character or &quot;.&quot;.</p>
-<pre><code class="language-crystal"><span class="c"># If a string is specified, it&#39;s value is used.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format(separator: <span class="s">&quot;,&quot;</span>) <span class="c"># =&gt; &quot;$1,00&quot;</span>
-
-<span class="c"># If the separator for a given currency isn&#39;t known, then it will default</span>
-<span class="c"># to &quot;.&quot; as separator.</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;FOO&quot;</span>).format <span class="c"># =&gt; &quot;$1.00&quot;</span></code></pre>
-<p><strong>delimiter</strong> (<code>Bool | String</code>) — default: <code>true</code></p>
-<p>Whether the currency should be delimited by the specified character or &quot;,&quot;.</p>
-<pre><code class="language-crystal"><span class="c"># If falsy value is specified, no delimiter is used.</span>
-<span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;USD&quot;</span>).format(delimiter: <span class="n">false</span>) <span class="c"># =&gt; &quot;1000.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;USD&quot;</span>).format(delimiter: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;1000.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;USD&quot;</span>).format(delimiter: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;1000.00&quot;</span>
-
-<span class="c"># If a string is specified, it&#39;s value is used.</span>
-<span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;USD&quot;</span>).format(delimiter: <span class="s">&quot;.&quot;</span>) <span class="c"># =&gt; &quot;$1.000.00&quot;</span>
-
-<span class="c"># If the delimiter for a given currency isn&#39;t known, then it will</span>
-<span class="c"># default to &quot;,&quot; as delimiter.</span>
-<span class="t">Money</span>.new(<span class="n">100000</span>, <span class="s">&quot;FOO&quot;</span>).format <span class="c"># =&gt; &quot;$1,000.00&quot;</span></code></pre>
-<p><strong>html</strong> (<code>Bool</code>) — default: <code>false</code></p>
-<p>Whether the currency should be HTML-formatted.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1999</span>, <span class="s">&quot;RUB&quot;</span>).format(html: <span class="n">true</span>, no_cents: <span class="n">true</span>) <span class="c"># =&gt; &quot;19 &amp;#x20BD;&quot;</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/money/formatting.cr#L279" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/money/formatting.cr#L180" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -610,13 +477,13 @@ Ignored if <code>:symbol</code> is <code>false</code> or <code>:symbol_first</co
       
         <div class="doc">
           
-          <p>See <code><a href="../Money/Formatting.html#format%28%2A%2Aoptions%29%3AString-instance-method">#format</a></code>.</p>
+          <p>See <code><a href="../Money/Formatting.html#format%28options%3ANamedTuple%29%3AString-instance-method">#format</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/money/formatting.cr#L284" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/money/formatting.cr#L284" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -309,49 +309,49 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L10" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L10" target="_blank">
         money/currency.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/enumeration.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/enumeration.cr#L2" target="_blank">
         money/currency/enumeration.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/json.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/json.cr#L3" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/loader.cr#L4" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/loader.cr#L4" target="_blank">
         money/currency/loader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/rate.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/rate.cr#L1" target="_blank">
         money/currency/rate.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/rate_store.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/rate_store.cr#L1" target="_blank">
         money/currency/rate_store.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/rate_store/memory.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/rate_store/memory.cr#L1" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -384,6 +384,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#register%28currency%3ACurrency%29%3ACurrency-class-method" class="signature"><strong>.register</strong>(currency : Currency) : Currency</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#wrap%28value%3AString%7CSymbol%7CCurrency%29%3ACurrency-class-method" class="signature"><strong>.wrap</strong>(value : String | Symbol | Currency) : Currency</a>
         
           <div class="summary"><p>Wraps the <em>value</em> in a <code><a href="../Money/Currency.html">Currency</a></code> object.</p></div>
@@ -405,7 +410,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#register%28currency%3ACurrency%29-class-method" class="signature"><strong>.register</strong>(currency : Currency)</a>
+        <a href="#reset%21%3ANil-class-method" class="signature"><strong>.reset!</strong> : Nil</a>
         
       </li>
     
@@ -417,7 +422,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#unregister%28currency%3AString%7CSymbol%7CCurrency%29-class-method" class="signature"><strong>.unregister</strong>(currency : String | Symbol | Currency)</a>
+        <a href="#unregister%28currency%3AString%7CSymbol%7CCurrency%29%3ACurrency%7CNil-class-method" class="signature"><strong>.unregister</strong>(currency : String | Symbol | Currency) : Currency | Nil</a>
         
       </li>
     
@@ -519,7 +524,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#iso%3F-instance-method" class="signature"><strong>#iso?</strong></a>
+        <a href="#iso%3F%3ABool-instance-method" class="signature"><strong>#iso?</strong> : Bool</a>
         
           <div class="summary"><p>Returns <code>true</code> if iso currency.</p></div>
         
@@ -671,7 +676,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency/json.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency/json.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -687,7 +692,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="register(currency:Currency):Currency-class-method">
+      <div class="signature">
+        
+        def self.<strong>register</strong>(currency : <a href="../Money/Currency.html">Currency</a>) : <a href="../Money/Currency.html">Currency</a>
+
+        <a class="method-permalink" href="#register%28currency%3ACurrency%29%3ACurrency-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -713,7 +734,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -730,18 +751,18 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="register(currency:Currency)-class-method">
+    <div class="entry-detail" id="reset!:Nil-class-method">
       <div class="signature">
         
-        def self.<strong>register</strong>(currency : <a href="../Money/Currency.html">Currency</a>)
+        def self.<strong>reset!</strong> : Nil
 
-        <a class="method-permalink" href="#register%28currency%3ACurrency%29-class-method">#</a>
+        <a class="method-permalink" href="#reset%21%3ANil-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -762,23 +783,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="unregister(currency:String|Symbol|Currency)-class-method">
+    <div class="entry-detail" id="unregister(currency:String|Symbol|Currency):Currency|Nil-class-method">
       <div class="signature">
         
-        def self.<strong>unregister</strong>(currency : String | Symbol | <a href="../Money/Currency.html">Currency</a>)
+        def self.<strong>unregister</strong>(currency : String | Symbol | <a href="../Money/Currency.html">Currency</a>) : <a href="../Money/Currency.html">Currency</a> | Nil
 
-        <a class="method-permalink" href="#unregister%28currency%3AString%7CSymbol%7CCurrency%29-class-method">#</a>
+        <a class="method-permalink" href="#unregister%28currency%3AString%7CSymbol%7CCurrency%29%3ACurrency%7CNil-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -804,7 +825,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -840,7 +861,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -861,7 +882,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L119" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -900,7 +921,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -916,7 +937,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -932,7 +953,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -953,7 +974,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L92" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L98" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -969,7 +990,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -992,7 +1013,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1031,7 +1052,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1052,17 +1073,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="iso?-instance-method">
+    <div class="entry-detail" id="iso?:Bool-instance-method">
       <div class="signature">
         
-        def <strong>iso?</strong>
+        def <strong>iso?</strong> : Bool
 
-        <a class="method-permalink" href="#iso%3F-instance-method">#</a>
+        <a class="method-permalink" href="#iso%3F%3ABool-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1074,7 +1095,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L99" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1090,7 +1111,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1106,7 +1127,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1122,7 +1143,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1138,7 +1159,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1154,7 +1175,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1170,7 +1191,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1186,7 +1207,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1202,7 +1223,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1218,7 +1239,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1242,7 +1263,7 @@ to the given <em>io</em>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/83da5c5/src/money/currency.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/fa5508a/src/money/currency.cr#L136" target="_blank">View source</a>]
         
       </div>
     </div>
