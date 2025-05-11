@@ -275,7 +275,7 @@ struct Money
       formatted
     end
 
-    # :ditto:
+    # :nodoc:
     def format(**options) : String
       format(options)
     end
