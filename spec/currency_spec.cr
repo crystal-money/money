@@ -78,6 +78,24 @@ describe Money::Currency do
     end
   end
 
+  describe ".reset!" do
+    currency = Money::Currency.new(
+      priority: 1,
+      code: "XXX",
+      name: "Golden Doubloon",
+      symbol: "%",
+      symbol_first: false,
+      subunit_to_unit: 100
+    )
+
+    it "resets all registered currencies to their defaults" do
+      Money::Currency.register(currency)
+      Money::Currency.find?("XXX").should_not be_nil # Sanity check
+      Money::Currency.reset!
+      Money::Currency.find?("XXX").should be_nil
+    end
+  end
+
   describe "#<=>" do
     it "compares objects by priority" do
       Money::Currency.find(:cad).should be > Money::Currency.find(:usd)

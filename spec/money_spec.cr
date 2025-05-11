@@ -200,7 +200,7 @@ describe Money do
       end
 
       it "loads currency by string" do
-        money.currency.should be Money::Currency["EUR"]
+        money.currency.should eq Money::Currency["EUR"]
       end
     end
   end

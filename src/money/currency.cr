@@ -55,6 +55,12 @@ struct Money
       end
     end
 
+    def self.reset! : Nil
+      table_mutex.synchronize do
+        @@table = load_currencies
+      end
+    end
+
     # Wraps the *value* in a `Currency` object.
     #
     # ```
