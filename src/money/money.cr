@@ -1,3 +1,4 @@
+require "./money/context"
 require "./money/allocate"
 require "./money/arithmetic"
 require "./money/casting"
@@ -14,6 +15,8 @@ require "./money/parse"
 #
 # `Money` is a value object and should be treated as immutable.
 struct Money
+  extend Money::Context::Delegators
+
   extend Money::Constructors
   extend Money::Parse
 
@@ -25,12 +28,6 @@ struct Money
 
   include Comparable(Money)
 
-  # Use this to enable infinite precision cents
-  class_property? infinite_precision : Bool = false
-
-  # Default rounding mode
-  class_property rounding_mode : Number::RoundingMode = :ties_even
-
   # Sets the given rounding *mode* within the scope of the given block
   def self.with_rounding_mode(mode : Number::RoundingMode, &)
     prev_rounding_mode = rounding_mode
@@ -41,20 +38,6 @@ struct Money
       self.rounding_mode = prev_rounding_mode
     end
   end
-
-  # Sets the default currency for creating new `Money` object.
-  class_property default_currency : Currency { Currency.find("USD") }
-
-  # :ditto:
-  def self.default_currency=(currency_code : String | Symbol)
-    self.default_currency = Currency.find(currency_code)
-  end
-
-  # Each `Money` object is associated to a bank object, which is responsible
-  # for currency exchange. This property allows you to specify the default
-  # bank object. The default value for this property is an instance of
-  # `Bank::VariableExchange`. It allows one to specify custom exchange rates.
-  class_property default_bank : Bank { Bank::VariableExchange.new }
 
   # Sets the default bank to be a `Bank::SingleCurrency` bank that raises on
   # currency exchange. Useful when apps operate in a single currency at a time.
