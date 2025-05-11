@@ -1,11 +1,7 @@
 struct Money
   abstract class Bank
-    # It defaults to using an in-memory, thread safe store instance for
-    # storing exchange rates.
-    class_property default_store : Currency::RateStore { Currency::RateStore::Memory.new }
-
     # An exchange `Currency::RateStore` object, used to persist exchange rate pairs.
-    property store : Currency::RateStore { self.class.default_store }
+    property store : Currency::RateStore { Money.default_rate_store }
 
     def initialize(@store = nil)
     end
