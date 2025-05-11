@@ -2,12 +2,10 @@
   "iso_numeric": 352,
   "code": "ISK",
   "name": "Icelandic Króna",
-  "symbol": "kr",
-  "alternate_symbols": [
-    "Íkr"
-  ],
+  "symbol": "kr.",
+  "alternate_symbols": ["Íkr"],
   "subunit_to_unit": 1,
-  "symbol_first": true,
+  "symbol_first": false,
   "decimal_mark": ",",
   "thousands_separator": ".",
   "smallest_denomination": 1

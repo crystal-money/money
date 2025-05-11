@@ -276,7 +276,7 @@ describe Money::Formatting do
       end
 
       it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies that have no subunit" do
-        Money.new(300_000, "ISK").format(delimiter: ",", separator: ".").should eq "kr300,000"
+        Money.new(300_000, "ISK").format(delimiter: ",", separator: ".").should eq "300,000 kr."
       end
 
       it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies with subunits that drop_trailing_zeros" do
