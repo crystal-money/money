@@ -3,7 +3,7 @@ struct Money
     class Error < Money::Error
     end
 
-    PATTERNS = {
+    private PATTERNS = {
       # 10,23 PLN
       /(?<sign>\+|\-)?(?<amount>\d+(?:[.,]\d+)?)\s*(?<symbol>[^0-9,.]+)/,
       # $10.23

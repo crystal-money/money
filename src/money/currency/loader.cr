@@ -3,7 +3,7 @@ require "json"
 struct Money
   class Currency
     module Loader
-      DATA_PATH = File.expand_path("../../../../data/currencies", __FILE__)
+      private DATA_PATH = File.expand_path("../../../../data/currencies", __FILE__)
 
       # Loads and returns the currencies stored in JSON files
       # inside of `data/currencies` directory.

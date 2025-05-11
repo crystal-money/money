@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-ROUNDING_CONVERSIONS = {
+private ROUNDING_CONVERSIONS = {
   Number::RoundingMode::TO_ZERO => [
     {10.885, 10.88},
   ],

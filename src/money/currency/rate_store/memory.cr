@@ -13,7 +13,7 @@ class Money::Currency
   # end
   # ```
   class RateStore::Memory < RateStore
-    INDEX_KEY_SEPARATOR = '_'
+    private INDEX_KEY_SEPARATOR = '_'
 
     # Initializes a new `RateStore::Memory` object.
     def initialize
