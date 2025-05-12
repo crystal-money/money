@@ -44,14 +44,22 @@ class Money::Currency
       self[from, to]? || raise UnknownRateError.new("No conversion rate known for #{from} -> #{to}")
     end
 
+    # Same as `#each`, but doesn't use concurrency-safe transaction.
+    abstract def unsafe_each(&block : T -> _)
+
     # Iterates over list of `Rate` objects.
+    # NOTE: Uses `transaction` to synchronize data access.
     #
     # ```
     # store.each do |rate|
     #   puts rate
     # end
     # ```
-    abstract def each(&block : T -> _)
+    def each(&block : Rate -> _) : Nil
+      transaction do
+        unsafe_each { |rate| yield rate }
+      end
+    end
 
     # See `#clear`.
     abstract def clear_rates : Nil
