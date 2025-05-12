@@ -271,6 +271,45 @@ describe Money do
     end
   end
 
+  describe "#round" do
+    it "returns rounded value with given precision" do
+      Money.new(10.12345, "USD").round.amount.should eq 10.to_big_d
+      Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
+      Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
+      Money.new(10.12345, "USD").round(3).amount.should eq 10.12.to_big_d
+      Money.new(10.12345, "USD").round(4).amount.should eq 10.12.to_big_d
+    end
+
+    context "with Money.infinite_precision = true" do
+      it "returns rounded value with given precision" do
+        with_infinite_precision(true) do
+          Money.new(10.12345, "USD").round.amount.should eq 10.to_big_d
+          Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
+          Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
+          Money.new(10.12345, "USD").round(3).amount.should eq 10.123.to_big_d
+          Money.new(10.12345, "USD").round(4).amount.should eq 10.1234.to_big_d
+        end
+      end
+
+      it "returns rounded value with given precision and rounding mode" do
+        with_infinite_precision(true) do
+          Money.new(10.12345, "USD").round.amount
+            .should eq 10.to_big_d
+          Money.new(10.12345, "USD").round(1, mode: :ties_even).amount
+            .should eq 10.1.to_big_d
+          Money.new(10.12345, "USD").round(2, mode: :ties_even).amount
+            .should eq 10.12.to_big_d
+          Money.new(10.12345, "USD").round(3, mode: :ties_even).amount
+            .should eq 10.123.to_big_d
+          Money.new(10.12345, "USD").round(4, mode: :ties_even).amount
+            .should eq 10.1234.to_big_d
+          Money.new(10.12345, "USD").round(4, mode: :ties_away).amount
+            .should eq 10.1235.to_big_d
+        end
+      end
+    end
+  end
+
   describe "#currency" do
     it "returns the currency object" do
       Money.zero.currency.should be Money::Currency.find("USD")
