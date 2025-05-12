@@ -16,9 +16,13 @@ struct Money
 
     protected class_getter table_mutex : Mutex { Mutex.new(:reentrant) }
 
+    @@table : Hash(String, Currency)?
+
     # List of known currencies.
-    class_getter table : Hash(String, Currency) do
-      table_mutex.synchronize { load_currencies }
+    def self.table : Hash(String, Currency)
+      table_mutex.synchronize do
+        @@table ||= load_currencies
+      end
     end
 
     getter priority : Int32?
