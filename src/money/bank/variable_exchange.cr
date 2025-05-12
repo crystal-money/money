@@ -9,7 +9,7 @@ struct Money
       Money.new(fractional: fractional, currency: to, bank: self)
     end
 
-    def calculate_fractional(from : Money, to : Currency) : BigDecimal
+    private def calculate_fractional(from : Money, to : Currency) : BigDecimal
       ratio = from.currency.subunit_to_unit.to_big_d / to.subunit_to_unit
 
       from.fractional / ratio
