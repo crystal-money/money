@@ -144,12 +144,12 @@ struct Money
     # Money.new(100).modulo(9)            # => Money(@amount=0.01)
     # Money.new(100).modulo(Money.new(9)) # => Money(@amount=0.01)
     # ```
-    def modulo(other) : Money
+    def modulo(other : Number | Money) : Money
       divmod(other)[1]
     end
 
     # Alias of `#modulo`.
-    def %(other) : Money
+    def %(other : Number | Money) : Money
       modulo(other)
     end
 
