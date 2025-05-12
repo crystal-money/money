@@ -178,20 +178,22 @@ struct Money
   # cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
   # and for CHF 0.08, CHF 0.10.
   #
-  # See `Currency#smallest_denomination`, also `Money.rounding_mode`.
-  def nearest_cash_value : BigDecimal
+  # See also `Currency#smallest_denomination`.
+  def nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : BigDecimal
     unless smallest_denomination = currency.smallest_denomination
       raise UndefinedSmallestDenominationError.new
     end
     rounded_value =
-      (fractional / smallest_denomination).round(mode: Money.rounding_mode)
+      (fractional / smallest_denomination).round(rounding_mode)
     rounded_value *= smallest_denomination
     rounded_value
   end
 
-  # See `#nearest_cash_value`.
-  def rounded_to_nearest_cash_value : Money
-    copy_with(fractional: nearest_cash_value)
+  # Returns a new `Money` instance with the nearest possible amount in cash value.
+  #
+  # See also `#nearest_cash_value`.
+  def rounded_to_nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money
+    copy_with(fractional: nearest_cash_value(rounding_mode))
   end
 
   # Rounds the monetary amount to smallest unit of coinage, using
