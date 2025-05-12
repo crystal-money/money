@@ -1,7 +1,14 @@
 struct Money
   abstract class Bank
     # An exchange `Currency::RateStore` object, used to persist exchange rate pairs.
-    property store : Currency::RateStore { Money.default_rate_store }
+    #
+    # NOTE: Will return `Money.default_rate_store` if set to `nil` (the default).
+    property store : Currency::RateStore?
+
+    # :ditto:
+    def store : Currency::RateStore
+      @store || Money.default_rate_store
+    end
 
     def initialize(@store = nil)
     end
