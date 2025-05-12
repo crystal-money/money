@@ -16,7 +16,7 @@ class Money::Currency
     private INDEX_KEY_SEPARATOR = '_'
 
     @index = {} of String => Rate
-    @mutex = Mutex.new
+    @mutex = Mutex.new(:reentrant)
 
     protected def transaction(& : -> _)
       @mutex.synchronize { yield }
