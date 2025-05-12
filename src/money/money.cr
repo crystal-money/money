@@ -123,6 +123,18 @@ struct Money
     end
   end
 
+  # Returns a new `Money` instance in a given currency - if it's different
+  # from the current `#currency` - or `self` otherwise, leaving the amount
+  # intact and **not** performing currency conversion.
+  def with_currency(new_currency : String | Symbol | Currency) : Money
+    new_currency = Currency.wrap(new_currency)
+    if new_currency == currency
+      self
+    else
+      copy_with(currency: new_currency, amount: @amount)
+    end
+  end
+
   # Returns the numerical value of the money.
   #
   # ```

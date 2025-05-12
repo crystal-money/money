@@ -205,6 +205,22 @@ describe Money do
     end
   end
 
+  describe "#with_currency" do
+    it "returns self if currency is the same" do
+      money = Money.new(10_00, "USD")
+      money.with_currency("USD").should eq money
+    end
+
+    it "returns a new instance in a given currency" do
+      money = Money.new(10_00, "USD")
+      new_money = money.with_currency("EUR")
+
+      new_money.should eq Money.new(10_00, "EUR")
+      new_money.amount.should eq money.amount
+      new_money.bank.should eq money.bank
+    end
+  end
+
   describe "#nearest_cash_value" do
     it "rounds to the nearest possible cash value" do
       sets = {
