@@ -15,16 +15,10 @@ class Money::Currency
   class RateStore::Memory < RateStore
     private INDEX_KEY_SEPARATOR = '_'
 
-    # Initializes a new `RateStore::Memory` object.
-    def initialize
-      super
-      @index = {} of String => Rate
-      @mutex = Mutex.new
-    end
+    @index = {} of String => Rate
+    @mutex = Mutex.new
 
-    # Wraps block execution in a thread-safe transaction.
-    # NOTE: Uses `Mutex` to synchronize data access.
-    def transaction(& : -> _)
+    protected def transaction(& : -> _)
       @mutex.synchronize { yield }
     end
 
@@ -37,7 +31,7 @@ class Money::Currency
     end
 
     protected def unsafe_each(&)
-      @index.each { |_, rate| yield rate }
+      @index.each_value { |rate| yield rate }
     end
 
     protected def clear_rates : Nil
