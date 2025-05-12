@@ -96,6 +96,16 @@ describe Money::Arithmetic do
     end
   end
 
+  describe "#zero?" do
+    it "returns whether the amount is 0" do
+      Money.new(0, "USD").zero?.should be_true
+      Money.new(0, "EUR").zero?.should be_true
+      Money.new(1, "USD").zero?.should be_false
+      Money.new(10, "JPY").zero?.should be_false
+      Money.new(-1, "EUR").zero?.should be_false
+    end
+  end
+
   describe "#+" do
     it "adds other amount to current amount (same currency)" do
       (Money.new(10_00, "USD") + Money.new(90, "USD")).should eq Money.new(10_90, "USD")
@@ -337,16 +347,6 @@ describe Money::Arithmetic do
             .should eq 10.1235.to_big_d
         end
       end
-    end
-  end
-
-  describe "#zero?" do
-    it "returns whether the amount is 0" do
-      Money.new(0, "USD").zero?.should be_true
-      Money.new(0, "EUR").zero?.should be_true
-      Money.new(1, "USD").zero?.should be_false
-      Money.new(10, "JPY").zero?.should be_false
-      Money.new(-1, "EUR").zero?.should be_false
     end
   end
 end
