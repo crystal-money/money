@@ -86,7 +86,23 @@ struct Money
       wrap?(value) || raise UnknownCurrencyError.new("Can't find currency: #{value}")
     end
 
-    def initialize(*, @priority = nil, @iso_numeric = nil, @code, @name = nil, @symbol = nil, @disambiguate_symbol = nil, @alternate_symbols = nil, @subunit = nil, @subunit_to_unit, @symbol_first = nil, @html_entity = nil, @decimal_mark = nil, @thousands_separator = nil, @smallest_denomination = nil)
+    def initialize(
+      *,
+      @priority = nil,
+      @iso_numeric = nil,
+      @code,
+      @name = nil,
+      @symbol = nil,
+      @disambiguate_symbol = nil,
+      @alternate_symbols = nil,
+      @subunit = nil,
+      @subunit_to_unit,
+      @symbol_first = nil,
+      @html_entity = nil,
+      @decimal_mark = nil,
+      @thousands_separator = nil,
+      @smallest_denomination = nil,
+    )
     end
 
     # Returns the relation between subunit and unit as a base 10 exponent.
