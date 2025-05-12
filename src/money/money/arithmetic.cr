@@ -39,7 +39,7 @@ struct Money
     # Money.new(-100).abs # => Money(@amount=1)
     # ```
     def abs : Money
-      copy_with(amount: amount.abs)
+      copy_with(amount: @amount.abs)
     end
 
     # Alias of `#abs`.
@@ -57,7 +57,7 @@ struct Money
     # -Money.new(100) # => Money(@amount=-1)
     # ```
     def - : Money
-      copy_with(amount: -amount)
+      copy_with(amount: -@amount)
     end
 
     # Returns a new `Money` object containing the sum of the two
@@ -69,7 +69,7 @@ struct Money
     def +(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        copy_with(amount: amount + converted_other.amount)
+        copy_with(amount: @amount + converted_other.@amount)
       end
     end
 
@@ -82,7 +82,7 @@ struct Money
     def -(other : Money) : Money
       return self if other.zero?
       with_same_currency(other) do |converted_other|
-        copy_with(amount: amount - converted_other.amount)
+        copy_with(amount: @amount - converted_other.@amount)
       end
     end
 
@@ -93,7 +93,7 @@ struct Money
     # Money.new(100) * 2 # => Money(@amount=2)
     # ```
     def *(other : Number) : Money
-      copy_with(amount: amount * other)
+      copy_with(amount: @amount * other)
     end
 
     # Divides the monetary value with the given *other* `Number` and returns
@@ -103,7 +103,7 @@ struct Money
     # Money.new(100) / 10 # => Money(@amount=0.1)
     # ```
     def /(other : Number) : Money
-      copy_with(amount: amount / other)
+      copy_with(amount: @amount / other)
     end
 
     # Divides the monetary value with the given *other* `Money` object and
@@ -114,7 +114,7 @@ struct Money
     # ```
     def /(other : Money) : BigDecimal
       with_same_currency(other) do |converted_other|
-        amount / converted_other.amount
+        @amount / converted_other.@amount
       end
     end
 
