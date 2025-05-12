@@ -63,7 +63,7 @@ describe Money do
 
     context "given a currency is not provided" do
       it "should have the default currency" do
-        Money.zero.currency.should be Money.default_currency
+        Money.new.currency.should be Money.default_currency
       end
     end
 
@@ -77,7 +77,7 @@ describe Money do
 
     context "given a bank is not provided" do
       it "should return the default bank" do
-        Money.zero.bank.should be Money.default_bank
+        Money.new.bank.should be Money.default_bank
       end
     end
 
@@ -283,7 +283,7 @@ describe Money do
     end
 
     it "produces a BigDecimal" do
-      Money.zero.amount.should be_a BigDecimal
+      Money.new.amount.should be_a BigDecimal
     end
   end
 
@@ -327,27 +327,31 @@ describe Money do
   end
 
   describe "#currency" do
-    it "returns the currency object" do
-      Money.zero.currency.should be Money::Currency.find("USD")
+    it "returns default Currency object" do
+      Money.new(100).currency.should be Money.default_currency
+    end
+
+    it "returns Currency object passed in #initialize" do
+      Money.new(100, "EUR").currency.should be Money::Currency["EUR"]
     end
   end
 
   describe "#bank" do
     it "returns default Bank object" do
-      Money.zero.bank.should be Money.default_bank
+      Money.new(100).bank.should be Money.default_bank
     end
 
     it "returns Bank object passed in #initialize" do
       Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.zero(bank: bank).bank.should be bank
+        Money.new(100, bank: bank).bank.should be bank
       end
     end
 
     it "takes Bank object" do
       Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.zero.tap do |zero|
-          zero.bank = bank
-          zero.bank.should be bank
+        Money.new(100).tap do |money|
+          money.bank = bank
+          money.bank.should be bank
         end
       end
     end

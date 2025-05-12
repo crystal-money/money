@@ -5,6 +5,22 @@ describe Money::Constructors do
     it "creates a new Money object of 0 cents" do
       Money.zero.should eq Money.new(0)
     end
+
+    it "uses default Bank object" do
+      Money.zero.bank.should be Money.default_bank
+    end
+
+    it "uses given Currency object" do
+      Money::Currency["EUR"].tap do |currency|
+        Money.zero(currency: currency).currency.should be currency
+      end
+    end
+
+    it "uses given Bank object" do
+      Money::Bank::SingleCurrency.new.tap do |bank|
+        Money.zero(bank: bank).bank.should be bank
+      end
+    end
   end
 
   describe ".us_dollar" do
