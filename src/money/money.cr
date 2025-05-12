@@ -28,7 +28,7 @@ struct Money
 
   include Comparable(Money)
 
-  # Sets the given rounding *mode* within the scope of the given block
+  # Sets the given rounding *mode* within the lifetime of the given block.
   def self.with_rounding_mode(mode : Number::RoundingMode, &)
     prev_rounding_mode = rounding_mode
     self.rounding_mode = mode
@@ -53,7 +53,7 @@ struct Money
 
   # The `Bank` object which currency exchanges are performed with.
   #
-  # NOTE: Setting `nil` (the default) will delegate to `Money.default_bank`.
+  # NOTE: Will return `Money.default_bank` if set to `nil` (the default).
   property bank : Bank?
 
   # :ditto:
@@ -62,7 +62,7 @@ struct Money
   end
 
   # Creates a new `Money` object of value given as an *amount*
-  # of the given *currency* (as fractional if `Int`, or whole amount otherwise)
+  # of the given *currency* (as fractional if `Int`, or whole amount otherwise).
   #
   # ```
   # Money.new                      # => Money(@amount=0 @currency="USD")
