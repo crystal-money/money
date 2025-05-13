@@ -17,6 +17,7 @@ struct Money
       end
 
       # Alias of `#find?`.
+      @[AlwaysInline]
       def []?(key : String | Symbol) : Currency?
         find?(key)
       end
@@ -34,6 +35,7 @@ struct Money
       end
 
       # Alias of `#find`.
+      @[AlwaysInline]
       def [](key : String | Symbol) : Currency
         find(key)
       end

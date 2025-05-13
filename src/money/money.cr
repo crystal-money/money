@@ -167,11 +167,13 @@ struct Money
   end
 
   # Alias of `#amount`.
+  @[AlwaysInline]
   def dollars : BigDecimal
     amount
   end
 
   # Alias of `#fractional`.
+  @[AlwaysInline]
   def cents : BigDecimal
     fractional
   end

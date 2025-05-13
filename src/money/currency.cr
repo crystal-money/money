@@ -118,6 +118,7 @@ struct Money
     end
 
     # Alias of `#exponent`.
+    @[AlwaysInline]
     def decimal_places : Int32
       exponent
     end

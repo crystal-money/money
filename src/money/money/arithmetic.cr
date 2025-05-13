@@ -47,6 +47,7 @@ struct Money
     # ```
     # +Money.new(-100) # => Money(@amount=1)
     # ```
+    @[AlwaysInline]
     def + : Money
       abs
     end
@@ -155,6 +156,7 @@ struct Money
     end
 
     # Alias of `#modulo`.
+    @[AlwaysInline]
     def %(other : Number | Money) : Money
       modulo(other)
     end
