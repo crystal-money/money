@@ -65,14 +65,14 @@ describe Money::Allocate do
 
     context "fractional amounts" do
       it "returns the amount when array contains only one element" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(100).allocate({1}).map(&.cents).should eq [100]
           Money.new(100).allocate({5}).map(&.cents).should eq [100]
         end
       end
 
       it "splits the amount into whole parts respecting the order" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(100).allocate({1, 1}).map(&.cents).should eq [50, 50]
           Money.new(100).allocate({1, 1, 2}).map(&.cents).should eq [25, 25, 50]
           Money.new(100).allocate({7, 3}).map(&.cents).should eq [70, 30]
@@ -80,14 +80,14 @@ describe Money::Allocate do
       end
 
       it "splits the amount proportionally to the given parts" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(10).allocate({1, 1, 2}).map(&.cents).should eq [2.5, 2.5, 5]
           Money.new(7).allocate({1, 1}).map(&.cents).should eq [3.5, 3.5]
         end
       end
 
       it "handles splits into repeating decimals" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           amount = 100
           parts = Money.new(amount).allocate({1, 1, 1}).map(&.cents)
 
@@ -182,13 +182,13 @@ describe Money::Allocate do
 
     context "fractional amounts" do
       it "returns the amount when 1 is given" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(100).split(1).map(&.cents).should eq [100]
         end
       end
 
       it "splits the amount into equal parts" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(100).split(2).map(&.cents).should eq [50, 50]
           Money.new(100).split(4).map(&.cents).should eq [25, 25, 25, 25]
           Money.new(100).split(5).map(&.cents).should eq [20, 20, 20, 20, 20]
@@ -196,14 +196,14 @@ describe Money::Allocate do
       end
 
       it "splits the amount into equal fractions" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(5).split(2).map(&.cents).should eq [2.5, 2.5]
           Money.new(5).split(4).map(&.cents).should eq [1.25, 1.25, 1.25, 1.25]
         end
       end
 
       it "handles splits into repeating decimals" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           amount = 100
           parts = Money.new(amount).split(3).map(&.cents)
 

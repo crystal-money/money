@@ -28,6 +28,17 @@ struct Money
 
   include Comparable(Money)
 
+  # Sets the given infinite precision value within the lifetime of the given block.
+  def self.with_infinite_precision(enabled = true, &)
+    prev_infinite_precision = infinite_precision?
+    self.infinite_precision = enabled
+    begin
+      yield
+    ensure
+      self.infinite_precision = prev_infinite_precision
+    end
+  end
+
   # Sets the given rounding *mode* within the lifetime of the given block.
   def self.with_rounding_mode(mode : Number::RoundingMode, &)
     prev_rounding_mode = rounding_mode

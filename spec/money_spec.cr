@@ -146,7 +146,7 @@ describe Money do
     end
 
     it "does not round the given amount when .infinite_precision? is set" do
-      with_infinite_precision(true) do
+      Money.with_infinite_precision do
         Money.from_amount(4.444, "USD").amount.should eq 4.444.to_big_d
         Money.from_amount(5.555, "USD").amount.should eq 5.555.to_big_d
         Money.from_amount(444.4, "JPY").amount.should eq 444.4.to_big_d
@@ -179,7 +179,7 @@ describe Money do
     end
 
     it "does not round the given amount when .infinite_precision? is set" do
-      with_infinite_precision(true) do
+      Money.with_infinite_precision do
         money = Money.new(fractional: 1_00.555.to_big_d)
         money.fractional.should eq 1_00.555.to_big_d
       end
@@ -294,7 +294,7 @@ describe Money do
 
     context "with Money.infinite_precision = true" do
       it "returns rounded value with given precision" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(10.12345, "USD").round.amount.should eq 10.to_big_d
           Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
           Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
@@ -304,7 +304,7 @@ describe Money do
       end
 
       it "returns rounded value with given precision and rounding mode" do
-        with_infinite_precision(true) do
+        Money.with_infinite_precision do
           Money.new(10.12345, "USD").round.amount
             .should eq 10.to_big_d
           Money.new(10.12345, "USD").round(1, mode: :ties_even).amount
