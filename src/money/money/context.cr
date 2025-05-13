@@ -1,5 +1,6 @@
 struct Money
   class Context
+    # :nodoc:
     module Delegators
       delegate \
         :infinite_precision?, :infinite_precision=,

@@ -16,7 +16,7 @@ struct Money
         end
       end
 
-      # :ditto:
+      # Alias of `#find?`.
       def []?(key : String | Symbol) : Currency?
         find?(key)
       end
@@ -33,7 +33,7 @@ struct Money
           raise UnknownCurrencyError.new("Can't find currency: #{key}")
       end
 
-      # :ditto:
+      # Alias of `#find`.
       def [](key : String | Symbol) : Currency
         find(key)
       end
