@@ -8,7 +8,7 @@ struct Money
     # Money.new(-1).positive? # => false
     # ```
     def positive?
-      amount > 0
+      amount.positive?
     end
 
     # Returns `true` if the money amount is less than 0, `false` otherwise.
@@ -19,7 +19,7 @@ struct Money
     # Money.new(1).negative?  # => false
     # ```
     def negative?
-      amount < 0
+      amount.negative?
     end
 
     # Returns `true` if the money amount is zero.
@@ -30,7 +30,7 @@ struct Money
     # Money.new(-100).zero? # => false
     # ```
     def zero?
-      amount == 0
+      amount.zero?
     end
 
     # Returns absolute value of `self` as a new `Money` object.
@@ -68,6 +68,7 @@ struct Money
     # ```
     def +(other : Money) : Money
       return self if other.zero?
+
       with_same_currency(other) do |converted_other|
         copy_with(amount: @amount + converted_other.@amount)
       end
@@ -81,6 +82,7 @@ struct Money
     # ```
     def -(other : Money) : Money
       return self if other.zero?
+
       with_same_currency(other) do |converted_other|
         copy_with(amount: @amount - converted_other.@amount)
       end
@@ -127,14 +129,18 @@ struct Money
     # ```
     def divmod(other : Money) : {BigDecimal, Money}
       with_same_currency(other) do |converted_other|
-        quotient, remainder = fractional.divmod(converted_other.fractional)
+        quotient, remainder =
+          fractional.divmod(converted_other.fractional)
+
         {quotient, copy_with(fractional: remainder)}
       end
     end
 
     # :ditto:
     def divmod(other : Number) : {Money, Money}
-      quotient, remainder = fractional.divmod(other.to_big_d)
+      quotient, remainder =
+        fractional.divmod(other.to_big_d)
+
       {copy_with(fractional: quotient), copy_with(fractional: remainder)}
     end
 
@@ -159,7 +165,7 @@ struct Money
     # Money.new(100).remainder(9) # => Money(@amount=0.01)
     # ```
     def remainder(other : Number) : Money
-      if (amount < 0 && other < 0) || (amount > 0 && other > 0)
+      if (negative? && other.negative?) || (positive? && other.positive?)
         modulo(other)
       else
         modulo(other) - copy_with(amount: other)

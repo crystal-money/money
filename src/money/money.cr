@@ -118,6 +118,7 @@ struct Money
   # Compares two `Money` objects.
   def <=>(other : Money) : Int32
     return 0 if zero? && other.zero?
+
     with_same_currency(other) do |converted_other|
       amount <=> converted_other.amount
     end
@@ -143,8 +144,11 @@ struct Money
   #
   # See `#to_big_d` and `#fractional`, also `Money.rounding_mode`.
   def amount : BigDecimal
-    return @amount if Money.infinite_precision?
-    @amount.round(currency.exponent, mode: Money.rounding_mode)
+    if Money.infinite_precision?
+      @amount
+    else
+      @amount.round(currency.exponent, mode: Money.rounding_mode)
+    end
   end
 
   # The value of the monetary amount represented in the fractional or subunit

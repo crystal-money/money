@@ -29,7 +29,8 @@ struct Money
       # Money::Currency.find("FOO") # => raises UnknownCurrencyError
       # ```
       def find(key : String | Symbol) : Currency
-        find?(key) || raise UnknownCurrencyError.new("Can't find currency: #{key}")
+        find?(key) ||
+          raise UnknownCurrencyError.new("Can't find currency: #{key}")
       end
 
       # :ditto:
