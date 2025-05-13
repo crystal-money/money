@@ -45,19 +45,21 @@ describe Money::Currency::Enumeration do
     end
 
     it "raises UnknownCurrency with unknown currency" do
-      expect_raises(Money::UnknownCurrencyError, /zZz/) { Money::Currency.find("zZz") }
+      expect_raises(Money::UnknownCurrencyError, "Can't find currency: zZz") do
+        Money::Currency.find("zZz")
+      end
     end
 
     it "returns old object for the same :key" do
-      Money::Currency.find("USD").should be(Money::Currency.find("USD"))
-      Money::Currency.find("USD").should be(Money::Currency.find(:usd))
-      Money::Currency.find("USD").should be(Money::Currency.find(:USD))
-      Money::Currency.find("USD").should be(Money::Currency.find("usd"))
-      Money::Currency.find("USD").should be(Money::Currency.find("Usd"))
+      Money::Currency.find("USD").should be Money::Currency.find("USD")
+      Money::Currency.find("USD").should be Money::Currency.find(:usd)
+      Money::Currency.find("USD").should be Money::Currency.find(:USD)
+      Money::Currency.find("USD").should be Money::Currency.find("usd")
+      Money::Currency.find("USD").should be Money::Currency.find("Usd")
     end
 
     it "returns new object for the different :key" do
-      Money::Currency.find("USD").should_not be(Money::Currency.find("EUR"))
+      Money::Currency.find("USD").should_not be Money::Currency.find("EUR")
     end
   end
 

@@ -30,6 +30,7 @@ describe Money do
 
       context "and the value is NaN" do
         it do
+          expect_raises(ArgumentError) { Money.new(Float32::NAN) }
           expect_raises(ArgumentError) { Money.new(Float64::NAN) }
         end
       end
@@ -70,7 +71,7 @@ describe Money do
     context "given a currency is provided" do
       context "and the currency is NZD" do
         it "should have NZD currency" do
-          Money.new(1, "NZD").currency.should be Money::Currency.find("NZD")
+          Money.new(currency: "NZD").currency.should be Money::Currency.find("NZD")
         end
       end
     end
@@ -85,7 +86,7 @@ describe Money do
       bank = Money::Bank::SingleCurrency.new
 
       it "should return given bank" do
-        Money.new(1, "USD", bank).bank.should be bank
+        Money.new(bank: bank).bank.should be bank
       end
     end
   end
@@ -153,19 +154,14 @@ describe Money do
       end
     end
 
-    it "accepts an optional currency" do
+    it "uses the default currency when no currency is provided" do
       Money.from_amount(1).currency.should eq Money.default_currency
-      Money::Currency["JPY"].tap do |jpy|
-        Money.from_amount(1, jpy).currency.should be jpy
-        Money.from_amount(1, "JPY").currency.should be jpy
-      end
     end
 
-    context "given a currency is provided" do
-      context "and the currency is nil" do
-        it "should have the default currency" do
-          Money.from_amount(1).currency.should be Money.default_currency
-        end
+    it "accepts an optional currency" do
+      Money::Currency.find("JPY").tap do |jpy|
+        Money.from_amount(1, jpy).currency.should be jpy
+        Money.from_amount(1, "JPY").currency.should be jpy
       end
     end
   end
@@ -200,7 +196,7 @@ describe Money do
       end
 
       it "loads currency by string" do
-        money.currency.should eq Money::Currency["EUR"]
+        money.currency.should eq Money::Currency.find("EUR")
       end
     end
   end
@@ -328,28 +324,28 @@ describe Money do
 
   describe "#currency" do
     it "returns default Currency object" do
-      Money.new(100).currency.should be Money.default_currency
+      Money.new.currency.should be Money.default_currency
     end
 
     it "returns Currency object passed in #initialize" do
-      Money.new(100, "EUR").currency.should be Money::Currency["EUR"]
+      Money.new(currency: "EUR").currency.should be Money::Currency.find("EUR")
     end
   end
 
   describe "#bank" do
     it "returns default Bank object" do
-      Money.new(100).bank.should be Money.default_bank
+      Money.new.bank.should be Money.default_bank
     end
 
     it "returns Bank object passed in #initialize" do
       Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.new(100, bank: bank).bank.should be bank
+        Money.new(bank: bank).bank.should be bank
       end
     end
 
     it "takes Bank object" do
       Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.new(100).tap do |money|
+        Money.new.tap do |money|
           money.bank = bank
           money.bank.should be bank
         end
@@ -382,8 +378,8 @@ describe Money do
     end
 
     it "accepts a symbol" do
-      with_default_currency(:eur) do
-        Money.default_currency.should be Money::Currency.find(:eur)
+      with_default_currency(:pln) do
+        Money.default_currency.should be Money::Currency.find("PLN")
       end
     end
   end

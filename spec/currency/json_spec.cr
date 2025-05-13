@@ -17,7 +17,7 @@ describe Money::Currency do
 
     context "(string)" do
       it "returns Currency object using Currency.find when known key is given" do
-        Money::Currency.from_json(%q("USD")).should eq Money::Currency["USD"]
+        Money::Currency.from_json(%q("USD")).should eq Money::Currency.find("USD")
       end
       it "raises UnknownCurrencyError when unknown key is given" do
         expect_raises(Money::UnknownCurrencyError) { Money::Currency.from_json(%q("FOO")) }

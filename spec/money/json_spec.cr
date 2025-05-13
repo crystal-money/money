@@ -12,7 +12,7 @@ describe Money do
         foo_money = Money.from_json(foo_json)
         foo_money.fractional.should eq 10_00
         foo_money.amount.should eq 10.0
-        foo_money.currency.should eq Money::Currency["USD"]
+        foo_money.currency.should eq Money::Currency.find("USD")
       end
     end
 

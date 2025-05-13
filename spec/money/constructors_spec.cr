@@ -11,7 +11,7 @@ describe Money::Constructors do
     end
 
     it "uses given Currency object" do
-      Money::Currency["EUR"].tap do |currency|
+      Money::Currency.find("EUR").tap do |currency|
         Money.zero(currency: currency).currency.should be currency
       end
     end

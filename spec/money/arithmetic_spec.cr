@@ -149,10 +149,10 @@ describe Money::Arithmetic do
   describe "#*" do
     it "multiplies Money by Integer and returns Money" do
       tests = {
-        {a: Money.new(10, :USD), b: 4, c: Money.new(40, :USD)},
-        {a: Money.new(10, :USD), b: -4, c: Money.new(-40, :USD)},
-        {a: Money.new(-10, :USD), b: 4, c: Money.new(-40, :USD)},
-        {a: Money.new(-10, :USD), b: -4, c: Money.new(40, :USD)},
+        {a: Money.new(10, "USD"), b: 4, c: Money.new(40, "USD")},
+        {a: Money.new(10, "USD"), b: -4, c: Money.new(-40, "USD")},
+        {a: Money.new(-10, "USD"), b: 4, c: Money.new(-40, "USD")},
+        {a: Money.new(-10, "USD"), b: -4, c: Money.new(40, "USD")},
       }
       tests.each do |test|
         (test[:a] * test[:b]).should eq test[:c]
@@ -163,10 +163,10 @@ describe Money::Arithmetic do
   describe "#/" do
     it "divides Money by Integer and returns Money" do
       tests = {
-        {a: Money.new(13, :USD), b: 4, c: Money.new(3, :USD)},
-        {a: Money.new(13, :USD), b: -4, c: Money.new(-3, :USD)},
-        {a: Money.new(-13, :USD), b: 4, c: Money.new(-3, :USD)},
-        {a: Money.new(-13, :USD), b: -4, c: Money.new(3, :USD)},
+        {a: Money.new(13, "USD"), b: 4, c: Money.new(3, "USD")},
+        {a: Money.new(13, "USD"), b: -4, c: Money.new(-3, "USD")},
+        {a: Money.new(-13, "USD"), b: 4, c: Money.new(-3, "USD")},
+        {a: Money.new(-13, "USD"), b: -4, c: Money.new(3, "USD")},
       }
       tests.each do |test|
         (test[:a] / test[:b]).should eq test[:c]
@@ -175,10 +175,10 @@ describe Money::Arithmetic do
 
     it "divides Money by Money (same currency) and returns Float64" do
       tests = {
-        {a: Money.new(13, :USD), b: Money.new(4, :USD), c: 3.25},
-        {a: Money.new(13, :USD), b: Money.new(-4, :USD), c: -3.25},
-        {a: Money.new(-13, :USD), b: Money.new(4, :USD), c: -3.25},
-        {a: Money.new(-13, :USD), b: Money.new(-4, :USD), c: 3.25},
+        {a: Money.new(13, "USD"), b: Money.new(4, "USD"), c: 3.25},
+        {a: Money.new(13, "USD"), b: Money.new(-4, "USD"), c: -3.25},
+        {a: Money.new(-13, "USD"), b: Money.new(4, "USD"), c: -3.25},
+        {a: Money.new(-13, "USD"), b: Money.new(-4, "USD"), c: 3.25},
       }
       tests.each do |test|
         (test[:a] / test[:b]).should eq test[:c]
@@ -191,10 +191,10 @@ describe Money::Arithmetic do
 
       with_default_bank(bank) do
         tests = {
-          {a: Money.new(13, :USD), b: Money.new(4, :EUR), c: 1.625},
-          {a: Money.new(13, :USD), b: Money.new(-4, :EUR), c: -1.625},
-          {a: Money.new(-13, :USD), b: Money.new(4, :EUR), c: -1.625},
-          {a: Money.new(-13, :USD), b: Money.new(-4, :EUR), c: 1.625},
+          {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: 1.625},
+          {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: -1.625},
+          {a: Money.new(-13, "USD"), b: Money.new(4, "EUR"), c: -1.625},
+          {a: Money.new(-13, "USD"), b: Money.new(-4, "EUR"), c: 1.625},
         }
         tests.each do |test|
           (test[:a] / test[:b]).should eq test[:c]
@@ -206,10 +206,10 @@ describe Money::Arithmetic do
   describe "#divmod" do
     it "calculates division and modulo with Integer" do
       tests = {
-        {a: Money.new(13, :USD), b: 4, c: {Money.new(3, :USD), Money.new(1, :USD)}},
-        {a: Money.new(13, :USD), b: -4, c: {Money.new(-4, :USD), Money.new(-3, :USD)}},
-        {a: Money.new(-13, :USD), b: 4, c: {Money.new(-4, :USD), Money.new(3, :USD)}},
-        {a: Money.new(-13, :USD), b: -4, c: {Money.new(3, :USD), Money.new(-1, :USD)}},
+        {a: Money.new(13, "USD"), b: 4, c: {Money.new(3, "USD"), Money.new(1, "USD")}},
+        {a: Money.new(13, "USD"), b: -4, c: {Money.new(-4, "USD"), Money.new(-3, "USD")}},
+        {a: Money.new(-13, "USD"), b: 4, c: {Money.new(-4, "USD"), Money.new(3, "USD")}},
+        {a: Money.new(-13, "USD"), b: -4, c: {Money.new(3, "USD"), Money.new(-1, "USD")}},
       }
       tests.each do |test|
         test[:a].divmod(test[:b]).should eq test[:c]
@@ -218,10 +218,10 @@ describe Money::Arithmetic do
 
     it "calculates division and modulo with Money (same currency)" do
       tests = {
-        {a: Money.new(13, :USD), b: Money.new(4, :USD), c: {3, Money.new(1, :USD)}},
-        {a: Money.new(13, :USD), b: Money.new(-4, :USD), c: {-4, Money.new(-3, :USD)}},
-        {a: Money.new(-13, :USD), b: Money.new(4, :USD), c: {-4, Money.new(3, :USD)}},
-        {a: Money.new(-13, :USD), b: Money.new(-4, :USD), c: {3, Money.new(-1, :USD)}},
+        {a: Money.new(13, "USD"), b: Money.new(4, "USD"), c: {3, Money.new(1, "USD")}},
+        {a: Money.new(13, "USD"), b: Money.new(-4, "USD"), c: {-4, Money.new(-3, "USD")}},
+        {a: Money.new(-13, "USD"), b: Money.new(4, "USD"), c: {-4, Money.new(3, "USD")}},
+        {a: Money.new(-13, "USD"), b: Money.new(-4, "USD"), c: {3, Money.new(-1, "USD")}},
       }
       tests.each do |test|
         test[:a].divmod(test[:b]).should eq test[:c]
@@ -234,10 +234,10 @@ describe Money::Arithmetic do
 
       with_default_bank(bank) do
         tests = {
-          {a: Money.new(13, :USD), b: Money.new(4, :EUR), c: {1, Money.new(5, :USD)}},
-          {a: Money.new(13, :USD), b: Money.new(-4, :EUR), c: {-2, Money.new(-3, :USD)}},
-          {a: Money.new(-13, :USD), b: Money.new(4, :EUR), c: {-2, Money.new(3, :USD)}},
-          {a: Money.new(-13, :USD), b: Money.new(-4, :EUR), c: {1, Money.new(-5, :USD)}},
+          {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: {1, Money.new(5, "USD")}},
+          {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: {-2, Money.new(-3, "USD")}},
+          {a: Money.new(-13, "USD"), b: Money.new(4, "EUR"), c: {-2, Money.new(3, "USD")}},
+          {a: Money.new(-13, "USD"), b: Money.new(-4, "EUR"), c: {1, Money.new(-5, "USD")}},
         }
         tests.each do |test|
           test[:a].divmod(test[:b]).should eq test[:c]
@@ -249,10 +249,10 @@ describe Money::Arithmetic do
   describe "#modulo" do
     it "calculates modulo with Integer" do
       tests = {
-        {a: Money.new(13, :USD), b: 4, c: Money.new(1, :USD)},
-        {a: Money.new(13, :USD), b: -4, c: Money.new(-3, :USD)},
-        {a: Money.new(-13, :USD), b: 4, c: Money.new(3, :USD)},
-        {a: Money.new(-13, :USD), b: -4, c: Money.new(-1, :USD)},
+        {a: Money.new(13, "USD"), b: 4, c: Money.new(1, "USD")},
+        {a: Money.new(13, "USD"), b: -4, c: Money.new(-3, "USD")},
+        {a: Money.new(-13, "USD"), b: 4, c: Money.new(3, "USD")},
+        {a: Money.new(-13, "USD"), b: -4, c: Money.new(-1, "USD")},
       }
       tests.each do |test|
         test[:a].modulo(test[:b]).should eq test[:c]
@@ -261,10 +261,10 @@ describe Money::Arithmetic do
 
     it "calculates modulo with Money (same currency)" do
       tests = {
-        {a: Money.new(13, :USD), b: Money.new(4, :USD), c: Money.new(1, :USD)},
-        {a: Money.new(13, :USD), b: Money.new(-4, :USD), c: Money.new(-3, :USD)},
-        {a: Money.new(-13, :USD), b: Money.new(4, :USD), c: Money.new(3, :USD)},
-        {a: Money.new(-13, :USD), b: Money.new(-4, :USD), c: Money.new(-1, :USD)},
+        {a: Money.new(13, "USD"), b: Money.new(4, "USD"), c: Money.new(1, "USD")},
+        {a: Money.new(13, "USD"), b: Money.new(-4, "USD"), c: Money.new(-3, "USD")},
+        {a: Money.new(-13, "USD"), b: Money.new(4, "USD"), c: Money.new(3, "USD")},
+        {a: Money.new(-13, "USD"), b: Money.new(-4, "USD"), c: Money.new(-1, "USD")},
       }
       tests.each do |test|
         test[:a].modulo(test[:b]).should eq test[:c]
@@ -277,10 +277,10 @@ describe Money::Arithmetic do
 
       with_default_bank(bank) do
         tests = {
-          {a: Money.new(13, :USD), b: Money.new(4, :EUR), c: Money.new(5, :USD)},
-          {a: Money.new(13, :USD), b: Money.new(-4, :EUR), c: Money.new(-3, :USD)},
-          {a: Money.new(-13, :USD), b: Money.new(4, :EUR), c: Money.new(3, :USD)},
-          {a: Money.new(-13, :USD), b: Money.new(-4, :EUR), c: Money.new(-5, :USD)},
+          {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: Money.new(5, "USD")},
+          {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: Money.new(-3, "USD")},
+          {a: Money.new(-13, "USD"), b: Money.new(4, "EUR"), c: Money.new(3, "USD")},
+          {a: Money.new(-13, "USD"), b: Money.new(-4, "EUR"), c: Money.new(-5, "USD")},
         }
         tests.each do |test|
           test[:a].modulo(test[:b]).should eq test[:c]
@@ -292,10 +292,10 @@ describe Money::Arithmetic do
   describe "#remainder" do
     it "calculates remainder with Integer" do
       tests = {
-        {a: Money.new(13, :USD), b: 4, c: Money.new(1, :USD)},
-        {a: Money.new(13, :USD), b: -4, c: Money.new(1, :USD)},
-        {a: Money.new(-13, :USD), b: 4, c: Money.new(-1, :USD)},
-        {a: Money.new(-13, :USD), b: -4, c: Money.new(-1, :USD)},
+        {a: Money.new(13, "USD"), b: 4, c: Money.new(1, "USD")},
+        {a: Money.new(13, "USD"), b: -4, c: Money.new(1, "USD")},
+        {a: Money.new(-13, "USD"), b: 4, c: Money.new(-1, "USD")},
+        {a: Money.new(-13, "USD"), b: -4, c: Money.new(-1, "USD")},
       }
       tests.each do |test|
         test[:a].remainder(test[:b]).should eq test[:c]
@@ -305,9 +305,9 @@ describe Money::Arithmetic do
 
   describe "#abs" do
     it "returns the absolute value as a new Money object" do
-      n = Money.new(-1, :USD)
-      n.abs.should eq Money.new(1, :USD)
-      n.should eq Money.new(-1, :USD)
+      n = Money.new(-1, "USD")
+      n.abs.should eq Money.new(1, "USD")
+      n.should eq Money.new(-1, "USD")
     end
   end
 end
