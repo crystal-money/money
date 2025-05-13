@@ -11,7 +11,7 @@ struct Money
       # Money::Currency.find("FOO") # => nil
       # ```
       def find?(key : String | Symbol) : Currency?
-        table_mutex.synchronize do
+        @@table_mutex.synchronize do
           table[key.to_s.downcase]?
         end
       end
@@ -39,7 +39,7 @@ struct Money
       end
 
       def all : Array(Currency)
-        table_mutex.synchronize do
+        @@table_mutex.synchronize do
           table.values.sort!
         end
       end
