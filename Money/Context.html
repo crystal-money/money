@@ -263,7 +263,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L2" target="_blank">
         money/money/context.cr
       </a>
     
@@ -308,63 +308,63 @@
       <li class="entry-summary">
         <a href="#default_currency%3ACurrency-instance-method" class="signature"><strong>#default_currency</strong> : Currency</a>
         
-          <div class="summary"><p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
+          <div class="summary"><p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#default_currency%3D%28default_currency%3ACurrency%29-instance-method" class="signature"><strong>#default_currency=</strong>(default_currency : Currency)</a>
         
-          <div class="summary"><p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
+          <div class="summary"><p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#default_currency%3D%28currency_code%3AString%7CSymbol%29-instance-method" class="signature"><strong>#default_currency=</strong>(currency_code : String | Symbol)</a>
         
-          <div class="summary"><p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
+          <div class="summary"><p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#default_rate_store%3ACurrency%3A%3ARateStore-instance-method" class="signature"><strong>#default_rate_store</strong> : Currency::RateStore</a>
         
-          <div class="summary"><p>It defaults to using an in-memory, thread safe store instance for storing exchange rates.</p></div>
+          <div class="summary"><p>Default currency rate store used by <code><a href="../Money/Bank.html">Bank</a></code> objects.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#default_rate_store%3D%28default_rate_store%3ACurrency%3A%3ARateStore%29-instance-method" class="signature"><strong>#default_rate_store=</strong>(default_rate_store : Currency::RateStore)</a>
         
-          <div class="summary"><p>It defaults to using an in-memory, thread safe store instance for storing exchange rates.</p></div>
+          <div class="summary"><p>Default currency rate store used by <code><a href="../Money/Bank.html">Bank</a></code> objects.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#infinite_precision%3D%28infinite_precision%3ABool%29-instance-method" class="signature"><strong>#infinite_precision=</strong>(infinite_precision : Bool)</a>
         
-          <div class="summary"><p>Use this to enable infinite precision cents</p></div>
+          <div class="summary"><p>Use this to control infinite precision cents.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#infinite_precision%3F%3ABool-instance-method" class="signature"><strong>#infinite_precision?</strong> : Bool</a>
         
-          <div class="summary"><p>Use this to enable infinite precision cents</p></div>
+          <div class="summary"><p>Use this to control infinite precision cents.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#rounding_mode%3ANumber%3A%3ARoundingMode-instance-method" class="signature"><strong>#rounding_mode</strong> : Number::RoundingMode</a>
         
-          <div class="summary"><p>Default rounding mode</p></div>
+          <div class="summary"><p>Default rounding mode.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#rounding_mode%3D%28rounding_mode%3ANumber%3A%3ARoundingMode%29-instance-method" class="signature"><strong>#rounding_mode=</strong>(rounding_mode : Number::RoundingMode)</a>
         
-          <div class="summary"><p>Default rounding mode</p></div>
+          <div class="summary"><p>Default rounding mode.</p></div>
         
       </li>
     
@@ -431,13 +431,13 @@
           <p>Each <code><a href="../Money.html">Money</a></code> object is associated to a bank object, which is responsible
 for currency exchange. This property allows you to specify the default
 bank object. The default value for this property is an instance of
-<code><a href="../Money/Bank/VariableExchange.html">Bank::VariableExchange</a></code>. It allows one to specify custom exchange rates.</p>
+<code><a href="../Money/Bank/VariableExchange.html">Bank::VariableExchange</a></code>, which allows one to specify custom exchange rates.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -455,13 +455,13 @@ bank object. The default value for this property is an instance of
           <p>Each <code><a href="../Money.html">Money</a></code> object is associated to a bank object, which is responsible
 for currency exchange. This property allows you to specify the default
 bank object. The default value for this property is an instance of
-<code><a href="../Money/Bank/VariableExchange.html">Bank::VariableExchange</a></code>. It allows one to specify custom exchange rates.</p>
+<code><a href="../Money/Bank/VariableExchange.html">Bank::VariableExchange</a></code>, which allows one to specify custom exchange rates.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -476,13 +476,13 @@ bank object. The default value for this property is an instance of
       
         <div class="doc">
           
-          <p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -497,13 +497,13 @@ bank object. The default value for this property is an instance of
       
         <div class="doc">
           
-          <p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -518,13 +518,13 @@ bank object. The default value for this property is an instance of
       
         <div class="doc">
           
-          <p>Sets the default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -539,14 +539,14 @@ bank object. The default value for this property is an instance of
       
         <div class="doc">
           
-          <p>It defaults to using an in-memory, thread safe store instance for
-storing exchange rates.</p>
+          <p>Default currency rate store used by <code><a href="../Money/Bank.html">Bank</a></code> objects. It defaults to using an
+in-memory, concurrency-safe, store instance for storing exchange rates.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -561,14 +561,14 @@ storing exchange rates.</p>
       
         <div class="doc">
           
-          <p>It defaults to using an in-memory, thread safe store instance for
-storing exchange rates.</p>
+          <p>Default currency rate store used by <code><a href="../Money/Bank.html">Bank</a></code> objects. It defaults to using an
+in-memory, concurrency-safe, store instance for storing exchange rates.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -583,13 +583,13 @@ storing exchange rates.</p>
       
         <div class="doc">
           
-          <p>Use this to enable infinite precision cents</p>
+          <p>Use this to control infinite precision cents.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -604,13 +604,13 @@ storing exchange rates.</p>
       
         <div class="doc">
           
-          <p>Use this to enable infinite precision cents</p>
+          <p>Use this to control infinite precision cents.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,13 +625,13 @@ storing exchange rates.</p>
       
         <div class="doc">
           
-          <p>Default rounding mode</p>
+          <p>Default rounding mode.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -646,13 +646,13 @@ storing exchange rates.</p>
       
         <div class="doc">
           
-          <p>Default rounding mode</p>
+          <p>Default rounding mode.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bd5c5fb/src/money/money/context.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/02840b8/src/money/money/context.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
