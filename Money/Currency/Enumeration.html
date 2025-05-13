@@ -265,7 +265,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L3" target="_blank">
         money/currency/enumeration.cr
       </a>
     
@@ -296,14 +296,14 @@
       <li class="entry-summary">
         <a href="#%5B%5D%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#[]</strong>(key : String | Symbol) : Currency</a>
         
-          <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
+          <div class="summary"><p>Alias of <code><a href="../../Money/Currency/Enumeration.html#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#find</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#%5B%5D%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method" class="signature"><strong>#[]?</strong>(key : String | Symbol) : Currency | Nil</a>
         
-          <div class="summary"><p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, <code>nil</code> otherwise.</p></div>
+          <div class="summary"><p>Alias of <code><a href="../../Money/Currency/Enumeration.html#find%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method">#find?</a></code>.</p></div>
         
       </li>
     
@@ -380,16 +380,13 @@
       
         <div class="doc">
           
-          <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
-success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p>
-<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; raises UnknownCurrencyError</span></code></pre>
+          <p>Alias of <code><a href="../../Money/Currency/Enumeration.html#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method">#find</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -404,16 +401,13 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       
         <div class="doc">
           
-          <p>Lookup a currency with given <em>key</em> an returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on
-success, <code>nil</code> otherwise.</p>
-<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @id=&quot;eur&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># =&gt; nil</span></code></pre>
+          <p>Alias of <code><a href="../../Money/Currency/Enumeration.html#find%3F%28key%3AString%7CSymbol%29%3ACurrency%7CNil-instance-method">#find?</a></code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -429,7 +423,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -454,7 +448,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -478,7 +472,7 @@ success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCur
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -502,7 +496,7 @@ success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/265f560/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f9fd55c/src/money/currency/enumeration.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
