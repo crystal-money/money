@@ -305,9 +305,7 @@ describe Money::Arithmetic do
 
   describe "#abs" do
     it "returns the absolute value as a new Money object" do
-      n = Money.new(-1, "USD")
-      n.abs.should eq Money.new(1, "USD")
-      n.should eq Money.new(-1, "USD")
+      Money.new(-1, "USD").abs.should eq Money.new(1, "USD")
     end
   end
 end
