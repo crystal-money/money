@@ -15,11 +15,7 @@ struct Money
 
     # Yields *other* `Money` object exchanged to `self.currency`.
     def with_same_currency(other : Money, &)
-      if other.zero?
-        yield other.with_currency(currency)
-      else
-        yield other.exchange_to(currency)
-      end
+      yield other.exchange_to(currency)
     end
   end
 end

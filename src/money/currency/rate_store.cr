@@ -46,9 +46,6 @@ class Money::Currency
 
     # :ditto:
     def [](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal
-      from, to =
-        Currency.wrap(from), Currency.wrap(to)
-
       self[from, to]? ||
         raise UnknownRateError.new("No conversion rate known for #{from} -> #{to}")
     end
