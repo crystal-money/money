@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-describe Money::Arithmetic do
+describe Money::Exchange do
   describe "#exchange_to" do
     bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
     bank.store["EUR", "USD"] = 1.23
