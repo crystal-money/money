@@ -234,7 +234,7 @@
 amount of money, such as its value and its currency.</li>
 <li>Provides a <code><a href="Money/Currency.html">Money::Currency</a></code> class which encapsulates all information about
 a monetary unit.</li>
-<li>Represents monetary values as integers, in cents. This avoids floating point
+<li>Represents monetary values as big decimals. This avoids floating point
 rounding errors.</li>
 <li>Represents currency as <code><a href="Money/Currency.html">Money::Currency</a></code> instances providing a high level of
 flexibility.</li>
@@ -278,8 +278,9 @@ number of non-ASCII currency attributes.</li>
 
 <span class="c"># 10.00 USD</span>
 money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>)
-money.cents    <span class="c"># =&gt; 1000</span>
-money.currency <span class="c"># =&gt; Money::Currency.find(&quot;USD&quot;)</span>
+money.amount        <span class="c"># =&gt; 10.0</span>
+money.fractional    <span class="c"># =&gt; 1000</span>
+money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span>
 
 <span class="c"># Comparisons</span>
 <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; true</span>
@@ -429,7 +430,7 @@ an example of how it works:</p>
 <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">10</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money.new(@amount=10.1, @currency=&quot;EUR&quot;)</span>
 
 <span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">0.5</span>
-<span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money.new(@amount=15, @currency=&quot;EUR&quot;)</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money.new(@amount=15.0, @currency=&quot;EUR&quot;)</span></code></pre>
 <h3><a id="exchange-rate-stores" class="anchor" href="#exchange-rate-stores">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -447,7 +448,7 @@ an example of how it works:</p>
 <span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.9</span>
 
 <span class="c"># Exchanging amounts just works</span>
-<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;CAD&quot;</span>) <span class="c"># =&gt; Money(@amount=9 @currency=&quot;CAD&quot;)</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;CAD&quot;</span>) <span class="c"># =&gt; Money(@amount=9.0 @currency=&quot;CAD&quot;)</span></code></pre>
 <p>There is nothing stopping you from creating store objects which scrapes
 <a href="http://www.xe.com">XE</a> for the current rates or just returns <code>rand(2)</code>:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Bank</span><span class="t">::</span><span class="t">VariableExchange</span>.new(<span class="t">StoreWhichScrapesXeDotCom</span>.new)</code></pre>
