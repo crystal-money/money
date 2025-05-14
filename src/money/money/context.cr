@@ -1,6 +1,8 @@
 struct Money
   # `Context` class holding global settings for `Money` objects.
   # Each `Fiber` has its own `Fiber#money_context` instance.
+  #
+  # See also `Money.same_context_wrapper` and `Money.spawn_with_same_context`.
   class Context
     # :nodoc:
     module Delegators

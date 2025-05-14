@@ -28,6 +28,57 @@ struct Money
 
   include Comparable(Money)
 
+  # Returns a proc that sets the `Fiber.current#money_context` to the current
+  # context (copied from the current fiber - references will be shared though)
+  # and then calls the given *block*. Useful when you need to spawn a new fiber
+  # later with the same context as the current fiber.
+  #
+  # ```
+  # Money.default_currency = "PLN"
+  #
+  # spawn &Money.same_context_wrapper(&block)
+  # # or
+  # spawn &Money.same_context_wrapper do
+  #   Money.default_currency.code # => "PLN"
+  # end
+  # ```
+  #
+  # NOTE: The proc will not set the context back to the original value.
+  #
+  # See also `#spawn_with_same_context`.
+  def self.same_context_wrapper(&block : ->) : Proc(Nil)
+    current_context = Fiber.current.money_context.dup
+    -> do
+      Fiber.current.money_context = current_context
+      block.call
+    end
+  end
+
+  # Spawns a new fiber with the `Money::Context` copied from the current fiber.
+  #
+  # ```
+  # Money.default_currency.code # => "USD"
+  # Money.default_currency = "PLN"
+  #
+  # spawn do
+  #   Money.default_currency.code # => "USD"
+  # end
+  #
+  # # vs
+  #
+  # Money.spawn_with_same_context do
+  #   Money.default_currency.code # => "PLN"
+  # end
+  # ```
+  #
+  # NOTE: References to the `#default_{currency, bank, rate_store}` properties
+  # will be shared between the current fiber and the spawned fiber.
+  #
+  # See also `#same_context_wrapper`.
+  def self.spawn_with_same_context(*args, **options, &block : ->) : Nil
+    spawn(*args, **options, &same_context_wrapper(&block))
+  end
+
   # Sets the given infinite precision value within the lifetime of the given block.
   #
   # See also `Money.infinite_precision?`.
