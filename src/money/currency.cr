@@ -125,7 +125,7 @@ struct Money
 
     # Returns `true` if iso currency.
     #
-    # See `#iso_numeric`.
+    # See also `#iso_numeric`.
     def iso? : Bool
       !!iso_numeric
     end

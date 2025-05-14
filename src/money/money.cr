@@ -29,6 +29,8 @@ struct Money
   include Comparable(Money)
 
   # Sets the given infinite precision value within the lifetime of the given block.
+  #
+  # See also `Money.infinite_precision?`.
   def self.with_infinite_precision(enabled = true, &)
     prev_infinite_precision = infinite_precision?
     self.infinite_precision = enabled
@@ -40,6 +42,8 @@ struct Money
   end
 
   # Sets the given rounding *mode* within the lifetime of the given block.
+  #
+  # See also `Money.rounding_mode`.
   def self.with_rounding_mode(mode : Number::RoundingMode, &)
     prev_rounding_mode = rounding_mode
     self.rounding_mode = mode
@@ -76,7 +80,7 @@ struct Money
   # of the given *currency* (as fractional if `Int`, or whole amount otherwise).
   #
   # ```
-  # Money.new                      # => Money(@amount=0 @currency="USD")
+  # Money.new                      # => Money(@amount=0.0 @currency="USD")
   # Money.new(1_50)                # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
@@ -153,7 +157,7 @@ struct Money
   # Money.new(1_00, "USD").amount # => 1.0
   # ```
   #
-  # See `#to_big_d` and `#fractional`, also `Money.rounding_mode`.
+  # See also `#fractional`, `Money.infinite_precision?` and `Money.rounding_mode`.
   def amount : BigDecimal
     if Money.infinite_precision?
       @amount
@@ -173,6 +177,8 @@ struct Money
   # unit is the fils and there 1000 fils to one Kuwaiti dinar. So given the
   # `Money` representation of one Kuwaiti dinar, the fractional interpretation
   # is 1000.
+  #
+  # See also `Money.infinite_precision?` and `Money.rounding_mode`.
   def fractional : BigDecimal
     amount * currency.subunit_to_unit
   end
@@ -195,7 +201,7 @@ struct Money
   # cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
   # and for CHF 0.08, CHF 0.10.
   #
-  # See also `Currency#smallest_denomination`.
+  # See also `#rounded_to_nearest_cash_value` and `Currency#smallest_denomination`.
   def nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : BigDecimal
     unless smallest_denomination = currency.smallest_denomination
       raise UndefinedSmallestDenominationError.new
@@ -217,9 +223,9 @@ struct Money
   # rounding *mode* if given, or `Money.rounding_mode` otherwise.
   #
   # ```
-  # Money.new(10.1, "USD").round                   # => Money(@amount=10, @currency="USD")
-  # Money.new(10.5, "USD").round(mode: :ties_even) # => Money(@amount=10, @currency="USD")
-  # Money.new(10.5, "USD").round(mode: :ties_away) # => Money(@amount=11, @currency="USD")
+  # Money.new(10.1, "USD").round                   # => Money(@amount=10.0, @currency="USD")
+  # Money.new(10.5, "USD").round(mode: :ties_even) # => Money(@amount=10.0, @currency="USD")
+  # Money.new(10.5, "USD").round(mode: :ties_away) # => Money(@amount=11.0, @currency="USD")
   # ```
   def round(precision : Int = 0, mode : Number::RoundingMode = Money.rounding_mode) : Money
     copy_with(amount: @amount.round(precision, mode: mode))

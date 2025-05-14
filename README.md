@@ -10,7 +10,7 @@ A Crystal shard for dealing with money and currency conversion ported from [Ruby
   amount of money, such as its value and its currency.
 - Provides a `Money::Currency` class which encapsulates all information about
   a monetary unit.
-- Represents monetary values as integers, in cents. This avoids floating point
+- Represents monetary values as big decimals. This avoids floating point
   rounding errors.
 - Represents currency as `Money::Currency` instances providing a high level of
   flexibility.
@@ -46,8 +46,9 @@ require "money"
 
 # 10.00 USD
 money = Money.new(1000, "USD")
-money.cents    # => 1000
-money.currency # => Money::Currency.find("USD")
+money.amount        # => 10.0
+money.fractional    # => 1000
+money.currency.code # => "USD"
 
 # Comparisons
 Money.new(1000, "USD") == Money.new(1000, "USD") # => true
@@ -217,7 +218,7 @@ Money.new(1000, "USD") <=> Money.new(900, "USD") # => 1; 9.00 USD is smaller
 Money.new(1000, "EUR") + Money.new(10, "EUR") # => Money.new(@amount=10.1, @currency="EUR")
 
 Money.default_bank.store["USD", "EUR"] = 0.5
-Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15, @currency="EUR")
+Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15.0, @currency="EUR")
 ```
 
 ### Exchange rate stores
@@ -240,7 +241,7 @@ Money.default_bank.store["USD", "CAD"] = 0.9
 Money.default_bank.store["USD", "CAD"] # => 0.9
 
 # Exchanging amounts just works
-Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9 @currency="CAD")
+Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9.0 @currency="CAD")
 ```
 
 There is nothing stopping you from creating store objects which scrapes

@@ -5,10 +5,10 @@ struct Money
     #
     # ```
     # Money.from_amount(23.45, "USD") # => Money(@amount=23.45 @currency="USD")
-    # Money.from_amount(23.45, "JPY") # => Money(@amount=23 @currency="JPY")
+    # Money.from_amount(23.45, "JPY") # => Money(@amount=23.0 @currency="JPY")
     # ```
     #
-    # See `#initialize`.
+    # See also `#initialize`.
     def from_amount(amount : Number | String, currency = default_currency, bank = nil) : Money
       new(amount.to_big_d, currency, bank)
     end
@@ -16,8 +16,8 @@ struct Money
     # Creates a new `Money` object with value `0`.
     #
     # ```
-    # Money.zero       # => Money(@amount=0)
-    # Money.zero(:pln) # => Money(@amount=0 @currency="PLN")
+    # Money.zero       # => Money(@amount=0.0)
+    # Money.zero(:pln) # => Money(@amount=0.0 @currency="PLN")
     # ```
     def zero(currency = default_currency, bank = nil) : Money
       new(0, currency, bank)
@@ -27,7 +27,7 @@ struct Money
     # American dollar currency.
     #
     # ```
-    # Money.us_dollar(100) # => Money(@amount=1 @currency="USD")
+    # Money.us_dollar(100) # => Money(@amount=1.0 @currency="USD")
     # ```
     def us_dollar(cents, bank = nil)
       new(cents, "USD", bank)
@@ -37,7 +37,7 @@ struct Money
     # Euro currency.
     #
     # ```
-    # Money.euro(100) # => Money(@amount=1 @currency="EUR")
+    # Money.euro(100) # => Money(@amount=1.0 @currency="EUR")
     # ```
     def euro(cents, bank = nil)
       new(cents, "EUR", bank)

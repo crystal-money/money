@@ -280,7 +280,7 @@ struct Money
       format(options)
     end
 
-    # See `#format`.
+    # See also `#format`.
     def to_s(io : IO) : Nil
       io << format
     end

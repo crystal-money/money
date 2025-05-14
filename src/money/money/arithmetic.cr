@@ -36,7 +36,7 @@ struct Money
     # Returns absolute value of `self` as a new `Money` object.
     #
     # ```
-    # Money.new(-100).abs # => Money(@amount=1)
+    # Money.new(-100).abs # => Money(@amount=1.0)
     # ```
     def abs : Money
       copy_with(amount: amount.abs)
@@ -45,7 +45,7 @@ struct Money
     # Alias of `#abs`.
     #
     # ```
-    # +Money.new(-100) # => Money(@amount=1)
+    # +Money.new(-100) # => Money(@amount=1.0)
     # ```
     @[AlwaysInline]
     def + : Money
@@ -55,7 +55,7 @@ struct Money
     # Returns a new `Money` object with changed polarity.
     #
     # ```
-    # -Money.new(100) # => Money(@amount=-1)
+    # -Money.new(100) # => Money(@amount=-1.0)
     # ```
     def - : Money
       copy_with(amount: -amount)
@@ -65,7 +65,7 @@ struct Money
     # operands' monetary values.
     #
     # ```
-    # Money.new(100) + Money.new(100) # => Money(@amount=2)
+    # Money.new(100) + Money.new(100) # => Money(@amount=2.0)
     # ```
     def +(other : Money) : Money
       return self if other.zero?
@@ -93,7 +93,7 @@ struct Money
     # a new `Money` object with this monetary value and the same `#currency`.
     #
     # ```
-    # Money.new(100) * 2 # => Money(@amount=2)
+    # Money.new(100) * 2 # => Money(@amount=2.0)
     # ```
     def *(other : Number) : Money
       copy_with(amount: amount * other)

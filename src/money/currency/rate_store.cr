@@ -5,7 +5,7 @@ class Money::Currency
     # Wraps block execution in a concurrency-safe transaction.
     protected abstract def transaction(& : -> _)
 
-    # See `#[]=`.
+    # See also `#[]=`.
     protected abstract def add_rate(from : Currency, to : Currency, value : Int64) : Nil
 
     # Registers a conversion rate and returns it.
@@ -25,7 +25,7 @@ class Money::Currency
       end
     end
 
-    # See `#[]?`.
+    # See also `#[]?`.
     protected abstract def get_rate?(from : Currency, to : Currency) : Rate?
 
     # Retrieve the rate for the given currency pair.
@@ -69,7 +69,7 @@ class Money::Currency
       end
     end
 
-    # See `#clear`.
+    # See also `#clear`.
     protected abstract def clear_rates : Nil
 
     # Empties currency rate index.
