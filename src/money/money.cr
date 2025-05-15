@@ -1,4 +1,3 @@
-require "./money/context"
 require "./money/allocate"
 require "./money/arithmetic"
 require "./money/casting"
