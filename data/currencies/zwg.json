@@ -1,0 +1,12 @@
+{
+  "iso_numeric": 924,
+  "code": "ZWG",
+  "name": "Zimbabwe Gold",
+  "symbol": "ZiG",
+  "subunit": "cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
