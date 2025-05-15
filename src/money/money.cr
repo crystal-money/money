@@ -74,8 +74,8 @@ struct Money
   # will be shared between the current fiber and the spawned fiber.
   #
   # See also `#same_context_wrapper`.
-  def self.spawn_with_same_context(*args, **options, &block : ->) : Nil
-    spawn(*args, **options, &same_context_wrapper(&block))
+  def self.spawn_with_same_context(**options, &block : ->) : Nil
+    spawn(*Tuple.new, **options, &same_context_wrapper(&block))
   end
 
   # Sets the given infinite precision value within the lifetime of the given block.
