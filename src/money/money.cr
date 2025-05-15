@@ -8,7 +8,7 @@ require "./money/parse"
 
 # "Money is any object or record that is generally accepted as payment for
 # goods and services and repayment of debts in a given socio-economic context
-# or country." - [Wikipedia](http://en.wikipedia.org/wiki/Money)
+# or country." - [Wikipedia](https://en.wikipedia.org/wiki/Money)
 #
 # An instance of `Money` represents an amount of a specific currency.
 #

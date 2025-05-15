@@ -180,7 +180,7 @@ Money.default_currency = :cad
 
 The exponent of a money value is the number of digits after the decimal
 separator (which separates the major unit from the minor unit). See e.g.
-[ISO 4217](https://www.currency-iso.org/en/shared/amendments/iso-4217-amendment.html) for more
+[ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) for more
 information. You can find the exponent (as an `Int32`) by
 
 ```crystal
@@ -245,7 +245,7 @@ Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9.0 @currency="CAD"
 ```
 
 There is nothing stopping you from creating store objects which scrapes
-[XE](http://www.xe.com) for the current rates or just returns `rand(2)`:
+[XE](https://www.xe.com) for the current rates or just returns `rand(2)`:
 
 ```crystal
 Money.default_bank = Money::Bank::VariableExchange.new(StoreWhichScrapesXeDotCom.new)
@@ -290,9 +290,9 @@ Money.new(2.34567).round(4).to_s # => "$2.3457"
 
 ## Formatting
 
-There are several formatting rules for when `Money#format` is called. For more information, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or read the latest release's [docs](http://crystal-money.github.io/money/Money/Formatting.html).
+There are several formatting rules for when `Money#format` is called. For more information, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or read the latest release's [docs](https://crystal-money.github.io/money/Money/Formatting.html).
 
-If you wish to format money according to the EU's [Rules for expressing monetary units](http://publications.europa.eu/code/en/en-370303.htm#position) in either English, Irish, Latvian or Maltese:
+If you wish to format money according to the EU's [Rules for expressing monetary units](https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO) in either English, Irish, Latvian or Maltese:
 
 ```crystal
 money = Money.new(123, :gbp)               # => Money(@amount=1.23 @currency="GBP")
