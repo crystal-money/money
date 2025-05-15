@@ -57,6 +57,11 @@
   <div class="types-list">
     <ul>
   
+  <li class=" " data-id="money/BigDecimal" data-name="bigdecimal">
+      <a href="../../BigDecimal.html">BigDecimal</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Fiber" data-name="fiber">
       <a href="../../Fiber.html">Fiber</a>
       
@@ -281,7 +286,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L2" target="_blank">
         money/currency/rate_store.cr
       </a>
     
@@ -341,6 +346,13 @@
         <a href="#each%28%26%3ARate-%3E_%29%3ANil-instance-method" class="signature"><strong>#each</strong>(& : Rate -> _) : Nil</a>
         
           <div class="summary"><p>Iterates over list of <code><a href="../../Money/Currency/Rate.html">Rate</a></code> objects.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#transaction%28%26%3A-%3E_%29-instance-method" class="signature"><strong>#transaction</strong>(& :  -> _)</a>
+        
+          <div class="summary"><p>Wraps block execution in a concurrency-safe transaction.</p></div>
         
       </li>
     
@@ -410,7 +422,7 @@
     <div class="entry-detail" id="[](from:String|Symbol|Currency,to:String|Symbol|Currency):BigDecimal-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(from : String | Symbol | <a href="../../Money/Currency.html">Currency</a>, to : String | Symbol | <a href="../../Money/Currency.html">Currency</a>) : BigDecimal
+        def <strong>[]</strong>(from : String | Symbol | <a href="../../Money/Currency.html">Currency</a>, to : String | Symbol | <a href="../../Money/Currency.html">Currency</a>) : <a href="../../BigDecimal.html">BigDecimal</a>
 
         <a class="method-permalink" href="#%5B%5D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal-instance-method">#</a>
       </div>
@@ -426,7 +438,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -450,7 +462,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -458,7 +470,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
     <div class="entry-detail" id="[]?(from:String|Symbol|Currency,to:String|Symbol|Currency):BigDecimal|Nil-instance-method">
       <div class="signature">
         
-        def <strong>[]?</strong>(from : String | Symbol | <a href="../../Money/Currency.html">Currency</a>, to : String | Symbol | <a href="../../Money/Currency.html">Currency</a>) : BigDecimal | Nil
+        def <strong>[]?</strong>(from : String | Symbol | <a href="../../Money/Currency.html">Currency</a>, to : String | Symbol | <a href="../../Money/Currency.html">Currency</a>) : <a href="../../BigDecimal.html">BigDecimal</a> | Nil
 
         <a class="method-permalink" href="#%5B%5D%3F%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal%7CNil-instance-method">#</a>
       </div>
@@ -474,7 +486,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -495,7 +507,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -519,7 +531,28 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L63" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transaction(&amp;:-&gt;_)-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>transaction</strong>(& :  -> _)
+
+        <a class="method-permalink" href="#transaction%28%26%3A-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Wraps block execution in a concurrency-safe transaction.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>

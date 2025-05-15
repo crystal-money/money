@@ -57,6 +57,11 @@
   <div class="types-list">
     <ul>
   
+  <li class=" " data-id="money/BigDecimal" data-name="bigdecimal">
+      <a href="../../../BigDecimal.html">BigDecimal</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Fiber" data-name="fiber">
       <a href="../../../Fiber.html">Fiber</a>
       
@@ -273,7 +278,7 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/bc34295/src/money/currency/rate_store/memory.cr#L15" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store/memory.cr#L15" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -291,6 +296,25 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#transaction%28%26%3A-%3E_%29-instance-method" class="signature"><strong>#transaction</strong>(& :  -> _)</a>
+        
+          <div class="summary"><p>Wraps block execution in a concurrency-safe transaction.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
@@ -322,7 +346,12 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
     <a href="../../../Money/Currency/RateStore.html#each%28%26%3ARate-%3E_%29%3ANil-instance-method" class="tooltip">
       <span>each(& : Rate -> _) : Nil</span>
-    each</a>
+    each</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateStore.html#transaction%28%26%3A-%3E_%29-instance-method" class="tooltip">
+      <span>transaction(& :  -> _)</span>
+    transaction</a>
     
   
 
@@ -385,6 +414,41 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="transaction(&amp;:-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>transaction</strong>(& :  -> _)
+
+        <a class="method-permalink" href="#transaction%28%26%3A-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a>
+            </div>
+          
+          <p>Wraps block execution in a concurrency-safe transaction.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/money/currency/rate_store/memory.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
