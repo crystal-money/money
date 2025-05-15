@@ -405,7 +405,7 @@ using:</p>
 </a>Currency Exponent</h3>
 <p>The exponent of a money value is the number of digits after the decimal
 separator (which separates the major unit from the minor unit). See e.g.
-<a href="https://www.currency-iso.org/en/shared/amendments/iso-4217-amendment.html">ISO 4217</a> for more
+<a href="https://www.iso.org/iso-4217-currency-codes.html">ISO 4217</a> for more
 information. You can find the exponent (as an <code>Int32</code>) by</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>).exponent <span class="c"># =&gt; 2</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;JPY&quot;</span>).exponent <span class="c"># =&gt; 0</span>
@@ -455,7 +455,7 @@ an example of how it works:</p>
 <span class="c"># Exchanging amounts just works</span>
 <span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;CAD&quot;</span>) <span class="c"># =&gt; Money(@amount=9.0 @currency=&quot;CAD&quot;)</span></code></pre>
 <p>There is nothing stopping you from creating store objects which scrapes
-<a href="http://www.xe.com">XE</a> for the current rates or just returns <code>rand(2)</code>:</p>
+<a href="https://www.xe.com">XE</a> for the current rates or just returns <code>rand(2)</code>:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Bank</span><span class="t">::</span><span class="t">VariableExchange</span>.new(<span class="t">StoreWhichScrapesXeDotCom</span>.new)</code></pre>
 <p>You can also implement your own <code>Bank</code> to calculate exchanges differently.
 Different banks can share Stores.</p>
@@ -482,8 +482,8 @@ currencies don't match:</p>
     <use href="#octicon-link"/>
   </svg>
 </a>Formatting</h2>
-<p>There are several formatting rules for when <code>Money#format</code> is called. For more information, check out the <a href="https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr">formatting module source</a>, or read the latest release's <a href="http://crystal-money.github.io/money/Money/Formatting.html">docs</a>.</p>
-<p>If you wish to format money according to the EU's <a href="http://publications.europa.eu/code/en/en-370303.htm#position">Rules for expressing monetary units</a> in either English, Irish, Latvian or Maltese:</p>
+<p>There are several formatting rules for when <code>Money#format</code> is called. For more information, check out the <a href="https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr">formatting module source</a>, or read the latest release's <a href="https://crystal-money.github.io/money/Money/Formatting.html">docs</a>.</p>
+<p>If you wish to format money according to the EU's <a href="https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO">Rules for expressing monetary units</a> in either English, Irish, Latvian or Maltese:</p>
 <pre><code class="language-crystal">money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">123</span>, <span class="n">:gbp</span>)               <span class="c"># =&gt; Money(@amount=1.23 @currency=&quot;GBP&quot;)</span>
 money.format(symbol: <span class="s">&quot;</span><span class="i">#{</span>money.currency<span class="i">}</span><span class="s"> &quot;</span>) <span class="c"># =&gt; &quot;GBP 1.23&quot;</span></code></pre>
 <h2><a id="heuristics" class="anchor" href="#heuristics">
