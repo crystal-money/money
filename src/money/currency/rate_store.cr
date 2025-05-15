@@ -3,7 +3,7 @@ class Money::Currency
     include Enumerable(Rate)
 
     # Wraps block execution in a concurrency-safe transaction.
-    protected abstract def transaction(& : -> _)
+    abstract def transaction(& : -> _)
 
     # See also `#[]=`.
     protected abstract def add_rate(from : Currency, to : Currency, value : Int64) : Nil

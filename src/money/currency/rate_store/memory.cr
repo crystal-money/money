@@ -18,7 +18,7 @@ class Money::Currency
     @index = {} of String => Rate
     @mutex = Mutex.new(:reentrant)
 
-    protected def transaction(& : -> _)
+    def transaction(& : -> _)
       @mutex.synchronize { yield }
     end
 
