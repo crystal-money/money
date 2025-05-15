@@ -92,6 +92,10 @@ describe Money::Formatting do
       Money.euro(1_234_567_12).format(no_cents: true).should eq "€1.234.567"
     end
 
+    it "avoids printing scientific notation" do
+      Money.bitcoin("0.00000966".to_big_d).format.should eq "₿0.00000966"
+    end
+
     describe ":with_currency option" do
       it "works as documented" do
         Money.new(100, "CAD").format(with_currency: true).should eq "$1.00 CAD"

@@ -208,7 +208,7 @@ struct Money
         end
       end
 
-      parts = amount.abs.to_s.split('.')
+      parts = amount.abs.to_s(scientific_notation: false).split('.')
       unit, subunit = parts[0], parts[1]?
       subunit = nil if subunit == "0"
 
