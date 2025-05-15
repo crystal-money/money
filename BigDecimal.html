@@ -242,13 +242,7 @@
     Overview
   </h2>
 
-  <p>A <code><a href="BigDecimal.html">BigDecimal</a></code> can represent arbitrarily large precision decimals.</p>
-<p>It is internally represented by a pair of <code>BigInt</code> and <code>UInt64</code>: value and scale.
-Value contains the actual value, and scale tells the decimal point place.
-E.g. when value is <code>1234</code> and scale <code>2</code>, the result is <code>12.34</code>.</p>
-<p><span class="flag purple">NOTE</span>  To use <code><a href="BigDecimal.html">BigDecimal</a></code>, you must explicitly import it with <code>require &quot;big&quot;</code></p>
-<p>The general idea and some of the arithmetic algorithms were adapted from
-the MIT/APACHE-licensed <a href="https://github.com/akubera/bigdecimal-rs">bigdecimal-rs</a>.</p>
+  <p>https://github.com/crystal-lang/crystal/issues/15778</p>
 
 
 
@@ -295,7 +289,7 @@ the MIT/APACHE-licensed <a href="https://github.com/akubera/bigdecimal-rs">bigde
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/ecb84ed/src/ext/big_decimal.cr#L1" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/8f87d11/src/ext/big_decimal.cr#L2" target="_blank">
         ext/big_decimal.cr
       </a>
     
@@ -325,6 +319,8 @@ the MIT/APACHE-licensed <a href="https://github.com/akubera/bigdecimal-rs">bigde
     
       <li class="entry-summary">
         <a href="#to_s%28io%3AIO%2C%2A%2Cscientific_notation%3Dtrue%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO, *, scientific_notation = <span class="n">true</span>) : Nil</a>
+        
+          <div class="summary"><p>ameba:disable Metrics/CyclomaticComplexity</p></div>
         
       </li>
     
@@ -495,10 +491,15 @@ the MIT/APACHE-licensed <a href="https://github.com/akubera/bigdecimal-rs">bigde
         <a class="method-permalink" href="#to_s%28io%3AIO%2C%2A%2Cscientific_notation%3Dtrue%29%3ANil-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>ameba:disable Metrics/CyclomaticComplexity</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/ext/big_decimal.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f87d11/src/ext/big_decimal.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -514,7 +515,7 @@ the MIT/APACHE-licensed <a href="https://github.com/akubera/bigdecimal-rs">bigde
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/ecb84ed/src/ext/big_decimal.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/8f87d11/src/ext/big_decimal.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
