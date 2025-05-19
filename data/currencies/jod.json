@@ -3,9 +3,7 @@
   "code": "JOD",
   "name": "Jordanian Dinar",
   "symbol": "د.ا",
-  "alternate_symbols": [
-    "JD"
-  ],
+  "alternate_symbols": ["JD"],
   "subunit": "Fils",
   "subunit_to_unit": 1000,
   "symbol_first": true,

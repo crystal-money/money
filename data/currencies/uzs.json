@@ -3,13 +3,7 @@
   "code": "UZS",
   "name": "Uzbekistan Som",
   "symbol": "so'm",
-  "alternate_symbols": [
-    "so‘m",
-    "сўм",
-    "сум",
-    "s",
-    "с"
-  ],
+  "alternate_symbols": ["so‘m", "сўм", "сум", "s", "с"],
   "subunit": "Tiyin",
   "subunit_to_unit": 100,
   "symbol_first": false,

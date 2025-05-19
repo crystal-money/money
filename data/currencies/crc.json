@@ -3,9 +3,7 @@
   "code": "CRC",
   "name": "Costa Rican Colón",
   "symbol": "₡",
-  "alternate_symbols": [
-    "¢"
-  ],
+  "alternate_symbols": ["¢"],
   "subunit": "Céntimo",
   "subunit_to_unit": 100,
   "symbol_first": true,

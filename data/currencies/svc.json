@@ -3,9 +3,7 @@
   "code": "SVC",
   "name": "Salvadoran Colón",
   "symbol": "₡",
-  "alternate_symbols": [
-    "¢"
-  ],
+  "alternate_symbols": ["¢"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

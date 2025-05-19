@@ -3,9 +3,7 @@
   "code": "DZD",
   "name": "Algerian Dinar",
   "symbol": "د.ج",
-  "alternate_symbols": [
-    "DA"
-  ],
+  "alternate_symbols": ["DA"],
   "subunit": "Centime",
   "subunit_to_unit": 100,
   "symbol_first": false,

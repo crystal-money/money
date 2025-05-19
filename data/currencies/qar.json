@@ -3,9 +3,7 @@
   "code": "QAR",
   "name": "Qatari Riyal",
   "symbol": "ر.ق",
-  "alternate_symbols": [
-    "QR"
-  ],
+  "alternate_symbols": ["QR"],
   "subunit": "Dirham",
   "subunit_to_unit": 100,
   "symbol_first": false,

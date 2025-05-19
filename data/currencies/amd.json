@@ -3,9 +3,7 @@
   "code": "AMD",
   "name": "Armenian Dram",
   "symbol": "դր.",
-  "alternate_symbols": [
-    "dram"
-  ],
+  "alternate_symbols": ["dram"],
   "subunit": "Luma",
   "subunit_to_unit": 100,
   "symbol_first": false,

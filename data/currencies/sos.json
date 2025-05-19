@@ -3,9 +3,7 @@
   "code": "SOS",
   "name": "Somali Shilling",
   "symbol": "Sh",
-  "alternate_symbols": [
-    "Sh.So"
-  ],
+  "alternate_symbols": ["Sh.So"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

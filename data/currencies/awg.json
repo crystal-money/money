@@ -3,9 +3,7 @@
   "code": "AWG",
   "name": "Aruban Florin",
   "symbol": "ƒ",
-  "alternate_symbols": [
-    "Afl"
-  ],
+  "alternate_symbols": ["Afl"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,

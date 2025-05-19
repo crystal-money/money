@@ -3,11 +3,7 @@
   "code": "CNY",
   "name": "Chinese Renminbi Yuan",
   "symbol": "¥",
-  "alternate_symbols": [
-    "CN¥",
-    "元",
-    "CN元"
-  ],
+  "alternate_symbols": ["CN¥", "元", "CN元"],
   "subunit": "Fen",
   "subunit_to_unit": 100,
   "symbol_first": true,

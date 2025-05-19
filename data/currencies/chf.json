@@ -3,10 +3,7 @@
   "code": "CHF",
   "name": "Swiss Franc",
   "symbol": "CHF",
-  "alternate_symbols": [
-    "SFr",
-    "Fr"
-  ],
+  "alternate_symbols": ["SFr", "Fr"],
   "subunit": "Rappen",
   "subunit_to_unit": 100,
   "symbol_first": true,

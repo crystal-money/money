@@ -3,10 +3,7 @@
   "code": "SAR",
   "name": "Saudi Riyal",
   "symbol": "ر.س",
-  "alternate_symbols": [
-    "SR",
-    "﷼"
-  ],
+  "alternate_symbols": ["SR", "﷼"],
   "subunit": "Hallallah",
   "subunit_to_unit": 100,
   "symbol_first": true,

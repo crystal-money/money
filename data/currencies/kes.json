@@ -3,9 +3,7 @@
   "code": "KES",
   "name": "Kenyan Shilling",
   "symbol": "KSh",
-  "alternate_symbols": [
-    "Sh"
-  ],
+  "alternate_symbols": ["Sh"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,12 +3,7 @@
   "code": "BGN",
   "name": "Bulgarian Lev",
   "symbol": "лв.",
-  "alternate_symbols": [
-    "lev",
-    "leva",
-    "лев",
-    "лева"
-  ],
+  "alternate_symbols": ["lev", "leva", "лев", "лева"],
   "subunit": "Stotinka",
   "subunit_to_unit": 100,
   "symbol_first": false,

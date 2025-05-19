@@ -3,10 +3,7 @@
   "code": "AED",
   "name": "United Arab Emirates Dirham",
   "symbol": "د.إ",
-  "alternate_symbols": [
-    "DH",
-    "Dhs"
-  ],
+  "alternate_symbols": ["DH", "Dhs"],
   "subunit": "Fils",
   "subunit_to_unit": 100,
   "symbol_first": false,

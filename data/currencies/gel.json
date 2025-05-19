@@ -3,9 +3,7 @@
   "code": "GEL",
   "name": "Georgian Lari",
   "symbol": "₾",
-  "alternate_symbols": [
-    "lari"
-  ],
+  "alternate_symbols": ["lari"],
   "subunit": "Tetri",
   "subunit_to_unit": 100,
   "symbol_first": false,

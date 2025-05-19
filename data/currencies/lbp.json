@@ -3,10 +3,7 @@
   "code": "LBP",
   "name": "Lebanese Pound",
   "symbol": "ل.ل",
-  "alternate_symbols": [
-    "£",
-    "L£"
-  ],
+  "alternate_symbols": ["£", "L£"],
   "subunit": "Piastre",
   "subunit_to_unit": 100,
   "symbol_first": true,

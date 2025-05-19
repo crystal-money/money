@@ -3,9 +3,7 @@
   "code": "MOP",
   "name": "Macanese Pataca",
   "symbol": "P",
-  "alternate_symbols": [
-    "MOP$"
-  ],
+  "alternate_symbols": ["MOP$"],
   "subunit": "Avo",
   "subunit_to_unit": 100,
   "symbol_first": false,

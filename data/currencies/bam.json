@@ -3,9 +3,7 @@
   "code": "BAM",
   "name": "Bosnia and Herzegovina Convertible Mark",
   "symbol": "КМ",
-  "alternate_symbols": [
-    "KM"
-  ],
+  "alternate_symbols": ["KM"],
   "subunit": "Fening",
   "subunit_to_unit": 100,
   "symbol_first": true,

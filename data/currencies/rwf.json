@@ -3,10 +3,7 @@
   "code": "RWF",
   "name": "Rwandan Franc",
   "symbol": "FRw",
-  "alternate_symbols": [
-    "RF",
-    "R₣"
-  ],
+  "alternate_symbols": ["RF", "R₣"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

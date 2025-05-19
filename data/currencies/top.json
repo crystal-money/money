@@ -3,9 +3,7 @@
   "code": "TOP",
   "name": "Tongan Paʻanga",
   "symbol": "T$",
-  "alternate_symbols": [
-    "PT"
-  ],
+  "alternate_symbols": ["PT"],
   "subunit": "Seniti",
   "subunit_to_unit": 100,
   "symbol_first": true,

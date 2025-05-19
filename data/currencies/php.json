@@ -3,11 +3,7 @@
   "code": "PHP",
   "name": "Philippine Peso",
   "symbol": "₱",
-  "alternate_symbols": [
-    "PHP",
-    "PhP",
-    "P"
-  ],
+  "alternate_symbols": ["PHP", "PhP", "P"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

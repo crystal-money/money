@@ -3,9 +3,7 @@
   "code": "KGS",
   "name": "Kyrgyzstani Som",
   "symbol": "som",
-  "alternate_symbols": [
-    "сом"
-  ],
+  "alternate_symbols": ["сом"],
   "subunit": "Tyiyn",
   "subunit_to_unit": 100,
   "symbol_first": false,

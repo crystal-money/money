@@ -3,9 +3,7 @@
   "code": "BOB",
   "name": "Bolivian Boliviano",
   "symbol": "Bs.",
-  "alternate_symbols": [
-    "Bs"
-  ],
+  "alternate_symbols": ["Bs"],
   "subunit": "Centavo",
   "subunit_to_unit": 100,
   "symbol_first": true,

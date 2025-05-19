@@ -3,9 +3,7 @@
   "code": "KWD",
   "name": "Kuwaiti Dinar",
   "symbol": "د.ك",
-  "alternate_symbols": [
-    "K.D."
-  ],
+  "alternate_symbols": ["K.D."],
   "subunit": "Fils",
   "subunit_to_unit": 1000,
   "symbol_first": true,

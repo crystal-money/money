@@ -3,11 +3,7 @@
   "code": "RSD",
   "name": "Serbian Dinar",
   "symbol": "РСД",
-  "alternate_symbols": [
-    "RSD",
-    "din",
-    "дин"
-  ],
+  "alternate_symbols": ["RSD", "din", "дин"],
   "subunit": "Para",
   "subunit_to_unit": 100,
   "symbol_first": true,

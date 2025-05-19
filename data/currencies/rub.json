@@ -3,10 +3,7 @@
   "code": "RUB",
   "name": "Russian Ruble",
   "symbol": "₽",
-  "alternate_symbols": [
-    "руб.",
-    "р."
-  ],
+  "alternate_symbols": ["руб.", "р."],
   "subunit": "Kopeck",
   "subunit_to_unit": 100,
   "symbol_first": false,

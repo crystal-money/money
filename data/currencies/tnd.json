@@ -3,10 +3,7 @@
   "code": "TND",
   "name": "Tunisian Dinar",
   "symbol": "د.ت",
-  "alternate_symbols": [
-    "TD",
-    "DT"
-  ],
+  "alternate_symbols": ["TD", "DT"],
   "subunit": "Millime",
   "subunit_to_unit": 1000,
   "symbol_first": false,

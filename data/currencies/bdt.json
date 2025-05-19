@@ -3,9 +3,7 @@
   "code": "BDT",
   "name": "Bangladeshi Taka",
   "symbol": "৳",
-  "alternate_symbols": [
-    "Tk"
-  ],
+  "alternate_symbols": ["Tk"],
   "subunit": "Paisa",
   "subunit_to_unit": 100,
   "symbol_first": true,

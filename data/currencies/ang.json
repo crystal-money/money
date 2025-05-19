@@ -3,11 +3,7 @@
   "code": "ANG",
   "name": "Netherlands Antillean Gulden",
   "symbol": "ƒ",
-  "alternate_symbols": [
-    "NAƒ",
-    "NAf",
-    "f"
-  ],
+  "alternate_symbols": ["NAƒ", "NAf", "f"],
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,

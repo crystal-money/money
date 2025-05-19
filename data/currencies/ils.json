@@ -3,10 +3,7 @@
   "code": "ILS",
   "name": "Israeli New Shekel",
   "symbol": "₪",
-  "alternate_symbols": [
-    "ש״ח",
-    "NIS"
-  ],
+  "alternate_symbols": ["ש״ח", "NIS"],
   "subunit": "Agora",
   "subunit_to_unit": 100,
   "symbol_first": true,

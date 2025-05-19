@@ -3,10 +3,7 @@
   "code": "AFN",
   "name": "Afghan Afghani",
   "symbol": "؋",
-  "alternate_symbols": [
-    "Af",
-    "Afs"
-  ],
+  "alternate_symbols": ["Af", "Afs"],
   "subunit": "Pul",
   "subunit_to_unit": 100,
   "symbol_first": false,

@@ -3,9 +3,7 @@
   "code": "LAK",
   "name": "Lao Kip",
   "symbol": "₭",
-  "alternate_symbols": [
-    "₭N"
-  ],
+  "alternate_symbols": ["₭N"],
   "subunit": "Att",
   "subunit_to_unit": 100,
   "symbol_first": false,

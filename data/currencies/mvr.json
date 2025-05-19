@@ -3,12 +3,7 @@
   "code": "MVR",
   "name": "Maldivian Rufiyaa",
   "symbol": "MVR",
-  "alternate_symbols": [
-    "MRF",
-    "Rf",
-    "/-",
-    "ރ"
-  ],
+  "alternate_symbols": ["MRF", "Rf", "/-", "ރ"],
   "subunit": "Laari",
   "subunit_to_unit": 100,
   "symbol_first": false,

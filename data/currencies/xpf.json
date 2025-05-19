@@ -3,9 +3,7 @@
   "code": "XPF",
   "name": "Cfp Franc",
   "symbol": "Fr",
-  "alternate_symbols": [
-    "F"
-  ],
+  "alternate_symbols": ["F"],
   "subunit": "Centime",
   "subunit_to_unit": 1,
   "symbol_first": false,

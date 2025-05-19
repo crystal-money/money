@@ -3,10 +3,7 @@
   "code": "AZN",
   "name": "Azerbaijani Manat",
   "symbol": "₼",
-  "alternate_symbols": [
-    "m",
-    "man"
-  ],
+  "alternate_symbols": ["m", "man"],
   "subunit": "Qəpik",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,9 +3,7 @@
   "code": "BTN",
   "name": "Bhutanese Ngultrum",
   "symbol": "Nu.",
-  "alternate_symbols": [
-    "Nu"
-  ],
+  "alternate_symbols": ["Nu"],
   "subunit": "Chertrum",
   "subunit_to_unit": 100,
   "symbol_first": false,

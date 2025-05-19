@@ -3,12 +3,7 @@
   "code": "SYP",
   "name": "Syrian Pound",
   "symbol": "£S",
-  "alternate_symbols": [
-    "£",
-    "ل.س",
-    "LS",
-    "الليرة السورية"
-  ],
+  "alternate_symbols": ["£", "ل.س", "LS", "الليرة السورية"],
   "subunit": "Piastre",
   "subunit_to_unit": 100,
   "symbol_first": false,

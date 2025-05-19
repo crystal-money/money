@@ -3,9 +3,7 @@
   "code": "LYD",
   "name": "Libyan Dinar",
   "symbol": "ل.د",
-  "alternate_symbols": [
-    "LD"
-  ],
+  "alternate_symbols": ["LD"],
   "subunit": "Dirham",
   "subunit_to_unit": 1000,
   "symbol_first": false,

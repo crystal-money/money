@@ -3,9 +3,7 @@
   "code": "TRY",
   "name": "Turkish Lira",
   "symbol": "₺",
-  "alternate_symbols": [
-    "TL"
-  ],
+  "alternate_symbols": ["TL"],
   "subunit": "kuruş",
   "subunit_to_unit": 100,
   "symbol_first": true,

@@ -3,11 +3,7 @@
   "code": "EGP",
   "name": "Egyptian Pound",
   "symbol": "ج.م",
-  "alternate_symbols": [
-    "LE",
-    "E£",
-    "L.E."
-  ],
+  "alternate_symbols": ["LE", "E£", "L.E."],
   "subunit": "Piastre",
   "subunit_to_unit": 100,
   "symbol_first": true,
