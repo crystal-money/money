@@ -1,0 +1,11 @@
+{
+  "code": "XLM",
+  "name": "Stellar Lumens",
+  "symbol": "*",
+  "subunit": "Stroop",
+  "subunit_to_unit": 10000000,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
