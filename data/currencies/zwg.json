@@ -3,7 +3,7 @@
   "code": "ZWG",
   "name": "Zimbabwe Gold",
   "symbol": "ZiG",
-  "subunit": "cent",
+  "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": false,
   "decimal_mark": ".",

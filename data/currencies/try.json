@@ -4,7 +4,7 @@
   "name": "Turkish Lira",
   "symbol": "₺",
   "alternate_symbols": ["TL"],
-  "subunit": "kuruş",
+  "subunit": "Kuruş",
   "subunit_to_unit": 100,
   "symbol_first": true,
   "html_entity": "&#8378;",

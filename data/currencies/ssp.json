@@ -4,7 +4,7 @@
   "name": "South Sudanese Pound",
   "symbol": "£",
   "disambiguate_symbol": "SSP",
-  "subunit": "piaster",
+  "subunit": "Piaster",
   "subunit_to_unit": 100,
   "symbol_first": false,
   "html_entity": "&#x00A3;",

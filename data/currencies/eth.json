@@ -2,7 +2,7 @@
   "code": "ETH",
   "name": "Ethereum",
   "symbol": "Ξ",
-  "subunit": "wei",
+  "subunit": "Wei",
   "subunit_to_unit": 1000000000000000000,
   "symbol_first": true,
   "decimal_mark": ".",
