@@ -1,0 +1,13 @@
+{
+  "code": "USDT",
+  "name": "Tether",
+  "symbol": "₮",
+  "alternate_symbols": ["USDT", "USD₮"],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "&#x20AE;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
