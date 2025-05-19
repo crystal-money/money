@@ -24,12 +24,12 @@ describe Money::Currency::RateStore::Memory do
         Money::Currency::Rate.new(
           Money::Currency.find("USD"),
           Money::Currency.find("CAD"),
-          90_i64
+          0.9.to_big_d
         ),
         Money::Currency::Rate.new(
           Money::Currency.find("CAD"),
           Money::Currency.find("USD"),
-          110_i64
+          1.1.to_big_d
         ),
       ]
     end

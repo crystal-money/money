@@ -22,7 +22,7 @@ class Money::Currency
       @mutex.synchronize { yield }
     end
 
-    protected def add_rate(from : Currency, to : Currency, value : Int64) : Nil
+    protected def add_rate(from : Currency, to : Currency, value : BigDecimal) : Nil
       @index[rate_key_for(from, to)] = Rate.new(from, to, value)
     end
 

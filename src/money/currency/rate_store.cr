@@ -6,7 +6,7 @@ class Money::Currency
     abstract def transaction(& : -> _)
 
     # See also `#[]=`.
-    protected abstract def add_rate(from : Currency, to : Currency, value : Int64) : Nil
+    protected abstract def add_rate(from : Currency, to : Currency, value : BigDecimal) : Nil
 
     # Registers a conversion rate and returns it.
     #
@@ -19,9 +19,8 @@ class Money::Currency
       from, to =
         Currency.wrap(from), Currency.wrap(to)
 
-      value = (value.to_big_d * to.subunit_to_unit).round
       transaction do
-        add_rate(from, to, value.to_i64)
+        add_rate(from, to, value.to_big_d)
       end
     end
 
@@ -40,7 +39,7 @@ class Money::Currency
         Currency.wrap(from), Currency.wrap(to)
 
       transaction do
-        get_rate?(from, to).try(&.to_big_d)
+        get_rate?(from, to).try(&.value)
       end
     end
 
