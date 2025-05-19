@@ -2,6 +2,7 @@
   "code": "LTC",
   "name": "Litecoin",
   "symbol": "Ł",
+  "subunit": "Litoshi",
   "subunit_to_unit": 100000000,
   "symbol_first": true,
   "decimal_mark": ".",
