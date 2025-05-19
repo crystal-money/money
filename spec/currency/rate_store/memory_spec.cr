@@ -38,4 +38,14 @@ describe Money::Currency::RateStore::Memory do
       store.should be_a(Enumerable(Money::Currency::Rate))
     end
   end
+
+  describe "#clear" do
+    store = Money::Currency::RateStore::Memory.new
+
+    it "clears rates" do
+      store["USD", "CAD"] = 0.9
+      store.clear
+      store.present?.should be_false
+    end
+  end
 end
