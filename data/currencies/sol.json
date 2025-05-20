@@ -1,0 +1,11 @@
+{
+  "code": "SOL",
+  "name": "Solana",
+  "symbol": "SOL",
+  "subunit": "Lamport",
+  "subunit_to_unit": 1000000000,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
