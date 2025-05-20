@@ -1,0 +1,12 @@
+{
+  "code": "XMR",
+  "name": "Monero",
+  "symbol": "ɱ",
+  "subunit": "Piconero",
+  "subunit_to_unit": 1000000000000,
+  "symbol_first": true,
+  "html_entity": "&#x0271;",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
