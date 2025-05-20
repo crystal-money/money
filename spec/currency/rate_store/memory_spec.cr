@@ -1,12 +1,39 @@
 require "../../spec_helper"
 
 describe Money::Currency::RateStore::Memory do
-  describe "#[]= and #[]" do
+  describe "#[from, to]=" do
     store = Money::Currency::RateStore::Memory.new
 
     it "stores rate in memory" do
       store["USD", "CAD"] = 0.9
+    end
+  end
+
+  describe "#[from, to]?" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "CAD"] = 0.9
+
+    it "returns stored rate" do
+      store["USD", "CAD"]?.should eq 0.9.to_big_d
+    end
+
+    it "returns nil if rate is not found" do
+      store["CAD", "USD"]?.should be_nil
+    end
+  end
+
+  describe "#[from, to]" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "CAD"] = 0.9
+
+    it "returns stored rate" do
       store["USD", "CAD"].should eq 0.9.to_big_d
+    end
+
+    it "raises UnknownRateError if rate is not found" do
+      expect_raises(Money::UnknownRateError, "No conversion rate known for CAD -> USD") do
+        store["CAD", "USD"]
+      end
     end
   end
 
@@ -41,11 +68,12 @@ describe Money::Currency::RateStore::Memory do
 
   describe "#clear" do
     store = Money::Currency::RateStore::Memory.new
+    store["USD", "CAD"] = 0.9
 
     it "clears rates" do
-      store["USD", "CAD"] = 0.9
+      store.size.should eq 1
       store.clear
-      store.present?.should be_false
+      store.size.should eq 0
     end
   end
 end
