@@ -274,7 +274,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/689eabc/src/money/bank.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L2" target="_blank">
         money/bank.cr
       </a>
     
@@ -323,6 +323,20 @@
         <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
         
           <div class="summary"><p>Exchanges the given <code><a href="../Money.html">Money</a></code> object to a new <code><a href="../Money.html">Money</a></code> object in <em>to</em> <code><a href="../Money/Currency.html">Currency</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exchange_rate%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal-instance-method" class="signature"><strong>#exchange_rate</strong>(base : Currency, other : Currency) : BigDecimal</a>
+        
+          <div class="summary"><p>Returns the exchange rate between <code>self</code> and <em>other</em> currency or raises <code><a href="../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, other : Currency) : BigDecimal | Nil</a>
+        
+          <div class="summary"><p>Returns the exchange rate between <code>self</code> and <em>other</em> currency, or <code>nil</code> if not found.</p></div>
         
       </li>
     
@@ -395,7 +409,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/bank.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -433,7 +447,50 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/bank.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exchange_rate(base:Currency,other:Currency):BigDecimal-instance-method">
+      <div class="signature">
+        
+        def <strong>exchange_rate</strong>(base : <a href="../Money/Currency.html">Currency</a>, other : <a href="../Money/Currency.html">Currency</a>) : <a href="../BigDecimal.html">BigDecimal</a>
+
+        <a class="method-permalink" href="#exchange_rate%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the exchange rate between <code>self</code> and <em>other</em> currency or raises
+<code><a href="../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exchange_rate?(base:Currency,other:Currency):BigDecimal|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>exchange_rate?</strong>(base : <a href="../Money/Currency.html">Currency</a>, other : <a href="../Money/Currency.html">Currency</a>) : <a href="../BigDecimal.html">BigDecimal</a> | Nil
+
+        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the exchange rate between <code>self</code> and <em>other</em> currency, or <code>nil</code> if not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -455,7 +512,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/bank.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -477,7 +534,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/bank.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/faaf8f9/src/money/bank.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
