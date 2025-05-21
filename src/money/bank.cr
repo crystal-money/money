@@ -13,6 +13,17 @@ struct Money
     def initialize(@store = nil)
     end
 
+    # Returns the exchange rate between `self` and *other* currency, or `nil` if not found.
+    def exchange_rate?(base : Currency, other : Currency) : BigDecimal?
+      base == other ? 1.to_big_d : store[base, other]?
+    end
+
+    # Returns the exchange rate between `self` and *other* currency or raises
+    # `UnknownRateError` if not found.
+    def exchange_rate(base : Currency, other : Currency) : BigDecimal
+      base == other ? 1.to_big_d : store[base, other]
+    end
+
     # Exchanges the given `Money` object to a new `Money` object in
     # *to* `Currency`.
     abstract def exchange(from : Money, to : Currency) : Money

@@ -1,10 +1,8 @@
 struct Money
   class Bank::VariableExchange < Bank
     def exchange(from : Money, to : Currency) : Money
-      rate = store[from.currency, to]
-
       fractional = calculate_fractional(from, to)
-      fractional *= rate
+      fractional *= exchange_rate(from.currency, to)
 
       Money.new(fractional: fractional, currency: to, bank: self)
     end
