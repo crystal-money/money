@@ -40,15 +40,17 @@ struct Money
         find(key)
       end
 
+      # Returns a sorted list of all registered currencies.
       def all : Array(Currency)
         @@table_mutex.synchronize do
           table.values.sort!
         end
       end
 
-      def each(&) : Nil
-        all.each do |*args|
-          yield *args
+      # Iterates over all registered currencies.
+      def each(& : Currency -> _) : Nil
+        all.each do |currency|
+          yield currency
         end
       end
     end
