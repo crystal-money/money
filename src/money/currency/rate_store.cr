@@ -76,6 +76,15 @@ class Money::Currency
       end
     end
 
+    # Returns list of `Rate` objects.
+    def rates : Array(Rate)
+      transaction do
+        rates = [] of Rate
+        unsafe_each { |rate| rates << rate }
+        rates
+      end
+    end
+
     # See also `#clear`.
     protected abstract def clear_rates : Nil
 
