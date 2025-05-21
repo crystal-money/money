@@ -22,8 +22,8 @@ class Money::Currency
       @mutex.synchronize { yield }
     end
 
-    protected def set_rate(from : Currency, to : Currency, value : BigDecimal) : Nil
-      @index[rate_key_for(from, to)] = Rate.new(from, to, value)
+    protected def set_rate(rate : Rate) : Nil
+      @index[rate_key_for(rate.from, rate.to)] = rate
     end
 
     protected def get_rate?(from : Currency, to : Currency) : Rate?
