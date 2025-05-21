@@ -109,7 +109,7 @@ class Money::Currency
     end
 
     # Same as `#each`, but doesn't use concurrency-safe transaction.
-    protected abstract def unsafe_each(& : Rate -> _)
+    protected abstract def each_rate(& : Rate -> _)
 
     # Iterates over list of `Rate` objects.
     #
@@ -120,7 +120,7 @@ class Money::Currency
     # ```
     def each(& : Rate -> _) : Nil
       transaction do
-        unsafe_each { |rate| yield rate }
+        each_rate { |rate| yield rate }
       end
     end
 
@@ -128,7 +128,7 @@ class Money::Currency
     def rates : Array(Rate)
       transaction do
         rates = [] of Rate
-        unsafe_each { |rate| rates << rate }
+        each_rate { |rate| rates << rate }
         rates
       end
     end

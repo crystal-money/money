@@ -30,7 +30,7 @@ class Money::Currency
       @index[rate_key_for(from, to)]?
     end
 
-    protected def unsafe_each(& : Rate -> _)
+    protected def each_rate(& : Rate -> _)
       @index.each_value { |rate| yield rate }
     end
 
