@@ -2,8 +2,12 @@ class Money::Currency
   abstract class RateStore
     include Enumerable(Rate)
 
+    @mutex = Mutex.new(:reentrant)
+
     # Wraps block execution in a concurrency-safe transaction.
-    abstract def transaction(& : -> _)
+    def transaction(& : -> _)
+      @mutex.synchronize { yield }
+    end
 
     # See also `#[]=`.
     protected abstract def set_rate(rate : Rate) : Nil

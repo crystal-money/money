@@ -16,11 +16,6 @@ class Money::Currency
     private INDEX_KEY_SEPARATOR = '_'
 
     @index = {} of String => Rate
-    @mutex = Mutex.new(:reentrant)
-
-    def transaction(& : -> _)
-      @mutex.synchronize { yield }
-    end
 
     protected def set_rate(rate : Rate) : Nil
       @index[rate_key_for(rate.from, rate.to)] = rate
