@@ -47,7 +47,7 @@ require "money"
 # 10.00 USD
 money = Money.new(1000, "USD")
 money.amount        # => 10.0
-money.fractional    # => 1000
+money.fractional    # => 1000.0
 money.currency.code # => "USD"
 
 # Comparisons
@@ -75,6 +75,32 @@ Money.new(1000, "USD").exchange_to("EUR") == Money.new(some_value, "EUR")
 Money.new(100, "USD").format # => "$1.00"
 Money.new(100, "GBP").format # => "£1.00"
 Money.new(100, "EUR").format # => "€1.00"
+```
+
+## Infinite Precision
+
+By default, `Money` objects are rounded to the nearest cent and the additional
+precision is not preserved:
+
+```crystal
+Money.new(2.34567).to_s # => "$2.35"
+```
+
+If you wish to work with the additional precision, you can use either of the
+following:
+
+```crystal
+# Set the value globally
+Money.infinite_precision = true
+
+Money.new(2.34567).to_s   # => "$2.34567"
+
+# or
+
+# Set the value within the block
+Money.with_infinite_precision do
+  Money.new(2.34567).to_s # => "$2.34567"
+end
 ```
 
 ## Currency
@@ -284,8 +310,27 @@ To retain the additional precision, you will also need to set `Money.infinite_pr
 ```crystal
 Money.infinite_precision = true
 
-Money.new(2.34567).to_s          # => "$2.34567"
-Money.new(2.34567).round(4).to_s # => "$2.3457"
+Money.new(2.34567).to_s                    # => "$2.3457"
+Money.new(2.34567).round(4, :to_zero).to_s # => "$2.3456"
+
+# or
+
+Money.with_rounding_mode(:to_zero) do
+  Money.new(2.34567).round(4).to_s         # => "$2.3456"
+end
+```
+
+## Working with fibers
+
+By default, global settings are not shared between fibers. You can use the
+`Money.spawn_with_same_context` to spawn a new fiber with the same global settings:
+
+```crystal
+Money.default_currency = "EUR"
+
+Money.spawn_with_same_context do
+  Money.default_currency.code # => "EUR"
+end
 ```
 
 ## Formatting

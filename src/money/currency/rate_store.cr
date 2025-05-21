@@ -8,7 +8,7 @@ class Money::Currency
     # See also `#[]=`.
     protected abstract def set_rate(from : Currency, to : Currency, value : BigDecimal) : Nil
 
-    # Registers a conversion rate and returns it.
+    # Registers a conversion rate.
     #
     # ```
     # store = Money::Currency::RateStore::Memory.new
@@ -27,12 +27,14 @@ class Money::Currency
     # See also `#[]?`.
     protected abstract def get_rate?(from : Currency, to : Currency) : Rate?
 
-    # Retrieve the rate for the given currency pair.
+    # Retrieves the rate for the given currency pair or `nil` if not found.
     #
     # ```
     # store = Money::Currency::RateStore::Memory.new
     # store["USD", "CAD"] = 1.24515
+    #
     # store["USD", "CAD"]? # => 1.24515
+    # store["CAD", "USD"]? # => nil
     # ```
     def []?(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal?
       from, to =
@@ -43,7 +45,16 @@ class Money::Currency
       end
     end
 
-    # :ditto:
+    # Retrieves the rate for the given currency pair or raises
+    # `UnknownRateError` if not found.
+    #
+    # ```
+    # store = Money::Currency::RateStore::Memory.new
+    # store["USD", "CAD"] = 1.24515
+    #
+    # store["USD", "CAD"] # => 1.24515
+    # store["CAD", "USD"] # raises UnknownRateError
+    # ```
     def [](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal
       self[from, to]? ||
         raise UnknownRateError.new("No conversion rate known for #{from} -> #{to}")
