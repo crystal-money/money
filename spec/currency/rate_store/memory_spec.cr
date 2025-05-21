@@ -37,6 +37,40 @@ describe Money::Currency::RateStore::Memory do
     end
   end
 
+  describe "#<<(rate)" do
+    store = Money::Currency::RateStore::Memory.new
+
+    it "stores rate in memory" do
+      store << Money::Currency::Rate.new(
+        Money::Currency.find("USD"),
+        Money::Currency.find("CAD"),
+        0.9.to_big_d
+      )
+      store["USD", "CAD"].should eq 0.9.to_big_d
+    end
+  end
+
+  describe "#<<(rates)" do
+    store = Money::Currency::RateStore::Memory.new
+
+    it "stores rates in memory" do
+      store << [
+        Money::Currency::Rate.new(
+          Money::Currency.find("USD"),
+          Money::Currency.find("CAD"),
+          0.9.to_big_d
+        ),
+        Money::Currency::Rate.new(
+          Money::Currency.find("CAD"),
+          Money::Currency.find("USD"),
+          1.1.to_big_d
+        ),
+      ]
+      store["USD", "CAD"].should eq 0.9.to_big_d
+      store["CAD", "USD"].should eq 1.1.to_big_d
+    end
+  end
+
   describe "#each" do
     store = Money::Currency::RateStore::Memory.new
     store["USD", "CAD"] = 0.9

@@ -24,6 +24,54 @@ class Money::Currency
       end
     end
 
+    # Registers a conversion rate.
+    #
+    # ```
+    # store = Money::Currency::RateStore::Memory.new
+    # store << Rate.new(
+    #   Money::Currency.find("USD"),
+    #   Money::Currency.find("CAD"),
+    #   1.24515.to_big_d
+    # )
+    # store << Rate.new(
+    #   Money::Currency.find("CAD"),
+    #   Money::Currency.find("USD"),
+    #   0.803115.to_big_d
+    # )
+    # ```
+    def <<(rate : Rate) : self
+      transaction do
+        set_rate(rate)
+      end
+      self
+    end
+
+    # Registers multiple conversion rates.
+    #
+    # ```
+    # store = Money::Currency::RateStore::Memory.new
+    # store << [
+    #   Rate.new(
+    #     Money::Currency.find("USD"),
+    #     Money::Currency.find("CAD"),
+    #     1.24515.to_big_d
+    #   ),
+    #   Rate.new(
+    #     Money::Currency.find("CAD"),
+    #     Money::Currency.find("USD"),
+    #     0.803115.to_big_d
+    #   ),
+    # ]
+    # ```
+    def <<(rates : Enumerable(Rate)) : self
+      transaction do
+        rates.each do |rate|
+          set_rate(rate)
+        end
+      end
+      self
+    end
+
     # See also `#[]?`.
     protected abstract def get_rate?(from : Currency, to : Currency) : Rate?
 
