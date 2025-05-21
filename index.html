@@ -284,7 +284,7 @@ number of non-ASCII currency attributes.</li>
 <span class="c"># 10.00 USD</span>
 money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>)
 money.amount        <span class="c"># =&gt; 10.0</span>
-money.fractional    <span class="c"># =&gt; 1000</span>
+money.fractional    <span class="c"># =&gt; 1000.0</span>
 money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span>
 
 <span class="c"># Comparisons</span>
@@ -312,6 +312,27 @@ some_code_to_setup_exchange_rates
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$1.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format <span class="c"># =&gt; &quot;£1.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).format <span class="c"># =&gt; &quot;€1.00&quot;</span></code></pre>
+<h2><a id="infinite-precision" class="anchor" href="#infinite-precision">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Infinite Precision</h2>
+<p>By default, <code><a href="Money.html">Money</a></code> objects are rounded to the nearest cent and the additional
+precision is not preserved:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>).to_s <span class="c"># =&gt; &quot;$2.35&quot;</span></code></pre>
+<p>If you wish to work with the additional precision, you can use either of the
+following:</p>
+<pre><code class="language-crystal"><span class="c"># Set the value globally</span>
+<span class="t">Money</span>.infinite_precision <span class="o">=</span> <span class="n">true</span>
+
+<span class="t">Money</span>.new(<span class="n">2.34567</span>).to_s   <span class="c"># =&gt; &quot;$2.34567&quot;</span>
+
+<span class="c"># or</span>
+
+<span class="c"># Set the value within the block</span>
+<span class="t">Money</span>.with_infinite_precision <span class="k">do</span>
+  <span class="t">Money</span>.new(<span class="n">2.34567</span>).to_s <span class="c"># =&gt; &quot;$2.34567&quot;</span>
+<span class="k">end</span></code></pre>
 <h2><a id="currency" class="anchor" href="#currency">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -475,8 +496,26 @@ currencies don't match:</p>
 <p>To retain the additional precision, you will also need to set <code>Money.infinite_precision</code> to <code>true</code>.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.infinite_precision <span class="o">=</span> <span class="n">true</span>
 
-<span class="t">Money</span>.new(<span class="n">2.34567</span>).to_s          <span class="c"># =&gt; &quot;$2.34567&quot;</span>
-<span class="t">Money</span>.new(<span class="n">2.34567</span>).round(<span class="n">4</span>).to_s <span class="c"># =&gt; &quot;$2.3457&quot;</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>).to_s                    <span class="c"># =&gt; &quot;$2.3457&quot;</span>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>).round(<span class="n">4</span>, <span class="n">:to_zero</span>).to_s <span class="c"># =&gt; &quot;$2.3456&quot;</span>
+
+<span class="c"># or</span>
+
+<span class="t">Money</span>.with_rounding_mode(<span class="n">:to_zero</span>) <span class="k">do</span>
+  <span class="t">Money</span>.new(<span class="n">2.34567</span>).round(<span class="n">4</span>).to_s         <span class="c"># =&gt; &quot;$2.3456&quot;</span>
+<span class="k">end</span></code></pre>
+<h2><a id="working-with-fibers" class="anchor" href="#working-with-fibers">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Working with fibers</h2>
+<p>By default, global settings are not shared between fibers. You can use the
+<code>Money.spawn_with_same_context</code> to spawn a new fiber with the same global settings:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_currency <span class="o">=</span> <span class="s">&quot;EUR&quot;</span>
+
+<span class="t">Money</span>.spawn_with_same_context <span class="k">do</span>
+  <span class="t">Money</span>.default_currency.code <span class="c"># =&gt; &quot;EUR&quot;</span>
+<span class="k">end</span></code></pre>
 <h2><a id="formatting" class="anchor" href="#formatting">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

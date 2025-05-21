@@ -286,7 +286,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L2" target="_blank">
         money/currency/rate_store.cr
       </a>
     
@@ -315,23 +315,44 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#%3C%3C%28rate%3ARate%29%3Aself-instance-method" class="signature"><strong>#<<</strong>(rate : Rate) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Registers a conversion rate.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C%3C%28rates%3AEnumerable%28Rate%29%29%3Aself-instance-method" class="signature"><strong>#<<</strong>(rates : Enumerable(Rate)) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Registers multiple conversion rates.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#%5B%5D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal-instance-method" class="signature"><strong>#[]</strong>(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal</a>
         
-          <div class="summary"><p>Retrieve the rate for the given currency pair.</p></div>
+          <div class="summary"><p>Retrieves the rate for the given currency pair or raises <code><a href="../../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#%5B%5D%3D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%2Cvalue%3ANumber%29%3ANil-instance-method" class="signature"><strong>#[]=</strong>(from : String | Symbol | Currency, to : String | Symbol | Currency, value : Number) : Nil</a>
         
-          <div class="summary"><p>Registers a conversion rate and returns it.</p></div>
+          <div class="summary"><p>Registers a conversion rate.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#%5B%5D%3F%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal%7CNil-instance-method" class="signature"><strong>#[]?</strong>(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal | Nil</a>
         
-          <div class="summary"><p>Retrieve the rate for the given currency pair.</p></div>
+          <div class="summary"><p>Retrieves the rate for the given currency pair or <code>nil</code> if not found.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear%28base_currency%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method" class="signature"><strong>#clear</strong>(base_currency : String | Symbol | Currency) : Nil</a>
+        
+          <div class="summary"><p>Empties currency rate index.</p></div>
         
       </li>
     
@@ -346,6 +367,13 @@
         <a href="#each%28%26%3ARate-%3E_%29%3ANil-instance-method" class="signature"><strong>#each</strong>(& : Rate -> _) : Nil</a>
         
           <div class="summary"><p>Iterates over list of <code><a href="../../Money/Currency/Rate.html">Rate</a></code> objects.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rates%3AArray%28Rate%29-instance-method" class="signature"><strong>#rates</strong> : Array(Rate)</a>
+        
+          <div class="summary"><p>Returns list of <code><a href="../../Money/Currency/Rate.html">Rate</a></code> objects.</p></div>
         
       </li>
     
@@ -419,6 +447,72 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="&lt;&lt;(rate:Rate):self-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(rate : <a href="../../Money/Currency/Rate.html">Rate</a>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%3C%3C%28rate%3ARate%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Registers a conversion rate.</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+store <span class="o">&lt;&lt;</span> <span class="t">Rate</span>.new(
+  <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>),
+  <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;CAD&quot;</span>),
+  <span class="n">1.24515</span>.to_big_d
+)
+store <span class="o">&lt;&lt;</span> <span class="t">Rate</span>.new(
+  <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;CAD&quot;</span>),
+  <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>),
+  <span class="n">0.803115</span>.to_big_d
+)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;&lt;(rates:Enumerable(Rate)):self-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(rates : Enumerable(<a href="../../Money/Currency/Rate.html">Rate</a>)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%3C%3C%28rates%3AEnumerable%28Rate%29%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Registers multiple conversion rates.</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+store <span class="o">&lt;&lt;</span> [
+  <span class="t">Rate</span>.new(
+    <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>),
+    <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;CAD&quot;</span>),
+    <span class="n">1.24515</span>.to_big_d
+  ),
+  <span class="t">Rate</span>.new(
+    <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;CAD&quot;</span>),
+    <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>),
+    <span class="n">0.803115</span>.to_big_d
+  ),
+]</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="[](from:String|Symbol|Currency,to:String|Symbol|Currency):BigDecimal-instance-method">
       <div class="signature">
         
@@ -429,16 +523,19 @@
       
         <div class="doc">
           
-          <p>Retrieve the rate for the given currency pair.</p>
+          <p>Retrieves the rate for the given currency pair or raises
+<code><a href="../../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p>
 <pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
 store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>]? <span class="c"># =&gt; 1.24515</span></code></pre>
+
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 1.24515</span>
+store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="c"># raises UnknownRateError</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L106" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -453,7 +550,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       
         <div class="doc">
           
-          <p>Registers a conversion rate and returns it.</p>
+          <p>Registers a conversion rate.</p>
 <pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
 store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
 store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.803115</span></code></pre>
@@ -462,7 +559,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -477,16 +574,39 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       
         <div class="doc">
           
-          <p>Retrieve the rate for the given currency pair.</p>
+          <p>Retrieves the rate for the given currency pair or <code>nil</code> if not found.</p>
 <pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
 store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>]? <span class="c"># =&gt; 1.24515</span></code></pre>
+
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>]? <span class="c"># =&gt; 1.24515</span>
+store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</span>]? <span class="c"># =&gt; nil</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L87" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear(base_currency:String|Symbol|Currency):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong>(base_currency : String | Symbol | <a href="../../Money/Currency.html">Currency</a>) : Nil
+
+        <a class="method-permalink" href="#clear%28base_currency%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Empties currency rate index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L148" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -507,7 +627,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -531,7 +651,28 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rates:Array(Rate)-instance-method">
+      <div class="signature">
+        
+        def <strong>rates</strong> : Array(<a href="../../Money/Currency/Rate.html">Rate</a>)
+
+        <a class="method-permalink" href="#rates%3AArray%28Rate%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns list of <code><a href="../../Money/Currency/Rate.html">Rate</a></code> objects.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L128" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -552,7 +693,7 @@ store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/534232e/src/money/currency/rate_store.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/689eabc/src/money/currency/rate_store.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
