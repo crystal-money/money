@@ -109,7 +109,7 @@ class Money::Currency
     end
 
     # Same as `#each`, but doesn't use concurrency-safe transaction.
-    protected abstract def unsafe_each(& : T -> _)
+    protected abstract def unsafe_each(& : Rate -> _)
 
     # Iterates over list of `Rate` objects.
     #
