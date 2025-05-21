@@ -115,4 +115,17 @@ describe Money::Currency::RateStore::Memory do
       store.size.should eq 0
     end
   end
+
+  describe "#clear(base_currency)" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "EUR"] = 1.0
+    store["USD", "CAD"] = 0.9
+    store["CAD", "USD"] = 1.1
+
+    it "clears rates only for the given base currency" do
+      store.size.should eq 3
+      store.clear("USD")
+      store.size.should eq 1
+    end
+  end
 end
