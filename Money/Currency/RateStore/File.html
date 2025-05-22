@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateStore::Memory - money master</title>
+  <title>Money::Currency::RateStore::File - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -142,12 +142,12 @@
       
         <ul>
   
-  <li class=" " data-id="money/Money/Currency/RateStore/File" data-name="money::currency::ratestore::file">
+  <li class=" current" data-id="money/Money/Currency/RateStore/File" data-name="money::currency::ratestore::file">
       <a href="../../../Money/Currency/RateStore/File.html">File</a>
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
+  <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../../Money/Currency/RateStore/Memory.html">Memory</a>
       
     </li>
@@ -228,12 +228,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateStore::<wbr>Memory
+  </span> Money::<wbr>Currency::<wbr>RateStore::<wbr>File
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateStore/Memory.html">Money::Currency::RateStore::Memory</a></li><li class="superclass"><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateStore/File.html">Money::Currency::RateStore::File</a></li><li class="superclass"><a href="../../../Money/Currency/RateStore/Memory.html">Money::Currency::RateStore::Memory</a></li><li class="superclass"><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -247,16 +247,21 @@
     Overview
   </h2>
 
-  <p>Class for concurrency-safe storage of exchange rate pairs.
-Used by instances of <code>Currency::VariableExchange</code>.</p>
-<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+  <p>Class for storage of exchange rate pairs in a JSON file.</p>
+<p><span class="flag purple">NOTE</span>  Exchange rates are stored in memory and are automatically loaded from
+(upon initialization), and persisted to, a JSON file (on every mutable
+transaction commit).</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">File</span>.new(<span class="s">&quot;path/to/file.json&quot;</span>)
 store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.98</span>
 store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.98</span>
 
 <span class="c"># Iterates rates</span>
 store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o">|</span>
   puts rate
-<span class="k">end</span></code></pre>
+<span class="k">end</span>
+
+<span class="c"># Save rates</span>
+store.save</code></pre>
 
 
 
@@ -267,20 +272,6 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
 
-
-  <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Direct Known Subclasses
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateStore/File.html">Money::Currency::RateStore::File</a></li>
-    
-  </ul>
 
 
 
@@ -297,8 +288,8 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/memory.cr#L15" target="_blank">
-        money/currency/rate_store/memory.cr
+      <a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/file.cr#L23" target="_blank">
+        money/currency/rate_store/file.cr
       </a>
     
     <br/>
@@ -309,15 +300,78 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
   
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28filepath%3APath%7CString%29-class-method" class="signature"><strong>.new</strong>(filepath : Path | String)</a>
+        
+      </li>
+    
+  </ul>
+
 
   
 
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#load%3ANil-instance-method" class="signature"><strong>#load</strong> : Nil</a>
+        
+          <div class="summary"><p>Loads rates from a JSON file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#save%3ANil-instance-method" class="signature"><strong>#save</strong> : Nil</a>
+        
+          <div class="summary"><p>Saves rates to a JSON file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#transaction%28%2A%2Cmutable%3ABool%3Dfalse%2C%26%3A-%3E_%29-instance-method" class="signature"><strong>#transaction</strong>(*, mutable : Bool = <span class="n">false</span>, & :  -> _)</a>
+        
+          <div class="summary"><p>Wraps block execution in a concurrency-safe transaction.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
     
       
 
@@ -418,12 +472,111 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </div>
 
   
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(filepath:Path|String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(filepath : Path | String)
+
+        <a class="method-permalink" href="#new%28filepath%3APath%7CString%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/file.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="load:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>load</strong> : Nil
+
+        <a class="method-permalink" href="#load%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Loads rates from a JSON file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/file.cr#L38" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="save:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>save</strong> : Nil
+
+        <a class="method-permalink" href="#save%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Saves rates to a JSON file.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/file.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transaction(*,mutable:Bool=false,&amp;:-&gt;_)-instance-method">
+      <div class="signature">
+        
+        def <strong>transaction</strong>(*, mutable : Bool = <span class="n">false</span>, & :  -> _)
+
+        <a class="method-permalink" href="#transaction%28%2A%2Cmutable%3ABool%3Dfalse%2C%26%3A-%3E_%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Wraps block execution in a concurrency-safe transaction.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f8aa08a/src/money/currency/rate_store/file.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
