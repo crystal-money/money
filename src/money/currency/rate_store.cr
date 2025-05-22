@@ -155,7 +155,7 @@ class Money::Currency
     # See also `#clear(base_currency)`.
     protected abstract def clear_rates(base_currency : Currency) : Nil
 
-    # Empties currency rate index.
+    # Removes rates for the given base currency.
     def clear(base_currency : String | Symbol | Currency) : Nil
       transaction(mutable: true) do
         clear_rates(Currency.wrap(base_currency))
