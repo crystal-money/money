@@ -1,0 +1,171 @@
+require "../../spec_helper"
+
+private CURRENCY_RATES = [
+  Money::Currency::Rate.new(
+    Money::Currency.find("USD"),
+    Money::Currency.find("CAD"),
+    0.9.to_big_d
+  ),
+  Money::Currency::Rate.new(
+    Money::Currency.find("CAD"),
+    Money::Currency.find("USD"),
+    1.1.to_big_d
+  ),
+]
+
+private def with_currency_file_store(&)
+  tempfile = File.tempfile(suffix: ".json") do |file|
+    CURRENCY_RATES.to_json(file)
+  end
+  begin
+    store = Money::Currency::RateStore::File.new(tempfile.path)
+    yield store, tempfile
+  ensure
+    tempfile.delete
+  end
+end
+
+describe Money::Currency::RateStore::File do
+  describe "#initialize" do
+    it "loads rates from a JSON file" do
+      with_currency_file_store do |store|
+        store.rates.map(&.to_s).should eq [
+          "USD -> CAD: 0.9",
+          "CAD -> USD: 1.1",
+        ]
+      end
+    end
+  end
+
+  describe "#load" do
+    it "loads rates from a JSON file" do
+      with_currency_file_store do |store, file|
+        rates = [
+          Money::Currency::Rate.new(
+            Money::Currency.find("USD"),
+            Money::Currency.find("EUR"),
+            1.to_big_d
+          ),
+        ]
+        File.write(file.path, rates.to_json)
+
+        store.load
+        store.rates.map(&.to_s).should eq [
+          "USD -> EUR: 1.0",
+        ]
+      end
+    end
+
+    it "does nothing if the file does not exist" do
+      store = Money::Currency::RateStore::File.new("does/not/exist.json")
+      store.load
+      store.empty?.should be_true
+    end
+  end
+
+  describe "#[]=" do
+    it "persists rates to a JSON file" do
+      with_currency_file_store do |store, file|
+        store["USD", "EUR"] = 1.1
+        store["USD", "CAD"] = 2.2
+        store["CAD", "USD"] = 3.3
+
+        json = File.read(file.path)
+        json.should eq <<-JSON
+          [
+            {
+              "from": "USD",
+              "to": "CAD",
+              "value": 2.2
+            },
+            {
+              "from": "CAD",
+              "to": "USD",
+              "value": 3.3
+            },
+            {
+              "from": "USD",
+              "to": "EUR",
+              "value": 1.1
+            }
+          ]
+          JSON
+      end
+    end
+
+    describe "#<<" do
+      it "persists rates to a JSON file" do
+        with_currency_file_store do |store, file|
+          store << [
+            Money::Currency::Rate.new(
+              Money::Currency.find("USD"),
+              Money::Currency.find("EUR"),
+              1.1.to_big_d
+            ),
+            Money::Currency::Rate.new(
+              Money::Currency.find("USD"),
+              Money::Currency.find("CAD"),
+              2.2.to_big_d
+            ),
+            Money::Currency::Rate.new(
+              Money::Currency.find("CAD"),
+              Money::Currency.find("USD"),
+              3.3.to_big_d
+            ),
+          ]
+
+          json = File.read(file.path)
+          json.should eq <<-JSON
+          [
+            {
+              "from": "USD",
+              "to": "CAD",
+              "value": 2.2
+            },
+            {
+              "from": "CAD",
+              "to": "USD",
+              "value": 3.3
+            },
+            {
+              "from": "USD",
+              "to": "EUR",
+              "value": 1.1
+            }
+          ]
+          JSON
+        end
+      end
+    end
+
+    describe "#clear(base_currency)" do
+      it "persists rates to a JSON file" do
+        with_currency_file_store do |store, file|
+          store.clear("USD")
+
+          json = File.read(file.path)
+          json.should eq <<-JSON
+          [
+            {
+              "from": "CAD",
+              "to": "USD",
+              "value": 1.1
+            }
+          ]
+          JSON
+        end
+      end
+    end
+
+    describe "#clear" do
+      it "persists rates to a JSON file" do
+        with_currency_file_store do |store, file|
+          store.clear
+
+          json = File.read(file.path)
+          json.should eq "[]"
+        end
+      end
+    end
+  end
+end
