@@ -5,7 +5,7 @@ class Money::Currency
     @mutex = Mutex.new(:reentrant)
 
     # Wraps block execution in a concurrency-safe transaction.
-    def transaction(& : -> _)
+    def transaction(*, mutable : Bool = false, & : -> _)
       @mutex.synchronize { yield }
     end
 
@@ -30,7 +30,7 @@ class Money::Currency
       from, to =
         Currency.wrap(from), Currency.wrap(to)
 
-      transaction do
+      transaction(mutable: true) do
         set_rate(Rate.new(from, to, value.to_big_d))
       end
     end
@@ -51,7 +51,7 @@ class Money::Currency
     # )
     # ```
     def <<(rate : Rate) : self
-      transaction do
+      transaction(mutable: true) do
         set_rate(rate)
       end
       self
@@ -75,7 +75,7 @@ class Money::Currency
     # ]
     # ```
     def <<(rates : Enumerable(Rate)) : self
-      transaction do
+      transaction(mutable: true) do
         set_rates(rates)
       end
       self
@@ -147,7 +147,9 @@ class Money::Currency
 
     # Empties currency rate index.
     def clear : Nil
-      transaction { clear_rates }
+      transaction(mutable: true) do
+        clear_rates
+      end
     end
 
     # See also `#clear(base_currency)`.
@@ -155,7 +157,7 @@ class Money::Currency
 
     # Empties currency rate index.
     def clear(base_currency : String | Symbol | Currency) : Nil
-      transaction do
+      transaction(mutable: true) do
         clear_rates(Currency.wrap(base_currency))
       end
     end
