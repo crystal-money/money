@@ -12,6 +12,13 @@ class Money::Currency
     # See also `#[]=`.
     protected abstract def set_rate(rate : Rate) : Nil
 
+    # See also `#<<`.
+    protected def set_rates(rates : Enumerable(Rate)) : Nil
+      rates.each do |rate|
+        set_rate(rate)
+      end
+    end
+
     # Registers a conversion rate.
     #
     # ```
@@ -69,9 +76,7 @@ class Money::Currency
     # ```
     def <<(rates : Enumerable(Rate)) : self
       transaction do
-        rates.each do |rate|
-          set_rate(rate)
-        end
+        set_rates(rates)
       end
       self
     end
