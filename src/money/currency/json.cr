@@ -20,6 +20,7 @@ class Money::Currency
         json.field "from", from.to_s
         json.field "to", to.to_s
         json.field "value", value
+        json.field "updated_at", updated_at
       end
     end
   end

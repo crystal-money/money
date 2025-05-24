@@ -4,12 +4,14 @@ private CURRENCY_RATES = [
   Money::Currency::Rate.new(
     Money::Currency.find("USD"),
     Money::Currency.find("CAD"),
-    0.9.to_big_d
+    0.9.to_big_d,
+    Time.parse_utc("2025-05-22", "%F"),
   ),
   Money::Currency::Rate.new(
     Money::Currency.find("CAD"),
     Money::Currency.find("USD"),
-    1.1.to_big_d
+    1.1.to_big_d,
+    Time.parse_utc("2025-05-22", "%F"),
   ),
 ]
 
@@ -44,7 +46,7 @@ describe Money::Currency::RateStore::File do
           Money::Currency::Rate.new(
             Money::Currency.find("USD"),
             Money::Currency.find("EUR"),
-            1.to_big_d
+            1.to_big_d,
           ),
         ]
         File.write(file.path, rates.to_json)
@@ -70,26 +72,15 @@ describe Money::Currency::RateStore::File do
         store["USD", "CAD"] = 2.2
         store["CAD", "USD"] = 3.3
 
-        json = File.read(file.path)
-        json.should eq <<-JSON
-          [
-            {
-              "from": "USD",
-              "to": "CAD",
-              "value": 2.2
-            },
-            {
-              "from": "CAD",
-              "to": "USD",
-              "value": 3.3
-            },
-            {
-              "from": "USD",
-              "to": "EUR",
-              "value": 1.1
-            }
-          ]
-          JSON
+        rates = Array(Money::Currency::Rate).from_json(File.read(file.path))
+        rates.map(&.to_s).should eq [
+          "USD -> CAD: 2.2",
+          "CAD -> USD: 3.3",
+          "USD -> EUR: 1.1",
+        ]
+        rates.each do |rate|
+          rate.updated_at.should be_close(Time.utc, 1.second)
+        end
       end
     end
 
@@ -100,17 +91,20 @@ describe Money::Currency::RateStore::File do
             Money::Currency::Rate.new(
               Money::Currency.find("USD"),
               Money::Currency.find("EUR"),
-              1.1.to_big_d
+              1.1.to_big_d,
+              Time.parse_utc("2025-05-22", "%F"),
             ),
             Money::Currency::Rate.new(
               Money::Currency.find("USD"),
               Money::Currency.find("CAD"),
-              2.2.to_big_d
+              2.2.to_big_d,
+              Time.parse_utc("2025-05-22", "%F"),
             ),
             Money::Currency::Rate.new(
               Money::Currency.find("CAD"),
               Money::Currency.find("USD"),
-              3.3.to_big_d
+              3.3.to_big_d,
+              Time.parse_utc("2025-05-22", "%F"),
             ),
           ]
 
@@ -120,17 +114,20 @@ describe Money::Currency::RateStore::File do
             {
               "from": "USD",
               "to": "CAD",
-              "value": 2.2
+              "value": 2.2,
+              "updated_at": "2025-05-22T00:00:00Z"
             },
             {
               "from": "CAD",
               "to": "USD",
-              "value": 3.3
+              "value": 3.3,
+              "updated_at": "2025-05-22T00:00:00Z"
             },
             {
               "from": "USD",
               "to": "EUR",
-              "value": 1.1
+              "value": 1.1,
+              "updated_at": "2025-05-22T00:00:00Z"
             }
           ]
           JSON
@@ -149,7 +146,8 @@ describe Money::Currency::RateStore::File do
             {
               "from": "CAD",
               "to": "USD",
-              "value": 1.1
+              "value": 1.1,
+              "updated_at": "2025-05-22T00:00:00Z"
             }
           ]
           JSON
