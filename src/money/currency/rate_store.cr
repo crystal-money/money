@@ -3,10 +3,19 @@ class Money::Currency
     include Enumerable(Rate)
 
     @mutex = Mutex.new(:reentrant)
+    @ttl : Time::Span?
+
+    def initialize(@ttl : Time::Span? = nil)
+    end
 
     # Wraps block execution in a concurrency-safe transaction.
     def transaction(*, mutable : Bool = false, & : -> _)
       @mutex.synchronize { yield }
+    end
+
+    # Returns `true` if the rate is stale.
+    protected def stale_rate?(rate : Rate) : Bool
+      !!@ttl.try { |ttl| rate.updated_at < Time.utc - ttl }
     end
 
     # See also `#[]=`.
@@ -98,7 +107,9 @@ class Money::Currency
         Currency.wrap(from), Currency.wrap(to)
 
       transaction do
-        get_rate?(from, to).try(&.value)
+        if rate = get_rate?(from, to)
+          stale_rate?(rate) ? nil : rate.value
+        end
       end
     end
 
@@ -129,7 +140,9 @@ class Money::Currency
     # ```
     def each(& : Rate -> _) : Nil
       transaction do
-        each_rate { |rate| yield rate }
+        each_rate do |rate|
+          yield rate unless stale_rate?(rate)
+        end
       end
     end
 
@@ -137,7 +150,9 @@ class Money::Currency
     def rates : Array(Rate)
       transaction do
         rates = [] of Rate
-        each_rate { |rate| rates << rate }
+        each_rate do |rate|
+          rates << rate unless stale_rate?(rate)
+        end
         rates
       end
     end

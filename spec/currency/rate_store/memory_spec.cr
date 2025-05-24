@@ -1,6 +1,37 @@
 require "../../spec_helper"
 
 describe Money::Currency::RateStore::Memory do
+  describe "rates caching" do
+    store = Money::Currency::RateStore::Memory.new(ttl: 1.hour)
+    store << Money::Currency::Rate.new(
+      Money::Currency.find("USD"),
+      Money::Currency.find("CAD"),
+      0.9.to_big_d,
+      Time.utc
+    )
+    store << Money::Currency::Rate.new(
+      Money::Currency.find("CAD"),
+      Money::Currency.find("USD"),
+      1.1.to_big_d,
+      Time.utc - (1.hour + 1.second)
+    )
+
+    describe "#[]?" do
+      it "returns nil when rate is stale" do
+        store["USD", "CAD"]?.should eq 0.9.to_big_d
+        store["CAD", "USD"]?.should be_nil
+      end
+    end
+
+    describe "#rates" do
+      it "skips stale rates" do
+        store.rates.map(&.to_s).should eq [
+          "USD -> CAD: 0.9",
+        ]
+      end
+    end
+  end
+
   describe "#[from, to]=" do
     store = Money::Currency::RateStore::Memory.new
 
