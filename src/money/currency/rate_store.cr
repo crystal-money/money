@@ -146,15 +146,10 @@ class Money::Currency
       end
     end
 
-    # Returns list of `Rate` objects.
+    # Alias of `#to_a`.
+    @[AlwaysInline]
     def rates : Array(Rate)
-      transaction do
-        rates = [] of Rate
-        each_rate do |rate|
-          rates << rate unless stale_rate?(rate)
-        end
-        rates
-      end
+      to_a
     end
 
     # See also `#clear`.
