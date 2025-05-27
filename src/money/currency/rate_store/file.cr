@@ -54,6 +54,8 @@ class Money::Currency
 
     # Saves rates to a JSON file.
     def save : Nil
+      # Intentionally omits `mutable` argument so that it won't
+      # trigger an infinite loop from within `transaction`
       transaction do
         ::File.open(@filepath, "w") do |file|
           rates.to_pretty_json(file)
