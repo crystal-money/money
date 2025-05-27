@@ -108,19 +108,20 @@ describe Money::Currency::RateStore::Memory do
     store["CAD", "USD"] = 1.1
 
     it "iterates over rates" do
-      rates = [] of String
+      rates = [] of Money::Currency::Rate
       store.each do |rate|
-        rates << rate.to_s
+        rates << rate
       end
-      rates.should eq [
+      rates.map(&.to_s).should eq [
         "USD -> CAD: 0.9",
         "CAD -> USD: 1.1",
       ]
     end
+  end
 
-    it "is an Enumerable" do
-      store.should be_a(Enumerable(Money::Currency::Rate))
-    end
+  it "implements Enumerable" do
+    store = Money::Currency::RateStore::Memory.new
+    store.should be_a(Enumerable(Money::Currency::Rate))
   end
 
   describe "#rates" do

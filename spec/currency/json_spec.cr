@@ -1,10 +1,12 @@
 require "../spec_helper"
 
 describe Money::Currency do
-  foo_json = %q({
-    "code": "FOO",
-    "subunit_to_unit": 100
-  })
+  foo_json = <<-JSON
+    {
+      "code": "FOO",
+      "subunit_to_unit": 100
+    }
+    JSON
 
   describe ".from_json" do
     context "(object)" do

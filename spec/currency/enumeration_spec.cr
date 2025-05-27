@@ -123,10 +123,6 @@ describe Money::Currency::Enumeration do
   end
 
   it "implements Enumerable" do
-    Money::Currency.responds_to?(:all?).should be_true
-    Money::Currency.responds_to?(:each_with_index).should be_true
-    Money::Currency.responds_to?(:map).should be_true
-    Money::Currency.responds_to?(:select).should be_true
-    Money::Currency.responds_to?(:reject).should be_true
+    Money::Currency.should be_a(Enumerable(Money::Currency))
   end
 end
