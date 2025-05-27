@@ -254,6 +254,8 @@
   </h2>
   <ul class="other-types-list">
     
+      <li class="other-type">Comparable(<a href="../../Money/Currency/Rate.html">Money::Currency::Rate</a>)</li>
+    
       <li class="other-type">JSON::Serializable</li>
     
   </ul>
@@ -277,14 +279,14 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/json.cr#L15" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/json.cr#L15" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/rate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L2" target="_blank">
         money/currency/rate.cr
       </a>
     
@@ -333,6 +335,13 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%3C%3D%3E%28other%3ARate%29%3AInt32-instance-method" class="signature"><strong>#<=></strong>(other : Rate) : Int32</a>
+        
+          <div class="summary"><p>The comparison operator.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
@@ -434,6 +443,19 @@
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -457,7 +479,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -473,7 +495,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/json.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/json.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -494,6 +516,41 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="&lt;=&gt;(other:Rate):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong><=></strong>(other : <a href="../../Money/Currency/Rate.html">Rate</a>) : Int32
+
+        <a class="method-permalink" href="#%3C%3D%3E%28other%3ARate%29%3AInt32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module Comparable(<a href="../../Money/Currency/Rate.html">Money::Currency::Rate</a>)
+            </div>
+          
+          <p>The comparison operator. Returns <code>0</code> if the two objects are equal,
+a negative number if this object is considered less than <em>other</em>,
+a positive number if this object is considered greater than <em>other</em>,
+or <code>nil</code> if the two objects are not comparable.</p>
+<p>Subclasses define this method to provide class-specific ordering.</p>
+<p>The comparison operator is usually used to sort values:</p>
+<pre><code class="language-crystal"><span class="c"># Sort in a descending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> y <span class="o">&lt;=&gt;</span> x } <span class="c"># =&gt; [3, 2, 1]</span>
+
+<span class="c"># Sort in an ascending way:</span>
+[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> x <span class="o">&lt;=&gt;</span> y } <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="clone-instance-method">
       <div class="signature">
         
@@ -505,7 +562,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -521,7 +578,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -565,7 +622,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/json.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/json.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -590,7 +647,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/2c19f9e/src/money/currency/rate.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/2d6216d/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
