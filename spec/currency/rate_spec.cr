@@ -60,6 +60,7 @@ describe Money::Currency::Rate do
 
   it "#to_s" do
     rate.to_s.should eq "USD -> CAD: 1.1"
+    rate.to_s(include_updated_at: true).should eq "USD -> CAD: 1.1 (2025-05-22 00:00:00 UTC)"
   end
 
   it "#from" do
