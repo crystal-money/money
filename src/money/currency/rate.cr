@@ -3,8 +3,8 @@ class Money::Currency
     include Comparable(Rate)
 
     def <=>(other : Rate) : Int32
-      {from, to, value, updated_at} <=>
-        {other.from, other.to, other.value, other.updated_at}
+      {from, to, other.updated_at, other.value} <=>
+        {other.from, other.to, updated_at, value}
     end
 
     def to_s(*, include_updated_at = false) : String
