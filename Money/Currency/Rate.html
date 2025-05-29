@@ -279,14 +279,14 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/json.cr#L15" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/json.cr#L15" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L2" target="_blank">
         money/currency/rate.cr
       </a>
     
@@ -369,9 +369,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        <a href="#to_s%28io%3AIO%2C%2A%2Cinclude_updated_at%3Dfalse%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO, *, include_updated_at = <span class="n">false</span>) : Nil</a>
         
-          <div class="summary"><p>Same as <code>#inspect(io)</code>.</p></div>
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28%2A%2Cinclude_updated_at%3Dfalse%29%3AString-instance-method" class="signature"><strong>#to_s</strong>(*, include_updated_at = <span class="n">false</span>) : String</a>
         
       </li>
     
@@ -479,7 +482,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -495,7 +498,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/json.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/json.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -546,7 +549,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -562,7 +565,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -578,7 +581,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -622,32 +625,39 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/json.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/json.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+    <div class="entry-detail" id="to_s(io:IO,*,include_updated_at=false):Nil-instance-method">
       <div class="signature">
         
-        def <strong>to_s</strong>(io : IO) : Nil
+        def <strong>to_s</strong>(io : IO, *, include_updated_at = <span class="n">false</span>) : Nil
 
-        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%3AIO%2C%2A%2Cinclude_updated_at%3Dfalse%29%3ANil-instance-method">#</a>
       </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from struct Struct
-            </div>
-          
-          <p>Same as <code>#inspect(io)</code>.</p>
-        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/87dab6a/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(*,include_updated_at=false):String-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(*, include_updated_at = <span class="n">false</span>) : String
+
+        <a class="method-permalink" href="#to_s%28%2A%2Cinclude_updated_at%3Dfalse%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f51fd58/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
