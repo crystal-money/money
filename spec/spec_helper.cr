@@ -22,12 +22,12 @@ ensure
   end
 end
 
-def with_default_bank(bank = nil, &)
-  previous_bank = Money.default_bank
+def with_default_exchange(exchange = nil, &)
+  previous_exchange = Money.default_exchange
   begin
-    Money.default_bank = bank if bank
+    Money.default_exchange = exchange if exchange
     yield
   ensure
-    Money.default_bank = previous_bank
+    Money.default_exchange = previous_exchange
   end
 end

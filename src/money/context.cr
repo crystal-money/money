@@ -10,7 +10,7 @@ struct Money
         :infinite_precision?, :infinite_precision=,
         :rounding_mode, :rounding_mode=,
         :default_currency, :default_currency=,
-        :default_bank, :default_bank=,
+        :default_exchange, :default_exchange=,
         :default_rate_store, :default_rate_store=,
         :default_rate_provider, :default_rate_provider=,
         to: Fiber.current.money_context
@@ -30,17 +30,18 @@ struct Money
       self.default_currency = Currency.find(currency_code)
     end
 
-    # Each `Money` object is associated to a bank object, which is responsible
-    # for currency exchange. This property allows you to specify the default
-    # bank object. The default value for this property is an instance of
-    # `Bank`, which allows one to specify custom exchange rates.
-    property default_bank : Bank { Bank.new }
+    # Each `Money` object is associated to a currency exchange object.
+    # This property allows you to specify the default exchange object.
+    # The default value for this property is an instance of
+    # `Currency::Exchange`, which allows one to specify custom exchange rates.
+    property default_exchange : Currency::Exchange { Currency::Exchange.new }
 
-    # Default currency rate store used by `Bank` objects. It defaults to using an
-    # in-memory, concurrency-safe, store instance for storing exchange rates.
+    # Default currency rate store used by `Currency::Exchange` objects.
+    # It defaults to using an in-memory, concurrency-safe, store instance for
+    # storing exchange rates.
     property default_rate_store : Currency::RateStore { Currency::RateStore::Memory.new }
 
-    # Default currency rate provider used by `Bank` objects.
+    # Default currency rate provider used by `Currency::Exchange` objects.
     property default_rate_provider : Currency::RateProvider { Currency::RateProvider::Null.new }
   end
 end

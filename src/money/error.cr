@@ -11,7 +11,7 @@ struct Money
   class UnknownRateError < Error
   end
 
-  # Raised by `Bank::SingleCurrency` when trying to exchange currencies.
+  # Raised by `Currency::Exchange::SingleCurrency` when trying to exchange currencies.
   class DifferentCurrencyError < Error
   end
 

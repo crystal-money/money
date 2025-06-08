@@ -1,22 +1,22 @@
-struct Money
-  class Bank
-    # An exchange `Currency::RateStore` object, used to persist exchange rate pairs.
+class Money::Currency
+  class Exchange
+    # An exchange `RateStore` object, used to persist exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_store` if set to `nil` (the default).
-    property store : Currency::RateStore?
+    property store : RateStore?
 
     # :ditto:
-    def store : Currency::RateStore
+    def store : RateStore
       @store || Money.default_rate_store
     end
 
-    # An exchange `Currency::RateProvider` object, used to fetch exchange rate pairs.
+    # An exchange `RateProvider` object, used to fetch exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_provider` if set to `nil` (the default).
-    property provider : Currency::RateProvider?
+    property provider : RateProvider?
 
     # :ditto:
-    def provider : Currency::RateProvider
+    def provider : RateProvider
       @provider || Money.default_rate_provider
     end
 
@@ -36,7 +36,7 @@ struct Money
       amount =
         from.amount * exchange_rate(from.currency, to)
 
-      Money.new(amount: amount, currency: to, bank: self)
+      Money.new(amount: amount, currency: to, exchange: self)
     end
 
     # Returns the exchange rate between *base* and *other* currency,
@@ -64,4 +64,4 @@ struct Money
   end
 end
 
-require "./bank/*"
+require "./exchange/*"

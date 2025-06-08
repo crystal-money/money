@@ -225,13 +225,13 @@ Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @iso_numeric=
 
 ## Currency Exchange
 
-Exchanging money is performed through an exchange `Bank` object. The default
-exchange `Bank` object requires one to manually specify the exchange rate. Here's
-an example of how it works:
+Exchanging money is performed through a `Currency::Exchange` object. The default
+`Currency::Exchange` object requires one to manually specify the exchange rate.
+Here's an example of how it works:
 
 ```crystal
-Money.default_bank.store["USD", "EUR"] = 1.24515
-Money.default_bank.store["EUR", "USD"] = 0.803115
+Money.default_exchange.store["USD", "EUR"] = 1.24515
+Money.default_exchange.store["EUR", "USD"] = 0.803115
 
 Money.new(100, "USD").exchange_to("EUR") # => Money.new(@amount=1.24, @currency="EUR")
 Money.new(100, "EUR").exchange_to("USD") # => Money.new(@amount=0.8,  @currency="USD")
@@ -243,28 +243,28 @@ Comparison and arithmetic operations work as expected:
 Money.new(1000, "USD") <=> Money.new(900, "USD") # => 1; 9.00 USD is smaller
 Money.new(1000, "EUR") + Money.new(10, "EUR") # => Money.new(@amount=10.1, @currency="EUR")
 
-Money.default_bank.store["USD", "EUR"] = 0.5
+Money.default_exchange.store["USD", "EUR"] = 0.5
 Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15.0, @currency="EUR")
 ```
 
 ### Exchange rate stores
 
-The default bank is initialized with an in-memory store for exchange rates.
+The default exchange is initialized with an in-memory store for exchange rates.
 
 ```crystal
-Money.default_bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
+Money.default_exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
 ```
 
 You can pass you own store implementation, ie. for storing and retrieving rates off a database, file, cache, etc.
 
 ```crystal
-Money.default_bank = Money::Bank.new(MyCustomStore.new)
+Money.default_exchange = Money::Currency::Exchange.new(MyCustomStore.new)
 
 # Add to the underlying store
-Money.default_bank.store["USD", "CAD"] = 0.9
+Money.default_exchange.store["USD", "CAD"] = 0.9
 
 # Retrieve from the underlying store
-Money.default_bank.store["USD", "CAD"] # => 0.9
+Money.default_exchange.store["USD", "CAD"] # => 0.9
 
 # Exchanging amounts just works
 Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9.0 @currency="CAD")
@@ -274,14 +274,14 @@ There is nothing stopping you from creating store objects which scrapes
 [XE](https://www.xe.com) for the current rates or just returns `rand(2)`:
 
 ```crystal
-Money.default_bank = Money::Bank.new(StoreWhichScrapesXeDotCom.new)
+Money.default_exchange = Money::Currency::Exchange.new(StoreWhichScrapesXeDotCom.new)
 ```
 
-You can also implement your own `Bank` to calculate exchanges differently.
-Different banks can share Stores.
+You can also implement your own `Currency::Exchange` to calculate exchanges differently.
+Different exchanges can share Stores.
 
 ```crystal
-Money.default_bank = MyCustomBank.new(Money::Currency::RateStore::Memory.new)
+Money.default_exchange = MyCustomCurrencyExchange.new(Money::Currency::RateStore::Memory.new)
 ```
 
 If you wish to disable automatic currency conversion to prevent arithmetic when
