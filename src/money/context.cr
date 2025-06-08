@@ -33,8 +33,8 @@ struct Money
     # Each `Money` object is associated to a bank object, which is responsible
     # for currency exchange. This property allows you to specify the default
     # bank object. The default value for this property is an instance of
-    # `Bank::VariableExchange`, which allows one to specify custom exchange rates.
-    property default_bank : Bank { Bank::VariableExchange.new }
+    # `Bank`, which allows one to specify custom exchange rates.
+    property default_bank : Bank { Bank.new }
 
     # Default currency rate store used by `Bank` objects. It defaults to using an
     # in-memory, concurrency-safe, store instance for storing exchange rates.

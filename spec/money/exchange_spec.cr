@@ -1,7 +1,7 @@
 require "../spec_helper"
 
 describe Money::Exchange do
-  bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+  bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
   bank.store["EUR", "USD"] = 1.23
   bank.store["USD", "EUR"] = 3.21
 

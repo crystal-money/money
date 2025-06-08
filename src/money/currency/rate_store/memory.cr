@@ -1,6 +1,5 @@
 class Money::Currency
-  # Class for concurrency-safe storage of exchange rate pairs.
-  # Used by instances of `Currency::VariableExchange`.
+  # Class for in-memory concurrency-safe storage of exchange rate pairs.
   #
   # ```
   # store = Money::Currency::RateStore::Memory.new

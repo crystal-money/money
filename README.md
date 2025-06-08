@@ -252,13 +252,13 @@ Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15.0, @cu
 The default bank is initialized with an in-memory store for exchange rates.
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+Money.default_bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
 ```
 
 You can pass you own store implementation, ie. for storing and retrieving rates off a database, file, cache, etc.
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(MyCustomStore.new)
+Money.default_bank = Money::Bank.new(MyCustomStore.new)
 
 # Add to the underlying store
 Money.default_bank.store["USD", "CAD"] = 0.9
@@ -274,7 +274,7 @@ There is nothing stopping you from creating store objects which scrapes
 [XE](https://www.xe.com) for the current rates or just returns `rand(2)`:
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(StoreWhichScrapesXeDotCom.new)
+Money.default_bank = Money::Bank.new(StoreWhichScrapesXeDotCom.new)
 ```
 
 You can also implement your own `Bank` to calculate exchanges differently.

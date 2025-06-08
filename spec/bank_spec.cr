@@ -1,8 +1,8 @@
-require "../spec_helper"
+require "./spec_helper"
 
-describe Money::Bank::VariableExchange do
+describe Money::Bank do
   context "#exchange_rate" do
-    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
     bank.store["USD", "EUR"] = 1.33
 
     it "returns the exchange rate between two currencies" do
@@ -23,7 +23,7 @@ describe Money::Bank::VariableExchange do
   end
 
   context "#exchange_rate?" do
-    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
     bank.store["USD", "EUR"] = 1.33
 
     it "returns the exchange rate between two currencies" do
@@ -43,7 +43,7 @@ describe Money::Bank::VariableExchange do
   end
 
   context "#exchange" do
-    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
     bank.store["USD", "EUR"] = 1.33
 
     it "exchanges one currency to another" do
@@ -69,7 +69,7 @@ describe Money::Bank::VariableExchange do
   end
 
   context "cryptocurrencies" do
-    bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+    bank = Money::Bank.new(Money::Currency::RateStore::Memory.new)
     bank.store["BTC", "ETH"] = "40.55908909574122".to_big_d
     bank.store["ETH", "BTC"] = "0.024656261065523388".to_big_d
 
