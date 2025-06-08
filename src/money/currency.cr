@@ -2,6 +2,7 @@ require "./currency/enumeration"
 require "./currency/loader"
 require "./currency/rate"
 require "./currency/rate_store"
+require "./currency/rate_provider"
 
 struct Money
   # Represents a specific currency unit.
