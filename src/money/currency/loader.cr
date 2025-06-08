@@ -1,31 +1,29 @@
 require "json"
 
-struct Money
-  class Currency
-    module Loader
-      private DATA_PATH = Path["../../../data/currencies"].expand(__DIR__)
+class Money::Currency
+  module Loader
+    private DATA_PATH = Path["../../../data/currencies"].expand(__DIR__)
 
-      # Loads and returns the currencies stored in JSON files
-      # inside of `data/currencies` directory.
-      def load_currencies
-        currency_table = {} of String => Currency
-        Dir.each_child(DATA_PATH) do |filename|
-          parse_currency_file(filename).try do |currency|
-            currency_table[currency.id] = currency
-          end
+    # Loads and returns the currencies stored in JSON files
+    # inside of `data/currencies` directory.
+    def load_currencies
+      currency_table = {} of String => Currency
+      Dir.each_child(DATA_PATH) do |filename|
+        parse_currency_file(filename).try do |currency|
+          currency_table[currency.id] = currency
         end
-        currency_table
       end
+      currency_table
+    end
 
-      private def parse_currency_file(filename)
-        filepath = DATA_PATH / filename
-        if File.file?(filepath)
-          File.open(filepath) do |file|
-            Currency.from_json(file)
-          end
+    private def parse_currency_file(filename)
+      filepath = DATA_PATH / filename
+      if File.file?(filepath)
+        File.open(filepath) do |file|
+          Currency.from_json(file)
         end
-      rescue ex
       end
+    rescue ex
     end
   end
 end
