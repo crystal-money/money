@@ -12,6 +12,7 @@ struct Money
         :default_currency, :default_currency=,
         :default_bank, :default_bank=,
         :default_rate_store, :default_rate_store=,
+        :default_rate_provider, :default_rate_provider=,
         to: Fiber.current.money_context
     end
 
@@ -38,5 +39,8 @@ struct Money
     # Default currency rate store used by `Bank` objects. It defaults to using an
     # in-memory, concurrency-safe, store instance for storing exchange rates.
     property default_rate_store : Currency::RateStore { Currency::RateStore::Memory.new }
+
+    # Default currency rate provider used by `Bank` objects.
+    property default_rate_provider : Currency::RateProvider { Currency::RateProvider::Null.new }
   end
 end
