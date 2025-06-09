@@ -45,7 +45,7 @@ class Money::Currency
 
     # https://coinlayer.com/documentation#live
     def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Updating rate for #{base} -> #{other}" }
+      Log.debug { "Fetching rate for #{base} -> #{other}" }
 
       client = HTTP::Client.new(host)
       client.get(

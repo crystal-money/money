@@ -37,7 +37,7 @@ class Money::Currency
 
     # https://www.exchangerate-api.com/docs/pair-conversion-requests
     def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Updating rate for #{base} -> #{other}" }
+      Log.debug { "Fetching rate for #{base} -> #{other}" }
 
       client = HTTP::Client.new(host)
       client.get("/v6/#{api_key}/pair/#{base.code}/#{other.code}") do |response|

@@ -37,7 +37,7 @@ class Money::Currency
 
     # https://docs.openexchangerates.org/reference/latest-json
     def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Updating rate for #{base} -> #{other}" }
+      Log.debug { "Fetching rate for #{base} -> #{other}" }
 
       client = HTTP::Client.new(host)
       client.get(

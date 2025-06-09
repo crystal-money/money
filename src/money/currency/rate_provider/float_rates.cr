@@ -35,7 +35,7 @@ class Money::Currency
     end
 
     def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Updating rate for #{base} -> #{other}" }
+      Log.debug { "Fetching rate for #{base} -> #{other}" }
 
       client = HTTP::Client.new(host)
       client.get("/daily/#{base.code.downcase}.json") do |response|

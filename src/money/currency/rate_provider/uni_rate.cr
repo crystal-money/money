@@ -37,7 +37,7 @@ class Money::Currency
 
     # https://unirateapi.com/apidocs/#/Currency/get_api_rates
     def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Updating rate for #{base} -> #{other}" }
+      Log.debug { "Fetching rate for #{base} -> #{other}" }
 
       client = HTTP::Client.new(host)
       client.get(
