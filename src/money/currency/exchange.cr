@@ -56,6 +56,8 @@ class Money::Currency
     end
 
     private def update_rate(base : Currency, other : Currency) : BigDecimal?
+      return unless provider.supports_currency_pair?(base, other)
+
       if rate = provider.exchange_rate?(base, other)
         store << rate
         rate.value

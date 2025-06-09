@@ -16,7 +16,9 @@ class Money::Currency
 
     def exchange_rate?(base : Currency, other : Currency) : Rate?
       providers.find_value do |provider|
-        provider.exchange_rate?(base, other)
+        if provider.supports_currency_pair?(base, other)
+          provider.exchange_rate?(base, other)
+        end
       rescue ex
         Log.debug(exception: ex) do
           "Fetching rate for #{base} -> #{other} failed (#{provider.class})"
