@@ -15,7 +15,7 @@ class Money::Currency
     def initialize(*, @host = nil)
     end
 
-    property currency_codes : Array(String) do
+    getter currency_codes : Array(String) do
       exchange_rates.map(&.to.code)
     end
 

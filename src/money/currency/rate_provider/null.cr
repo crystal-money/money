@@ -1,6 +1,6 @@
 class Money::Currency
   class RateProvider::Null < RateProvider
-    def currency_codes : Array(String)
+    getter currency_codes : Array(String) do
       [] of String
     end
 
