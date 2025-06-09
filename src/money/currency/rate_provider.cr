@@ -1,5 +1,30 @@
+require "../mixins/initialize_with"
+
 class Money::Currency
   abstract class RateProvider
+    include Mixin::InitializeWith
+
+    class_getter providers = {} of String => RateProvider.class
+
+    macro inherited
+      {% unless @type.abstract? %}
+        {%
+          name = @type.name.gsub(/^(.+)::(.+)$/, "\\2").underscore
+        %}
+        ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
+      {% end %}
+    end
+
+    def self.build(name : String, options : NamedTuple | Hash) : RateProvider
+      providers[name.underscore].new.tap do |provider|
+        provider.initialize_with(options)
+      end
+    end
+
+    def self.build(name : String, **options) : RateProvider
+      build(name, options)
+    end
+
     # Returns an array of supported currency codes.
     abstract def currency_codes : Array(String)
 
