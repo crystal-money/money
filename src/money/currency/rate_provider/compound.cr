@@ -10,8 +10,12 @@ class Money::Currency
     def initialize(@providers = [] of RateProvider)
     end
 
-    def currency_codes : Array(String)
-      providers.flat_map(&.currency_codes).uniq!
+    def base_currency_codes : Array(String)
+      providers.flat_map(&.base_currency_codes).uniq!
+    end
+
+    def target_currency_codes : Array(String)
+      providers.flat_map(&.target_currency_codes).uniq!
     end
 
     def exchange_rate?(base : Currency, other : Currency) : Rate?

@@ -15,7 +15,7 @@ class Money::Currency
     end
 
     # https://www.floatrates.com/json-feeds.html
-    getter currency_codes : Array(String) do
+    getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
       client = HTTP::Client.new(host)

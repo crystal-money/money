@@ -17,10 +17,12 @@ class Money::Currency
     def initialize(*, @host = nil)
     end
 
-    getter currency_codes : Array(String) do
-      exchange_rates.map(&.to.code).tap do |currency_codes|
-        currency_codes.unshift(BASE_CURRENCY_CODE)
-      end
+    getter base_currency_codes : Array(String) do
+      [BASE_CURRENCY_CODE]
+    end
+
+    getter target_currency_codes : Array(String) do
+      exchange_rates.map(&.to.code)
     end
 
     def exchange_rate?(base : Currency, other : Currency) : Rate?

@@ -23,9 +23,16 @@ class Money::Currency
     def initialize(@rate_store = nil, @rate_provider = nil)
     end
 
-    # Returns an array of supported (registered) currencies.
-    def currencies : Array(Currency)
-      rate_provider.currency_codes.compact_map do |code|
+    # Returns an array of supported (registered) base currencies.
+    def base_currencies : Array(Currency)
+      rate_provider.base_currency_codes.compact_map do |code|
+        Currency.find?(code)
+      end
+    end
+
+    # Returns an array of supported (registered) target currencies.
+    def target_currencies : Array(Currency)
+      rate_provider.target_currency_codes.compact_map do |code|
         Currency.find?(code)
       end
     end

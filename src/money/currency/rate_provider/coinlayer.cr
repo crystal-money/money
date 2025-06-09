@@ -17,8 +17,16 @@ class Money::Currency
     def initialize(*, @access_key = nil, @host = nil)
     end
 
+    def base_currency_codes : Array(String)
+      currency_codes[0]
+    end
+
+    def target_currency_codes : Array(String)
+      currency_codes[0] + currency_codes[1]
+    end
+
     # https://coinlayer.com/documentation#list
-    getter currency_codes : Array(String) do
+    protected getter currency_codes : {Array(String), Array(String)} do
       Log.debug { "Fetching supported currencies" }
 
       client = HTTP::Client.new(host)
@@ -28,10 +36,10 @@ class Money::Currency
         end
 
         result = JSON.parse(response.body_io)
-        %w[].tap do |currencies|
-          currencies.concat(result.as_h["crypto"].as_h.keys)
-          currencies.concat(result.as_h["fiat"].as_h.keys)
-        end
+        {
+          result.as_h["crypto"].as_h.keys,
+          result.as_h["fiat"].as_h.keys,
+        }
       end
     end
 

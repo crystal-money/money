@@ -26,21 +26,21 @@ class Money::Currency
       build(name, options)
     end
 
-    # Returns an array of supported currency codes.
-    abstract def currency_codes : Array(String)
+    # Returns an array of supported base currency codes.
+    abstract def base_currency_codes : Array(String)
+
+    # Returns an array of supported target currency codes.
+    def target_currency_codes : Array(String)
+      base_currency_codes
+    end
 
     # Returns the exchange rate between `self` and *other* currency, or `nil` if not found.
     abstract def exchange_rate?(base : Currency, other : Currency) : Rate?
 
-    # Returns `true` if the provider supports the given *base* currency.
-    def supports_currency?(base : Currency) : Bool
-      currency_codes.includes?(base.code)
-    end
-
     # Returns `true` if the provider supports the given currency pair.
     def supports_currency_pair?(base : Currency, other : Currency) : Bool
-      currency_codes.includes?(base.code) &&
-        currency_codes.includes?(other.code)
+      base_currency_codes.includes?(base.code) &&
+        target_currency_codes.includes?(other.code)
     end
   end
 end
