@@ -6,6 +6,8 @@ class Money::Currency
   # Currency rate provider using data sourced from a daily feed of
   # [European Central Bank](https://www.ecb.europa.eu).
   class RateProvider::ECB < RateProvider
+    private BASE_CURRENCY_CODE = "EUR"
+
     Log = ::Log.for(self)
 
     property host : URI do
@@ -16,7 +18,9 @@ class Money::Currency
     end
 
     getter currency_codes : Array(String) do
-      exchange_rates.map(&.to.code)
+      exchange_rates.map(&.to.code).tap do |currency_codes|
+        currency_codes.unshift(BASE_CURRENCY_CODE)
+      end
     end
 
     def exchange_rate?(base : Currency, other : Currency) : Rate?
@@ -33,7 +37,7 @@ class Money::Currency
         end
 
         base =
-          Currency.find("EUR")
+          Currency.find(BASE_CURRENCY_CODE)
 
         result = XML.parse(response.body_io)
         rates =
