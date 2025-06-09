@@ -148,7 +148,7 @@ describe Money::Currency::RateStore::Memory do
     end
   end
 
-  describe "#clear(base_currency)" do
+  describe "#clear(base)" do
     store = Money::Currency::RateStore::Memory.new
     store["USD", "EUR"] = 1.0
     store["USD", "CAD"] = 0.9

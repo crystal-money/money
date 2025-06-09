@@ -1,4 +1,5 @@
 class Money::Currency
+  # Currency rate provider that always returns `nil`.
   class RateProvider::Null < RateProvider
     getter currency_codes : Array(String) do
       [] of String

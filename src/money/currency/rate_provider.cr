@@ -4,23 +4,24 @@ class Money::Currency
   abstract class RateProvider
     include Mixin::InitializeWith
 
+    # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
 
     macro inherited
       {% unless @type.abstract? %}
-        {%
-          name = @type.name.gsub(/^(.+)::(.+)$/, "\\2").underscore
-        %}
+        {% name = @type.name.gsub(/^(.+)::(.+)$/, "\\2").underscore %}
         ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
       {% end %}
     end
 
+    # Creates a new rate provider instance.
     def self.build(name : String, options : NamedTuple | Hash) : RateProvider
       providers[name.underscore].new.tap do |provider|
         provider.initialize_with(options)
       end
     end
 
+    # :ditto:
     def self.build(name : String, **options) : RateProvider
       build(name, options)
     end

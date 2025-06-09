@@ -32,8 +32,8 @@ class Money::Currency
       @index.clear
     end
 
-    protected def clear_rates(base_currency : Currency) : Nil
-      @index.reject! { |_, rate| rate.from == base_currency }
+    protected def clear_rates(base : Currency) : Nil
+      @index.reject! { |_, rate| rate.from == base }
     end
 
     private def rate_key_for(from : Currency, to : Currency)
