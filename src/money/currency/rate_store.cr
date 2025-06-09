@@ -5,7 +5,7 @@ class Money::Currency
     @mutex = Mutex.new(:reentrant)
     @ttl : Time::Span?
 
-    def initialize(@ttl : Time::Span? = nil)
+    def initialize(*, @ttl : Time::Span? = nil)
     end
 
     # Wraps block execution in a concurrency-safe transaction.
