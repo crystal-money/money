@@ -3,29 +3,29 @@ class Money::Currency
     # An exchange `RateStore` object, used to persist exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_store` if set to `nil` (the default).
-    property store : RateStore?
+    property rate_store : RateStore?
 
     # :ditto:
-    def store : RateStore
-      @store || Money.default_rate_store
+    def rate_store : RateStore
+      @rate_store || Money.default_rate_store
     end
 
     # An exchange `RateProvider` object, used to fetch exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_provider` if set to `nil` (the default).
-    property provider : RateProvider?
+    property rate_provider : RateProvider?
 
     # :ditto:
-    def provider : RateProvider
-      @provider || Money.default_rate_provider
+    def rate_provider : RateProvider
+      @rate_provider || Money.default_rate_provider
     end
 
-    def initialize(@store = nil, @provider = nil)
+    def initialize(@rate_store = nil, @rate_provider = nil)
     end
 
     # Returns an array of supported (registered) currencies.
     def currencies : Array(Currency)
-      provider.currency_codes.compact_map do |code|
+      rate_provider.currency_codes.compact_map do |code|
         Currency.find?(code)
       end
     end
@@ -44,7 +44,7 @@ class Money::Currency
     def exchange_rate?(base : Currency, other : Currency) : BigDecimal?
       return 1.to_big_d if base == other
 
-      store[base, other]? ||
+      rate_store[base, other]? ||
         update_rate(base, other)
     end
 
@@ -56,10 +56,10 @@ class Money::Currency
     end
 
     private def update_rate(base : Currency, other : Currency) : BigDecimal?
-      return unless provider.supports_currency_pair?(base, other)
+      return unless rate_provider.supports_currency_pair?(base, other)
 
-      if rate = provider.exchange_rate?(base, other)
-        store << rate
+      if rate = rate_provider.exchange_rate?(base, other)
+        rate_store << rate
         rate.value
       end
     end

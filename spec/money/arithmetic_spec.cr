@@ -20,8 +20,8 @@ describe Money::Arithmetic do
 
   describe "#<=>" do
     exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-    exchange.store["EUR", "USD"] = 1.5
-    exchange.store["USD", "EUR"] = 2
+    exchange.rate_store["EUR", "USD"] = 1.5
+    exchange.rate_store["USD", "EUR"] = 2
 
     it "compares the two object amounts (same currency)" do
       (Money.new(1_00, "USD") <=> Money.new(1_00, "USD")).should eq 0
@@ -118,7 +118,7 @@ describe Money::Arithmetic do
 
     it "converts other object amount to current currency and adds other amount to current amount (different currency)" do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-      exchange.store["EUR", "USD"] = 10
+      exchange.rate_store["EUR", "USD"] = 10
 
       with_default_exchange(exchange) do
         (Money.new(10_00, "USD") + Money.new(90, "EUR")).should eq Money.new(19_00, "USD")
@@ -138,7 +138,7 @@ describe Money::Arithmetic do
 
     it "converts other object amount to current currency and subtracts other amount to current amount (different currency)" do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-      exchange.store["EUR", "USD"] = 10
+      exchange.rate_store["EUR", "USD"] = 10
 
       with_default_exchange(exchange) do
         (Money.new(10_00, "USD") - Money.new(90, "EUR")).should eq Money.new(1_00, "USD")
@@ -187,7 +187,7 @@ describe Money::Arithmetic do
 
     it "divides Money by Money (different currency) and returns BigDecimal" do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-      exchange.store["EUR", "USD"] = 2
+      exchange.rate_store["EUR", "USD"] = 2
 
       with_default_exchange(exchange) do
         tests = {
@@ -230,7 +230,7 @@ describe Money::Arithmetic do
 
     it "calculates division and modulo with Money (different currency)" do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-      exchange.store["EUR", "USD"] = 2
+      exchange.rate_store["EUR", "USD"] = 2
 
       with_default_exchange(exchange) do
         tests = {
@@ -273,7 +273,7 @@ describe Money::Arithmetic do
 
     it "calculates modulo with Money (different currency)" do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-      exchange.store["EUR", "USD"] = 2
+      exchange.rate_store["EUR", "USD"] = 2
 
       with_default_exchange(exchange) do
         tests = {

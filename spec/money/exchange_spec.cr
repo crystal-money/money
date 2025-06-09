@@ -2,8 +2,8 @@ require "../spec_helper"
 
 describe Money::Exchange do
   exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-  exchange.store["EUR", "USD"] = 1.23
-  exchange.store["USD", "EUR"] = 3.21
+  exchange.rate_store["EUR", "USD"] = 1.23
+  exchange.rate_store["USD", "EUR"] = 3.21
 
   describe "#exchange_to" do
     it "exchanges the amount properly" do
