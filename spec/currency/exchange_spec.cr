@@ -1,6 +1,38 @@
 require "../spec_helper"
 
 describe Money::Currency::Exchange do
+  context "#initialize" do
+    it "sets the rate store" do
+      rate_store =
+        Money::Currency::RateStore::Memory.new
+
+      exchange = Money::Currency::Exchange.new(rate_store: rate_store)
+      exchange.rate_store.should be(rate_store)
+    end
+
+    it "sets the rate provider" do
+      rate_provider =
+        Money::Currency::RateProvider::Null.new
+
+      exchange = Money::Currency::Exchange.new(rate_provider: rate_provider)
+      exchange.rate_provider.should be(rate_provider)
+    end
+  end
+
+  context "#rate_store" do
+    it "returns default rate store if set to `nil`" do
+      exchange = Money::Currency::Exchange.new(rate_store: nil)
+      exchange.rate_store.should be(Money.default_rate_store)
+    end
+  end
+
+  context "#rate_provider" do
+    it "returns default rate provider if set to `nil`" do
+      exchange = Money::Currency::Exchange.new(rate_provider: nil)
+      exchange.rate_provider.should be(Money.default_rate_provider)
+    end
+  end
+
   context "#exchange_rate" do
     exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
     exchange.rate_store["USD", "EUR"] = 1.33
