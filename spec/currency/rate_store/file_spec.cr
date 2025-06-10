@@ -110,27 +110,27 @@ describe Money::Currency::RateStore::File do
 
           json = File.read(file.path)
           json.should eq <<-JSON
-          [
-            {
-              "from": "USD",
-              "to": "CAD",
-              "value": 2.2,
-              "updated_at": "2025-05-22T00:00:00Z"
-            },
-            {
-              "from": "CAD",
-              "to": "USD",
-              "value": 3.3,
-              "updated_at": "2025-05-22T00:00:00Z"
-            },
-            {
-              "from": "USD",
-              "to": "EUR",
-              "value": 1.1,
-              "updated_at": "2025-05-22T00:00:00Z"
-            }
-          ]
-          JSON
+            [
+              {
+                "from": "USD",
+                "to": "CAD",
+                "value": 2.2,
+                "updated_at": "2025-05-22T00:00:00Z"
+              },
+              {
+                "from": "CAD",
+                "to": "USD",
+                "value": 3.3,
+                "updated_at": "2025-05-22T00:00:00Z"
+              },
+              {
+                "from": "USD",
+                "to": "EUR",
+                "value": 1.1,
+                "updated_at": "2025-05-22T00:00:00Z"
+              }
+            ]
+            JSON
         end
       end
     end
@@ -142,15 +142,15 @@ describe Money::Currency::RateStore::File do
 
           json = File.read(file.path)
           json.should eq <<-JSON
-          [
-            {
-              "from": "CAD",
-              "to": "USD",
-              "value": 1.1,
-              "updated_at": "2025-05-22T00:00:00Z"
-            }
-          ]
-          JSON
+            [
+              {
+                "from": "CAD",
+                "to": "USD",
+                "value": 1.1,
+                "updated_at": "2025-05-22T00:00:00Z"
+              }
+            ]
+            JSON
         end
       end
     end
