@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateStore::Memory - money master</title>
+  <title>Money::Currency::RateProvider::MoneyMorph - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -132,7 +132,7 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Currency/RateProvider" data-name="money::currency::rateprovider">
+  <li class="parent open current" data-id="money/Money/Currency/RateProvider" data-name="money::currency::rateprovider">
       <a href="../../../Money/Currency/RateProvider.html">RateProvider</a>
       
         <ul>
@@ -177,7 +177,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/MoneyMorph" data-name="money::currency::rateprovider::moneymorph">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/MoneyMorph" data-name="money::currency::rateprovider::moneymorph">
       <a href="../../../Money/Currency/RateProvider/MoneyMorph.html">MoneyMorph</a>
       
     </li>
@@ -202,7 +202,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="money/Money/Currency/RateStore" data-name="money::currency::ratestore">
+  <li class="parent " data-id="money/Money/Currency/RateStore" data-name="money::currency::ratestore">
       <a href="../../../Money/Currency/RateStore.html">RateStore</a>
       
         <ul>
@@ -212,7 +212,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
+  <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../../Money/Currency/RateStore/Memory.html">Memory</a>
       
     </li>
@@ -308,12 +308,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateStore::<wbr>Memory
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>MoneyMorph
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateStore/Memory.html">Money::Currency::RateStore::Memory</a></li><li class="superclass"><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/MoneyMorph.html">Money::Currency::RateProvider::MoneyMorph</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -327,15 +327,7 @@
     Overview
   </h2>
 
-  <p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p>
-<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.98</span>
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.98</span>
-
-<span class="c"># Iterates rates</span>
-store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o">|</span>
-  puts rate
-<span class="k">end</span></code></pre>
+  <p><a href="https://moneymorph.dev/">MoneyMorph</a> currency rate provider.</p>
 
 
 
@@ -346,20 +338,6 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
 
-
-  <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Direct Known Subclasses
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateStore/File.html">Money::Currency::RateStore::File</a></li>
-    
-  </ul>
 
 
 
@@ -376,8 +354,8 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_store/memory.cr#L14" target="_blank">
-        money/currency/rate_store/memory.cr
+      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L6" target="_blank">
+        money/currency/rate_provider/money_morph.cr
       </a>
     
     <br/>
@@ -385,6 +363,44 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
 
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Log">
+        <strong>Log</strong> = <code><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>)</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
 
 
   
@@ -392,67 +408,93 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
+        
+          <div class="summary"><p>https://moneymorph.dev/#currencies</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, other : Currency) : Rate | Nil</a>
+        
+          <div class="summary"><p>https://moneymorph.dev/#latest</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3D%28host%3AURI%29-instance-method" class="signature"><strong>#host=</strong>(host : URI)</a>
+        
+      </li>
+    
+  </ul>
 
-  
 
 
   <div class="methods-inherited">
     
       
 
-  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#%3C%3C%28rate%3ARate%29%3Aself-instance-method" class="tooltip">
-      <span><<(rate : Rate) : <span class="k">self</span><br/><<(rates : Enumerable(Rate)) : <span class="k">self</span></span>
-    <<</a>, 
+    <a href="../../../Money/Currency/RateProvider.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal-instance-method" class="tooltip">
-      <span>[](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal</span>
-    []</a>, 
+    <a href="../../../Money/Currency/RateProvider.html#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, other : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%3D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%2Cvalue%3ANumber%29%3ANil-instance-method" class="tooltip">
-      <span>[]=(from : String | Symbol | Currency, to : String | Symbol | Currency, value : Number) : Nil</span>
-    []=</a>, 
+    <a href="../../../Money/Currency/RateProvider.html#supports_currency_pair%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABool-instance-method" class="tooltip">
+      <span>supports_currency_pair?(base : Currency, other : Currency) : Bool</span>
+    supports_currency_pair?</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%3F%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal%7CNil-instance-method" class="tooltip">
-      <span>[]?(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal | Nil</span>
-    []?</a>, 
-    
-  
-    <a href="../../../Money/Currency/RateStore.html#clear%28base%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method" class="tooltip">
-      <span>clear(base : String | Symbol | Currency) : Nil<br/>clear : Nil</span>
-    clear</a>, 
-    
-  
-    <a href="../../../Money/Currency/RateStore.html#each%28%26%3ARate-%3E_%29%3ANil-instance-method" class="tooltip">
-      <span>each(& : Rate -> _) : Nil</span>
-    each</a>, 
-    
-  
-    <a href="../../../Money/Currency/RateStore.html#rates%3AArray%28Rate%29-instance-method" class="tooltip">
-      <span>rates : Array(Rate)</span>
-    rates</a>, 
-    
-  
-    <a href="../../../Money/Currency/RateStore.html#transaction%28%2A%2Cmutable%3ABool%3Dfalse%2C%26%3A-%3E_%29-instance-method" class="tooltip">
-      <span>transaction(*, mutable : Bool = <span class="n">false</span>, & :  -> _)</span>
-    transaction</a>
+    <a href="../../../Money/Currency/RateProvider.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
     
   
 
 
       
 
-  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#new%28%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method" class="tooltip">
-      <span>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
-    new</a>
+    <a href="../../../Money/Currency/RateProvider.html#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="tooltip">
+      <span>build(name : String, options : NamedTuple | Hash) : RateProvider<br/>build(name : String, **options) : RateProvider</span>
+    build</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#providers-class-method" class="tooltip">
+      <span>providers</span>
+    providers</a>
     
   
 
@@ -460,11 +502,17 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
       
 
 
-      
-
-
     
       
+
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Mixin/InitializeWith.html">Money::Mixin::InitializeWith</a></code></h3>
+  
+  
+    <a href="../../../Money/Mixin/InitializeWith.html#initialize_with%28attributes%29-instance-method" class="tooltip">
+      <span>initialize_with(attributes)<br/>initialize_with(**attributes)</span>
+    initialize_with</a>
+    
+  
 
 
       
@@ -506,12 +554,122 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </div>
 
   
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>base_currency_codes</strong> : Array(String)
+
+        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>https://moneymorph.dev/#currencies</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exchange_rate?(base:Currency,other:Currency):Rate|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, other : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
+
+        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>https://moneymorph.dev/#latest</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>host</strong> : URI
+
+        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host=(host:URI)-instance-method">
+      <div class="signature">
+        
+        def <strong>host=</strong>(host : URI)
+
+        <a class="method-permalink" href="#host%3D%28host%3AURI%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_provider/money_morph.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>

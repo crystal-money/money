@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::Rate - money master</title>
+  <title>Money::Currency::Exchange - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -107,7 +107,7 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Currency/Exchange" data-name="money::currency::exchange">
+  <li class="parent open current" data-id="money/Money/Currency/Exchange" data-name="money::currency::exchange">
       <a href="../../Money/Currency/Exchange.html">Exchange</a>
       
         <ul>
@@ -127,7 +127,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
+  <li class=" " data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
       <a href="../../Money/Currency/Rate.html">Rate</a>
       
     </li>
@@ -307,13 +307,17 @@
 <h1 class="type-name">
 
   <span class="kind">
-    struct
-  </span> Money::<wbr>Currency::<wbr>Rate
+    class
+  </span> Money::<wbr>Currency::<wbr>Exchange
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Money/Currency/Rate.html">Money::Currency::Rate</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Money/Currency/Exchange.html">Money::Currency::Exchange</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
 
 
 
@@ -325,24 +329,18 @@
 
 
   <h2>
-    <a id="included-modules" class="anchor" href="#included-modules">
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Included Modules
+    Direct Known Subclasses
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type">Comparable(<a href="../../Money/Currency/Rate.html">Money::Currency::Rate</a>)</li>
-    
-      <li class="other-type">JSON::Serializable</li>
+      <li class="other-type"><a href="../../Money/Currency/Exchange/SingleCurrency.html">Money::Currency::Exchange::SingleCurrency</a></li>
     
   </ul>
-
-
-
-
 
 
 
@@ -359,15 +357,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L15" target="_blank">
-        money/currency/json.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">
-        money/currency/rate.cr
+      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L2" target="_blank">
+        money/currency/exchange.cr
       </a>
     
     <br/>
@@ -389,12 +380,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method" class="signature"><strong>.new</strong>(from : Currency, to : Currency, value : BigDecimal, updated_at : Time = <span class="t">Time</span>.utc)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        <a href="#new%28rate_store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%2Crate_provider%3AMoney%3A%3ACurrency%3A%3ARateProvider%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(rate_store : Money::Currency::RateStore | Nil = <span class="n">nil</span>, rate_provider : Money::Currency::RateProvider | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -417,54 +403,65 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%3C%3D%3E%28other%3ARate%29%3AInt32-instance-method" class="signature"><strong>#<=></strong>(other : Rate) : Int32</a>
+        <a href="#base_currencies%3AArray%28Currency%29-instance-method" class="signature"><strong>#base_currencies</strong> : Array(Currency)</a>
         
-          <div class="summary"><p>The comparison operator.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
+          <div class="summary"><p>Returns an array of supported (registered) base currencies.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method" class="signature"><strong>#copy_with</strong>(from _from = @from, to _to = @to, value _value = @value, updated_at _updated_at = @updated_at)</a>
+        <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        
+          <div class="summary"><p>Exchanges the given <code><a href="../../Money.html">Money</a></code> object to a new <code><a href="../../Money.html">Money</a></code> object in <em>to</em> <code><a href="../../Money/Currency.html">Currency</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from%3ACurrency-instance-method" class="signature"><strong>#from</strong> : Currency</a>
+        <a href="#exchange_rate%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal-instance-method" class="signature"><strong>#exchange_rate</strong>(base : Currency, other : Currency) : BigDecimal</a>
+        
+          <div class="summary"><p>Returns the exchange rate between <em>base</em> and <em>other</em> currency, or raises <code><a href="../../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to%3ACurrency-instance-method" class="signature"><strong>#to</strong> : Currency</a>
+        <a href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, other : Currency) : BigDecimal | Nil</a>
+        
+          <div class="summary"><p>Returns the exchange rate between <em>base</em> and <em>other</em> currency, or <code>nil</code> if not found.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        <a href="#rate_provider%3ARateProvider-instance-method" class="signature"><strong>#rate_provider</strong> : RateProvider</a>
+        
+          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28io%3AIO%2C%2A%2Cinclude_updated_at%3Dfalse%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO, *, include_updated_at = <span class="n">false</span>) : Nil</a>
+        <a href="#rate_provider%3D%28rate_provider%3ARateProvider%7CNil%29-instance-method" class="signature"><strong>#rate_provider=</strong>(rate_provider : RateProvider | Nil)</a>
+        
+          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28%2A%2Cinclude_updated_at%3Dfalse%29%3AString-instance-method" class="signature"><strong>#to_s</strong>(*, include_updated_at = <span class="n">false</span>) : String</a>
+        <a href="#rate_store%3ARateStore-instance-method" class="signature"><strong>#rate_store</strong> : RateStore</a>
+        
+          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#updated_at%3ATime-instance-method" class="signature"><strong>#updated_at</strong> : Time</a>
+        <a href="#rate_store%3D%28rate_store%3ARateStore%7CNil%29-instance-method" class="signature"><strong>#rate_store=</strong>(rate_store : RateStore | Nil)</a>
+        
+          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#value%3ABigDecimal-instance-method" class="signature"><strong>#value</strong> : BigDecimal</a>
+        <a href="#target_currencies%3AArray%28Currency%29-instance-method" class="signature"><strong>#target_currencies</strong> : Array(Currency)</a>
+        
+          <div class="summary"><p>Returns an array of supported (registered) target currencies.</p></div>
         
       </li>
     
@@ -473,45 +470,6 @@
 
 
   <div class="methods-inherited">
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
     
       
 
@@ -551,34 +509,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(from:Currency,to:Currency,value:BigDecimal,updated_at:Time=Time.utc)-class-method">
+    <div class="entry-detail" id="new(rate_store:Money::Currency::RateStore|Nil=nil,rate_provider:Money::Currency::RateProvider|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(from : <a href="../../Money/Currency.html">Currency</a>, to : <a href="../../Money/Currency.html">Currency</a>, value : <a href="../../BigDecimal.html">BigDecimal</a>, updated_at : Time = <span class="t">Time</span>.utc)
+        def self.<strong>new</strong>(rate_store : <a href="../../Money/Currency/RateStore.html">Money::Currency::RateStore</a> | Nil = <span class="n">nil</span>, rate_provider : <a href="../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a> | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28rate_store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%2Crate_provider%3AMoney%3A%3ACurrency%3A%3ARateProvider%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(pull : JSON::PullParser)
-
-        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -599,173 +541,198 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="&lt;=&gt;(other:Rate):Int32-instance-method">
+    <div class="entry-detail" id="base_currencies:Array(Currency)-instance-method">
       <div class="signature">
         
-        def <strong><=></strong>(other : <a href="../../Money/Currency/Rate.html">Rate</a>) : Int32
+        def <strong>base_currencies</strong> : Array(<a href="../../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#%3C%3D%3E%28other%3ARate%29%3AInt32-instance-method">#</a>
+        <a class="method-permalink" href="#base_currencies%3AArray%28Currency%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from module Comparable(<a href="../../Money/Currency/Rate.html">Money::Currency::Rate</a>)
-            </div>
-          
-          <p>The comparison operator. Returns <code>0</code> if the two objects are equal,
-a negative number if this object is considered less than <em>other</em>,
-a positive number if this object is considered greater than <em>other</em>,
-or <code>nil</code> if the two objects are not comparable.</p>
-<p>Subclasses define this method to provide class-specific ordering.</p>
-<p>The comparison operator is usually used to sort values:</p>
-<pre><code class="language-crystal"><span class="c"># Sort in a descending way:</span>
-[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> y <span class="o">&lt;=&gt;</span> x } <span class="c"># =&gt; [3, 2, 1]</span>
-
-<span class="c"># Sort in an ascending way:</span>
-[<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>].sort { <span class="o">|</span>x, y<span class="o">|</span> x <span class="o">&lt;=&gt;</span> y } <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+          <p>Returns an array of supported (registered) base currencies.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="clone-instance-method">
+    <div class="entry-detail" id="exchange(from:Money,to:Currency):Money-instance-method">
       <div class="signature">
         
-        def <strong>clone</strong>
+        def <strong>exchange</strong>(from : <a href="../../Money.html">Money</a>, to : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../Money.html">Money</a>
 
-        <a class="method-permalink" href="#clone-instance-method">#</a>
+        <a class="method-permalink" href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Exchanges the given <code><a href="../../Money.html">Money</a></code> object to a new <code><a href="../../Money.html">Money</a></code> object in
+<em>to</em> <code><a href="../../Money/Currency.html">Currency</a></code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="copy_with(from_from=@from,to_to=@to,value_value=@value,updated_at_updated_at=@updated_at)-instance-method">
+    <div class="entry-detail" id="exchange_rate(base:Currency,other:Currency):BigDecimal-instance-method">
       <div class="signature">
         
-        def <strong>copy_with</strong>(from _from = @from, to _to = @to, value _value = @value, updated_at _updated_at = @updated_at)
+        def <strong>exchange_rate</strong>(base : <a href="../../Money/Currency.html">Currency</a>, other : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../BigDecimal.html">BigDecimal</a>
 
-        <a class="method-permalink" href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method">#</a>
+        <a class="method-permalink" href="#exchange_rate%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the exchange rate between <em>base</em> and <em>other</em> currency,
+or raises <code><a href="../../Money/UnknownRateError.html">UnknownRateError</a></code> if not found.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from:Currency-instance-method">
+    <div class="entry-detail" id="exchange_rate?(base:Currency,other:Currency):BigDecimal|Nil-instance-method">
       <div class="signature">
         
-        def <strong>from</strong> : <a href="../../Money/Currency.html">Currency</a>
+        def <strong>exchange_rate?</strong>(base : <a href="../../Money/Currency.html">Currency</a>, other : <a href="../../Money/Currency.html">Currency</a>) : <a href="../../BigDecimal.html">BigDecimal</a> | Nil
 
-        <a class="method-permalink" href="#from%3ACurrency-instance-method">#</a>
+        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal%7CNil-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the exchange rate between <em>base</em> and <em>other</em> currency,
+or <code>nil</code> if not found.</p>
+        </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to:Currency-instance-method">
+    <div class="entry-detail" id="rate_provider:RateProvider-instance-method">
       <div class="signature">
         
-        def <strong>to</strong> : <a href="../../Money/Currency.html">Currency</a>
+        def <strong>rate_provider</strong> : <a href="../../Money/Currency/RateProvider.html">RateProvider</a>
 
-        <a class="method-permalink" href="#to%3ACurrency-instance-method">#</a>
+        <a class="method-permalink" href="#rate_provider%3ARateProvider-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p>
+<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_provider</code> if set to <code>nil</code> (the default).</p>
+        </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_json(json:JSON::Builder)-instance-method">
+    <div class="entry-detail" id="rate_provider=(rate_provider:RateProvider|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>to_json</strong>(json : JSON::Builder)
+        def <strong>rate_provider=</strong>(rate_provider : <a href="../../Money/Currency/RateProvider.html">RateProvider</a> | Nil)
 
-        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+        <a class="method-permalink" href="#rate_provider%3D%28rate_provider%3ARateProvider%7CNil%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p>
+<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_provider</code> if set to <code>nil</code> (the default).</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_s(io:IO,*,include_updated_at=false):Nil-instance-method">
+    <div class="entry-detail" id="rate_store:RateStore-instance-method">
       <div class="signature">
         
-        def <strong>to_s</strong>(io : IO, *, include_updated_at = <span class="n">false</span>) : Nil
+        def <strong>rate_store</strong> : <a href="../../Money/Currency/RateStore.html">RateStore</a>
 
-        <a class="method-permalink" href="#to_s%28io%3AIO%2C%2A%2Cinclude_updated_at%3Dfalse%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#rate_store%3ARateStore-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p>
+<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_store</code> if set to <code>nil</code> (the default).</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_s(*,include_updated_at=false):String-instance-method">
+    <div class="entry-detail" id="rate_store=(rate_store:RateStore|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>to_s</strong>(*, include_updated_at = <span class="n">false</span>) : String
+        def <strong>rate_store=</strong>(rate_store : <a href="../../Money/Currency/RateStore.html">RateStore</a> | Nil)
 
-        <a class="method-permalink" href="#to_s%28%2A%2Cinclude_updated_at%3Dfalse%29%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#rate_store%3D%28rate_store%3ARateStore%7CNil%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p>
+<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_store</code> if set to <code>nil</code> (the default).</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="updated_at:Time-instance-method">
+    <div class="entry-detail" id="target_currencies:Array(Currency)-instance-method">
       <div class="signature">
         
-        def <strong>updated_at</strong> : Time
+        def <strong>target_currencies</strong> : Array(<a href="../../Money/Currency.html">Currency</a>)
 
-        <a class="method-permalink" href="#updated_at%3ATime-instance-method">#</a>
+        <a class="method-permalink" href="#target_currencies%3AArray%28Currency%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns an array of supported (registered) target currencies.</p>
+        </div>
       
       <br/>
       <div>
         
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="value:BigDecimal-instance-method">
-      <div class="signature">
-        
-        def <strong>value</strong> : <a href="../../BigDecimal.html">BigDecimal</a>
-
-        <a class="method-permalink" href="#value%3ABigDecimal-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -82,26 +82,6 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Bank" data-name="money::bank">
-      <a href="Money/Bank.html">Bank</a>
-      
-        <ul>
-  
-  <li class=" " data-id="money/Money/Bank/SingleCurrency" data-name="money::bank::singlecurrency">
-      <a href="Money/Bank/SingleCurrency.html">SingleCurrency</a>
-      
-    </li>
-  
-  <li class=" " data-id="money/Money/Bank/VariableExchange" data-name="money::bank::variableexchange">
-      <a href="Money/Bank/VariableExchange.html">VariableExchange</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
   <li class=" " data-id="money/Money/Casting" data-name="money::casting">
       <a href="Money/Casting.html">Casting</a>
       
@@ -127,6 +107,21 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Currency/Exchange" data-name="money::currency::exchange">
+      <a href="Money/Currency/Exchange.html">Exchange</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/Exchange/SingleCurrency" data-name="money::currency::exchange::singlecurrency">
+      <a href="Money/Currency/Exchange/SingleCurrency.html">SingleCurrency</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/Loader" data-name="money::currency::loader">
       <a href="Money/Currency/Loader.html">Loader</a>
       
@@ -134,6 +129,76 @@
   
   <li class=" " data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
       <a href="Money/Currency/Rate.html">Rate</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Currency/RateProvider" data-name="money::currency::rateprovider">
+      <a href="Money/Currency/RateProvider.html">RateProvider</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/AbstractAPI" data-name="money::currency::rateprovider::abstractapi">
+      <a href="Money/Currency/RateProvider/AbstractAPI.html">AbstractAPI</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
+      <a href="Money/Currency/RateProvider/Coinlayer.html">Coinlayer</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Compound" data-name="money::currency::rateprovider::compound">
+      <a href="Money/Currency/RateProvider/Compound.html">Compound</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/ECB" data-name="money::currency::rateprovider::ecb">
+      <a href="Money/Currency/RateProvider/ECB.html">ECB</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/ExchangeRateAPI" data-name="money::currency::rateprovider::exchangerateapi">
+      <a href="Money/Currency/RateProvider/ExchangeRateAPI.html">ExchangeRateAPI</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Fixer" data-name="money::currency::rateprovider::fixer">
+      <a href="Money/Currency/RateProvider/Fixer.html">Fixer</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/FloatRates" data-name="money::currency::rateprovider::floatrates">
+      <a href="Money/Currency/RateProvider/FloatRates.html">FloatRates</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Freecurrency" data-name="money::currency::rateprovider::freecurrency">
+      <a href="Money/Currency/RateProvider/Freecurrency.html">Freecurrency</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/MoneyMorph" data-name="money::currency::rateprovider::moneymorph">
+      <a href="Money/Currency/RateProvider/MoneyMorph.html">MoneyMorph</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
+      <a href="Money/Currency/RateProvider/Null.html">Null</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/OpenExchangeRates" data-name="money::currency::rateprovider::openexchangerates">
+      <a href="Money/Currency/RateProvider/OpenExchangeRates.html">OpenExchangeRates</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/UniRate" data-name="money::currency::rateprovider::unirate">
+      <a href="Money/Currency/RateProvider/UniRate.html">UniRate</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -179,6 +244,21 @@
   
   <li class=" " data-id="money/Money/Formatting" data-name="money::formatting">
       <a href="Money/Formatting.html">Formatting</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Mixin" data-name="money::mixin">
+      <a href="Money/Mixin.html">Mixin</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Mixin/InitializeWith" data-name="money::mixin::initializewith">
+      <a href="Money/Mixin/InitializeWith.html">InitializeWith</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -233,7 +313,7 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Introduction</h2>
-<p>A Crystal shard for dealing with money and currency conversion ported from <a href="https://github.com/RubyMoney/money">RubyMoney</a>.</p>
+<p>A Crystal shard for dealing with money and currency conversion inspired by <a href="https://github.com/RubyMoney/money">RubyMoney</a>.</p>
 <h3><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -395,10 +475,9 @@ exist to provide a basic API you can take advantage of to build your application
 <p>The priority attribute is an arbitrary numerical value you can assign to the
 <code><a href="Money/Currency.html">Money::Currency</a></code> and use in sorting/grouping operation.</p>
 <p>For instance, let's assume your web application needs to render a currency
-selector like the one available
-<a href="https://finance.yahoo.com/currency-converter/">here</a>. You can create a couple of
-custom methods to return the list of major currencies and all currencies as
-follows:</p>
+selector like the one available <a href="https://finance.yahoo.com/currency-converter/">here</a>.
+You can create a couple of custom methods to return the list of major currencies and
+all currencies as follows:</p>
 <pre><code class="language-crystal"><span class="c"># Returns an array of currency id where priority &lt; 10</span>
 <span class="k">def</span> <span class="m">major_currencies</span>(hash)
   hash.values.sort.take_while(<span class="o">&amp;</span>.priority.try(<span class="o">&amp;</span>.<span class="o">&lt;</span>(<span class="n">10</span>))).map(<span class="o">&amp;</span>.id)
@@ -448,44 +527,65 @@ information. You can find the exponent (as an <code>Int32</code>) by</p>
     <use href="#octicon-link"/>
   </svg>
 </a>Currency Exchange</h2>
-<p>Exchanging money is performed through an exchange <code>Bank</code> object. The default
-exchange <code>Bank</code> object requires one to manually specify the exchange rate. Here's
-an example of how it works:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
-<span class="t">Money</span>.default_bank.store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.803115</span>
+<p>Exchanging money is performed through a <code>Currency::Exchange</code> object.
+This is done by fetching the exchange rate from a <code>Currency::Exchange#rate_store</code>
+object. If the rate is not available (or stale), it is then fetched from a
+<code>Currency::Exchange#rate_provider</code>.</p>
+<p>The default <code>Currency::Exchange</code> object uses <code>Currency::RateStore::Memory</code>
+in conjunction with <code>Currency::RateProvider::Null</code> which requires one to
+manually specify the exchange rate.</p>
+<p>Here's an example of how it works:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.803115</span>
 
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money.new(@amount=1.24, @currency=&quot;EUR&quot;)</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).exchange_to(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money.new(@amount=0.8,  @currency=&quot;USD&quot;)</span></code></pre>
 <p>Comparison and arithmetic operations work as expected:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">&lt;=&gt;</span> <span class="t">Money</span>.new(<span class="n">900</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; 1; 9.00 USD is smaller</span>
-<span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">10</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money.new(@amount=10.1, @currency=&quot;EUR&quot;)</span>
+<span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">10</span>, <span class="s">&quot;EUR&quot;</span>)    <span class="c"># =&gt; Money.new(@amount=10.1, @currency=&quot;EUR&quot;)</span>
 
-<span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">0.5</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">0.5</span>
 <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money.new(@amount=15.0, @currency=&quot;EUR&quot;)</span></code></pre>
 <h3><a id="exchange-rate-stores" class="anchor" href="#exchange-rate-stores">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Exchange rate stores</h3>
-<p>The default bank is initialized with an in-memory store for exchange rates.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Bank</span><span class="t">::</span><span class="t">VariableExchange</span>.new(<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new)</code></pre>
+<p>The default exchange is initialized with an in-memory store for exchange rates.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Exchange</span>.new(
+  store: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+)</code></pre>
+<p>Rate stores can be configured with <code>Time::Span</code> controlling the time-to-live (TTL)
+of the exchange rates:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Exchange</span>.new(
+  store: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new(ttl: <span class="n">1</span>.hour)
+)</code></pre>
 <p>You can pass you own store implementation, ie. for storing and retrieving rates off a database, file, cache, etc.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Bank</span><span class="t">::</span><span class="t">VariableExchange</span>.new(<span class="t">MyCustomStore</span>.new)
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store <span class="o">=</span> <span class="t">MyCustomStore</span>.new
 
 <span class="c"># Add to the underlying store</span>
-<span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.9</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.9</span>
 
 <span class="c"># Retrieve from the underlying store</span>
-<span class="t">Money</span>.default_bank.store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.9</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.9</span>
 
 <span class="c"># Exchanging amounts just works</span>
 <span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;CAD&quot;</span>) <span class="c"># =&gt; Money(@amount=9.0 @currency=&quot;CAD&quot;)</span></code></pre>
-<p>There is nothing stopping you from creating store objects which scrapes
+<h3><a id="exchange-rate-providers" class="anchor" href="#exchange-rate-providers">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Exchange rate providers</h3>
+<p>The default exchange is initialized with a <code>Currency::RateProvider::Null</code> provider,
+which returns <code>nil</code> for all exchange rates.</p>
+<p>There is nothing stopping you from creating rate provider object which scrapes
 <a href="https://www.xe.com">XE</a> for the current rates or just returns <code>rand(2)</code>:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Bank</span><span class="t">::</span><span class="t">VariableExchange</span>.new(<span class="t">StoreWhichScrapesXeDotCom</span>.new)</code></pre>
-<p>You can also implement your own <code>Bank</code> to calculate exchanges differently.
-Different banks can share Stores.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.default_bank <span class="o">=</span> <span class="t">MyCustomBank</span>.new(<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new)</code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_provider <span class="o">=</span> <span class="t">XeDotComProvider</span>.new</code></pre>
+<h3><a id="disabling-currency-conversion" class="anchor" href="#disabling-currency-conversion">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Disabling currency conversion</h3>
 <p>If you wish to disable automatic currency conversion to prevent arithmetic when
 currencies don't match:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.disallow_currency_conversion!</code></pre>
@@ -546,12 +646,6 @@ money.format(symbol: <span class="s">&quot;</span><span class="i">#{</span>money
 <ul>
 <li><a href="https://github.com/Sija">Sija</a> Sijawusz Pur Rahnama - creator, maintainer</li>
 </ul>
-<h2><a id="thanks" class="anchor" href="#thanks">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Thanks</h2>
-<p>Thanks to all of the <a href="https://github.com/RubyMoney/money/blob/master/AUTHORS">contributors</a> for their awesome work on <a href="https://github.com/RubyMoney/money">RubyMoney</a>.</p>
 </div>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateStore::Memory - money master</title>
+  <title>Money::Currency::Exchange::SingleCurrency - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -107,12 +107,12 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Currency/Exchange" data-name="money::currency::exchange">
+  <li class="parent open current" data-id="money/Money/Currency/Exchange" data-name="money::currency::exchange">
       <a href="../../../Money/Currency/Exchange.html">Exchange</a>
       
         <ul>
   
-  <li class=" " data-id="money/Money/Currency/Exchange/SingleCurrency" data-name="money::currency::exchange::singlecurrency">
+  <li class=" current" data-id="money/Money/Currency/Exchange/SingleCurrency" data-name="money::currency::exchange::singlecurrency">
       <a href="../../../Money/Currency/Exchange/SingleCurrency.html">SingleCurrency</a>
       
     </li>
@@ -202,7 +202,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="money/Money/Currency/RateStore" data-name="money::currency::ratestore">
+  <li class="parent " data-id="money/Money/Currency/RateStore" data-name="money::currency::ratestore">
       <a href="../../../Money/Currency/RateStore.html">RateStore</a>
       
         <ul>
@@ -212,7 +212,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
+  <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../../Money/Currency/RateStore/Memory.html">Memory</a>
       
     </li>
@@ -308,12 +308,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateStore::<wbr>Memory
+  </span> Money::<wbr>Currency::<wbr>Exchange::<wbr>SingleCurrency
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateStore/Memory.html">Money::Currency::RateStore::Memory</a></li><li class="superclass"><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/Exchange/SingleCurrency.html">Money::Currency::Exchange::SingleCurrency</a></li><li class="superclass"><a href="../../../Money/Currency/Exchange.html">Money::Currency::Exchange</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -327,15 +327,12 @@
     Overview
   </h2>
 
-  <p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p>
-<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.98</span>
-store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.98</span>
-
-<span class="c"># Iterates rates</span>
-store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o">|</span>
-  puts rate
-<span class="k">end</span></code></pre>
+  <p>Class to ensure client code is operating in a single currency
+by raising if an exchange attempts to happen.</p>
+<p>This is useful when an application uses multiple currencies but
+it usually deals with only one currency at a time so any arithmetic
+where exchanges happen are erroneous. Using this as the default exchange
+means that that these mistakes don't silently do the wrong thing.</p>
 
 
 
@@ -346,20 +343,6 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
 
-
-  <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Direct Known Subclasses
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateStore/File.html">Money::Currency::RateStore::File</a></li>
-    
-  </ul>
 
 
 
@@ -376,8 +359,8 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate_store/memory.cr#L14" target="_blank">
-        money/currency/rate_store/memory.cr
+      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange/single_currency.cr#L9" target="_blank">
+        money/currency/exchange/single_currency.cr
       </a>
     
     <br/>
@@ -394,80 +377,91 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="signature"><strong>#exchange</strong>(from : Money, to : Currency) : Money</a>
+        
+          <div class="summary"><p>Raises a <code><a href="../../../Money/DifferentCurrencyError.html">DifferentCurrencyError</a></code> to remove possibility of accidentally exchanging currencies.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
     
       
 
-  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/Exchange.html">Money::Currency::Exchange</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#%3C%3C%28rate%3ARate%29%3Aself-instance-method" class="tooltip">
-      <span><<(rate : Rate) : <span class="k">self</span><br/><<(rates : Enumerable(Rate)) : <span class="k">self</span></span>
-    <<</a>, 
+    <a href="../../../Money/Currency/Exchange.html#base_currencies%3AArray%28Currency%29-instance-method" class="tooltip">
+      <span>base_currencies : Array(Currency)</span>
+    base_currencies</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal-instance-method" class="tooltip">
-      <span>[](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal</span>
-    []</a>, 
+    <a href="../../../Money/Currency/Exchange.html#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method" class="tooltip">
+      <span>exchange(from : Money, to : Currency) : Money</span>
+    exchange</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%3D%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%2Cvalue%3ANumber%29%3ANil-instance-method" class="tooltip">
-      <span>[]=(from : String | Symbol | Currency, to : String | Symbol | Currency, value : Number) : Nil</span>
-    []=</a>, 
+    <a href="../../../Money/Currency/Exchange.html#exchange_rate%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal-instance-method" class="tooltip">
+      <span>exchange_rate(base : Currency, other : Currency) : BigDecimal</span>
+    exchange_rate</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#%5B%5D%3F%28from%3AString%7CSymbol%7CCurrency%2Cto%3AString%7CSymbol%7CCurrency%29%3ABigDecimal%7CNil-instance-method" class="tooltip">
-      <span>[]?(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal | Nil</span>
-    []?</a>, 
+    <a href="../../../Money/Currency/Exchange.html#exchange_rate%3F%28base%3ACurrency%2Cother%3ACurrency%29%3ABigDecimal%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, other : Currency) : BigDecimal | Nil</span>
+    exchange_rate?</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#clear%28base%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method" class="tooltip">
-      <span>clear(base : String | Symbol | Currency) : Nil<br/>clear : Nil</span>
-    clear</a>, 
+    <a href="../../../Money/Currency/Exchange.html#rate_provider%3ARateProvider-instance-method" class="tooltip">
+      <span>rate_provider : RateProvider</span>
+    rate_provider</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#each%28%26%3ARate-%3E_%29%3ANil-instance-method" class="tooltip">
-      <span>each(& : Rate -> _) : Nil</span>
-    each</a>, 
+    <a href="../../../Money/Currency/Exchange.html#rate_provider%3D%28rate_provider%3ARateProvider%7CNil%29-instance-method" class="tooltip">
+      <span>rate_provider=(rate_provider : RateProvider | Nil)</span>
+    rate_provider=</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#rates%3AArray%28Rate%29-instance-method" class="tooltip">
-      <span>rates : Array(Rate)</span>
-    rates</a>, 
+    <a href="../../../Money/Currency/Exchange.html#rate_store%3ARateStore-instance-method" class="tooltip">
+      <span>rate_store : RateStore</span>
+    rate_store</a>, 
     
   
-    <a href="../../../Money/Currency/RateStore.html#transaction%28%2A%2Cmutable%3ABool%3Dfalse%2C%26%3A-%3E_%29-instance-method" class="tooltip">
-      <span>transaction(*, mutable : Bool = <span class="n">false</span>, & :  -> _)</span>
-    transaction</a>
+    <a href="../../../Money/Currency/Exchange.html#rate_store%3D%28rate_store%3ARateStore%7CNil%29-instance-method" class="tooltip">
+      <span>rate_store=(rate_store : RateStore | Nil)</span>
+    rate_store=</a>, 
+    
+  
+    <a href="../../../Money/Currency/Exchange.html#target_currencies%3AArray%28Currency%29-instance-method" class="tooltip">
+      <span>target_currencies : Array(Currency)</span>
+    target_currencies</a>
     
   
 
 
       
 
-  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/Exchange.html">Money::Currency::Exchange</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#new%28%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method" class="tooltip">
-      <span>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
+    <a href="../../../Money/Currency/Exchange.html#new%28rate_store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%2Crate_provider%3AMoney%3A%3ACurrency%3A%3ARateProvider%7CNil%3Dnil%29-class-method" class="tooltip">
+      <span>new(rate_store : Money::Currency::RateStore | Nil = <span class="n">nil</span>, rate_provider : Money::Currency::RateProvider | Nil = <span class="n">nil</span>)</span>
     new</a>
     
   
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
 
 
       
@@ -512,6 +506,38 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="exchange(from:Money,to:Currency):Money-instance-method">
+      <div class="signature">
+        
+        def <strong>exchange</strong>(from : <a href="../../../Money.html">Money</a>, to : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money.html">Money</a>
+
+        <a class="method-permalink" href="#exchange%28from%3AMoney%2Cto%3ACurrency%29%3AMoney-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Raises a <code><a href="../../../Money/DifferentCurrencyError.html">DifferentCurrencyError</a></code> to remove possibility of accidentally
+exchanging currencies.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/exchange/single_currency.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
