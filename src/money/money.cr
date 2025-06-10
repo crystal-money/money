@@ -70,7 +70,7 @@ struct Money
   # end
   # ```
   #
-  # NOTE: References to the `#default_{currency, bank, rate_store}` properties
+  # NOTE: References to the `#default_{currency, exchange, rate_store}` properties
   # will be shared between the current fiber and the spawned fiber.
   #
   # See also `#same_context_wrapper`.
@@ -104,10 +104,10 @@ struct Money
     end
   end
 
-  # Sets the default bank to be a `Bank::SingleCurrency` bank that raises on
-  # currency exchange. Useful when apps operate in a single currency at a time.
+  # Sets the default exchange to be a `Currency::Exchange::SingleCurrency` exchange that raises
+  # on currency exchange. Useful when apps operate in a single currency at a time.
   def self.disallow_currency_conversion!
-    self.default_bank = Bank::SingleCurrency.new
+    self.default_exchange = Currency::Exchange::SingleCurrency.new
   end
 
   # Numerical value of the money.
@@ -116,14 +116,14 @@ struct Money
   # The money's currency.
   getter currency : Currency
 
-  # The `Bank` object which currency exchanges are performed with.
+  # The `Currency::Exchange` object which currency exchanges are performed with.
   #
-  # NOTE: Will return `Money.default_bank` if set to `nil` (the default).
-  property bank : Bank?
+  # NOTE: Will return `Money.default_exchange` if set to `nil` (the default).
+  property exchange : Currency::Exchange?
 
   # :ditto:
-  def bank : Bank
-    @bank || Money.default_bank
+  def exchange : Currency::Exchange
+    @exchange || Money.default_exchange
   end
 
   # Creates a new `Money` object of value given as an *amount*
@@ -135,45 +135,45 @@ struct Money
   # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
   # ```
-  def initialize(amount : Number = 0, currency = Money.default_currency, bank = nil)
-    initialize(amount, currency, bank)
+  def initialize(amount : Number = 0, currency = Money.default_currency, exchange = nil)
+    initialize(amount, currency, exchange)
   end
 
   # :nodoc:
-  def initialize(amount : BigDecimal | BigRational, currency, bank)
+  def initialize(amount : BigDecimal | BigRational, currency, exchange)
     @currency = Currency.wrap(currency)
     @amount = amount.to_big_d
-    @bank = bank
+    @exchange = exchange
   end
 
   # :nodoc:
-  def initialize(amount : Float, currency, bank)
+  def initialize(amount : Float, currency, exchange)
     unless amount.finite?
       raise ArgumentError.new "Must be initialized with a finite value"
     end
-    initialize(amount.to_big_d, currency, bank)
+    initialize(amount.to_big_d, currency, exchange)
   end
 
   # :nodoc:
-  def initialize(*, fractional : BigDecimal, currency = Money.default_currency, bank = nil)
+  def initialize(*, fractional : BigDecimal, currency = Money.default_currency, exchange = nil)
     @currency = Currency.wrap(currency)
     @amount = fractional / @currency.subunit_to_unit
-    @bank = bank
+    @exchange = exchange
   end
 
   # :nodoc:
-  def initialize(fractional : Int, currency, bank)
+  def initialize(fractional : Int, currency, exchange)
     initialize(
       fractional: fractional.to_big_d,
       currency: currency,
-      bank: bank,
+      exchange: exchange,
     )
   end
 
-  # Returns a new `Money` instance with same `currency` and `bank`
+  # Returns a new `Money` instance with same `currency` and `exchange`
   # properties set as in `self`.
   protected def copy_with(**options) : Money
-    options = {currency: currency, bank: bank}.merge(options)
+    options = {currency: currency, exchange: exchange}.merge(options)
     Money.new(**options)
   end
 

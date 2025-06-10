@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A Crystal shard for dealing with money and currency conversion ported from [RubyMoney](https://github.com/RubyMoney/money).
+A Crystal shard for dealing with money and currency conversion inspired by [RubyMoney](https://github.com/RubyMoney/money).
 
 ### Features
 
@@ -168,10 +168,9 @@ The priority attribute is an arbitrary numerical value you can assign to the
 `Money::Currency` and use in sorting/grouping operation.
 
 For instance, let's assume your web application needs to render a currency
-selector like the one available
-[here](https://finance.yahoo.com/currency-converter/). You can create a couple of
-custom methods to return the list of major currencies and all currencies as
-follows:
+selector like the one available [here](https://finance.yahoo.com/currency-converter/).
+You can create a couple of custom methods to return the list of major currencies and
+all currencies as follows:
 
 ```crystal
 # Returns an array of currency id where priority < 10
@@ -225,13 +224,20 @@ Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @iso_numeric=
 
 ## Currency Exchange
 
-Exchanging money is performed through an exchange `Bank` object. The default
-exchange `Bank` object requires one to manually specify the exchange rate. Here's
-an example of how it works:
+Exchanging money is performed through a `Currency::Exchange` object.
+This is done by fetching the exchange rate from a `Currency::Exchange#rate_store`
+object. If the rate is not available (or stale), it is then fetched from a
+`Currency::Exchange#rate_provider`.
+
+The default `Currency::Exchange` object uses `Currency::RateStore::Memory`
+in conjunction with `Currency::RateProvider::Null` which requires one to
+manually specify the exchange rate.
+
+Here's an example of how it works:
 
 ```crystal
-Money.default_bank.store["USD", "EUR"] = 1.24515
-Money.default_bank.store["EUR", "USD"] = 0.803115
+Money.default_exchange.rate_store["USD", "EUR"] = 1.24515
+Money.default_exchange.rate_store["EUR", "USD"] = 0.803115
 
 Money.new(100, "USD").exchange_to("EUR") # => Money.new(@amount=1.24, @currency="EUR")
 Money.new(100, "EUR").exchange_to("USD") # => Money.new(@amount=0.8,  @currency="USD")
@@ -241,48 +247,59 @@ Comparison and arithmetic operations work as expected:
 
 ```crystal
 Money.new(1000, "USD") <=> Money.new(900, "USD") # => 1; 9.00 USD is smaller
-Money.new(1000, "EUR") + Money.new(10, "EUR") # => Money.new(@amount=10.1, @currency="EUR")
+Money.new(1000, "EUR") + Money.new(10, "EUR")    # => Money.new(@amount=10.1, @currency="EUR")
 
-Money.default_bank.store["USD", "EUR"] = 0.5
+Money.default_exchange.rate_store["USD", "EUR"] = 0.5
 Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15.0, @currency="EUR")
 ```
 
 ### Exchange rate stores
 
-The default bank is initialized with an in-memory store for exchange rates.
+The default exchange is initialized with an in-memory store for exchange rates.
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(Money::Currency::RateStore::Memory.new)
+Money.default_exchange = Money::Currency::Exchange.new(
+  store: Money::Currency::RateStore::Memory.new
+)
+```
+
+Rate stores can be configured with `Time::Span` controlling the time-to-live (TTL)
+of the exchange rates:
+
+```crystal
+Money.default_exchange = Money::Currency::Exchange.new(
+  store: Money::Currency::RateStore::Memory.new(ttl: 1.hour)
+)
 ```
 
 You can pass you own store implementation, ie. for storing and retrieving rates off a database, file, cache, etc.
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(MyCustomStore.new)
+Money.default_exchange.rate_store = MyCustomStore.new
 
 # Add to the underlying store
-Money.default_bank.store["USD", "CAD"] = 0.9
+Money.default_exchange.rate_store["USD", "CAD"] = 0.9
 
 # Retrieve from the underlying store
-Money.default_bank.store["USD", "CAD"] # => 0.9
+Money.default_exchange.rate_store["USD", "CAD"] # => 0.9
 
 # Exchanging amounts just works
 Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9.0 @currency="CAD")
 ```
 
-There is nothing stopping you from creating store objects which scrapes
+### Exchange rate providers
+
+The default exchange is initialized with a `Currency::RateProvider::Null` provider,
+which returns `nil` for all exchange rates.
+
+There is nothing stopping you from creating rate provider object which scrapes
 [XE](https://www.xe.com) for the current rates or just returns `rand(2)`:
 
 ```crystal
-Money.default_bank = Money::Bank::VariableExchange.new(StoreWhichScrapesXeDotCom.new)
+Money.default_exchange.rate_provider = XeDotComProvider.new
 ```
 
-You can also implement your own `Bank` to calculate exchanges differently.
-Different banks can share Stores.
-
-```crystal
-Money.default_bank = MyCustomBank.new(Money::Currency::RateStore::Memory.new)
-```
+### Disabling currency conversion
 
 If you wish to disable automatic currency conversion to prevent arithmetic when
 currencies don't match:
@@ -356,7 +373,3 @@ Money.parse("12.34 USD") # => Money(@amount=12.34, @currency="USD")
 ## Contributors
 
 - [Sija](https://github.com/Sija) Sijawusz Pur Rahnama - creator, maintainer
-
-## Thanks
-
-Thanks to all of the [contributors](https://github.com/RubyMoney/money/blob/master/AUTHORS) for their awesome work on [RubyMoney](https://github.com/RubyMoney/money).

@@ -76,17 +76,17 @@ describe Money do
       end
     end
 
-    context "given a bank is not provided" do
-      it "should return the default bank" do
-        Money.new.bank.should be Money.default_bank
+    context "given a exchange is not provided" do
+      it "should return the default exchange" do
+        Money.new.exchange.should be Money.default_exchange
       end
     end
 
-    context "given a bank is provided" do
-      bank = Money::Bank::SingleCurrency.new
+    context "given a exchange is provided" do
+      exchange = Money::Currency::Exchange::SingleCurrency.new
 
-      it "should return given bank" do
-        Money.new(bank: bank).bank.should be bank
+      it "should return given exchange" do
+        Money.new(exchange: exchange).exchange.should be exchange
       end
     end
   end
@@ -115,7 +115,7 @@ describe Money do
 
   describe ".disallow_currency_conversions!" do
     it "disallows conversions when doing money arithmetic" do
-      with_default_bank do
+      with_default_exchange do
         Money.disallow_currency_conversion!
 
         expect_raises(Money::DifferentCurrencyError) do
@@ -213,7 +213,7 @@ describe Money do
 
       new_money.should eq Money.new(10_00, "EUR")
       new_money.amount.should eq money.amount
-      new_money.bank.should eq money.bank
+      new_money.exchange.should eq money.exchange
     end
   end
 
@@ -332,22 +332,22 @@ describe Money do
     end
   end
 
-  describe "#bank" do
-    it "returns default Bank object" do
-      Money.new.bank.should be Money.default_bank
+  describe "#exchange" do
+    it "returns default Currency::Exchange object" do
+      Money.new.exchange.should be Money.default_exchange
     end
 
-    it "returns Bank object passed in #initialize" do
-      Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.new(bank: bank).bank.should be bank
+    it "returns Currency::Exchange object passed in #initialize" do
+      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
+        Money.new(exchange: exchange).exchange.should be exchange
       end
     end
 
-    it "takes Bank object" do
-      Money::Bank::SingleCurrency.new.tap do |bank|
+    it "takes Currency::Exchange object" do
+      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
         Money.new.tap do |money|
-          money.bank = bank
-          money.bank.should be bank
+          money.exchange = exchange
+          money.exchange.should be exchange
         end
       end
     end
@@ -384,15 +384,15 @@ describe Money do
     end
   end
 
-  describe ".default_bank" do
-    it "returns the Bank object" do
-      Money.default_bank.should be_a Money::Bank
+  describe ".default_exchange" do
+    it "returns the Currency::Exchange object" do
+      Money.default_exchange.should be_a Money::Currency::Exchange
     end
 
-    it "sets the value to the given Bank object" do
-      bank = Money::Bank::SingleCurrency.new
-      with_default_bank(bank) do
-        Money.default_bank.should be bank
+    it "sets the value to the given Currency::Exchange object" do
+      exchange = Money::Currency::Exchange::SingleCurrency.new
+      with_default_exchange(exchange) do
+        Money.default_exchange.should be exchange
       end
     end
   end

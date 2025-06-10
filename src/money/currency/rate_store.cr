@@ -5,7 +5,7 @@ class Money::Currency
     @mutex = Mutex.new(:reentrant)
     @ttl : Time::Span?
 
-    def initialize(@ttl : Time::Span? = nil)
+    def initialize(*, @ttl : Time::Span? = nil)
     end
 
     # Wraps block execution in a concurrency-safe transaction.
@@ -162,13 +162,13 @@ class Money::Currency
       end
     end
 
-    # See also `#clear(base_currency)`.
-    protected abstract def clear_rates(base_currency : Currency) : Nil
+    # See also `#clear(base)`.
+    protected abstract def clear_rates(base : Currency) : Nil
 
-    # Removes rates for the given base currency.
-    def clear(base_currency : String | Symbol | Currency) : Nil
+    # Removes rates for the given *base* currency.
+    def clear(base : String | Symbol | Currency) : Nil
       transaction(mutable: true) do
-        clear_rates(Currency.wrap(base_currency))
+        clear_rates(Currency.wrap(base))
       end
     end
   end

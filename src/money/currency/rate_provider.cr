@@ -1,0 +1,48 @@
+require "../mixins/initialize_with"
+
+class Money::Currency
+  abstract class RateProvider
+    include Mixin::InitializeWith
+
+    # All registered rate providers.
+    class_getter providers = {} of String => RateProvider.class
+
+    macro inherited
+      {% unless @type.abstract? %}
+        {% name = @type.name.gsub(/^(.+)::(.+)$/, "\\2").underscore %}
+        ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
+      {% end %}
+    end
+
+    # Creates a new rate provider instance.
+    def self.build(name : String, options : NamedTuple | Hash) : RateProvider
+      providers[name.underscore].new.tap do |provider|
+        provider.initialize_with(options)
+      end
+    end
+
+    # :ditto:
+    def self.build(name : String, **options) : RateProvider
+      build(name, options)
+    end
+
+    # Returns an array of supported base currency codes.
+    abstract def base_currency_codes : Array(String)
+
+    # Returns an array of supported target currency codes.
+    def target_currency_codes : Array(String)
+      base_currency_codes
+    end
+
+    # Returns the exchange rate between `self` and *other* currency, or `nil` if not found.
+    abstract def exchange_rate?(base : Currency, other : Currency) : Rate?
+
+    # Returns `true` if the provider supports the given currency pair.
+    def supports_currency_pair?(base : Currency, other : Currency) : Bool
+      base_currency_codes.includes?(base.code) &&
+        target_currency_codes.includes?(other.code)
+    end
+  end
+end
+
+require "./rate_provider/*"

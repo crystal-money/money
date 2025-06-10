@@ -135,7 +135,7 @@ describe Money::Currency::RateStore::File do
       end
     end
 
-    describe "#clear(base_currency)" do
+    describe "#clear(base)" do
       it "persists rates to a JSON file" do
         with_currency_file_store do |store, file|
           store.clear("USD")

@@ -21,8 +21,8 @@ class Money::Currency
   # store.save
   # ```
   class RateStore::File < RateStore::Memory
-    def initialize(@filepath : Path | String, ttl : Time::Span? = nil)
-      super(ttl)
+    def initialize(@filepath : Path | String, *, ttl : Time::Span? = nil)
+      super(ttl: ttl)
       load
     end
 

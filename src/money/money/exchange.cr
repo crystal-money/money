@@ -9,7 +9,7 @@ struct Money
       when zero?
         with_currency(other_currency)
       else
-        bank.exchange(self, other_currency)
+        exchange.exchange(self, other_currency)
       end
     end
 

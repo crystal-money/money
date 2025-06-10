@@ -5,7 +5,7 @@ struct Money
   include JSON::Serializable
 
   @[JSON::Field(ignore: true)]
-  @bank : Bank?
+  @exchange : Currency::Exchange?
 
   def self.new(pull : JSON::PullParser)
     case pull.kind

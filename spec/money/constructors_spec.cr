@@ -6,8 +6,8 @@ describe Money::Constructors do
       Money.zero.should eq Money.new(0)
     end
 
-    it "uses default Bank object" do
-      Money.zero.bank.should be Money.default_bank
+    it "uses default Currency::Exchange object" do
+      Money.zero.exchange.should be Money.default_exchange
     end
 
     it "uses given Currency object" do
@@ -16,9 +16,9 @@ describe Money::Constructors do
       end
     end
 
-    it "uses given Bank object" do
-      Money::Bank::SingleCurrency.new.tap do |bank|
-        Money.zero(bank: bank).bank.should be bank
+    it "uses given Currency::Exchange object" do
+      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
+        Money.zero(exchange: exchange).exchange.should be exchange
       end
     end
   end

@@ -1,6 +1,5 @@
 class Money::Currency
-  # Class for concurrency-safe storage of exchange rate pairs.
-  # Used by instances of `Currency::VariableExchange`.
+  # Class for in-memory concurrency-safe storage of exchange rate pairs.
   #
   # ```
   # store = Money::Currency::RateStore::Memory.new
@@ -33,8 +32,8 @@ class Money::Currency
       @index.clear
     end
 
-    protected def clear_rates(base_currency : Currency) : Nil
-      @index.reject! { |_, rate| rate.from == base_currency }
+    protected def clear_rates(base : Currency) : Nil
+      @index.reject! { |_, rate| rate.from == base }
     end
 
     private def rate_key_for(from : Currency, to : Currency)
