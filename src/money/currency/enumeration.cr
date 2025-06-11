@@ -30,7 +30,7 @@ class Money::Currency
     # ```
     def find(key : String | Symbol) : Currency
       find?(key) ||
-        raise UnknownCurrencyError.new("Can't find currency: #{key}")
+        raise UnknownCurrencyError.new(key)
     end
 
     # Alias of `#find`.

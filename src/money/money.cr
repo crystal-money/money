@@ -254,7 +254,7 @@ struct Money
   # See also `#rounded_to_nearest_cash_value` and `Currency#smallest_denomination`.
   def nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : BigDecimal
     unless smallest_denomination = currency.smallest_denomination
-      raise UndefinedSmallestDenominationError.new
+      raise UndefinedSmallestDenominationError.new(currency)
     end
     rounded_value =
       (fractional / smallest_denomination).round(rounding_mode)

@@ -10,8 +10,7 @@ class Money::Currency
     # Raises a `DifferentCurrencyError` to remove possibility of accidentally
     # exchanging currencies.
     def exchange(from : Money, to : Currency) : Money
-      raise DifferentCurrencyError.new \
-        "No exchanging of currencies allowed: #{from} #{from.currency} to #{to}"
+      raise DifferentCurrencyError.new(from.currency, to)
     end
   end
 end

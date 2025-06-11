@@ -45,7 +45,7 @@ describe Money::Currency::Enumeration do
     end
 
     it "raises UnknownCurrency with unknown currency" do
-      expect_raises(Money::UnknownCurrencyError, "Can't find currency: zZz") do
+      expect_raises(Money::UnknownCurrencyError, "Unknown currency: zZz") do
         Money::Currency.find("zZz")
       end
     end

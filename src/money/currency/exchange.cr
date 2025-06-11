@@ -59,7 +59,7 @@ class Money::Currency
     # or raises `UnknownRateError` if not found.
     def exchange_rate(base : Currency, other : Currency) : BigDecimal
       exchange_rate?(base, other) ||
-        raise UnknownRateError.new("No conversion rate known for #{base} -> #{other}")
+        raise UnknownRateError.new(base, other)
     end
 
     private def update_rate(base : Currency, other : Currency) : BigDecimal?

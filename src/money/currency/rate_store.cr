@@ -125,7 +125,7 @@ class Money::Currency
     # ```
     def [](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal
       self[from, to]? ||
-        raise UnknownRateError.new("No conversion rate known for #{from} -> #{to}")
+        raise UnknownRateError.new(from, to)
     end
 
     # Same as `#each`, but doesn't use concurrency-safe transaction.

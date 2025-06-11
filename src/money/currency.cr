@@ -68,7 +68,7 @@ struct Money
     # :ditto:
     def self.wrap(value : String | Symbol | Currency) : Currency
       wrap?(value) ||
-        raise UnknownCurrencyError.new("Can't find currency: #{value}")
+        raise UnknownCurrencyError.new(value)
     end
 
     getter priority : Int32?
