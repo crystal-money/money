@@ -20,19 +20,25 @@ class Money::Currency
       @rate_provider || Money.default_rate_provider
     end
 
+    # A concurrency-safe mutex used to synchronize access to the
+    # `#rate_store` and `#rate_provider` objects.
+    @mutex = Mutex.new
+
     def initialize(@rate_store = nil, @rate_provider = nil)
     end
 
     # Returns an array of supported (registered) base currencies.
     def base_currencies : Array(Currency)
-      rate_provider.base_currency_codes.compact_map do |code|
+      currency_codes = @mutex.synchronize { rate_provider.base_currency_codes }
+      currency_codes.compact_map do |code|
         Currency.find?(code)
       end
     end
 
     # Returns an array of supported (registered) target currencies.
     def target_currencies : Array(Currency)
-      rate_provider.target_currency_codes.compact_map do |code|
+      currency_codes = @mutex.synchronize { rate_provider.target_currency_codes }
+      currency_codes.compact_map do |code|
         Currency.find?(code)
       end
     end
@@ -51,8 +57,10 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : BigDecimal?
       return 1.to_big_d if base == target
 
-      rate_store[base, target]? ||
-        update_rate(base, target)
+      @mutex.synchronize do
+        rate_store[base, target]? ||
+          update_rate(base, target)
+      end
     end
 
     # Returns the exchange rate between *base* and *target* currency,
