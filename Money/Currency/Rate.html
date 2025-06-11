@@ -359,14 +359,14 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L15" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/json.cr#L15" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L2" target="_blank">
         money/currency/rate.cr
       </a>
     
@@ -389,7 +389,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method" class="signature"><strong>.new</strong>(from : Currency, to : Currency, value : BigDecimal, updated_at : Time = <span class="t">Time</span>.utc)</a>
+        <a href="#new%28base%3ACurrency%2Ctarget%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method" class="signature"><strong>.new</strong>(base : Currency, target : Currency, value : BigDecimal, updated_at : Time = <span class="t">Time</span>.utc)</a>
         
       </li>
     
@@ -424,22 +424,22 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#base%3ACurrency-instance-method" class="signature"><strong>#base</strong> : Currency</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method" class="signature"><strong>#copy_with</strong>(from _from = @from, to _to = @to, value _value = @value, updated_at _updated_at = @updated_at)</a>
+        <a href="#copy_with%28base_base%3D%40base%2Ctarget_target%3D%40target%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method" class="signature"><strong>#copy_with</strong>(base _base = @base, target _target = @target, value _value = @value, updated_at _updated_at = @updated_at)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from%3ACurrency-instance-method" class="signature"><strong>#from</strong> : Currency</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to%3ACurrency-instance-method" class="signature"><strong>#to</strong> : Currency</a>
+        <a href="#target%3ACurrency-instance-method" class="signature"><strong>#target</strong> : Currency</a>
         
       </li>
     
@@ -551,18 +551,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(from:Currency,to:Currency,value:BigDecimal,updated_at:Time=Time.utc)-class-method">
+    <div class="entry-detail" id="new(base:Currency,target:Currency,value:BigDecimal,updated_at:Time=Time.utc)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(from : <a href="../../Money/Currency.html">Currency</a>, to : <a href="../../Money/Currency.html">Currency</a>, value : <a href="../../BigDecimal.html">BigDecimal</a>, updated_at : Time = <span class="t">Time</span>.utc)
+        def self.<strong>new</strong>(base : <a href="../../Money/Currency.html">Currency</a>, target : <a href="../../Money/Currency.html">Currency</a>, value : <a href="../../BigDecimal.html">BigDecimal</a>, updated_at : Time = <span class="t">Time</span>.utc)
 
-        <a class="method-permalink" href="#new%28from%3ACurrency%2Cto%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28base%3ACurrency%2Ctarget%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -578,7 +578,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/json.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,7 +629,21 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="base:Currency-instance-method">
+      <div class="signature">
+        
+        def <strong>base</strong> : <a href="../../Money/Currency.html">Currency</a>
+
+        <a class="method-permalink" href="#base%3ACurrency-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -645,47 +659,33 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="copy_with(from_from=@from,to_to=@to,value_value=@value,updated_at_updated_at=@updated_at)-instance-method">
+    <div class="entry-detail" id="copy_with(base_base=@base,target_target=@target,value_value=@value,updated_at_updated_at=@updated_at)-instance-method">
       <div class="signature">
         
-        def <strong>copy_with</strong>(from _from = @from, to _to = @to, value _value = @value, updated_at _updated_at = @updated_at)
+        def <strong>copy_with</strong>(base _base = @base, target _target = @target, value _value = @value, updated_at _updated_at = @updated_at)
 
-        <a class="method-permalink" href="#copy_with%28from_from%3D%40from%2Cto_to%3D%40to%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method">#</a>
+        <a class="method-permalink" href="#copy_with%28base_base%3D%40base%2Ctarget_target%3D%40target%2Cvalue_value%3D%40value%2Cupdated_at_updated_at%3D%40updated_at%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from:Currency-instance-method">
+    <div class="entry-detail" id="target:Currency-instance-method">
       <div class="signature">
         
-        def <strong>from</strong> : <a href="../../Money/Currency.html">Currency</a>
+        def <strong>target</strong> : <a href="../../Money/Currency.html">Currency</a>
 
-        <a class="method-permalink" href="#from%3ACurrency-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to:Currency-instance-method">
-      <div class="signature">
-        
-        def <strong>to</strong> : <a href="../../Money/Currency.html">Currency</a>
-
-        <a class="method-permalink" href="#to%3ACurrency-instance-method">#</a>
+        <a class="method-permalink" href="#target%3ACurrency-instance-method">#</a>
       </div>
       
       <br/>
@@ -705,7 +705,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/json.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/json.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -721,7 +721,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -737,7 +737,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/9a6967a/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/289ea68/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
