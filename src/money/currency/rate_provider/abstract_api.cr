@@ -36,12 +36,12 @@ class Money::Currency
     end
 
     # https://docs.abstractapi.com/exchange-rates/live
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get(
-        "/v1/live/?api_key=#{api_key}&base=#{base.code}&target=#{other.code}"
+        "/v1/live/?api_key=#{api_key}&base=#{base.code}&target=#{target.code}"
       ) do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
@@ -49,9 +49,9 @@ class Money::Currency
 
         result = JSON.parse(response.body_io)
         rate =
-          result.as_h.dig("exchange_rates", other.code).to_s.to_big_d
+          result.as_h.dig("exchange_rates", target.code).to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

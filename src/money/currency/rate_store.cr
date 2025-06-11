@@ -35,12 +35,12 @@ class Money::Currency
     # store["USD", "CAD"] = 1.24515
     # store["CAD", "USD"] = 0.803115
     # ```
-    def []=(from : String | Symbol | Currency, to : String | Symbol | Currency, value : Number) : Nil
-      from, to =
-        Currency.wrap(from), Currency.wrap(to)
+    def []=(base : String | Symbol | Currency, target : String | Symbol | Currency, value : Number) : Nil
+      base, target =
+        Currency.wrap(base), Currency.wrap(target)
 
       transaction(mutable: true) do
-        set_rate(Rate.new(from, to, value.to_big_d))
+        set_rate(Rate.new(base, target, value.to_big_d))
       end
     end
 
@@ -91,7 +91,7 @@ class Money::Currency
     end
 
     # See also `#[]?`.
-    protected abstract def get_rate?(from : Currency, to : Currency) : Rate?
+    protected abstract def get_rate?(base : Currency, target : Currency) : Rate?
 
     # Retrieves the rate for the given currency pair or `nil` if not found.
     #
@@ -102,12 +102,12 @@ class Money::Currency
     # store["USD", "CAD"]? # => 1.24515
     # store["CAD", "USD"]? # => nil
     # ```
-    def []?(from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal?
-      from, to =
-        Currency.wrap(from), Currency.wrap(to)
+    def []?(base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal?
+      base, target =
+        Currency.wrap(base), Currency.wrap(target)
 
       transaction do
-        if rate = get_rate?(from, to)
+        if rate = get_rate?(base, target)
           stale_rate?(rate) ? nil : rate.value
         end
       end
@@ -123,9 +123,9 @@ class Money::Currency
     # store["USD", "CAD"] # => 1.24515
     # store["CAD", "USD"] # raises UnknownRateError
     # ```
-    def [](from : String | Symbol | Currency, to : String | Symbol | Currency) : BigDecimal
-      self[from, to]? ||
-        raise UnknownRateError.new(from, to)
+    def [](base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal
+      self[base, target]? ||
+        raise UnknownRateError.new(base, target)
     end
 
     # Same as `#each`, but doesn't use concurrency-safe transaction.

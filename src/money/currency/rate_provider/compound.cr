@@ -18,14 +18,14 @@ class Money::Currency
       providers.flat_map(&.target_currency_codes).uniq!
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
       providers.find_value do |provider|
-        if provider.supports_currency_pair?(base, other)
-          provider.exchange_rate?(base, other)
+        if provider.supports_currency_pair?(base, target)
+          provider.exchange_rate?(base, target)
         end
       rescue ex
         Log.debug(exception: ex) do
-          "Fetching rate for #{base} -> #{other} failed (#{provider.class})"
+          "Fetching rate for #{base} -> #{target} failed (#{provider.class})"
         end
         nil
       end

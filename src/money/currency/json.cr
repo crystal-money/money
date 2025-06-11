@@ -17,8 +17,8 @@ class Money::Currency
 
     def to_json(json : JSON::Builder)
       json.object do
-        json.field "from", from.to_s
-        json.field "to", to.to_s
+        json.field "base", base.to_s
+        json.field "target", target.to_s
         json.field "value", value
         json.field "updated_at", updated_at
       end

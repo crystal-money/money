@@ -17,11 +17,11 @@ class Money::Currency
     @index = {} of String => Rate
 
     protected def set_rate(rate : Rate) : Nil
-      @index[rate_key_for(rate.from, rate.to)] = rate
+      @index[rate_key_for(rate.base, rate.target)] = rate
     end
 
-    protected def get_rate?(from : Currency, to : Currency) : Rate?
-      @index[rate_key_for(from, to)]?
+    protected def get_rate?(base : Currency, target : Currency) : Rate?
+      @index[rate_key_for(base, target)]?
     end
 
     protected def each_rate(& : Rate -> _)
@@ -33,11 +33,11 @@ class Money::Currency
     end
 
     protected def clear_rates(base : Currency) : Nil
-      @index.reject! { |_, rate| rate.from == base }
+      @index.reject! { |_, rate| rate.base == base }
     end
 
-    private def rate_key_for(from : Currency, to : Currency)
-      {from.id, to.id}.join(INDEX_KEY_SEPARATOR)
+    private def rate_key_for(base : Currency, target : Currency)
+      {base.id, target.id}.join(INDEX_KEY_SEPARATOR)
     end
   end
 end

@@ -5,7 +5,7 @@ class Money::Currency
       [] of String
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
       nil
     end
   end

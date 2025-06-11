@@ -15,8 +15,8 @@ describe Money::Currency::Rate do
   it "#to_json" do
     rate.to_json.should eq <<-JSON.gsub(/\s+/, "")
       {
-        "from": "USD",
-        "to": "CAD",
+        "base": "USD",
+        "target": "CAD",
         "value": 1.1,
         "updated_at": "2025-05-22T00:00:00Z"
       }
@@ -63,12 +63,12 @@ describe Money::Currency::Rate do
     rate.to_s(include_updated_at: true).should eq "USD -> CAD: 1.1 (2025-05-22 00:00:00 UTC)"
   end
 
-  it "#from" do
-    rate.from.should eq Money::Currency.find("USD")
+  it "#base" do
+    rate.base.should eq Money::Currency.find("USD")
   end
 
-  it "#to" do
-    rate.to.should eq Money::Currency.find("CAD")
+  it "#target" do
+    rate.target.should eq Money::Currency.find("CAD")
   end
 
   it "#value" do

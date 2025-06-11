@@ -44,12 +44,12 @@ class Money::Currency
     end
 
     # https://coinlayer.com/documentation#live
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get(
-        "/live?access_key=#{access_key}&target=#{other.code}&symbols=#{base.code}"
+        "/live?access_key=#{access_key}&target=#{target.code}&symbols=#{base.code}"
       ) do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
@@ -64,7 +64,7 @@ class Money::Currency
         rate =
           result.as_h.dig("rates", base.code).to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

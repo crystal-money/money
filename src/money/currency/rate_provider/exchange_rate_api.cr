@@ -36,11 +36,11 @@ class Money::Currency
     end
 
     # https://www.exchangerate-api.com/docs/pair-conversion-requests
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
-      client.get("/v6/#{api_key}/pair/#{base.code}/#{other.code}") do |response|
+      client.get("/v6/#{api_key}/pair/#{base.code}/#{target.code}") do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
         end
@@ -54,7 +54,7 @@ class Money::Currency
         rate =
           result.as_h["conversion_rate"].to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

@@ -15,9 +15,9 @@ class Money::Currency
     )
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
       raise "Simulated error" if @simulate_error
-      @rates[{base.code, other.code}]?
+      @rates[{base.code, target.code}]?
     end
   end
 end

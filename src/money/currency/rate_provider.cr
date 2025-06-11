@@ -34,13 +34,13 @@ class Money::Currency
       base_currency_codes
     end
 
-    # Returns the exchange rate between `self` and *other* currency, or `nil` if not found.
-    abstract def exchange_rate?(base : Currency, other : Currency) : Rate?
+    # Returns the exchange rate between *base* and *target* currency, or `nil` if not found.
+    abstract def exchange_rate?(base : Currency, target : Currency) : Rate?
 
     # Returns `true` if the provider supports the given currency pair.
-    def supports_currency_pair?(base : Currency, other : Currency) : Bool
+    def supports_currency_pair?(base : Currency, target : Currency) : Bool
       base_currency_codes.includes?(base.code) &&
-        target_currency_codes.includes?(other.code)
+        target_currency_codes.includes?(target.code)
     end
   end
 end

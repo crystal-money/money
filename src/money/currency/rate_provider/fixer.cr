@@ -36,12 +36,12 @@ class Money::Currency
     end
 
     # https://fixer.io/documentation#latestrates
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get(
-        "/api/latest?access_key=#{access_key}&base=#{base.code}&symbols=#{other.code}"
+        "/api/latest?access_key=#{access_key}&base=#{base.code}&symbols=#{target.code}"
       ) do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
@@ -54,9 +54,9 @@ class Money::Currency
         end
 
         rate =
-          result.as_h.dig("rates", other.code).to_s.to_big_d
+          result.as_h.dig("rates", target.code).to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

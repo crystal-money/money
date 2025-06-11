@@ -32,7 +32,7 @@ describe Money::Currency::RateStore::Memory do
     end
   end
 
-  describe "#[from, to]=" do
+  describe "#[base, target]=" do
     store = Money::Currency::RateStore::Memory.new
 
     it "stores rate in memory" do
@@ -40,7 +40,7 @@ describe Money::Currency::RateStore::Memory do
     end
   end
 
-  describe "#[from, to]?" do
+  describe "#[base, target]?" do
     store = Money::Currency::RateStore::Memory.new
     store["USD", "CAD"] = 0.9
 
@@ -53,7 +53,7 @@ describe Money::Currency::RateStore::Memory do
     end
   end
 
-  describe "#[from, to]" do
+  describe "#[base, target]" do
     store = Money::Currency::RateStore::Memory.new
     store["USD", "CAD"] = 0.9
 

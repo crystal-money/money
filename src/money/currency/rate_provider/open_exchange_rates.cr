@@ -36,12 +36,12 @@ class Money::Currency
     end
 
     # https://docs.openexchangerates.org/reference/latest-json
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get(
-        "/api/latest.json?app_id=#{app_id}&base=#{base.code}&symbols=#{other.code}&show_alternative=true"
+        "/api/latest.json?app_id=#{app_id}&base=#{base.code}&symbols=#{target.code}&show_alternative=true"
       ) do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
@@ -49,9 +49,9 @@ class Money::Currency
 
         result = JSON.parse(response.body_io)
         rate =
-          result.as_h.dig("rates", other.code).to_s.to_big_d
+          result.as_h.dig("rates", target.code).to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

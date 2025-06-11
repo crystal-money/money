@@ -112,20 +112,20 @@ describe Money::Currency::RateStore::File do
           json.should eq <<-JSON
             [
               {
-                "from": "USD",
-                "to": "CAD",
+                "base": "USD",
+                "target": "CAD",
                 "value": 2.2,
                 "updated_at": "2025-05-22T00:00:00Z"
               },
               {
-                "from": "CAD",
-                "to": "USD",
+                "base": "CAD",
+                "target": "USD",
                 "value": 3.3,
                 "updated_at": "2025-05-22T00:00:00Z"
               },
               {
-                "from": "USD",
-                "to": "EUR",
+                "base": "USD",
+                "target": "EUR",
                 "value": 1.1,
                 "updated_at": "2025-05-22T00:00:00Z"
               }
@@ -144,8 +144,8 @@ describe Money::Currency::RateStore::File do
           json.should eq <<-JSON
             [
               {
-                "from": "CAD",
-                "to": "USD",
+                "base": "CAD",
+                "target": "USD",
                 "value": 1.1,
                 "updated_at": "2025-05-22T00:00:00Z"
               }

@@ -1,10 +1,10 @@
 class Money::Currency
-  record Rate, from : Currency, to : Currency, value : BigDecimal, updated_at : Time = Time.utc do
+  record Rate, base : Currency, target : Currency, value : BigDecimal, updated_at : Time = Time.utc do
     include Comparable(Rate)
 
     def <=>(other : Rate) : Int32
-      {from, to, other.updated_at, other.value} <=>
-        {other.from, other.to, updated_at, value}
+      {base, target, other.updated_at, other.value} <=>
+        {other.base, other.target, updated_at, value}
     end
 
     def to_s(*, include_updated_at = false) : String
@@ -14,7 +14,7 @@ class Money::Currency
     end
 
     def to_s(io : IO, *, include_updated_at = false) : Nil
-      io << from << " -> " << to << ": " << value
+      io << base << " -> " << target << ": " << value
       io << " (" << updated_at << ')' if include_updated_at
     end
   end

@@ -22,11 +22,11 @@ class Money::Currency
     end
 
     getter target_currency_codes : Array(String) do
-      exchange_rates.map(&.to.code)
+      exchange_rates.map(&.target.code)
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      exchange_rates.find { |rate| rate.from == base && rate.to == other }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      exchange_rates.find { |rate| rate.base == base && rate.target == target }
     end
 
     protected def exchange_rates : Array(Rate)

@@ -12,8 +12,8 @@ class Money::Currency
       }
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      @rates[{base.code, other.code}]?
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      @rates[{base.code, target.code}]?
     end
   end
 end

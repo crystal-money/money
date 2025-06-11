@@ -36,12 +36,12 @@ class Money::Currency
     end
 
     # https://unirateapi.com/apidocs/#/Currency/get_api_rates
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get(
-        "/api/rates?api_key=#{api_key}&from=#{base.code}&to=#{other.code}"
+        "/api/rates?api_key=#{api_key}&from=#{base.code}&to=#{target.code}"
       ) do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
@@ -51,7 +51,7 @@ class Money::Currency
         rate =
           result.as_h["rate"].to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

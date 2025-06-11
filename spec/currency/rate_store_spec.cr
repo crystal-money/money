@@ -5,11 +5,11 @@ class Money::Currency
     @rates = Hash({Currency, Currency}, Rate).new
 
     protected def set_rate(rate : Rate) : Nil
-      @rates[{rate.from, rate.to}] = rate
+      @rates[{rate.base, rate.target}] = rate
     end
 
-    protected def get_rate?(from : Currency, to : Currency) : Rate?
-      @rates[{from, to}]?
+    protected def get_rate?(base : Currency, target : Currency) : Rate?
+      @rates[{base, target}]?
     end
 
     protected def each_rate(& : Rate -> _)

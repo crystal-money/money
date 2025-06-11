@@ -34,8 +34,8 @@ class Money::Currency
       end
     end
 
-    def exchange_rate?(base : Currency, other : Currency) : Rate?
-      Log.debug { "Fetching rate for #{base} -> #{other}" }
+    def exchange_rate?(base : Currency, target : Currency) : Rate?
+      Log.debug { "Fetching rate for #{base} -> #{target}" }
 
       client = HTTP::Client.new(host)
       client.get("/daily/#{base.code.downcase}.json") do |response|
@@ -45,9 +45,9 @@ class Money::Currency
 
         result = JSON.parse(response.body_io)
         rate =
-          result.as_h.dig(other.code.downcase, "rate").to_s.to_big_d
+          result.as_h.dig(target.code.downcase, "rate").to_s.to_big_d
 
-        Rate.new(base, other, rate)
+        Rate.new(base, target, rate)
       end
     end
   end

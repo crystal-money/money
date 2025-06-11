@@ -46,26 +46,26 @@ class Money::Currency
       Money.new(amount: amount, currency: to, exchange: self)
     end
 
-    # Returns the exchange rate between *base* and *other* currency,
+    # Returns the exchange rate between *base* and *target* currency,
     # or `nil` if not found.
-    def exchange_rate?(base : Currency, other : Currency) : BigDecimal?
-      return 1.to_big_d if base == other
+    def exchange_rate?(base : Currency, target : Currency) : BigDecimal?
+      return 1.to_big_d if base == target
 
-      rate_store[base, other]? ||
-        update_rate(base, other)
+      rate_store[base, target]? ||
+        update_rate(base, target)
     end
 
-    # Returns the exchange rate between *base* and *other* currency,
+    # Returns the exchange rate between *base* and *target* currency,
     # or raises `UnknownRateError` if not found.
-    def exchange_rate(base : Currency, other : Currency) : BigDecimal
-      exchange_rate?(base, other) ||
-        raise UnknownRateError.new(base, other)
+    def exchange_rate(base : Currency, target : Currency) : BigDecimal
+      exchange_rate?(base, target) ||
+        raise UnknownRateError.new(base, target)
     end
 
-    private def update_rate(base : Currency, other : Currency) : BigDecimal?
-      return unless rate_provider.supports_currency_pair?(base, other)
+    private def update_rate(base : Currency, target : Currency) : BigDecimal?
+      return unless rate_provider.supports_currency_pair?(base, target)
 
-      if rate = rate_provider.exchange_rate?(base, other)
+      if rate = rate_provider.exchange_rate?(base, target)
         rate_store << rate
         rate.value
       end
