@@ -225,6 +225,17 @@ describe Money do
     end
   end
 
+  describe "#eql?" do
+    it "compares the two object amounts and currencies without performing currency conversion" do
+      Money.new(1_00, "USD").eql?(Money.new(1_00, "USD")).should be_true
+      Money.new(1_00, "USD").eql?(Money.new(1_00, "EUR")).should be_false
+      Money.new(1_00, "USD").eql?(Money.new(1_23, "USD")).should be_false
+
+      Money.zero("USD").eql?(Money.zero("USD")).should be_true
+      Money.zero("USD").eql?(Money.zero("EUR")).should be_false
+    end
+  end
+
   describe "#fractional" do
     it "returns the amount in fractional unit" do
       money = Money.new(1_00)

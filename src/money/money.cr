@@ -180,6 +180,14 @@ struct Money
   # Returns hash value based on the `amount` and `currency` attributes.
   def_hash amount, currency
 
+  # Returns `true` if the two `Money` objects have same `#amount` and `#currency`,
+  # `false` otherwise.
+  #
+  # NOTE: Unlike `#==` it does **not** perform currency conversion.
+  def eql?(other : Money) : Bool
+    hash == other.hash
+  end
+
   # Compares two `Money` objects.
   #
   # NOTE: Two `Money` objects with `0` amount are considered equal,
