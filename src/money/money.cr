@@ -181,6 +181,11 @@ struct Money
   def_hash amount, currency
 
   # Compares two `Money` objects.
+  #
+  # NOTE: Two `Money` objects with `0` amount are considered equal,
+  # regardless of their currency.
+  #
+  # NOTE: Performs currency conversion if necessary.
   def <=>(other : Money) : Int32
     return 0 if zero? && other.zero?
 
