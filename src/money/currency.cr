@@ -132,6 +132,15 @@ struct Money
       !!iso_numeric
     end
 
+    # Returns `true` if a subunit is cents-based.
+    #
+    # ````
+    # Money::Currency.find(:usd).cents_based? # => true
+    # ````
+    def cents_based? : Bool
+      subunit_to_unit == 100
+    end
+
     # Compares `self` with *other* currency against the value of
     # `priority` and `id` attributes.
     def <=>(other : Currency) : Int32

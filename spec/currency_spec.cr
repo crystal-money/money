@@ -155,6 +155,16 @@ describe Money::Currency do
     end
   end
 
+  describe "#cents_based?" do
+    it "returns true for cents based currency" do
+      Money::Currency.find(:usd).cents_based?.should be_true
+    end
+
+    it "returns false if the currency is not cents based" do
+      Money::Currency.find(:clp).cents_based?.should be_false
+    end
+  end
+
   describe "#exponent" do
     it "conforms to iso 4217" do
       Money::Currency.find(:jpy).exponent.should eq 0
