@@ -166,6 +166,65 @@ describe Money do
     end
   end
 
+  describe "#==" do
+    it "returns true if both amounts are zero, even if currency differs" do
+      Money.new(0, "USD").should eq Money.new(0, "USD")
+      Money.new(0, "USD").should eq Money.new(0, "EUR")
+      Money.new(0, "USD").should eq Money.new(0, "AUD")
+      Money.new(0, "USD").should eq Money.new(0, "JPY")
+    end
+  end
+
+  describe "#<=>" do
+    exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
+    exchange.rate_store["EUR", "USD"] = 1.5
+    exchange.rate_store["USD", "EUR"] = 2
+
+    it "compares the two object amounts (same currency)" do
+      (Money.new(1_00, "USD") <=> Money.new(1_00, "USD")).should eq 0
+      (Money.new(1_00, "USD") <=> Money.new(99, "USD")).should be > 0
+      (Money.new(1_00, "USD") <=> Money.new(2_00, "USD")).should be < 0
+    end
+
+    it "converts other object amount to current currency, then compares the two object amounts (different currency)" do
+      with_default_exchange(exchange) do
+        (Money.new(150_00, "USD") <=> Money.new(100_00, "EUR")).should eq 0
+        (Money.new(200_00, "USD") <=> Money.new(200_00, "EUR")).should be < 0
+        (Money.new(800_00, "USD") <=> Money.new(400_00, "EUR")).should be > 0
+      end
+    end
+
+    it "raises UnknownRateError if currency conversion fails, and therefore cannot be compared" do
+      expect_raises(Money::UnknownRateError) do
+        Money.new(100_00, "USD") <=> Money.new(200_00, "EUR")
+      end
+    end
+
+    context "when conversions disallowed" do
+      context "when currencies differ" do
+        context "when both values are 1_00" do
+          it "raises currency error" do
+            with_default_exchange do
+              Money.disallow_currency_conversion!
+              expect_raises(Money::DifferentCurrencyError) do
+                Money.us_dollar(1_00) <=> Money.euro(1_00)
+              end
+            end
+          end
+        end
+
+        context "when both values are 0" do
+          it "considers them equal" do
+            with_default_exchange do
+              Money.disallow_currency_conversion!
+              (Money.us_dollar(0) <=> Money.euro(0)).should eq 0
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe "#fractional" do
     it "returns the amount in fractional unit" do
       money = Money.new(1_00)
