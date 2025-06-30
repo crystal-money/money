@@ -2,6 +2,8 @@ class Money::Currency
   record Rate, base : Currency, target : Currency, value : BigDecimal, updated_at : Time = Time.utc do
     include Comparable(Rate)
 
+    def_hash base, target, value, updated_at
+
     def <=>(other : Rate) : Int32
       {base, target, other.updated_at, other.value} <=>
         {other.base, other.target, updated_at, value}
