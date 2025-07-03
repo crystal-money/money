@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::Null - money master</title>
+  <title>Money::Currency::RateProvider::FXRatesAPI - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -177,7 +177,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/FXRatesAPI" data-name="money::currency::rateprovider::fxratesapi">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/FXRatesAPI" data-name="money::currency::rateprovider::fxratesapi">
       <a href="../../../Money/Currency/RateProvider/FXRatesAPI.html">FXRatesAPI</a>
       
     </li>
@@ -187,7 +187,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
+  <li class=" " data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
       <a href="../../../Money/Currency/RateProvider/Null.html">Null</a>
       
     </li>
@@ -313,12 +313,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Null
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>FXRatesAPI
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Null.html">Money::Currency::RateProvider::Null</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/FXRatesAPI.html">Money::Currency::RateProvider::FXRatesAPI</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -332,7 +332,7 @@
     Overview
   </h2>
 
-  <p>Currency rate provider that always returns <code>nil</code>.</p>
+  <p><a href="https://fxratesapi.com/">FXRatesAPI</a> currency rate provider.</p>
 
 
 
@@ -359,8 +359,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/null.cr#L3" target="_blank">
-        money/currency/rate_provider/null.cr
+      <a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L6" target="_blank">
+        money/currency/rate_provider/fx_rates_api.cr
       </a>
     
     <br/>
@@ -368,9 +368,45 @@
 
 
 
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Log">
+        <strong>Log</strong> = <code><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>)</code>
+      </dt>
+      
+    
+  </dl>
+
 
 
   
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
 
   
 
@@ -388,16 +424,36 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#api_key%3AString-instance-method" class="signature"><strong>#api_key</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#api_key%3D%28api_key%3AString%29-instance-method" class="signature"><strong>#api_key=</strong>(api_key : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
         
-          <div class="summary"><p>Returns an array of supported base currency codes.</p></div>
+          <div class="summary"><p>https://fxratesapi.com/docs/endpoints/list-available-currencies</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
         
-          <div class="summary"><p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p></div>
+          <div class="summary"><p>https://fxratesapi.com/docs/endpoints/latest-exchange-rates</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3D%28host%3AURI%29-instance-method" class="signature"><strong>#host=</strong>(host : URI)</a>
         
       </li>
     
@@ -513,6 +569,32 @@
   </div>
 
   
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(*,api_key:Nil|String=nil,host:Nil|URI=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
@@ -528,6 +610,38 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="api_key:String-instance-method">
+      <div class="signature">
+        
+        def <strong>api_key</strong> : String
+
+        <a class="method-permalink" href="#api_key%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="api_key=(api_key:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>api_key=</strong>(api_key : String)
+
+        <a class="method-permalink" href="#api_key%3D%28api_key%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
       <div class="signature">
         
@@ -538,17 +652,13 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported base currency codes.</p>
+          <p>https://fxratesapi.com/docs/endpoints/list-available-currencies</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/null.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -563,17 +673,45 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p>
+          <p>https://fxratesapi.com/docs/endpoints/latest-exchange-rates</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/null.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L39" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>host</strong> : URI
+
+        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host=(host:URI)-instance-method">
+      <div class="signature">
+        
+        def <strong>host=</strong>(host : URI)
+
+        <a class="method-permalink" href="#host%3D%28host%3AURI%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/7dbd3a5/src/money/currency/rate_provider/fx_rates_api.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
