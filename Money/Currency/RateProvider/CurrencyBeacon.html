@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::OpenExchangeRates - money master</title>
+  <title>Money::Currency::RateProvider::CurrencyBeacon - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -152,7 +152,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/CurrencyBeacon" data-name="money::currency::rateprovider::currencybeacon">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/CurrencyBeacon" data-name="money::currency::rateprovider::currencybeacon">
       <a href="../../../Money/Currency/RateProvider/CurrencyBeacon.html">CurrencyBeacon</a>
       
     </li>
@@ -197,7 +197,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/OpenExchangeRates" data-name="money::currency::rateprovider::openexchangerates">
+  <li class=" " data-id="money/Money/Currency/RateProvider/OpenExchangeRates" data-name="money::currency::rateprovider::openexchangerates">
       <a href="../../../Money/Currency/RateProvider/OpenExchangeRates.html">OpenExchangeRates</a>
       
     </li>
@@ -318,12 +318,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>OpenExchangeRates
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>CurrencyBeacon
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/OpenExchangeRates.html">Money::Currency::RateProvider::OpenExchangeRates</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/CurrencyBeacon.html">Money::Currency::RateProvider::CurrencyBeacon</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -337,7 +337,7 @@
     Overview
   </h2>
 
-  <p><a href="https://openexchangerates.org/">Open Exchange Rates</a> currency rate provider.</p>
+  <p><a href="https://currencybeacon.com/">CurrencyBeacon</a> currency rate provider.</p>
 
 
 
@@ -364,8 +364,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L6" target="_blank">
-        money/currency/rate_provider/open_exchange_rates.cr
+      <a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L6" target="_blank">
+        money/currency/rate_provider/currency_beacon.cr
       </a>
     
     <br/>
@@ -406,7 +406,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Capp_id%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, app_id : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
+        <a href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -429,26 +429,26 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#app_id%3AString-instance-method" class="signature"><strong>#app_id</strong> : String</a>
+        <a href="#api_key%3AString-instance-method" class="signature"><strong>#api_key</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#app_id%3D%28app_id%3AString%29-instance-method" class="signature"><strong>#app_id=</strong>(app_id : String)</a>
+        <a href="#api_key%3D%28api_key%3AString%29-instance-method" class="signature"><strong>#api_key=</strong>(api_key : String)</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
         
-          <div class="summary"><p>https://docs.openexchangerates.org/reference/currencies-json</p></div>
+          <div class="summary"><p>https://currencybeacon.com/api-documentation</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
         
-          <div class="summary"><p>https://docs.openexchangerates.org/reference/latest-json</p></div>
+          <div class="summary"><p>https://currencybeacon.com/api-documentation</p></div>
         
       </li>
     
@@ -583,18 +583,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(*,app_id:Nil|String=nil,host:Nil|URI=nil)-class-method">
+    <div class="entry-detail" id="new(*,api_key:Nil|String=nil,host:Nil|URI=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(*, app_id : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
+        def self.<strong>new</strong>(*, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28%2A%2Capp_id%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -615,34 +615,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="app_id:String-instance-method">
+    <div class="entry-detail" id="api_key:String-instance-method">
       <div class="signature">
         
-        def <strong>app_id</strong> : String
+        def <strong>api_key</strong> : String
 
-        <a class="method-permalink" href="#app_id%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#api_key%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="app_id=(app_id:String)-instance-method">
+    <div class="entry-detail" id="api_key=(api_key:String)-instance-method">
       <div class="signature">
         
-        def <strong>app_id=</strong>(app_id : String)
+        def <strong>api_key=</strong>(api_key : String)
 
-        <a class="method-permalink" href="#app_id%3D%28app_id%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#api_key%3D%28api_key%3AString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -657,13 +657,13 @@
       
         <div class="doc">
           
-          <p>https://docs.openexchangerates.org/reference/currencies-json</p>
+          <p>https://currencybeacon.com/api-documentation</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,13 +678,13 @@
       
         <div class="doc">
           
-          <p>https://docs.openexchangerates.org/reference/latest-json</p>
+          <p>https://currencybeacon.com/api-documentation</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,7 +700,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -716,7 +716,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/open_exchange_rates.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/09cbe83/src/money/currency/rate_provider/currency_beacon.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
