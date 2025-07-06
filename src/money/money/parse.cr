@@ -6,9 +6,9 @@ struct Money
 
     private PATTERNS = {
       # 10,23 PLN
-      /(?<sign>\+|\-)?(?<amount>\d+(?:[.,_]\d+)*)\s*(?<symbol>[^0-9,._)]+)/,
+      /(?<sign>\+|\-)?(?<amount>\d+(?:[.,_\s]\d+)*)\s*(?<symbol>[^0-9,._\s)]+)/,
       # $10.23
-      /(?<sign>\+|\-)?(?<symbol>[^0-9,._]+)\s*(?<amount>\d+(?:[.,_]\d+)*)/,
+      /(?<sign>\+|\-)?(?<symbol>[^0-9,._\s]+)\s*(?<amount>\d+(?:[.,_\s]\d+)*)/,
     }
 
     # Creates a `Money` instance from a string.
