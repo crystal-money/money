@@ -37,6 +37,7 @@ struct Money
       currency = begin
         matches = Currency.select(&.==(symbol))
         matches = Currency.select(&.symbol.==(symbol)) if matches.empty?
+        matches = Currency.select(&.disambiguate_symbol.==(symbol)) if matches.empty?
         matches = Currency.select(&.alternate_symbols.try(&.includes?(symbol))) if matches.empty?
 
         case matches.size
