@@ -6,9 +6,9 @@ struct Money
 
     private PATTERNS = {
       # 10,23 PLN
-      /(?<sign>\+|\-)?(?<amount>\d+(?:[.,]\d+)?)\s*(?<symbol>[^0-9,.]+)/,
+      /(?<sign>\+|\-)?(?<amount>\d+(?:[.,]\d+)*)\s*(?<symbol>[^0-9,.]+)/,
       # $10.23
-      /(?<sign>\+|\-)?(?<symbol>[^0-9,.]+)\s*(?<amount>\d+(?:[.,]\d+)?)/,
+      /(?<sign>\+|\-)?(?<symbol>[^0-9,.]+)\s*(?<amount>\d+(?:[.,]\d+)*)/,
     }
 
     # Creates a `Money` instance from a string.
@@ -53,7 +53,9 @@ struct Money
         end
       end
 
-      amount = amount.gsub(',', '.')
+      if thousands_separator = currency.thousands_separator
+        amount = amount.gsub(thousands_separator, '_')
+      end
       amount = "#{sign}#{amount}" if sign
 
       Money.from_amount(amount, currency)

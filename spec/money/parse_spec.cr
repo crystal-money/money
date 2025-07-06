@@ -40,6 +40,16 @@ describe Money::Parse do
       Money.parse?("1000.00 A-UM").should eq Money.from_amount(1000, "MRO")
     end
 
+    it "parses amount with thousands separators present" do
+      Money.parse?("1,000 USD").should eq Money.from_amount(1_000, "USD")
+      Money.parse?("1,000,000 USD").should eq Money.from_amount(1_000_000, "USD")
+    end
+
+    it "parses amount with thousands and decimal separators present" do
+      Money.parse?("1,000.00 USD").should eq Money.from_amount(1_000, "USD")
+      Money.parse?("1,000,000.00 USD").should eq Money.from_amount(1_000_000, "USD")
+    end
+
     it "returns nil when passed an invalid string" do
       Money.parse?("10").should be_nil
       Money.parse?("-10").should be_nil
