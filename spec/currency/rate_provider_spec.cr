@@ -19,77 +19,95 @@ class Money::Currency
 end
 
 describe Money::Currency::RateProvider do
-  it "registers subclasses in providers" do
-    Money::Currency::RateProvider.providers.has_key?("dummy").should be_true
-    Money::Currency::RateProvider.providers["dummy"]
-      .should eq Money::Currency::RateProvider::Dummy
+  context ".providers" do
+    it "registers subclasses in providers" do
+      Money::Currency::RateProvider.providers.has_key?("dummy").should be_true
+      Money::Currency::RateProvider.providers["dummy"]
+        .should eq Money::Currency::RateProvider::Dummy
+    end
   end
 
-  it "builds a provider by name" do
-    provider = Money::Currency::RateProvider.build("dummy")
-    provider.should be_a(Money::Currency::RateProvider::Dummy)
+  context ".build" do
+    it "raises ArgumentError for unknown provider" do
+      expect_raises(ArgumentError, "Unknown rate provider: foo") do
+        Money::Currency::RateProvider.build("foo")
+      end
+    end
+
+    it "builds a provider by name" do
+      provider = Money::Currency::RateProvider.build("dummy")
+      provider.should be_a(Money::Currency::RateProvider::Dummy)
+    end
+
+    it "builds a provider with options" do
+      provider = Money::Currency::RateProvider.build("dummy",
+        base_currency_codes: ["USD"]
+      )
+      provider.base_currency_codes.should eq ["USD"]
+    end
   end
 
-  it "builds a provider with options" do
-    provider = Money::Currency::RateProvider.build("dummy",
-      base_currency_codes: ["USD"]
-    )
-    provider.base_currency_codes.should eq ["USD"]
+  context "#base_currency_codes" do
+    it "returns supported base currency codes" do
+      provider = Money::Currency::RateProvider::Dummy.new
+
+      provider.base_currency_codes.should contain("USD")
+      provider.base_currency_codes.should contain("CAD")
+      provider.base_currency_codes.should contain("EUR")
+    end
   end
 
-  it "returns #base_currency_codes" do
-    provider = Money::Currency::RateProvider::Dummy.new
+  context "#target_currency_codes" do
+    it "returns #base_currency_codes by default" do
+      provider = Money::Currency::RateProvider::Dummy.new
 
-    provider.base_currency_codes.should contain("USD")
-    provider.base_currency_codes.should contain("CAD")
-    provider.base_currency_codes.should contain("EUR")
+      provider.target_currency_codes
+        .should be provider.base_currency_codes
+    end
   end
 
-  it "#target_currency_codes returns #base_currency_codes by default" do
-    provider = Money::Currency::RateProvider::Dummy.new
+  context "#exchange_rate?" do
+    it "returns exchange rate if available" do
+      provider = Money::Currency::RateProvider::Dummy.new
+      usd = Money::Currency.find("USD")
+      cad = Money::Currency.find("CAD")
 
-    provider.target_currency_codes
-      .should eq provider.base_currency_codes
+      rate = provider.exchange_rate?(usd, cad).should_not be_nil
+      rate.value.should eq 1.25.to_big_d
+    end
+
+    it "returns nil for missing exchange rate" do
+      provider = Money::Currency::RateProvider::Dummy.new
+      usd = Money::Currency.find("USD")
+      eur = Money::Currency.find("EUR")
+
+      provider.exchange_rate?(usd, eur).should be_nil
+    end
   end
 
-  it "returns exchange rate if available" do
-    provider = Money::Currency::RateProvider::Dummy.new
-    usd = Money::Currency.find("USD")
-    cad = Money::Currency.find("CAD")
+  context "#supports_currency_pair?" do
+    it "returns `true` if both codes are present" do
+      provider = Money::Currency::RateProvider::Dummy.new
+      usd = Money::Currency.find("USD")
+      cad = Money::Currency.find("CAD")
 
-    rate = provider.exchange_rate?(usd, cad).should_not be_nil
-    rate.value.should eq 1.25.to_big_d
-  end
+      provider.supports_currency_pair?(usd, cad).should be_true
+    end
 
-  it "returns nil for missing exchange rate" do
-    provider = Money::Currency::RateProvider::Dummy.new
-    usd = Money::Currency.find("USD")
-    eur = Money::Currency.find("EUR")
+    it "returns `false` if base is missing" do
+      provider = Money::Currency::RateProvider::Dummy.new
+      usd = Money::Currency.find("USD")
+      jpy = Money::Currency.find("JPY")
 
-    provider.exchange_rate?(usd, eur).should be_nil
-  end
+      provider.supports_currency_pair?(jpy, usd).should be_false
+    end
 
-  it "supports currency pair if both codes are present" do
-    provider = Money::Currency::RateProvider::Dummy.new
-    usd = Money::Currency.find("USD")
-    cad = Money::Currency.find("CAD")
+    it "returns `false` if target is missing" do
+      provider = Money::Currency::RateProvider::Dummy.new
+      usd = Money::Currency.find("USD")
+      jpy = Money::Currency.find("JPY")
 
-    provider.supports_currency_pair?(usd, cad).should be_true
-  end
-
-  it "does not support currency pair if base is missing" do
-    provider = Money::Currency::RateProvider::Dummy.new
-    jpy = Money::Currency.find("JPY")
-    usd = Money::Currency.find("USD")
-
-    provider.supports_currency_pair?(jpy, usd).should be_false
-  end
-
-  it "does not support currency pair if target is missing" do
-    provider = Money::Currency::RateProvider::Dummy.new
-    usd = Money::Currency.find("USD")
-    jpy = Money::Currency.find("JPY")
-
-    provider.supports_currency_pair?(usd, jpy).should be_false
+      provider.supports_currency_pair?(usd, jpy).should be_false
+    end
   end
 end
