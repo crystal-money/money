@@ -22,9 +22,9 @@ struct Money
     end
 
     private def parse(str : String, allow_ambiguous : Bool, &)
-      matched_pattern = PATTERNS.each do |pattern|
+      matched_pattern = PATTERNS.find_value do |pattern|
         if str =~ pattern
-          break $~["amount"], $~["symbol"], $~["sign"]?
+          {$~["amount"], $~["symbol"], $~["sign"]?}
         end
       end
 
