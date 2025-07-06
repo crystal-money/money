@@ -4,12 +4,11 @@ struct Money
     class Error < Money::Error
     end
 
-    private PATTERNS = {
-      # 10,23 PLN
-      /(?<sign>\+|\-)?(?<amount>\d+(?:[.,_\s]\d+)*)\s*(?<symbol>[^0-9,._\s]+)/,
-      # $10.23
-      /(?<sign>\+|\-)?(?<symbol>[^0-9,._\s]+)\s*(?<amount>\d+(?:[.,_\s]\d+)*)/,
-    }
+    private PATTERN =
+      /(?<sign>[+-])?(
+        (?<amount>\d+(?:[.,_\s]\d+)*)\s*(?<symbol>[^0-9,._\s]+)|
+        (?<symbol>[^0-9,._\s]+)\s*(?<amount>\d+(?:[.,_\s]\d+)*)
+      )/x
 
     # Creates a `Money` instance from a string.
     def parse(str : String, allow_ambiguous = true) : Money
@@ -35,11 +34,8 @@ struct Money
     end
 
     private def parse_amount_and_symbol(str : String)
-      matched_pattern =
-        PATTERNS.find_value do |pattern|
-          {$~["amount"], $~["symbol"], $~["sign"]?} if str =~ pattern
-        end ||
-          raise Error.new "Invalid format"
+      matched_pattern = {$~["amount"], $~["symbol"], $~["sign"]?} if str =~ PATTERN
+      matched_pattern || raise Error.new "Invalid format"
 
       amount, symbol, sign = matched_pattern
       amount = "#{sign}#{amount}" if sign
