@@ -17,7 +17,7 @@ class Money::Currency
     # Creates a new rate provider instance.
     def self.build(name : String, options : NamedTuple | Hash) : RateProvider
       klass = providers[name.underscore]?
-      klass || raise ArgumentError.new("Unknown rate provider: #{name}")
+      klass || raise UnknownRateProviderError.new(name)
 
       klass.new.tap do |provider|
         provider.initialize_with(options)

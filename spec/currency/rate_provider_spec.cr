@@ -29,7 +29,7 @@ describe Money::Currency::RateProvider do
 
   context ".build" do
     it "raises ArgumentError for unknown provider" do
-      expect_raises(ArgumentError, "Unknown rate provider: foo") do
+      expect_raises(Money::UnknownRateProviderError, "Unknown rate provider: foo") do
         Money::Currency::RateProvider.build("foo")
       end
     end

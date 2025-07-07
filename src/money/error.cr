@@ -10,6 +10,13 @@ struct Money
     end
   end
 
+  # Raised when trying to find an unknown rate provider.
+  class UnknownRateProviderError < Error
+    def initialize(key)
+      super("Unknown rate provider: #{key}")
+    end
+  end
+
   # Raised when trying to find an unknown exchange rate.
   class UnknownRateError < Error
     def initialize(base, target)
