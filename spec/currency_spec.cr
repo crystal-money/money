@@ -109,14 +109,6 @@ describe Money::Currency do
       currency.should eq currency
     end
 
-    it "allows direct comparison of currencies and symbols/strings" do
-      Money::Currency.find(:eur).should eq "eur"
-      Money::Currency.find(:eur).should eq "EUR"
-      Money::Currency.find(:eur).should eq :eur
-      Money::Currency.find(:eur).should eq :EUR
-      Money::Currency.find(:eur).should_not eq "usd"
-    end
-
     it "allows comparison with nil and returns false" do
       (Money::Currency.find(:eur) == nil).should be_false
     end

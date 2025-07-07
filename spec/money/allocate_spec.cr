@@ -10,7 +10,7 @@ describe Money::Allocate do
 
     context "whole amounts" do
       it "keeps currencies intact" do
-        Money.us_dollar(100).allocate({1, 1}).all?(&.currency.==(:usd)).should be_true
+        Money.us_dollar(100).allocate({1, 1}).all?(&.currency.code.==("USD")).should be_true
       end
 
       it "returns the amount when array contains only one element" do

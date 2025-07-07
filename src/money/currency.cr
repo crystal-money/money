@@ -11,7 +11,6 @@ struct Money
   # See [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
   class Currency
     include Comparable(Currency)
-    include Comparable(String | Symbol)
 
     extend Currency::Loader
     extend Currency::Enumeration
@@ -154,11 +153,6 @@ struct Money
       in {nil, nil}
         id <=> other.id
       end
-    end
-
-    # Compares `self` with *other* currency against the value of id` attribute.
-    def <=>(other : String | Symbol) : Int32
-      id.compare(other.to_s, case_insensitive: true)
     end
 
     # Appends a string representation corresponding to the `#code` property

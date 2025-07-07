@@ -17,7 +17,7 @@ describe Money::Currency::Loader do
     end
 
     it "returns common currencies within currency table hash" do
-      currencies = loader.load_currencies.values
+      currencies = loader.load_currencies.values.map(&.code)
       currencies.should contain "USD"
       currencies.should contain "EUR"
       currencies.should contain "BTC"
