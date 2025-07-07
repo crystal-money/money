@@ -1,6 +1,14 @@
 class Money::Currency
-  record Rate, base : Currency, target : Currency, value : BigDecimal, updated_at : Time = Time.utc do
+  struct Rate
     include Comparable(Rate)
+
+    getter base : Currency
+    getter target : Currency
+    getter value : BigDecimal
+    getter updated_at : Time
+
+    def initialize(@base, @target, @value, @updated_at = Time.utc)
+    end
 
     def_hash base, target, value, updated_at
 
