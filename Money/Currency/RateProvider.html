@@ -302,6 +302,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
+      <a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -407,7 +412,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L4" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L4" target="_blank">
         money/currency/rate_provider.cr
       </a>
     
@@ -456,6 +461,20 @@
     Class Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#find%28name%3AString%29%3ARateProvider.class-class-method" class="signature"><strong>.find</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span></a>
+        
+          <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a></code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#find%3F%28name%3AString%29%3ARateProvider.class%7CNil-class-method" class="signature"><strong>.find?</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</a>
+        
+          <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, <code>nil</code> otherwise.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#providers-class-method" class="signature"><strong>.providers</strong></a>
@@ -590,7 +609,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -611,7 +630,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -627,6 +646,50 @@
 </a>
     Class Method Detail
   </h2>
+  
+    <div class="entry-detail" id="find(name:String):RateProvider.class-class-method">
+      <div class="signature">
+        
+        def self.<strong>find</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span>
+
+        <a class="method-permalink" href="#find%28name%3AString%29%3ARateProvider.class-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the rate provider class for the given <em>name</em> if found,
+raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a></code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="find?(name:String):RateProvider.class|Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>find?</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil
+
+        <a class="method-permalink" href="#find%3F%28name%3AString%29%3ARateProvider.class%7CNil-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the rate provider class for the given <em>name</em> if found,
+<code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="providers-class-method">
       <div class="signature">
@@ -644,7 +707,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -679,7 +742,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,7 +763,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -721,7 +784,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -742,7 +805,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/a28ae64/src/money/currency/rate_provider.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e22119a/src/money/currency/rate_provider.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
