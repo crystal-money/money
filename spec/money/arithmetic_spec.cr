@@ -114,7 +114,7 @@ describe Money::Arithmetic do
       end
     end
 
-    it "divides Money by Money (same currency) and returns Float64" do
+    it "divides Money by Money (same currency) and returns BigDecimal" do
       tests = {
         {a: Money.new(13, "USD"), b: Money.new(4, "USD"), c: 3.25},
         {a: Money.new(13, "USD"), b: Money.new(-4, "USD"), c: -3.25},

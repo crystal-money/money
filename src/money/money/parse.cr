@@ -48,12 +48,14 @@ struct Money
 
       case matches.size
       when 0
-        raise Error.new "Symbol #{symbol.inspect} didn't matched any currency"
+        raise Error.new \
+          "Symbol #{symbol.inspect} didn't matched any currency"
       when 1
         matches.first
       else
         unless allow_ambiguous
-          raise Error.new "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
+          raise Error.new \
+            "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
         end
         matches.first
       end

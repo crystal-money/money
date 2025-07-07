@@ -50,14 +50,14 @@ describe Money::Parse do
       Money.parse?("1,000,000.00 USD").should eq Money.from_amount(1_000_000, "USD")
     end
 
-    it "parses amount with `_` as thousands separators" do
+    it "parses amount with `_` as thousands separator" do
       Money.parse?("1_000.00 USD").should eq Money.from_amount(1_000, "USD")
       Money.parse?("1_000_000 USD").should eq Money.from_amount(1_000_000, "USD")
     end
 
-    it "parses amount with ` ` as thousands separators" do
+    it "parses amount with ` ` as thousands separator" do
       Money.parse?("1 000.00 PLN").should eq Money.from_amount(1_000, "PLN")
-      Money.parse?("1 000_000 PLN").should eq Money.from_amount(1_000_000, "PLN")
+      Money.parse?("1 000 000 PLN").should eq Money.from_amount(1_000_000, "PLN")
     end
 
     it "returns nil when passed an invalid string" do

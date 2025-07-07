@@ -40,9 +40,8 @@ describe Money::Currency::RateProvider do
     end
 
     it "builds a provider with options" do
-      provider = Money::Currency::RateProvider.build("dummy",
+      provider = Money::Currency::RateProvider.build "dummy",
         base_currency_codes: ["USD"]
-      )
       provider.base_currency_codes.should eq ["USD"]
     end
   end

@@ -9,7 +9,7 @@ class Money::Currency
     def load_currencies
       currency_table = {} of String => Currency
       Dir.each_child(DATA_PATH) do |filename|
-        parse_currency_file(filename).try do |currency|
+        if currency = parse_currency_file(filename)
           currency_table[currency.id] = currency
         end
       end

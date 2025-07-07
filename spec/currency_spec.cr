@@ -110,7 +110,7 @@ describe Money::Currency do
     end
 
     it "allows comparison with nil and returns false" do
-      (Money::Currency.find(:eur) == nil).should be_false
+      Money::Currency.find(:eur).should_not be_nil
     end
   end
 
@@ -121,7 +121,9 @@ describe Money::Currency do
     end
 
     it "can be used to return the intersection of Currency object arrays" do
-      intersection = [Money::Currency.find(:eur), Money::Currency.find(:usd)] & [Money::Currency.find(:eur)]
+      currencies = [Money::Currency.find(:eur), Money::Currency.find(:usd)]
+
+      intersection = currencies & [Money::Currency.find(:eur)]
       intersection.should eq [Money::Currency.find(:eur)]
     end
   end
