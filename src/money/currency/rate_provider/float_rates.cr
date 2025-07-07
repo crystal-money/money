@@ -43,9 +43,9 @@ class Money::Currency
           raise "Failed to fetch rates: #{response.status}"
         end
 
-        result = JSON.parse(response.body_io)
+        result = JSON.parse(response.body_io).as_h
         rate =
-          result.as_h.dig(target.code.downcase, "rate").to_s.to_big_d
+          result.dig(target.code.downcase, "rate").to_s.to_big_d
 
         Rate.new(base, target, rate)
       end

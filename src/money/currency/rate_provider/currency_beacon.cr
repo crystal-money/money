@@ -27,9 +27,9 @@ class Money::Currency
           raise "Failed to fetch currencies: #{response.status}"
         end
 
-        result = JSON.parse(response.body_io)
+        result = JSON.parse(response.body_io).as_h
         currencies =
-          result.as_h["response"].as_a.map(&.as_h["short_code"].as_s)
+          result["response"].as_a.map(&.as_h["short_code"].as_s)
 
         currencies
       end
@@ -45,9 +45,9 @@ class Money::Currency
           raise "Failed to fetch rates: #{response.status}"
         end
 
-        result = JSON.parse(response.body_io)
+        result = JSON.parse(response.body_io).as_h
 
-        if rate = result.as_h.dig?("response", "rates", target.code)
+        if rate = result.dig?("response", "rates", target.code)
           Rate.new(base, target, rate.to_s.to_big_d)
         end
       end
