@@ -14,12 +14,22 @@ class Money::Currency
       {% end %}
     end
 
+    # Returns the rate provider class for the given *name* if found,
+    # `nil` otherwise.
+    def self.find?(name : String) : RateProvider.class | Nil
+      providers[name.underscore]?
+    end
+
+    # Returns the rate provider class for the given *name* if found,
+    # raises `UnknownRateProviderError` otherwise.
+    def self.find(name : String) : RateProvider.class
+      find?(name) ||
+        raise UnknownRateProviderError.new(name)
+    end
+
     # Creates a new rate provider instance.
     def self.build(name : String, options : NamedTuple | Hash) : RateProvider
-      klass = providers[name.underscore]?
-      klass || raise UnknownRateProviderError.new(name)
-
-      klass.new.tap do |provider|
+      find(name).new.tap do |provider|
         provider.initialize_with(options)
       end
     end

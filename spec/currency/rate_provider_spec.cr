@@ -27,6 +27,30 @@ describe Money::Currency::RateProvider do
     end
   end
 
+  context ".find?" do
+    it "returns provider by name" do
+      Money::Currency::RateProvider.find?("dummy")
+        .should eq Money::Currency::RateProvider::Dummy
+    end
+
+    it "returns nil for unknown provider" do
+      Money::Currency::RateProvider.find?("foo").should be_nil
+    end
+  end
+
+  context ".find" do
+    it "returns provider by name" do
+      Money::Currency::RateProvider.find("dummy")
+        .should eq Money::Currency::RateProvider::Dummy
+    end
+
+    it "raises ArgumentError for unknown provider" do
+      expect_raises(Money::UnknownRateProviderError, "Unknown rate provider: foo") do
+        Money::Currency::RateProvider.find("foo")
+      end
+    end
+  end
+
   context ".build" do
     it "raises ArgumentError for unknown provider" do
       expect_raises(Money::UnknownRateProviderError, "Unknown rate provider: foo") do
