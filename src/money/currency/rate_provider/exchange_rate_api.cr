@@ -17,7 +17,7 @@ class Money::Currency
     def initialize(*, @api_key = nil, @host = nil)
     end
 
-    # https://www.exchangerate-api.com/docs/supported-codes-endpoint
+    # <https://www.exchangerate-api.com/docs/supported-codes-endpoint>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -35,7 +35,7 @@ class Money::Currency
       end
     end
 
-    # https://www.exchangerate-api.com/docs/pair-conversion-requests
+    # <https://www.exchangerate-api.com/docs/pair-conversion-requests>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

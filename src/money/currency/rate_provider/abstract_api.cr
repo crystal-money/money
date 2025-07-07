@@ -17,7 +17,7 @@ class Money::Currency
     def initialize(*, @api_key = nil, @host = nil)
     end
 
-    # https://docs.abstractapi.com/exchange-rates/live
+    # <https://docs.abstractapi.com/exchange-rates/live>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -35,7 +35,7 @@ class Money::Currency
       end
     end
 
-    # https://docs.abstractapi.com/exchange-rates/live
+    # <https://docs.abstractapi.com/exchange-rates/live>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

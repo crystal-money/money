@@ -13,7 +13,7 @@ class Money::Currency
     def initialize(*, @host = nil)
     end
 
-    # https://moneymorph.dev/#currencies
+    # <https://moneymorph.dev/#currencies>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -31,7 +31,7 @@ class Money::Currency
       end
     end
 
-    # https://moneymorph.dev/#latest
+    # <https://moneymorph.dev/#latest>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

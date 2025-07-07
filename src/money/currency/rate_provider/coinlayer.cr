@@ -25,7 +25,7 @@ class Money::Currency
       currency_codes[0] + currency_codes[1]
     end
 
-    # https://coinlayer.com/documentation#list
+    # <https://coinlayer.com/documentation#list>
     protected getter currency_codes : {Array(String), Array(String)} do
       Log.debug { "Fetching supported currencies" }
 
@@ -43,7 +43,7 @@ class Money::Currency
       end
     end
 
-    # https://coinlayer.com/documentation#live
+    # <https://coinlayer.com/documentation#live>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

@@ -14,7 +14,7 @@ class Money::Currency
     def initialize(*, @host = nil)
     end
 
-    # https://www.floatrates.com/json-feeds.html
+    # <https://www.floatrates.com/json-feeds.html>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 

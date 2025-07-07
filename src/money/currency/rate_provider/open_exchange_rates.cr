@@ -17,7 +17,7 @@ class Money::Currency
     def initialize(*, @app_id = nil, @host = nil)
     end
 
-    # https://docs.openexchangerates.org/reference/currencies-json
+    # <https://docs.openexchangerates.org/reference/currencies-json>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -35,7 +35,7 @@ class Money::Currency
       end
     end
 
-    # https://docs.openexchangerates.org/reference/latest-json
+    # <https://docs.openexchangerates.org/reference/latest-json>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

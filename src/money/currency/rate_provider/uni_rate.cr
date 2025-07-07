@@ -17,7 +17,7 @@ class Money::Currency
     def initialize(*, @api_key = nil, @host = nil)
     end
 
-    # https://unirateapi.com/apidocs/#/Currency/get_api_currencies
+    # <https://unirateapi.com/apidocs/#/Currency/get_api_currencies>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -35,7 +35,7 @@ class Money::Currency
       end
     end
 
-    # https://unirateapi.com/apidocs/#/Currency/get_api_rates
+    # <https://unirateapi.com/apidocs/#/Currency/get_api_rates>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 

@@ -17,7 +17,7 @@ class Money::Currency
     def initialize(*, @access_key = nil, @host = nil)
     end
 
-    # https://fixer.io/documentation#supportedsymbols
+    # <https://fixer.io/documentation#supportedsymbols>
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
@@ -35,7 +35,7 @@ class Money::Currency
       end
     end
 
-    # https://fixer.io/documentation#latestrates
+    # <https://fixer.io/documentation#latestrates>
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
