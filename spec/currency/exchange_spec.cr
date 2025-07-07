@@ -7,7 +7,7 @@ describe Money::Currency::Exchange do
         Money::Currency::RateStore::Memory.new
 
       exchange = Money::Currency::Exchange.new(rate_store: rate_store)
-      exchange.rate_store.should be(rate_store)
+      exchange.rate_store.should be rate_store
     end
 
     it "sets the rate provider" do
@@ -15,21 +15,21 @@ describe Money::Currency::Exchange do
         Money::Currency::RateProvider::Null.new
 
       exchange = Money::Currency::Exchange.new(rate_provider: rate_provider)
-      exchange.rate_provider.should be(rate_provider)
+      exchange.rate_provider.should be rate_provider
     end
   end
 
   context "#rate_store" do
     it "returns default rate store if set to `nil`" do
       exchange = Money::Currency::Exchange.new(rate_store: nil)
-      exchange.rate_store.should be(Money.default_rate_store)
+      exchange.rate_store.should be Money.default_rate_store
     end
   end
 
   context "#rate_provider" do
     it "returns default rate provider if set to `nil`" do
       exchange = Money::Currency::Exchange.new(rate_provider: nil)
-      exchange.rate_provider.should be(Money.default_rate_provider)
+      exchange.rate_provider.should be Money.default_rate_provider
     end
   end
 

@@ -121,7 +121,7 @@ describe Money::Currency::RateStore::Memory do
 
   it "implements Enumerable" do
     store = Money::Currency::RateStore::Memory.new
-    store.should be_a(Enumerable(Money::Currency::Rate))
+    store.should be_a Enumerable(Money::Currency::Rate)
   end
 
   describe "#rates" do

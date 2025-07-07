@@ -53,7 +53,7 @@ describe Money::Currency::RateStore do
     store = Money::Currency::RateStore::Dummy.new
     store << Money::Currency::Rate.new(usd, cad, 1.33.to_big_d)
 
-    store[usd, cad]?.should eq(1.33.to_big_d)
+    store[usd, cad]?.should eq 1.33.to_big_d
   end
 
   it "registers multiple rates using #<<(Enumerable(Rate))" do
@@ -64,8 +64,8 @@ describe Money::Currency::RateStore do
     ]
     store << rates
 
-    store[usd, cad]?.should eq(1.1.to_big_d)
-    store[cad, usd]?.should eq(0.9.to_big_d)
+    store[usd, cad]?.should eq 1.1.to_big_d
+    store[cad, usd]?.should eq 0.9.to_big_d
   end
 
   it "iterates over rates with #each" do

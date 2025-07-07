@@ -123,6 +123,6 @@ describe Money::Currency::Enumeration do
   end
 
   it "implements Enumerable" do
-    Money::Currency.should be_a(Enumerable(Money::Currency))
+    Money::Currency.should be_a Enumerable(Money::Currency)
   end
 end

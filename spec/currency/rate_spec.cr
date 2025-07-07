@@ -72,7 +72,7 @@ describe Money::Currency::Rate do
   end
 
   it "#value" do
-    rate.value.should be_a(BigDecimal)
+    rate.value.should be_a BigDecimal
     rate.value.should eq 1.1.to_big_d
   end
 end

@@ -36,7 +36,7 @@ describe Money::Currency::RateProvider do
 
     it "builds a provider by name" do
       provider = Money::Currency::RateProvider.build("dummy")
-      provider.should be_a(Money::Currency::RateProvider::Dummy)
+      provider.should be_a Money::Currency::RateProvider::Dummy
     end
 
     it "builds a provider with options" do
