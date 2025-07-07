@@ -1,4 +1,5 @@
 require "log"
+require "uri"
 require "http/client"
 
 class Money::Currency
