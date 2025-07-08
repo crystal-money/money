@@ -1,11 +1,10 @@
 require "log"
-require "uri"
-require "uri/params"
-require "http/client"
 
 class Money::Currency
   # [Abstract API](https://www.abstractapi.com/api/exchange-rate-api) currency rate provider.
   class RateProvider::AbstractAPI < RateProvider
+    include RateProvider::HTTP
+
     Log = ::Log.for(self)
 
     property api_key : String do
@@ -23,16 +22,11 @@ class Money::Currency
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
-      params = URI::Params.encode({
+      params = {
         "api_key": api_key,
         "base":    "USD",
-      })
-      client = HTTP::Client.new(host)
-      client.get("/v1/live/?#{params}") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch currencies: #{response.status}"
-        end
-
+      }
+      request("/v1/live/", params) do |response|
         result = JSON.parse(response.body_io).as_h
         currencies =
           result["exchange_rates"].as_h.keys
@@ -45,17 +39,12 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
-      params = URI::Params.encode({
+      params = {
         "api_key": api_key,
         "base":    base.code,
         "target":  target.code,
-      })
-      client = HTTP::Client.new(host)
-      client.get("/v1/live/?#{params}") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch rates: #{response.status}"
-        end
-
+      }
+      request("/v1/live/", params) do |response|
         result = JSON.parse(response.body_io).as_h
         rate =
           result.dig("exchange_rates", target.code).to_s.to_big_d

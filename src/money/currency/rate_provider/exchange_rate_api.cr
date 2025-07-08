@@ -1,10 +1,10 @@
 require "log"
-require "uri"
-require "http/client"
 
 class Money::Currency
   # [Exchange Rate API](https://www.exchangerate-api.com/) currency rate provider.
   class RateProvider::ExchangeRateAPI < RateProvider
+    include RateProvider::HTTP
+
     Log = ::Log.for(self)
 
     property api_key : String do
@@ -22,12 +22,7 @@ class Money::Currency
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
-      client = HTTP::Client.new(host)
-      client.get("/v6/#{api_key}/codes") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch currencies: #{response.status}"
-        end
-
+      request("/v6/#{api_key}/codes") do |response|
         result = JSON.parse(response.body_io).as_h
         currencies =
           result["supported_codes"].as_a.map(&.as_a.first.as_s)
@@ -40,12 +35,7 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
-      client = HTTP::Client.new(host)
-      client.get("/v6/#{api_key}/pair/#{base.code}/#{target.code}") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch rates: #{response.status}"
-        end
-
+      request("/v6/#{api_key}/pair/#{base.code}/#{target.code}") do |response|
         result = JSON.parse(response.body_io).as_h
 
         unless result["result"].as_s == "success"

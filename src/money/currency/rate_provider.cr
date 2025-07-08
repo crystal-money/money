@@ -58,4 +58,5 @@ class Money::Currency
   end
 end
 
+require "./rate_provider/http"
 require "./rate_provider/*"

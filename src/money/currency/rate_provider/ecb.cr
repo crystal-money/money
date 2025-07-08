@@ -1,12 +1,12 @@
 require "xml"
 require "log"
-require "uri"
-require "http/client"
 
 class Money::Currency
   # Currency rate provider using data sourced from a daily feed of
   # [European Central Bank](https://www.ecb.europa.eu).
   class RateProvider::ECB < RateProvider
+    include RateProvider::HTTP
+
     private BASE_CURRENCY_CODE = "EUR"
 
     Log = ::Log.for(self)
@@ -33,12 +33,7 @@ class Money::Currency
     protected def exchange_rates : Array(Rate)
       Log.debug { "Fetching exchange rates" }
 
-      client = HTTP::Client.new(host)
-      client.get("/stats/eurofxref/eurofxref-daily.xml") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch rates: #{response.status}"
-        end
-
+      request("/stats/eurofxref/eurofxref-daily.xml") do |response|
         base =
           Currency.find(BASE_CURRENCY_CODE)
 

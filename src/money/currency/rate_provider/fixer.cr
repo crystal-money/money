@@ -1,11 +1,10 @@
 require "log"
-require "uri"
-require "uri/params"
-require "http/client"
 
 class Money::Currency
   # [Fixer](https://fixer.io/) currency rate provider.
   class RateProvider::Fixer < RateProvider
+    include RateProvider::HTTP
+
     Log = ::Log.for(self)
 
     property access_key : String do
@@ -23,15 +22,10 @@ class Money::Currency
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
-      params = URI::Params.encode({
+      params = {
         "access_key": access_key,
-      })
-      client = HTTP::Client.new(host)
-      client.get("/api/symbols?#{params}") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch currencies: #{response.status}"
-        end
-
+      }
+      request("/api/symbols", params) do |response|
         result = JSON.parse(response.body_io).as_h
         currencies =
           result["symbols"].as_h.keys
@@ -44,17 +38,12 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
-      params = URI::Params.encode({
+      params = {
         "access_key": access_key,
         "base":       base.code,
         "symbols":    target.code,
-      })
-      client = HTTP::Client.new(host)
-      client.get("/api/latest?#{params}") do |response|
-        unless response.status.ok?
-          raise "Failed to fetch rates: #{response.status}"
-        end
-
+      }
+      request("/api/latest", params) do |response|
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"].as_bool
