@@ -479,4 +479,41 @@ describe Money do
       end
     end
   end
+
+  describe ".spawn_with_same_context" do
+    it "spawns a fiber with the same context (dup-ed)" do
+      with_default_currency("PLN") do
+        channel = Channel(Money::Context).new
+
+        Money.spawn_with_same_context do
+          channel.send Fiber.current.money_context
+        end
+        channel.receive.should_not be Fiber.current.money_context
+      end
+    end
+
+    it "spawns a fiber with the same context" do
+      with_default_currency("PLN") do
+        channel = Channel(String).new
+
+        Money.spawn_with_same_context do
+          channel.send Money.default_currency.code
+        end
+        channel.receive.should eq "PLN"
+      end
+    end
+
+    it "doesn't leak the context" do
+      with_default_currency("PLN") do
+        channel = Channel(Nil).new
+
+        Money.spawn_with_same_context do
+          Money.default_currency = "EUR"
+          channel.send nil
+        end
+        channel.receive
+        Money.default_currency.code.should eq "PLN"
+      end
+    end
+  end
 end
