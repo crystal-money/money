@@ -75,6 +75,13 @@ Money.new(1000, "USD").exchange_to("EUR") == Money.new(some_value, "EUR")
 Money.new(100, "USD").format # => "$1.00"
 Money.new(100, "GBP").format # => "£1.00"
 Money.new(100, "EUR").format # => "€1.00"
+
+# Steppable ranges
+(Money.new(1_00, "USD")..Money.new(3_00, "USD"))
+  .step(by: Money.new(1_00, "USD"))
+  .map(&.to_s)
+  .to_a
+# => ["$1.00", "$2.00", "$3.00"]
 ```
 
 ## Infinite Precision
