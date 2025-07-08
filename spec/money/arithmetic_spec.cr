@@ -9,6 +9,14 @@ describe Money::Arithmetic do
     end
   end
 
+  describe "#sign" do
+    it "returns the sign of the amount" do
+      Money.new(-100).sign.should eq -1
+      Money.new(0).sign.should eq 0
+      Money.new(100).sign.should eq 1
+    end
+  end
+
   describe "#positive?" do
     it "returns true if the amount is greater than 0" do
       Money.new(1).positive?.should be_true

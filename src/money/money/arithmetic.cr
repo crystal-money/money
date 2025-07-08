@@ -1,5 +1,16 @@
 struct Money
   module Arithmetic
+    # Returns the sign of the money amount.
+    #
+    # ```
+    # Money.new(-100).sign # => -1
+    # Money.new(0).sign    # => 0
+    # Money.new(100).sign  # => 1
+    # ```
+    def sign : Int32
+      amount.sign
+    end
+
     # Returns `true` if the money amount is greater than 0, `false` otherwise.
     #
     # ```
