@@ -411,7 +411,13 @@ some_code_to_setup_exchange_rates
 <span class="c"># Formatting (see Formatting section for more options)</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$1.00&quot;</span>
 <span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;GBP&quot;</span>).format <span class="c"># =&gt; &quot;£1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).format <span class="c"># =&gt; &quot;€1.00&quot;</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">100</span>, <span class="s">&quot;EUR&quot;</span>).format <span class="c"># =&gt; &quot;€1.00&quot;</span>
+
+<span class="c"># Steppable ranges</span>
+(<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>)..<span class="t">Money</span>.new(<span class="n">3_00</span>, <span class="s">&quot;USD&quot;</span>))
+  .step(by: <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>))
+  .to_a
+<span class="c"># =&gt; [Money.new(1_00, &quot;USD&quot;),  Money.new(2_00, &quot;USD&quot;), Money.new(3_00, &quot;USD&quot;)]</span></code></pre>
 <h2><a id="infinite-precision" class="anchor" href="#infinite-precision">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
