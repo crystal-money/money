@@ -247,12 +247,6 @@ struct Money
     amount * currency.subunit_to_unit
   end
 
-  # Alias of `#amount`.
-  @[AlwaysInline]
-  def dollars : BigDecimal
-    amount
-  end
-
   # Alias of `#fractional`.
   @[AlwaysInline]
   def cents : BigDecimal
