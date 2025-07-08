@@ -24,6 +24,11 @@ class Money::Currency
 
       request("/v6/#{api_key}/codes") do |response|
         result = JSON.parse(response.body_io).as_h
+
+        unless result["result"].as_s == "success"
+          raise "Rate provider error: #{result["error-type"]}"
+        end
+
         currencies =
           result["supported_codes"].as_a.map(&.as_a.first.as_s)
 

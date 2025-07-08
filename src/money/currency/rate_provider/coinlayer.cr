@@ -35,6 +35,11 @@ class Money::Currency
       }
       request("/list", params) do |response|
         result = JSON.parse(response.body_io).as_h
+
+        unless result["success"].as_bool
+          raise "Rate provider error: #{result.dig("error", "type")}"
+        end
+
         {
           result["crypto"].as_h.keys,
           result["fiat"].as_h.keys,

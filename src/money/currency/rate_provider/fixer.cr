@@ -27,6 +27,11 @@ class Money::Currency
       }
       request("/api/symbols", params) do |response|
         result = JSON.parse(response.body_io).as_h
+
+        unless result["success"].as_bool
+          raise "Rate provider error: #{result.dig("error", "type")}"
+        end
+
         currencies =
           result["symbols"].as_h.keys
 
