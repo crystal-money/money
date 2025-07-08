@@ -26,6 +26,7 @@ struct Money
   include Money::Exchange
 
   include Comparable(Money)
+  include Steppable
 
   # Returns a proc that sets the `Fiber.current#money_context` to the current
   # context (copied from the current fiber - references will be shared though)

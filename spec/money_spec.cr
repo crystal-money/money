@@ -238,6 +238,17 @@ describe Money do
     end
   end
 
+  describe "Steppable" do
+    it "allows stepping ranges" do
+      range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
+      range.step(by: Money.new(1_00, "USD")).to_a.should eq [
+        Money.new(1_00, "USD"),
+        Money.new(2_00, "USD"),
+        Money.new(3_00, "USD"),
+      ]
+    end
+  end
+
   describe "#fractional" do
     it "returns the amount in fractional unit" do
       money = Money.new(1_00)
