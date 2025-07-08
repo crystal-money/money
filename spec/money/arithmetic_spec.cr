@@ -257,4 +257,15 @@ describe Money::Arithmetic do
       Money.new(-1, "USD").abs.should eq Money.new(1, "USD")
     end
   end
+
+  describe "#percentage" do
+    it "returns the percentage as a new Money object" do
+      Money.new(12, "USD").percentage(0).should eq Money.zero("USD")
+      Money.new(12, "USD").percentage(200).should eq Money.new(24, "USD")
+      Money.new(12, "USD").percentage(-200).should eq Money.new(-24, "USD")
+      Money.new(12, "USD").percentage(50).should eq Money.new(6, "USD")
+      Money.new(-12, "USD").percentage(50).should eq Money.new(-6, "USD")
+      Money.new(100_00, "USD").percentage(10.5).should eq Money.new(10_50, "USD")
+    end
+  end
 end

@@ -184,5 +184,15 @@ struct Money
         modulo(other) - copy_with(amount: other)
       end
     end
+
+    # Returns a new `Money` object containing the percentage of the
+    # monetary value.
+    #
+    # ```
+    # Money.new(100).percentage(10) # => Money(@amount=0.1)
+    # ```
+    def percentage(value : Number) : Money
+      self * (value / 100)
+    end
   end
 end
