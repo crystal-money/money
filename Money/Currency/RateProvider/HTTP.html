@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::Coinlayer - money master</title>
+  <title>Money::Currency::RateProvider::HTTP - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -142,7 +142,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
+  <li class=" " data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
       <a href="../../../Money/Currency/RateProvider/Coinlayer.html">Coinlayer</a>
       
     </li>
@@ -187,7 +187,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
       <a href="../../../Money/Currency/RateProvider/HTTP.html">HTTP</a>
       
     </li>
@@ -327,13 +327,13 @@
 <h1 class="type-name">
 
   <span class="kind">
-    class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Coinlayer
+    abstract class
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>HTTP
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Coinlayer.html">Money::Currency::RateProvider::Coinlayer</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -347,7 +347,7 @@
     Overview
   </h2>
 
-  <p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p>
+  <p>Base class for HTTP-based currency rate providers.</p>
 
 
 
@@ -358,6 +358,42 @@
 
 
 
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/AbstractAPI.html">Money::Currency::RateProvider::AbstractAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Coinlayer.html">Money::Currency::RateProvider::Coinlayer</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/CurrencyBeacon.html">Money::Currency::RateProvider::CurrencyBeacon</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ECB.html">Money::Currency::RateProvider::ECB</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ExchangeRateAPI.html">Money::Currency::RateProvider::ExchangeRateAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Fixer.html">Money::Currency::RateProvider::Fixer</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FloatRates.html">Money::Currency::RateProvider::FloatRates</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Freecurrency.html">Money::Currency::RateProvider::Freecurrency</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FXRatesAPI.html">Money::Currency::RateProvider::FXRatesAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/MoneyMorph.html">Money::Currency::RateProvider::MoneyMorph</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/OpenExchangeRates.html">Money::Currency::RateProvider::OpenExchangeRates</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/UniRate.html">Money::Currency::RateProvider::UniRate</a></li>
+    
+  </ul>
 
 
 
@@ -374,8 +410,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L6" target="_blank">
-        money/currency/rate_provider/coinlayer.cr
+      <a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/http.cr#L8" target="_blank">
+        money/currency/rate_provider/http.cr
       </a>
     
     <br/>
@@ -383,45 +419,9 @@
 
 
 
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-      Constant Summary
-    </h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="Log">
-        <strong>Log</strong> = <code><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>)</code>
-      </dt>
-      
-    
-  </dl>
-
 
 
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28%2A%2Caccess_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, access_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
-        
-      </li>
-    
-  </ul>
-
 
   
 
@@ -439,43 +439,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#access_key%3AString-instance-method" class="signature"><strong>#access_key</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#access_key%3D%28access_key%3AString%29-instance-method" class="signature"><strong>#access_key=</strong>(access_key : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported base currency codes.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
-        
-          <div class="summary"><p><a href="https://coinlayer.com/documentation#live">https://coinlayer.com/documentation#live</a></p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#host%3D%28host%3AURI%29-instance-method" class="signature"><strong>#host=</strong>(host : URI)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#target_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#target_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported target currency codes.</p></div>
         
       </li>
     
@@ -484,28 +448,6 @@
 
 
   <div class="methods-inherited">
-    
-      
-
-  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></code></h3>
-  
-  
-    <a href="../../../Money/Currency/RateProvider/HTTP.html#host%3AURI-instance-method" class="tooltip">
-      <span>host : URI</span>
-    host</a>
-    
-  
-
-
-      
-
-
-      
-
-
-      
-
-
     
       
 
@@ -623,32 +565,6 @@
   </div>
 
   
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(*,access_key:Nil|String=nil,host:Nil|URI=nil)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(*, access_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
-
-        <a class="method-permalink" href="#new%28%2A%2Caccess_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L17" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
   
 
@@ -664,87 +580,9 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="access_key:String-instance-method">
-      <div class="signature">
-        
-        def <strong>access_key</strong> : String
-
-        <a class="method-permalink" href="#access_key%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="access_key=(access_key:String)-instance-method">
-      <div class="signature">
-        
-        def <strong>access_key=</strong>(access_key : String)
-
-        <a class="method-permalink" href="#access_key%3D%28access_key%3AString%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
-      <div class="signature">
-        
-        def <strong>base_currency_codes</strong> : Array(String)
-
-        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported base currency codes.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="exchange_rate?(base:Currency,target:Currency):Rate|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, target : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
-
-        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p><a href="https://coinlayer.com/documentation#live">https://coinlayer.com/documentation#live</a></p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L45" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="host:URI-instance-method">
       <div class="signature">
-        
+        abstract 
         def <strong>host</strong> : URI
 
         <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
@@ -753,48 +591,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L13" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="host=(host:URI)-instance-method">
-      <div class="signature">
-        
-        def <strong>host=</strong>(host : URI)
-
-        <a class="method-permalink" href="#host%3D%28host%3AURI%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L13" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="target_currency_codes:Array(String)-instance-method">
-      <div class="signature">
-        
-        def <strong>target_currency_codes</strong> : Array(String)
-
-        <a class="method-permalink" href="#target_currency_codes%3AArray%28String%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported target currency codes.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/coinlayer.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d81ded8/src/money/currency/rate_provider/http.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
