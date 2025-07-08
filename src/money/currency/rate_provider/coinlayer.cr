@@ -1,5 +1,6 @@
 require "log"
 require "uri"
+require "uri/params"
 require "http/client"
 
 class Money::Currency
@@ -30,8 +31,11 @@ class Money::Currency
     protected getter currency_codes : {Array(String), Array(String)} do
       Log.debug { "Fetching supported currencies" }
 
+      params = URI::Params.encode({
+        "access_key": access_key,
+      })
       client = HTTP::Client.new(host)
-      client.get("/list?access_key=#{access_key}") do |response|
+      client.get("/list?#{params}") do |response|
         unless response.status.ok?
           raise "Failed to fetch currencies: #{response.status}"
         end
@@ -48,10 +52,13 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
+      params = URI::Params.encode({
+        "access_key": access_key,
+        "target":     target.code,
+        "symbols":    base.code,
+      })
       client = HTTP::Client.new(host)
-      client.get(
-        "/live?access_key=#{access_key}&target=#{target.code}&symbols=#{base.code}"
-      ) do |response|
+      client.get("/live?#{params}") do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
         end

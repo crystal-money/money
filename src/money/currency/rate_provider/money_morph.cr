@@ -1,5 +1,6 @@
 require "log"
 require "uri"
+require "uri/params"
 require "http/client"
 
 class Money::Currency
@@ -36,8 +37,12 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
+      params = URI::Params.encode({
+        "base":    base.code,
+        "symbols": target.code,
+      })
       client = HTTP::Client.new(host)
-      client.get("/api/latest?base=#{base.code}&symbols=#{target.code}") do |response|
+      client.get("/api/latest?#{params}") do |response|
         unless response.status.ok?
           raise "Failed to fetch rates: #{response.status}"
         end
