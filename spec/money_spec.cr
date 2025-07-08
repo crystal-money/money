@@ -486,9 +486,9 @@ describe Money do
         channel = Channel(Money::Context).new
 
         Money.spawn_with_same_context do
-          channel.send Fiber.current.money_context
+          channel.send Money.context
         end
-        channel.receive.should_not be Fiber.current.money_context
+        channel.receive.should_not be Money.context
       end
     end
 

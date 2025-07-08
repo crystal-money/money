@@ -48,9 +48,9 @@ struct Money
   # NOTE: References to the `#default_{currency, exchange, rate_store}` properties
   # will be shared between the current fiber and the spawned fiber.
   def self.spawn_with_same_context(**options, &block : ->) : Nil
-    current_context = Fiber.current.money_context.dup
+    current_context = context.dup
     wrapper = -> do
-      Fiber.current.money_context = current_context
+      self.context = current_context
       block.call
     end
     spawn(*Tuple.new, **options, &wrapper)

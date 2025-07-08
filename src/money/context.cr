@@ -6,6 +6,18 @@ struct Money
   class Context
     # :nodoc:
     module Delegators
+      # Alias of `Fiber.current.money_context`.
+      @[AlwaysInline]
+      def context : Context
+        Fiber.current.money_context
+      end
+
+      # Alias of `Fiber.current.money_context=`.
+      @[AlwaysInline]
+      def context=(context : Context)
+        Fiber.current.money_context = context
+      end
+
       delegate \
         :infinite_precision?, :infinite_precision=,
         :rounding_mode, :rounding_mode=,
@@ -13,7 +25,7 @@ struct Money
         :default_exchange, :default_exchange=,
         :default_rate_store, :default_rate_store=,
         :default_rate_provider, :default_rate_provider=,
-        to: Fiber.current.money_context
+        to: context
     end
 
     # Use this to control infinite precision cents.
