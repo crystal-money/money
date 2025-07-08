@@ -33,7 +33,10 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
-      request("/daily/#{base.code.downcase}.json") do |response|
+      path =
+        "/daily/%s.json" % URI.encode_path_segment(base.code.downcase)
+
+      request(path) do |response|
         result = JSON.parse(response.body_io).as_h
         rate =
           result.dig(target.code.downcase, "rate").to_s.to_big_d

@@ -22,7 +22,10 @@ class Money::Currency
     getter base_currency_codes : Array(String) do
       Log.debug { "Fetching supported currencies" }
 
-      request("/v6/#{api_key}/codes") do |response|
+      path =
+        "/v6/%s/codes" % URI.encode_path_segment(api_key)
+
+      request(path) do |response|
         result = JSON.parse(response.body_io).as_h
 
         unless result["result"].as_s == "success"
@@ -40,7 +43,14 @@ class Money::Currency
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       Log.debug { "Fetching rate for #{base} -> #{target}" }
 
-      request("/v6/#{api_key}/pair/#{base.code}/#{target.code}") do |response|
+      path =
+        "/v6/%s/pair/%s/%s" % {
+          URI.encode_path_segment(api_key),
+          URI.encode_path_segment(base.code),
+          URI.encode_path_segment(target.code),
+        }
+
+      request(path) do |response|
         result = JSON.parse(response.body_io).as_h
 
         unless result["result"].as_s == "success"
