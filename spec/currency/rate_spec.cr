@@ -8,6 +8,25 @@ describe Money::Currency::Rate do
     Time.parse_utc("2025-05-22", "%F"),
   )
 
+  it "raises ArgumentError if given values are invalid" do
+    expect_raises(ArgumentError, "Invalid rate: -100.0") do
+      Money::Currency::Rate.new(
+        Money::Currency.find("USD"),
+        Money::Currency.find("EUR"),
+        -100.to_big_d,
+        Time.parse_utc("2025-05-22", "%F"),
+      )
+    end
+    expect_raises(ArgumentError, "Invalid rate: 0.0") do
+      Money::Currency::Rate.new(
+        Money::Currency.find("USD"),
+        Money::Currency.find("EUR"),
+        0.to_big_d,
+        Time.parse_utc("2025-05-22", "%F"),
+      )
+    end
+  end
+
   it ".from_json" do
     Money::Currency::Rate.from_json(rate.to_json).should eq rate
   end
