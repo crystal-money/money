@@ -187,11 +187,6 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
-      <a href="Money/Currency/RateProvider/HTTP.html">HTTP</a>
-      
-    </li>
-  
   <li class=" " data-id="money/Money/Currency/RateProvider/MoneyMorph" data-name="money::currency::rateprovider::moneymorph">
       <a href="Money/Currency/RateProvider/MoneyMorph.html">MoneyMorph</a>
       
@@ -421,8 +416,9 @@ some_code_to_setup_exchange_rates
 <span class="c"># Steppable ranges</span>
 (<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>)..<span class="t">Money</span>.new(<span class="n">3_00</span>, <span class="s">&quot;USD&quot;</span>))
   .step(by: <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>))
+  .map(<span class="o">&amp;</span>.to_s)
   .to_a
-<span class="c"># =&gt; [Money.new(1_00, &quot;USD&quot;),  Money.new(2_00, &quot;USD&quot;), Money.new(3_00, &quot;USD&quot;)]</span></code></pre>
+<span class="c"># =&gt; [&quot;$1.00&quot;, &quot;$2.00&quot;, &quot;$3.00&quot;]</span></code></pre>
 <h2><a id="infinite-precision" class="anchor" href="#infinite-precision">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
