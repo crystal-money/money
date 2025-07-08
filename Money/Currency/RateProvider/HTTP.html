@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::Null - money master</title>
+  <title>Money::Currency::RateProvider::HTTP - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -187,7 +187,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
       <a href="../../../Money/Currency/RateProvider/HTTP.html">HTTP</a>
       
     </li>
@@ -197,7 +197,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
+  <li class=" " data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
       <a href="../../../Money/Currency/RateProvider/Null.html">Null</a>
       
     </li>
@@ -327,13 +327,13 @@
 <h1 class="type-name">
 
   <span class="kind">
-    class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Null
+    abstract class
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>HTTP
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Null.html">Money::Currency::RateProvider::Null</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -347,7 +347,7 @@
     Overview
   </h2>
 
-  <p>Currency rate provider that always returns <code>nil</code>.</p>
+  <p>Base class for HTTP-based currency rate providers.</p>
 
 
 
@@ -358,6 +358,42 @@
 
 
 
+
+  <h2>
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct Known Subclasses
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/AbstractAPI.html">Money::Currency::RateProvider::AbstractAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Coinlayer.html">Money::Currency::RateProvider::Coinlayer</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/CurrencyBeacon.html">Money::Currency::RateProvider::CurrencyBeacon</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ECB.html">Money::Currency::RateProvider::ECB</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ExchangeRateAPI.html">Money::Currency::RateProvider::ExchangeRateAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Fixer.html">Money::Currency::RateProvider::Fixer</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FloatRates.html">Money::Currency::RateProvider::FloatRates</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Freecurrency.html">Money::Currency::RateProvider::Freecurrency</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FXRatesAPI.html">Money::Currency::RateProvider::FXRatesAPI</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/MoneyMorph.html">Money::Currency::RateProvider::MoneyMorph</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/OpenExchangeRates.html">Money::Currency::RateProvider::OpenExchangeRates</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/UniRate.html">Money::Currency::RateProvider::UniRate</a></li>
+    
+  </ul>
 
 
 
@@ -374,8 +410,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/be79854/src/money/currency/rate_provider/null.cr#L3" target="_blank">
-        money/currency/rate_provider/null.cr
+      <a href="https://github.com/crystal-money/money/blob/be79854/src/money/currency/rate_provider/http.cr#L8" target="_blank">
+        money/currency/rate_provider/http.cr
       </a>
     
     <br/>
@@ -403,16 +439,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported base currency codes.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
-        
-          <div class="summary"><p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p></div>
+        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
         
       </li>
     
@@ -553,52 +580,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
+    <div class="entry-detail" id="host:URI-instance-method">
       <div class="signature">
-        
-        def <strong>base_currency_codes</strong> : Array(String)
+        abstract 
+        def <strong>host</strong> : URI
 
-        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
       </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported base currency codes.</p>
-        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be79854/src/money/currency/rate_provider/null.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="exchange_rate?(base:Currency,target:Currency):Rate|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, target : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
-
-        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/be79854/src/money/currency/rate_provider/null.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be79854/src/money/currency/rate_provider/http.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
