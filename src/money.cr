@@ -3,5 +3,5 @@ require "big"
 struct Money
 end
 
-require "./ext/*"
+require "./core_ext/*"
 require "./money/*"
