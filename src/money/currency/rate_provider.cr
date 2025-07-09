@@ -8,10 +8,18 @@ class Money::Currency
     class_getter providers = {} of String => RateProvider.class
 
     macro inherited
-      {% unless @type.abstract? %}
-        {% name = @type.name.gsub(/^(.+)::(.+)$/, "\\2").underscore %}
-        ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
-      {% end %}
+      {% @type.raise "abstract rate providers are not allowed" if @type.abstract? %}
+      {%
+        superclass_name = @type.superclass.name
+        name = @type.name
+        name =
+          if name.starts_with?("#{superclass_name}::")
+            name[superclass_name.size + 2..].underscore
+          else
+            @type.raise "class must be placed inside `#{superclass_name}` namespace"
+          end
+      %}
+      ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
     end
 
     # Returns the rate provider class for the given *name* if found,
