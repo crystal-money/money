@@ -332,6 +332,16 @@
       
     </li>
   
+  <li class=" " data-id="money/Number" data-name="number">
+      <a href="Number.html">Number</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/String" data-name="string">
+      <a href="String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -466,7 +476,7 @@ following:</p>
   </svg>
 </a>Currency</h2>
 <p>Currencies are consistently represented as instances of <code><a href="Money/Currency.html">Money::Currency</a></code>.
-The most part of <code><a href="Money.html">Money</a></code> APIs allows you to supply either a <code>String</code>, <code>Symbol</code>
+The most part of <code><a href="Money.html">Money</a></code> APIs allows you to supply either a <code><a href="String.html">String</a></code>, <code>Symbol</code>
 or a <code><a href="Money/Currency.html">Money::Currency</a></code>.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>))
 <span class="t">Money</span>.new(<span class="n">1000</span>, <span class="s">&quot;EUR&quot;</span>).currency <span class="o">==</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="n">:eur</span>)
@@ -677,7 +687,7 @@ money.format(symbol: <span class="s">&quot;</span><span class="i">#{</span>money
     <use href="#octicon-link"/>
   </svg>
 </a>Heuristics</h2>
-<p>To parse a <code>String</code> containing amount with currency code or symbol you can do</p>
+<p>To parse a <code><a href="String.html">String</a></code> containing amount with currency code or symbol you can do</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.parse(<span class="s">&quot;$12.34&quot;</span>)    <span class="c"># =&gt; Money(@amount=12.34, @currency=&quot;USD&quot;)</span>
 <span class="t">Money</span>.parse(<span class="s">&quot;12.34 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=12.34, @currency=&quot;USD&quot;)</span></code></pre>
 <h2><a id="contributors" class="anchor" href="#contributors">

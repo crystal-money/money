@@ -332,6 +332,16 @@
       
     </li>
   
+  <li class=" " data-id="money/Number" data-name="number">
+      <a href="../Number.html">Number</a>
+      
+    </li>
+  
+  <li class=" " data-id="money/String" data-name="string">
+      <a href="../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -376,7 +386,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/ccb27e6/src/money/money/parse.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/55a33e6/src/money/money/parse.cr#L2" target="_blank">
         money/money/parse.cr
       </a>
     
@@ -405,14 +415,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#parse%28str%3AString%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#parse</strong>(str : String, allow_ambiguous = <span class="n">true</span>) : Money</a>
+        <a href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#parse</strong>(str : String, *, allow_ambiguous = <span class="n">true</span>) : Money</a>
         
           <div class="summary"><p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#parse%3F%28str%3AString%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method" class="signature"><strong>#parse?</strong>(str : String, allow_ambiguous = <span class="n">true</span>) : Money | Nil</a>
+        <a href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method" class="signature"><strong>#parse?</strong>(str : String, *, allow_ambiguous = <span class="n">true</span>) : Money | Nil</a>
         
           <div class="summary"><p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p></div>
         
@@ -442,12 +452,12 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="parse(str:String,allow_ambiguous=true):Money-instance-method">
+    <div class="entry-detail" id="parse(str:String,*,allow_ambiguous=true):Money-instance-method">
       <div class="signature">
         
-        def <strong>parse</strong>(str : String, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a>
+        def <strong>parse</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#parse%28str%3AString%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -458,17 +468,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/ccb27e6/src/money/money/parse.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/money/money/parse.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="parse?(str:String,allow_ambiguous=true):Money|Nil-instance-method">
+    <div class="entry-detail" id="parse?(str:String,*,allow_ambiguous=true):Money|Nil-instance-method">
       <div class="signature">
         
-        def <strong>parse?</strong>(str : String, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a> | Nil
+        def <strong>parse?</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a> | Nil
 
-        <a class="method-permalink" href="#parse%3F%28str%3AString%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method">#</a>
+        <a class="method-permalink" href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -479,7 +489,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/ccb27e6/src/money/money/parse.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/money/money/parse.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>

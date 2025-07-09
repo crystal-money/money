@@ -14,7 +14,7 @@
 <script type="text/javascript" src="js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Fiber - money master</title>
+  <title>String - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "";
   </script>
@@ -62,7 +62,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Fiber" data-name="fiber">
+  <li class=" " data-id="money/Fiber" data-name="fiber">
       <a href="Fiber.html">Fiber</a>
       
     </li>
@@ -337,7 +337,7 @@
       
     </li>
   
-  <li class=" " data-id="money/String" data-name="string">
+  <li class=" current" data-id="money/String" data-name="string">
       <a href="String.html">String</a>
       
     </li>
@@ -353,12 +353,12 @@
 
   <span class="kind">
     class
-  </span> Fiber
+  </span> String
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Fiber.html">Fiber</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="String.html">String</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -372,46 +372,116 @@
     Overview
   </h2>
 
-  <p>A <code><a href="Fiber.html">Fiber</a></code> is a light-weight execution unit managed by the Crystal runtime.</p>
-<p>It is conceptually similar to an operating system thread but with less
-overhead and completely internal to the Crystal process. The runtime includes
-a scheduler which schedules execution of fibers.</p>
-<p>A <code><a href="Fiber.html">Fiber</a></code> has a stack size of <code>8 MiB</code> which is usually also assigned
-to an operating system thread. But only <code>4KiB</code> are actually allocated at first
-so the memory footprint is very small.</p>
-<p>Communication between fibers is usually passed through <code>Channel</code>.</p>
-<h2><a id="cooperative" class="anchor" href="#cooperative">
+  <p>A <code><a href="String.html">String</a></code> represents an immutable sequence of UTF-8 characters.</p>
+<p>A <code><a href="String.html">String</a></code> is typically created with a string literal, enclosing UTF-8 characters
+in double quotes:</p>
+<pre><code class="language-crystal"><span class="s">&quot;hello world&quot;</span></code></pre>
+<p>See <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/string.html"><code>String</code> literals</a> in the language reference.</p>
+<p>A backslash can be used to denote some characters inside the string:</p>
+<pre><code class="language-crystal"><span class="s">&quot;\&quot;&quot;</span> <span class="c"># double quote</span>
+<span class="s">&quot;\\&quot;</span> <span class="c"># backslash</span>
+<span class="s">&quot;\e&quot;</span> <span class="c"># escape</span>
+<span class="s">&quot;\f&quot;</span> <span class="c"># form feed</span>
+<span class="s">&quot;\n&quot;</span> <span class="c"># newline</span>
+<span class="s">&quot;\r&quot;</span> <span class="c"># carriage return</span>
+<span class="s">&quot;\t&quot;</span> <span class="c"># tab</span>
+<span class="s">&quot;\v&quot;</span> <span class="c"># vertical tab</span></code></pre>
+<p>You can use a backslash followed by an <em>u</em> and four hexadecimal characters to denote a unicode codepoint written:</p>
+<pre><code class="language-crystal"><span class="s">&quot;\u0041&quot;</span> <span class="c"># == &quot;A&quot;</span></code></pre>
+<p>Or you can use curly braces and specify up to six hexadecimal numbers (0 to 10FFFF):</p>
+<pre><code class="language-crystal"><span class="s">&quot;\u{41}&quot;</span> <span class="c"># == &quot;A&quot;</span></code></pre>
+<p>A string can span multiple lines:</p>
+<pre><code class="language-crystal"><span class="s">&quot;hello
+      world&quot;</span> <span class="c"># same as &quot;hello\n      world&quot;</span></code></pre>
+<p>Note that in the above example trailing and leading spaces, as well as newlines,
+end up in the resulting string. To avoid this, you can split a string into multiple lines
+by joining multiple literals with a backslash:</p>
+<pre><code class="language-crystal"><span class="s">&quot;hello &quot;</span> \
+<span class="s">&quot;world, &quot;</span> \
+<span class="s">&quot;no newlines&quot;</span> <span class="c"># same as &quot;hello world, no newlines&quot;</span></code></pre>
+<p>Alternatively, a backslash followed by a newline can be inserted inside the string literal:</p>
+<pre><code class="language-crystal"><span class="s">&quot;hello \
+     world, \
+     no newlines&quot;</span> <span class="c"># same as &quot;hello world, no newlines&quot;</span></code></pre>
+<p>In this case, leading whitespace is not included in the resulting string.</p>
+<p>If you need to write a string that has many double quotes, parentheses, or similar
+characters, you can use alternative literals:</p>
+<pre><code class="language-crystal"><span class="c"># Supports double quotes and nested parentheses</span>
+<span class="s">%(hello (&quot;world&quot;))</span> <span class="c"># same as &quot;hello (\&quot;world\&quot;)&quot;</span>
+
+<span class="c"># Supports double quotes and nested brackets</span>
+<span class="s">%[hello [&quot;world&quot;]]</span> <span class="c"># same as &quot;hello [\&quot;world\&quot;]&quot;</span>
+
+<span class="c"># Supports double quotes and nested curlies</span>
+<span class="s">%{hello {&quot;world&quot;}}</span> <span class="c"># same as &quot;hello {\&quot;world\&quot;}&quot;</span>
+
+<span class="c"># Supports double quotes and nested angles</span>
+<span class="s">%&lt;hello &lt;&quot;world&quot;&gt;&gt;</span> <span class="c"># same as &quot;hello &lt;\&quot;world\&quot;&gt;&quot;</span></code></pre>
+<p>To create a <code><a href="String.html">String</a></code> with embedded expressions, you can use string interpolation:</p>
+<pre><code class="language-crystal">a <span class="o">=</span> <span class="n">1</span>
+b <span class="o">=</span> <span class="n">2</span>
+<span class="s">&quot;sum = </span><span class="i">#{</span>a <span class="o">+</span> b<span class="i">}</span><span class="s">&quot;</span> <span class="c"># &quot;sum = 3&quot;</span></code></pre>
+<p>This ends up invoking <code>Object#to_s(IO)</code> on each expression enclosed by <code>#{...}</code>.</p>
+<p>If you need to dynamically build a string, use <code>String#build</code> or <code>IO::Memory</code>.</p>
+<h3><a id="non-utf-8-valid-strings" class="anchor" href="#non-utf-8-valid-strings">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Cooperative</h2>
-<p>Fibers are cooperative. That means execution can only be drawn from a fiber
-when it offers it. It can't be interrupted in its execution at random.
-In order to make concurrency work, fibers must make sure to occasionally
-provide hooks for the scheduler to swap in other fibers.
-IO operations like reading from a file descriptor are natural implementations
-for this and the developer does not need to take further action on that. When
-IO access can't be served immediately by a buffer, the fiber will
-automatically wait and yield execution. When IO is ready it's going to be
-resumed through the event loop.</p>
-<p>When a computation-intensive task has none or only rare IO operations, a fiber
-should explicitly offer to yield execution from time to time using
-<code>Fiber.yield</code> to break up tight loops. The frequency of this call depends on
-the application and concurrency model.</p>
-<h2><a id="event-loop" class="anchor" href="#event-loop">
+</a>Non UTF-8 valid strings</h3>
+<p>A string might end up being composed of bytes which form an invalid
+byte sequence according to UTF-8. This can happen if the string is created
+via one of the constructors that accept bytes, or when getting a string
+from <code>String.build</code> or <code>IO::Memory</code>. No exception will be raised, but every
+byte that doesn't start a valid UTF-8 byte sequence is interpreted as though
+it encodes the Unicode replacement character (U+FFFD) by itself. For example:</p>
+<pre><code class="language-crystal"><span class="c"># here 255 is not a valid byte value in the UTF-8 encoding</span>
+string <span class="o">=</span> <span class="t">String</span>.new(<span class="t">Bytes</span>[<span class="n">255</span>, <span class="n">97</span>])
+string.valid_encoding? <span class="c"># =&gt; false</span>
+
+<span class="c"># The first char here is the unicode replacement char</span>
+string.chars <span class="c"># =&gt; [&#39;�&#39;, &#39;a&#39;]</span></code></pre>
+<p>One can also create strings with specific byte value in them by
+using octal and hexadecimal escape sequences:</p>
+<pre><code class="language-crystal"><span class="c"># Octal escape sequences</span>
+<span class="s">&quot;\101&quot;</span> <span class="c"># # =&gt; &quot;A&quot;</span>
+<span class="s">&quot;\12&quot;</span>  <span class="c"># # =&gt; &quot;\n&quot;</span>
+<span class="s">&quot;\1&quot;</span>   <span class="c"># string with one character with code point 1</span>
+<span class="s">&quot;\377&quot;</span> <span class="c"># string with one byte with value 255</span>
+
+<span class="c"># Hexadecimal escape sequences</span>
+<span class="s">&quot;\x41&quot;</span> <span class="c"># # =&gt; &quot;A&quot;</span>
+<span class="s">&quot;\xFF&quot;</span> <span class="c"># string with one byte with value 255</span></code></pre>
+<p>The reason for allowing strings that don't have a valid UTF-8 sequence
+is that the world is full of content that isn't properly encoded,
+and having a program raise an exception or stop because of this
+is not good. It's better if programs are more resilient, but
+show a replacement character when there's an error in incoming data.</p>
+<p>Note that this interpretation only applies to methods inside Crystal; calling
+<code>#to_slice</code> or <code>#to_unsafe</code>, e.g. when passing a string to a C library, will
+expose the invalid UTF-8 byte sequences. In particular, <code>Regex</code>'s underlying
+engine may reject strings that are not valid UTF-8, or it may invoke undefined
+behavior on invalid strings. If this is undesired, <code>#scrub</code> could be used to
+remove the offending byte sequences first.</p>
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Event loop</h2>
-<p>The event loop is responsible for keeping track of sleeping fibers waiting for
-notifications that IO is ready or a timeout reached. When a fiber can be woken,
-the event loop enqueues it in the scheduler</p>
-
-
-
-
-
-
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Comparable(<a href="String.html">String</a>)</li>
+    
+  </ul>
 
 
 
@@ -432,8 +502,8 @@ the event loop enqueues it in the scheduler</p>
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/fiber.cr#L1" target="_blank">
-        ext/fiber.cr
+      <a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/to_money.cr#L1" target="_blank">
+        ext/to_money.cr
       </a>
     
     <br/>
@@ -461,16 +531,16 @@ the event loop enqueues it in the scheduler</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#money_context%3AMoney%3A%3AContext-instance-method" class="signature"><strong>#money_context</strong> : Money::Context</a>
+        <a href="#to_money%28exchange%3Dnil%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#to_money</strong>(exchange = <span class="n">nil</span>, *, allow_ambiguous = <span class="n">true</span>) : Money</a>
         
-          <div class="summary"><p><code><a href="Money/Context.html">Money::Context</a></code> object holding global settings for <code><a href="Money.html">Money</a></code> objects.</p></div>
+          <div class="summary"><p>Returns a <code><a href="Money.html">Money</a></code> instance parsed from <code>self</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#money_context%3D%28money_context%3AMoney%3A%3AContext%29-instance-method" class="signature"><strong>#money_context=</strong>(money_context : Money::Context)</a>
+        <a href="#to_money%3F%28exchange%3Dnil%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method" class="signature"><strong>#to_money?</strong>(exchange = <span class="n">nil</span>, *, allow_ambiguous = <span class="n">true</span>) : Money | Nil</a>
         
-          <div class="summary"><p><code><a href="Money/Context.html">Money::Context</a></code> object holding global settings for <code><a href="Money.html">Money</a></code> objects.</p></div>
+          <div class="summary"><p>Returns a <code><a href="Money.html">Money</a></code> instance parsed from <code>self</code> if possible, <code>nil</code> otherwise.</p></div>
         
       </li>
     
@@ -479,6 +549,19 @@ the event loop enqueues it in the scheduler</p>
 
 
   <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
     
       
 
@@ -524,44 +607,44 @@ the event loop enqueues it in the scheduler</p>
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="money_context:Money::Context-instance-method">
+    <div class="entry-detail" id="to_money(exchange=nil,*,allow_ambiguous=true):Money-instance-method">
       <div class="signature">
         
-        def <strong>money_context</strong> : <a href="Money/Context.html">Money::Context</a>
+        def <strong>to_money</strong>(exchange = <span class="n">nil</span>, *, allow_ambiguous = <span class="n">true</span>) : <a href="Money.html">Money</a>
 
-        <a class="method-permalink" href="#money_context%3AMoney%3A%3AContext-instance-method">#</a>
+        <a class="method-permalink" href="#to_money%28exchange%3Dnil%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p><code><a href="Money/Context.html">Money::Context</a></code> object holding global settings for <code><a href="Money.html">Money</a></code> objects.</p>
+          <p>Returns a <code><a href="Money.html">Money</a></code> instance parsed from <code>self</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/fiber.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/to_money.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="money_context=(money_context:Money::Context)-instance-method">
+    <div class="entry-detail" id="to_money?(exchange=nil,*,allow_ambiguous=true):Money|Nil-instance-method">
       <div class="signature">
         
-        def <strong>money_context=</strong>(money_context : <a href="Money/Context.html">Money::Context</a>)
+        def <strong>to_money?</strong>(exchange = <span class="n">nil</span>, *, allow_ambiguous = <span class="n">true</span>) : <a href="Money.html">Money</a> | Nil
 
-        <a class="method-permalink" href="#money_context%3D%28money_context%3AMoney%3A%3AContext%29-instance-method">#</a>
+        <a class="method-permalink" href="#to_money%3F%28exchange%3Dnil%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p><code><a href="Money/Context.html">Money::Context</a></code> object holding global settings for <code><a href="Money.html">Money</a></code> objects.</p>
+          <p>Returns a <code><a href="Money.html">Money</a></code> instance parsed from <code>self</code> if possible, <code>nil</code> otherwise.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/fiber.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/55a33e6/src/ext/to_money.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
