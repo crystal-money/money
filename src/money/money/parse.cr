@@ -11,11 +11,17 @@ struct Money
       )/x
 
     # Creates a `Money` instance from a string.
+    #
+    # If `allow_ambiguous` is `true` (default), returns the first matching
+    # currency for ambiguous values, otherwise raises `Error`.
     def parse(str : String, *, allow_ambiguous = true) : Money
       parse(str, allow_ambiguous) { |ex| raise ex }
     end
 
     # Creates a `Money` instance from a string, or returns `nil` on failure.
+    #
+    # If `allow_ambiguous` is `true` (default), returns the first
+    # matching currency for ambiguous values, otherwise returns `nil`.
     def parse?(str : String, *, allow_ambiguous = true) : Money?
       parse(str, allow_ambiguous) { nil }
     end
