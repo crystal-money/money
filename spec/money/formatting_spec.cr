@@ -118,7 +118,7 @@ describe Money::Formatting do
       end
 
       it "inserts thousand separators if symbol contains decimal mark and :no_cents is true" do
-        Money.new(100000000, "AMD").format(no_cents: true).should eq "1,000,000 դր."
+        Money.new(100000000, "AMD").format(no_cents: true).should eq "1,000,000 ֏"
         Money.new(100000000, "USD").format(no_cents: true).should eq "$1,000,000"
         Money.new(100000000, "RUB").format(no_cents: true).should eq "1.000.000 ₽"
       end
