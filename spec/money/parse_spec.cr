@@ -70,6 +70,18 @@ describe Money::Parse do
       Money.parse?("foo 10").should be_nil
       Money.parse?("-foo").should be_nil
     end
+
+    context "when :allow_ambiguous is true (default)" do
+      it "returns a first matching currency for ambiguous values" do
+        Money.parse?("$10.00").should eq Money.new(10_00, "USD")
+      end
+    end
+
+    context "when :allow_ambiguous is false" do
+      it "returns nil for ambiguous values" do
+        Money.parse?("$10.00", allow_ambiguous: false).should be_nil
+      end
+    end
   end
 
   describe ".parse" do

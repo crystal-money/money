@@ -11,12 +11,12 @@ struct Money
       )/x
 
     # Creates a `Money` instance from a string.
-    def parse(str : String, allow_ambiguous = true) : Money
+    def parse(str : String, *, allow_ambiguous = true) : Money
       parse(str, allow_ambiguous) { |ex| raise ex }
     end
 
     # Creates a `Money` instance from a string, or returns `nil` on failure.
-    def parse?(str : String, allow_ambiguous = true) : Money?
+    def parse?(str : String, *, allow_ambiguous = true) : Money?
       parse(str, allow_ambiguous) { nil }
     end
 
