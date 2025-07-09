@@ -2,10 +2,11 @@
   "iso_numeric": 934,
   "code": "TMT",
   "name": "Turkmenistani Manat",
-  "symbol": "T",
+  "symbol": "m",
   "subunit": "Tenge",
   "subunit_to_unit": 100,
   "symbol_first": false,
+  "html_entity": "&#0109;",
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 1
