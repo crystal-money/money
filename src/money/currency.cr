@@ -71,7 +71,7 @@ struct Money
     end
 
     getter priority : Int32?
-    getter iso_numeric : UInt32?
+    getter iso_numeric : Int32?
     getter code : String
     getter name : String?
     getter symbol : String?
@@ -83,7 +83,7 @@ struct Money
     getter html_entity : String?
     getter decimal_mark : String?
     getter thousands_separator : String?
-    getter smallest_denomination : UInt32?
+    getter smallest_denomination : Int32?
 
     # Currency ID, for time being lower-cased `#code`.
     getter id : String { code.downcase }
