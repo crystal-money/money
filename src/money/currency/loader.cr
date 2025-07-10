@@ -23,7 +23,6 @@ class Money::Currency
           Currency.from_json(file)
         end
       end
-    rescue ex
     end
   end
 end
