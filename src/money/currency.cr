@@ -1,3 +1,4 @@
+require "./currency/type"
 require "./currency/enumeration"
 require "./currency/loader"
 require "./currency/exchange"
@@ -70,6 +71,7 @@ struct Money
         raise UnknownCurrencyError.new(value)
     end
 
+    getter type : Type?
     getter priority : Int32?
     getter iso_numeric : Int32?
     getter code : String
@@ -90,6 +92,7 @@ struct Money
 
     def initialize(
       *,
+      @type = nil,
       @priority = nil,
       @iso_numeric = nil,
       @code,
