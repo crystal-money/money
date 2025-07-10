@@ -1,6 +1,83 @@
 require "./spec_helper"
 
 describe Money::Currency do
+  describe ".new" do
+    it "initializes a new currency" do
+      currency = Money::Currency.new(
+        priority: 1,
+        code: "XXX111",
+        name: "Golden Doubloon",
+        symbol: "%",
+        symbol_first: false,
+        subunit_to_unit: 100
+      )
+      currency.priority.should eq 1
+      currency.code.should eq "XXX111"
+      currency.name.should eq "Golden Doubloon"
+      currency.symbol.should eq "%"
+      currency.symbol_first?.should be_false
+      currency.subunit_to_unit.should eq 100
+    end
+
+    it "raises ArgumentError for non-upper-case-alphanumeric :code values" do
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "foo",
+          subunit_to_unit: 1
+        )
+      end
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "foo1",
+          subunit_to_unit: 1
+        )
+      end
+    end
+
+    it "raises ArgumentError for non-positive :subunit_to_unit values" do
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "XXX",
+          subunit_to_unit: 0
+        )
+      end
+    end
+
+    it "raises ArgumentError for non-positive :iso_numeric values" do
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "XXX",
+          subunit_to_unit: 1,
+          iso_numeric: 0
+        )
+      end
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "XXX",
+          subunit_to_unit: 1,
+          iso_numeric: -1
+        )
+      end
+    end
+
+    it "raises ArgumentError for non-positive :smallest_denomination values" do
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "XXX",
+          subunit_to_unit: 1,
+          smallest_denomination: 0
+        )
+      end
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
+          code: "XXX",
+          subunit_to_unit: 1,
+          smallest_denomination: -1
+        )
+      end
+    end
+  end
+
   describe ".wrap?" do
     it "returns nil for invalid ids" do
       Money::Currency.wrap?(:foo).should be_nil

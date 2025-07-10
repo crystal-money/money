@@ -105,6 +105,18 @@ struct Money
       @thousands_separator = nil,
       @smallest_denomination = nil,
     )
+      unless code.chars.all? { |char| char.ascii_uppercase? || char.ascii_number? }
+        raise ArgumentError.new(":code must be all uppercase letters and/or digits")
+      end
+      unless subunit_to_unit.positive?
+        raise ArgumentError.new(":subunit_to_unit must be positive")
+      end
+      if iso_numeric && !iso_numeric.positive?
+        raise ArgumentError.new(":iso_numeric must be positive")
+      end
+      if smallest_denomination && !smallest_denomination.positive?
+        raise ArgumentError.new(":smallest_denomination must be positive")
+      end
     end
 
     def_equals_and_hash id
