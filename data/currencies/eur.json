@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 2,
   "iso_numeric": 978,
   "code": "EUR",

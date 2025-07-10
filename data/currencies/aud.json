@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 4,
   "iso_numeric": 36,
   "code": "AUD",

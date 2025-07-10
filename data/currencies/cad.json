@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 5,
   "iso_numeric": 124,
   "code": "CAD",

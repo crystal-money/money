@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 348,
   "code": "HUF",
   "name": "Hungarian Forint",

@@ -1,4 +1,5 @@
 {
+  "type": "crypto",
   "code": "BTC",
   "name": "Bitcoin",
   "symbol": "₿",

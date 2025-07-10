@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 440,
   "code": "LTL",
   "name": "Lithuanian Litas",

@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 756,
   "code": "CHF",
   "name": "Swiss Franc",

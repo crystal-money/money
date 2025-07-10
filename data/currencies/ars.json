@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 32,
   "code": "ARS",
   "name": "Argentine Peso",

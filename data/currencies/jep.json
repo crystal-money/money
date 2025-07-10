@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "code": "JEP",
   "name": "Jersey Pound",
   "symbol": "£",

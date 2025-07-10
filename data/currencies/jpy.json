@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 6,
   "iso_numeric": 392,
   "code": "JPY",

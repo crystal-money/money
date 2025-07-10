@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 192,
   "code": "CUP",
   "name": "Cuban Peso",

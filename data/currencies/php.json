@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 608,
   "code": "PHP",
   "name": "Philippine Peso",

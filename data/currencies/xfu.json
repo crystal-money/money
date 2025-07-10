@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "code": "XFU",
   "name": "UIC Franc",
   "disambiguate_symbol": "XFU",

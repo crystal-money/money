@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "code": "CNH",
   "name": "Chinese Renminbi Yuan Offshore",
   "symbol": "¥",

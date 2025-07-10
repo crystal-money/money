@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 360,
   "code": "IDR",
   "name": "Indonesian Rupiah",

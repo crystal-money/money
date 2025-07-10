@@ -226,6 +226,15 @@ describe Money::Currency do
     end
   end
 
+  describe "#type" do
+    it "works as documented" do
+      Money::Currency.find(:xts).type.should be_nil
+      Money::Currency.find(:xau).type.should eq Money::Currency::Type::Metal
+      Money::Currency.find(:usd).type.should eq Money::Currency::Type::Fiat
+      Money::Currency.find(:btc).type.should eq Money::Currency::Type::Crypto
+    end
+  end
+
   describe "#cents_based?" do
     it "returns true for cents based currency" do
       Money::Currency.find(:usd).cents_based?.should be_true

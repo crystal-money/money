@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 51,
   "code": "AMD",
   "name": "Armenian Dram",

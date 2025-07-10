@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 800,
   "code": "UGX",
   "name": "Ugandan Shilling",

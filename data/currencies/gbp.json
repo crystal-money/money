@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 3,
   "iso_numeric": 826,
   "code": "GBP",

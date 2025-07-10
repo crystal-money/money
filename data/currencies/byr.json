@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "priority": 50,
   "iso_numeric": 974,
   "code": "BYR",

@@ -1,4 +1,5 @@
 {
+  "type": "fiat",
   "iso_numeric": 60,
   "code": "BMD",
   "name": "Bermudian Dollar",
