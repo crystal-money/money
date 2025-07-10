@@ -124,6 +124,13 @@ struct Money
 
     def_equals_and_hash id
 
+    {% for type in Type.constants.map(&.underscore.id) %}
+      # Returns `true` if the currency `#type` is `{{ type }}`, otherwise `false`.
+      def {{ type }}? : Bool
+        !!type.try(&.{{ type }}?)
+      end
+    {% end %}
+
     # Returns the relation between subunit and unit as a base 10 exponent.
     #
     # NOTE: MGA and MRU are exceptions and are rounded to 1.

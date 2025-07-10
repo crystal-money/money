@@ -235,6 +235,33 @@ describe Money::Currency do
     end
   end
 
+  describe "#metal?" do
+    it "works as documented" do
+      Money::Currency.find(:xts).metal?.should be_false
+      Money::Currency.find(:xau).metal?.should be_true
+      Money::Currency.find(:usd).metal?.should be_false
+      Money::Currency.find(:btc).metal?.should be_false
+    end
+  end
+
+  describe "#fiat?" do
+    it "works as documented" do
+      Money::Currency.find(:xts).fiat?.should be_false
+      Money::Currency.find(:xau).fiat?.should be_false
+      Money::Currency.find(:usd).fiat?.should be_true
+      Money::Currency.find(:btc).fiat?.should be_false
+    end
+  end
+
+  describe "#crypto?" do
+    it "works as documented" do
+      Money::Currency.find(:xts).crypto?.should be_false
+      Money::Currency.find(:xau).crypto?.should be_false
+      Money::Currency.find(:usd).crypto?.should be_false
+      Money::Currency.find(:btc).crypto?.should be_true
+    end
+  end
+
   describe "#cents_based?" do
     it "returns true for cents based currency" do
       Money::Currency.find(:usd).cents_based?.should be_true
