@@ -12,6 +12,27 @@ private ROUNDING_CONVERSIONS = {
   ],
 }
 
+private NEAREST_CASH_VALUES = {
+  {2350, "AED", 2350},
+  {-2350, "AED", -2350},
+  {2213, "AED", 2225},
+  {-2213, "AED", -2225},
+  {2212, "AED", 2200},
+  {-2212, "AED", -2200},
+  {178, "CHF", 180},
+  {-178, "CHF", -180},
+  {177, "CHF", 175},
+  {-177, "CHF", -175},
+  {175, "CHF", 175},
+  {-175, "CHF", -175},
+  {299, "USD", 299},
+  {-299, "USD", -299},
+  {300, "USD", 300},
+  {-300, "USD", -300},
+  {301, "USD", 301},
+  {-301, "USD", -301},
+}
+
 describe Money do
   describe ".new" do
     context "given the initializing value is an integer" do
@@ -309,48 +330,45 @@ describe Money do
     end
   end
 
-  describe "#nearest_cash_value" do
+  describe "#rounded_to_nearest_cash_value?" do
     it "rounds to the nearest possible cash value" do
-      sets = {
-        {2350, "AED", 2350},
-        {-2350, "AED", -2350},
-        {2213, "AED", 2225},
-        {-2213, "AED", -2225},
-        {2212, "AED", 2200},
-        {-2212, "AED", -2200},
-        {178, "CHF", 180},
-        {-178, "CHF", -180},
-        {177, "CHF", 175},
-        {-177, "CHF", -175},
-        {175, "CHF", 175},
-        {-175, "CHF", -175},
-        {299, "USD", 299},
-        {-299, "USD", -299},
-        {300, "USD", 300},
-        {-300, "USD", -300},
-        {301, "USD", 301},
-        {-301, "USD", -301},
-      }
-      sets.each do |(fractional, currency, expected)|
-        Money.new(fractional, currency).nearest_cash_value.should eq expected
+      NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
+        Money.new(fractional, currency).rounded_to_nearest_cash_value?
+          .should eq Money.new(expected, currency)
+      end
+    end
+
+    it "returns `nil` if smallest denomination is not defined" do
+      Money.new(100, "XAG").rounded_to_nearest_cash_value?.should be_nil
+    end
+  end
+
+  describe "#rounded_to_nearest_cash_value!" do
+    it "rounds to the nearest possible cash value" do
+      NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
+        Money.new(fractional, currency).rounded_to_nearest_cash_value!
+          .should eq Money.new(expected, currency)
       end
     end
 
     it "raises an exception if smallest denomination is not defined" do
-      money = Money.new(100, "XAG")
       expect_raises(Money::UndefinedSmallestDenominationError) do
-        money.nearest_cash_value
+        Money.new(100, "XAG").rounded_to_nearest_cash_value!
       end
-    end
-
-    it "returns a BigDecimal" do
-      Money.new(100, "EUR").nearest_cash_value.should be_a BigDecimal
     end
   end
 
   describe "#rounded_to_nearest_cash_value" do
     it "rounds to the nearest possible cash value" do
-      Money.new(-2213, "AED").rounded_to_nearest_cash_value.cents.should eq -2225
+      NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
+        Money.new(fractional, currency).rounded_to_nearest_cash_value
+          .should eq Money.new(expected, currency)
+      end
+    end
+
+    it "returns `self` if smallest denomination is not defined" do
+      money = Money.new(100, "XAG")
+      money.rounded_to_nearest_cash_value.should eq money
     end
   end
 
