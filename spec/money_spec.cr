@@ -93,6 +93,15 @@ describe Money do
     end
   end
 
+  describe ".configure" do
+    it "yields the current `Money.context`" do
+      Money.configure do |context|
+        context.should be_a Money::Context
+        context.should be Money.context
+      end
+    end
+  end
+
   describe ".with_rounding_mode" do
     ROUNDING_CONVERSIONS.each do |mode, values|
       values.each do |(value, expected)|

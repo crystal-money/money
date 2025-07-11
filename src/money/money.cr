@@ -28,6 +28,18 @@ struct Money
   include Comparable(Money)
   include Steppable
 
+  # Yields the given block with the current `Money.context` as an argument.
+  #
+  # ```
+  # Money.configure do |context|
+  #   context.infinite_precision = true
+  #   context.default_currency = "EUR"
+  # end
+  # ```
+  def self.configure(& : Money::Context ->) : Nil
+    yield context
+  end
+
   # Spawns a new fiber with the `Money::Context` copied from the current fiber.
   #
   # ```
