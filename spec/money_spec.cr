@@ -205,6 +205,11 @@ describe Money do
   end
 
   describe "#==" do
+    it "returns true even if exchange differs" do
+      Money.new(1_00, "USD", Money::Currency::Exchange.new)
+        .should eq Money.new(1_00, "USD", Money::Currency::Exchange.new)
+    end
+
     it "returns true if both amounts are zero, even if currency differs" do
       Money.new(0, "USD").should eq Money.new(0, "USD")
       Money.new(0, "USD").should eq Money.new(0, "EUR")
