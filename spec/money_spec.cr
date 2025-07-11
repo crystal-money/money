@@ -33,6 +33,12 @@ private NEAREST_CASH_VALUES = {
   {-301, "USD", -301},
 }
 
+struct Money
+  def copy_with(**options) : Money
+    previous_def
+  end
+end
+
 describe Money do
   describe ".new" do
     context "given the initializing value is an integer" do
@@ -276,6 +282,31 @@ describe Money do
         Money.new(2_00, "USD"),
         Money.new(3_00, "USD"),
       ]
+    end
+  end
+
+  describe "#copy_with" do
+    it "copies the currency" do
+      Money.new(1_00, "EUR").copy_with(fractional: 3_00)
+        .should eq Money.new(3_00, "EUR")
+    end
+
+    it "copies the exchange" do
+      exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
+
+      money = Money.new(1_00, "EUR", exchange)
+      money.exchange.should be exchange
+
+      money.copy_with(fractional: 3_00).exchange
+        .should be exchange
+    end
+
+    it "does not materialize the `exchange` property" do
+      money = Money.new(1_00, "EUR")
+      money.@exchange.should be_nil
+
+      money.copy_with(fractional: 3_00).@exchange
+        .should be_nil
     end
   end
 
