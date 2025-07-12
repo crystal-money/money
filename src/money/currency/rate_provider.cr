@@ -47,6 +47,14 @@ class Money::Currency
       build(name, options)
     end
 
+    # Returns the value of the environment variable *key* or raises
+    # `RateProviderRequiredOptionError` if the variable is not set.
+    protected def option_from_env(key : String) : String
+      ENV[key]? ||
+        raise RateProviderRequiredOptionError.new \
+          "Environment variable #{key.inspect} is required"
+    end
+
     # Returns an array of supported base currency codes.
     abstract def base_currency_codes : Array(String)
 

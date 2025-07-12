@@ -8,9 +8,7 @@ class Money::Currency
     Log = ::Log.for(self)
 
     property api_key : String do
-      ENV["ABSTRACT_API_KEY"]? ||
-        raise RateProviderAPIKeyMissingError.new \
-          "Missing `ABSTRACT_API_KEY` environment variable"
+      option_from_env("ABSTRACT_API_KEY")
     end
     property host : URI do
       URI.parse("https://exchange-rates.abstractapi.com")

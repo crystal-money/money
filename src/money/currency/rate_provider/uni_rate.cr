@@ -8,9 +8,7 @@ class Money::Currency
     Log = ::Log.for(self)
 
     property api_key : String do
-      ENV["UNIRATE_API_KEY"]? ||
-        raise RateProviderAPIKeyMissingError.new \
-          "Missing `UNIRATE_API_KEY` environment variable"
+      option_from_env("UNIRATE_API_KEY")
     end
     property host : URI do
       URI.parse("https://api.unirateapi.com")

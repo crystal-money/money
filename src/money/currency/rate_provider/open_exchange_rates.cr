@@ -8,9 +8,7 @@ class Money::Currency
     Log = ::Log.for(self)
 
     property app_id : String do
-      ENV["OPEN_EXCHANGE_RATES_APP_ID"]? ||
-        raise RateProviderAPIKeyMissingError.new \
-          "Missing `OPEN_EXCHANGE_RATES_APP_ID` environment variable"
+      option_from_env("OPEN_EXCHANGE_RATES_APP_ID")
     end
     property host : URI do
       URI.parse("https://openexchangerates.org")

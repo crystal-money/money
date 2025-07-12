@@ -8,9 +8,7 @@ class Money::Currency
     Log = ::Log.for(self)
 
     property access_key : String do
-      ENV["CURRENCY_LAYER_ACCESS_KEY"]? ||
-        raise RateProviderAPIKeyMissingError.new \
-          "Missing `CURRENCY_LAYER_ACCESS_KEY` environment variable"
+      option_from_env("CURRENCY_LAYER_ACCESS_KEY")
     end
     property host : URI do
       URI.parse("https://api.currencylayer.com")

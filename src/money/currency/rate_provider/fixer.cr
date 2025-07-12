@@ -8,9 +8,7 @@ class Money::Currency
     Log = ::Log.for(self)
 
     property access_key : String do
-      ENV["FIXER_ACCESS_KEY"]? ||
-        raise RateProviderAPIKeyMissingError.new \
-          "Missing `FIXER_ACCESS_KEY` environment variable"
+      option_from_env("FIXER_ACCESS_KEY")
     end
     property host : URI do
       URI.parse("https://data.fixer.io")

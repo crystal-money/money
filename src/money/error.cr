@@ -42,8 +42,8 @@ struct Money
     end
   end
 
-  # Raised when a rate provider is missing an API key.
-  class RateProviderAPIKeyMissingError < Error
+  # Raised when a rate provider is missing a required option.
+  class RateProviderRequiredOptionError < Error
   end
 
   # Raised by `Currency::Exchange::SingleCurrency` when trying to exchange currencies.
