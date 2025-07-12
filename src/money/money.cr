@@ -102,6 +102,44 @@ struct Money
     self.default_exchange = Currency::Exchange::SingleCurrency.new
   end
 
+  # Creates a new `Money` object of *value* given as an amount
+  # of the given *currency* (as fractional if `Int`, or whole amount otherwise).
+  #
+  # ```
+  # Money.new                      # => Money(@amount=0.0 @currency="USD")
+  # Money.new(1_50)                # => Money(@amount=1.5 @currency="USD")
+  # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
+  # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
+  # ```
+  #
+  # WARNING: Floating points cannot guarantee precision. Therefore, they
+  # should only be used when you no longer need to represent currency or
+  # working with another system that requires floats.
+  def self.new(value : Number = 0, currency = Money.default_currency, exchange = nil)
+    new(value, currency, exchange)
+  end
+
+  # :nodoc:
+  def self.new(value : Float | BigDecimal | BigRational, currency, exchange)
+    if value.responds_to?(:finite?) && !value.finite?
+      raise ArgumentError.new "Must be initialized with a finite value"
+    end
+    new(
+      amount: value,
+      currency: currency,
+      exchange: exchange,
+    )
+  end
+
+  # :nodoc:
+  def self.new(value : Int, currency, exchange)
+    new(
+      fractional: value,
+      currency: currency,
+      exchange: exchange,
+    )
+  end
+
   # Numerical value of the money.
   getter amount : BigDecimal
 
@@ -119,47 +157,27 @@ struct Money
   end
 
   # Creates a new `Money` object of value given as an *amount*
-  # of the given *currency* (as fractional if `Int`, or whole amount otherwise).
+  # of the given *currency*.
   #
   # ```
-  # Money.new                      # => Money(@amount=0.0 @currency="USD")
-  # Money.new(1_50)                # => Money(@amount=1.5 @currency="USD")
-  # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
-  # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
+  # Money.new(amount: 13.37) # => Money(@amount=13.37)
   # ```
-  def initialize(amount : Number = 0, currency = Money.default_currency, exchange = nil)
-    initialize(amount, currency, exchange)
-  end
-
-  # :nodoc:
-  def initialize(amount : BigDecimal | BigRational, currency, exchange)
+  def initialize(*, amount : Number, currency = Money.default_currency, exchange = nil)
     @currency = Currency.wrap(currency)
     @amount = amount.to_big_d
     @exchange = exchange
   end
 
-  # :nodoc:
-  def initialize(amount : Float, currency, exchange)
-    unless amount.finite?
-      raise ArgumentError.new "Must be initialized with a finite value"
-    end
-    initialize(amount.to_big_d, currency, exchange)
-  end
-
-  # :nodoc:
-  def initialize(*, fractional : BigDecimal, currency = Money.default_currency, exchange = nil)
+  # Creates a new `Money` object of value given as a *fractional*
+  # of the given *currency*.
+  #
+  # ```
+  # Money.new(fractional: 13_37) # => Money(@amount=13.37)
+  # ```
+  def initialize(*, fractional : Number, currency = Money.default_currency, exchange = nil)
     @currency = Currency.wrap(currency)
-    @amount = fractional / @currency.subunit_to_unit
+    @amount = fractional.to_big_d / @currency.subunit_to_unit
     @exchange = exchange
-  end
-
-  # :nodoc:
-  def initialize(fractional : Int, currency, exchange)
-    initialize(
-      fractional: fractional.to_big_d,
-      currency: currency,
-      exchange: exchange,
-    )
   end
 
   # Returns a new `Money` instance with same `currency` and `exchange`

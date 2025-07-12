@@ -9,7 +9,7 @@ struct Money
     # ```
     #
     # See also `#initialize`.
-    def from_amount(amount : Number | String, currency = default_currency, exchange = nil) : Money
+    def from_amount(amount : Number | String, currency = Money.default_currency, exchange = nil) : Money
       new(amount.to_big_d, currency, exchange)
     end
 
@@ -19,7 +19,7 @@ struct Money
     # Money.zero       # => Money(@amount=0.0)
     # Money.zero(:pln) # => Money(@amount=0.0 @currency="PLN")
     # ```
-    def zero(currency = default_currency, exchange = nil) : Money
+    def zero(currency = Money.default_currency, exchange = nil) : Money
       new(0, currency, exchange)
     end
 
