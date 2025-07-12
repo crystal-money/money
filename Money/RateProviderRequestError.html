@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::UnknownRateProviderError - money master</title>
+  <title>Money::RateProviderRequestError - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -322,7 +322,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/RateProviderRequestError" data-name="money::rateproviderrequesterror">
+  <li class=" current" data-id="money/Money/RateProviderRequestError" data-name="money::rateproviderrequesterror">
       <a href="../Money/RateProviderRequestError.html">RateProviderRequestError</a>
       
     </li>
@@ -347,7 +347,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
+  <li class=" " data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
       <a href="../Money/UnknownRateProviderError.html">UnknownRateProviderError</a>
       
     </li>
@@ -378,12 +378,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>UnknownRateProviderError
+  </span> Money::<wbr>RateProviderRequestError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/UnknownRateProviderError.html">Money::UnknownRateProviderError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/RateProviderRequestError.html">Money::RateProviderRequestError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -397,7 +397,7 @@
     Overview
   </h2>
 
-  <p>Raised when trying to find an unknown rate provider.</p>
+  <p>Raised when a request to a rate provider fails.</p>
 
 
 
@@ -424,7 +424,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/be41039/src/money/error.cr#L14" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/be41039/src/money/error.cr#L39" target="_blank">
         money/error.cr
       </a>
     
@@ -447,7 +447,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28key%29-class-method" class="signature"><strong>.new</strong>(key)</a>
+        <a href="#new%28status%29-class-method" class="signature"><strong>.new</strong>(status)</a>
         
       </li>
     
@@ -527,18 +527,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(key)-class-method">
+    <div class="entry-detail" id="new(status)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(key)
+        def self.<strong>new</strong>(status)
 
-        <a class="method-permalink" href="#new%28key%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28status%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/error.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/error.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
