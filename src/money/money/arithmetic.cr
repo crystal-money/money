@@ -181,7 +181,7 @@ struct Money
       if (negative? && other.negative?) || (positive? && other.positive?)
         modulo(other)
       else
-        modulo(other) - copy_with(amount: other)
+        modulo(other) - copy_with(fractional: other)
       end
     end
 
