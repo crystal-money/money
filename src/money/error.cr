@@ -35,6 +35,13 @@ struct Money
     end
   end
 
+  # Raised when a request to a rate provider fails.
+  class RateProviderRequestError < Error
+    def initialize(status)
+      super("Request failed with status: #{status}")
+    end
+  end
+
   # Raised by `Currency::Exchange::SingleCurrency` when trying to exchange currencies.
   class DifferentCurrencyError < Error
     def initialize(base : Currency, target : Currency)

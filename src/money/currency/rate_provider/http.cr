@@ -26,7 +26,7 @@ class Money::Currency
 
       client.exec(method, path, headers, body) do |response|
         unless response.success?
-          raise "Request failed with status: #{response.status}"
+          raise RateProviderRequestError.new(response.status)
         end
         yield response
       end
