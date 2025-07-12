@@ -29,7 +29,9 @@ class Money::Currency
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"]?.try(&.as_bool)
-          raise "Rate provider error: #{result["code"]}"
+          raise RateProviderError.new(
+            result.dig("error", "code"),
+            result.dig?("error", "message"))
         end
 
         currencies =
@@ -52,7 +54,9 @@ class Money::Currency
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"]?.try(&.as_bool)
-          raise "Rate provider error: #{result["code"]}"
+          raise RateProviderError.new(
+            result.dig("error", "code"),
+            result.dig?("error", "message"))
         end
 
         rate =
