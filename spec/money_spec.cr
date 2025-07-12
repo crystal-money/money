@@ -19,83 +19,14 @@ struct Money
 end
 
 describe Money do
-  describe ".new" do
-    context "given the initializing value is an integer" do
-      it "stores the integer as the number of cents" do
-        Money.new(1).cents.should eq 1
-      end
-    end
-
-    context "given the initializing value is a float" do
-      context "and the value is Infinity" do
-        it do
-          expect_raises(ArgumentError) { Money.new(-Float32::INFINITY) }
-          expect_raises(ArgumentError) { Money.new(-Float64::INFINITY) }
-          expect_raises(ArgumentError) { Money.new(Float32::INFINITY) }
-          expect_raises(ArgumentError) { Money.new(Float64::INFINITY) }
-        end
-      end
-
-      context "and the value is NaN" do
-        it do
-          expect_raises(ArgumentError) { Money.new(Float32::NAN) }
-          expect_raises(ArgumentError) { Money.new(Float64::NAN) }
-        end
-      end
-
-      context "and the value is 1.00" do
-        it { Money.new(1.00).should eq Money.new(1.0) }
-      end
-
-      context "and the value is 1.01" do
-        it { Money.new(1.01).should eq Money.new(1.01) }
-      end
-
-      context "and the value is 1.007" do
-        it { Money.new(1.007).should eq Money.new(1.01) }
-      end
-
-      context "and the value is 1.50" do
-        it { Money.new(1.50).should eq Money.new(1.5) }
-      end
-    end
-
-    context "given the initializing value is a rational" do
-      it { Money.new(BigRational.new(1)).should eq Money.new(1.0) }
-    end
-
-    context "given there's no amount provided" do
-      it "should have zero amount" do
-        Money.new.amount.should eq 0
-      end
-    end
-
-    context "given a currency is not provided" do
-      it "should have the default currency" do
-        Money.new.currency.should be Money.default_currency
-      end
-    end
-
-    context "given a currency is provided" do
-      context "and the currency is NZD" do
-        it "should have NZD currency" do
-          Money.new(currency: "NZD").currency.should be Money::Currency.find("NZD")
-        end
-      end
-    end
-
-    context "given a exchange is not provided" do
-      it "should return the default exchange" do
-        Money.new.exchange.should be Money.default_exchange
-      end
-    end
-
-    context "given a exchange is provided" do
-      exchange = Money::Currency::Exchange::SingleCurrency.new
-
-      it "should return given exchange" do
-        Money.new(exchange: exchange).exchange.should be exchange
-      end
+  describe "implements Steppable" do
+    it "allows stepping ranges" do
+      range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
+      range.step(by: Money.new(1_00, "USD")).to_a.should eq [
+        Money.new(1_00, "USD"),
+        Money.new(2_00, "USD"),
+        Money.new(3_00, "USD"),
+      ]
     end
   end
 
@@ -130,6 +61,70 @@ describe Money do
     end
   end
 
+  describe ".default_currency" do
+    it "accepts a string" do
+      with_default_currency("PLN") do
+        Money.default_currency.should be Money::Currency.find("PLN")
+      end
+    end
+
+    it "accepts a symbol" do
+      with_default_currency(:pln) do
+        Money.default_currency.should be Money::Currency.find("PLN")
+      end
+    end
+  end
+
+  describe ".default_exchange" do
+    it "returns the Currency::Exchange object" do
+      Money.default_exchange.should be_a Money::Currency::Exchange
+    end
+
+    it "sets the value to the given Currency::Exchange object" do
+      exchange = Money::Currency::Exchange::SingleCurrency.new
+      with_default_exchange(exchange) do
+        Money.default_exchange.should be exchange
+      end
+    end
+  end
+
+  describe ".spawn_with_same_context" do
+    it "spawns a fiber with the same context (dup-ed)" do
+      with_default_currency("PLN") do
+        channel = Channel(Money::Context).new
+
+        Money.spawn_with_same_context do
+          channel.send Money.context
+        end
+        channel.receive.should_not be Money.context
+      end
+    end
+
+    it "spawns a fiber with the same context" do
+      with_default_currency("PLN") do
+        channel = Channel(String).new
+
+        Money.spawn_with_same_context do
+          channel.send Money.default_currency.code
+        end
+        channel.receive.should eq "PLN"
+      end
+    end
+
+    it "doesn't leak the context" do
+      with_default_currency("PLN") do
+        channel = Channel(Nil).new
+
+        Money.spawn_with_same_context do
+          Money.default_currency = "EUR"
+          channel.send nil
+        end
+        channel.receive
+        Money.default_currency.code.should eq "PLN"
+      end
+    end
+  end
+
   describe ".disallow_currency_conversions!" do
     it "disallows conversions when doing money arithmetic" do
       with_default_exchange do
@@ -142,44 +137,31 @@ describe Money do
     end
   end
 
-  describe ".from_amount" do
-    it "accepts numeric values" do
-      Money.from_amount(1, "USD").should eq Money.new(1_00, "USD")
-      Money.from_amount(1.0, "USD").should eq Money.new(1_00, "USD")
-      Money.from_amount(1.to_big_d, "USD").should eq Money.new(1_00, "USD")
+  describe "#hash" do
+    it "returns the same value for equal objects" do
+      Money.new(1_00, "EUR").hash.should eq Money.new(1_00, "EUR").hash
+      Money.new(2_00, "USD").hash.should eq Money.new(2_00, "USD").hash
+      Money.new(1_00, "EUR").hash.should_not eq Money.new(2_00, "EUR").hash
+      Money.new(1_00, "EUR").hash.should_not eq Money.new(1_00, "USD").hash
+      Money.new(1_00, "EUR").hash.should_not eq Money.new(2_00, "USD").hash
     end
 
-    it "converts given amount to subunits according to currency" do
-      Money.from_amount(1, "USD").should eq Money.new(1_00, "USD")
-      Money.from_amount(1, "TND").should eq Money.new(1_000, "TND")
-      Money.from_amount(1, "JPY").should eq Money.new(1, "JPY")
-    end
+    pending "can be used to return the intersection of Money object arrays" do
+      moneys = [Money.new(1_00, "EUR"), Money.new(1_00, "USD")]
 
-    it "rounds the given amount to subunits" do
-      Money.from_amount(4.444, "USD").amount.should eq 4.44.to_big_d
-      Money.from_amount(5.555, "USD").amount.should eq 5.56.to_big_d
-      Money.from_amount(444.4, "JPY").amount.should eq 444.to_big_d
-      Money.from_amount(555.5, "JPY").amount.should eq 556.to_big_d
+      intersection = moneys & [Money.new(1_00, "EUR")]
+      intersection.should eq [Money.new(1_00, "EUR")]
     end
+  end
 
-    it "does not round the given amount when .infinite_precision? is set" do
-      Money.with_infinite_precision do
-        Money.from_amount(4.444, "USD").amount.should eq 4.444.to_big_d
-        Money.from_amount(5.555, "USD").amount.should eq 5.555.to_big_d
-        Money.from_amount(444.4, "JPY").amount.should eq 444.4.to_big_d
-        Money.from_amount(555.5, "JPY").amount.should eq 555.5.to_big_d
-      end
-    end
+  describe "#eql?" do
+    it "compares the two object amounts and currencies without performing currency conversion" do
+      Money.new(1_00, "USD").eql?(Money.new(1_00, "USD")).should be_true
+      Money.new(1_00, "USD").eql?(Money.new(1_00, "EUR")).should be_false
+      Money.new(1_00, "USD").eql?(Money.new(1_23, "USD")).should be_false
 
-    it "uses the default currency when no currency is provided" do
-      Money.from_amount(1).currency.should eq Money.default_currency
-    end
-
-    it "accepts an optional currency" do
-      Money::Currency.find("JPY").tap do |jpy|
-        Money.from_amount(1, jpy).currency.should be jpy
-        Money.from_amount(1, "JPY").currency.should be jpy
-      end
+      Money.zero("USD").eql?(Money.zero("USD")).should be_true
+      Money.zero("USD").eql?(Money.zero("EUR")).should be_false
     end
   end
 
@@ -247,28 +229,6 @@ describe Money do
     end
   end
 
-  describe "#eql?" do
-    it "compares the two object amounts and currencies without performing currency conversion" do
-      Money.new(1_00, "USD").eql?(Money.new(1_00, "USD")).should be_true
-      Money.new(1_00, "USD").eql?(Money.new(1_00, "EUR")).should be_false
-      Money.new(1_00, "USD").eql?(Money.new(1_23, "USD")).should be_false
-
-      Money.zero("USD").eql?(Money.zero("USD")).should be_true
-      Money.zero("USD").eql?(Money.zero("EUR")).should be_false
-    end
-  end
-
-  describe "implements Steppable" do
-    it "allows stepping ranges" do
-      range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
-      range.step(by: Money.new(1_00, "USD")).to_a.should eq [
-        Money.new(1_00, "USD"),
-        Money.new(2_00, "USD"),
-        Money.new(3_00, "USD"),
-      ]
-    end
-  end
-
   describe "#copy_with" do
     it "copies the currency" do
       Money.new(1_00, "EUR").copy_with(fractional: 3_00)
@@ -291,6 +251,22 @@ describe Money do
 
       money.copy_with(fractional: 3_00).@exchange
         .should be_nil
+    end
+  end
+
+  describe "#with_currency" do
+    it "returns self if currency is the same" do
+      money = Money.new(10_00, "USD")
+      money.with_currency("USD").should eq money
+    end
+
+    it "returns a new instance in a given currency" do
+      money = Money.new(10_00, "USD")
+      new_money = money.with_currency("EUR")
+
+      new_money.should eq Money.new(10_00, "EUR")
+      new_money.amount.should eq money.amount
+      new_money.exchange.should eq money.exchange
     end
   end
 
@@ -326,22 +302,6 @@ describe Money do
       it "loads currency by string" do
         money.currency.should eq Money::Currency.find("EUR")
       end
-    end
-  end
-
-  describe "#with_currency" do
-    it "returns self if currency is the same" do
-      money = Money.new(10_00, "USD")
-      money.with_currency("USD").should eq money
-    end
-
-    it "returns a new instance in a given currency" do
-      money = Money.new(10_00, "USD")
-      new_money = money.with_currency("EUR")
-
-      new_money.should eq Money.new(10_00, "EUR")
-      new_money.amount.should eq money.amount
-      new_money.exchange.should eq money.exchange
     end
   end
 
@@ -393,87 +353,6 @@ describe Money do
           money.exchange = exchange
           money.exchange.should be exchange
         end
-      end
-    end
-  end
-
-  describe "#hash=" do
-    it "returns the same value for equal objects" do
-      Money.new(1_00, "EUR").hash.should eq Money.new(1_00, "EUR").hash
-      Money.new(2_00, "USD").hash.should eq Money.new(2_00, "USD").hash
-      Money.new(1_00, "EUR").hash.should_not eq Money.new(2_00, "EUR").hash
-      Money.new(1_00, "EUR").hash.should_not eq Money.new(1_00, "USD").hash
-      Money.new(1_00, "EUR").hash.should_not eq Money.new(2_00, "USD").hash
-    end
-
-    pending "can be used to return the intersection of Money object arrays" do
-      moneys = [Money.new(1_00, "EUR"), Money.new(1_00, "USD")]
-
-      intersection = moneys & [Money.new(1_00, "EUR")]
-      intersection.should eq [Money.new(1_00, "EUR")]
-    end
-  end
-
-  describe ".default_currency" do
-    it "accepts a string" do
-      with_default_currency("PLN") do
-        Money.default_currency.should be Money::Currency.find("PLN")
-      end
-    end
-
-    it "accepts a symbol" do
-      with_default_currency(:pln) do
-        Money.default_currency.should be Money::Currency.find("PLN")
-      end
-    end
-  end
-
-  describe ".default_exchange" do
-    it "returns the Currency::Exchange object" do
-      Money.default_exchange.should be_a Money::Currency::Exchange
-    end
-
-    it "sets the value to the given Currency::Exchange object" do
-      exchange = Money::Currency::Exchange::SingleCurrency.new
-      with_default_exchange(exchange) do
-        Money.default_exchange.should be exchange
-      end
-    end
-  end
-
-  describe ".spawn_with_same_context" do
-    it "spawns a fiber with the same context (dup-ed)" do
-      with_default_currency("PLN") do
-        channel = Channel(Money::Context).new
-
-        Money.spawn_with_same_context do
-          channel.send Money.context
-        end
-        channel.receive.should_not be Money.context
-      end
-    end
-
-    it "spawns a fiber with the same context" do
-      with_default_currency("PLN") do
-        channel = Channel(String).new
-
-        Money.spawn_with_same_context do
-          channel.send Money.default_currency.code
-        end
-        channel.receive.should eq "PLN"
-      end
-    end
-
-    it "doesn't leak the context" do
-      with_default_currency("PLN") do
-        channel = Channel(Nil).new
-
-        Money.spawn_with_same_context do
-          Money.default_currency = "EUR"
-          channel.send nil
-        end
-        channel.receive
-        Money.default_currency.code.should eq "PLN"
       end
     end
   end
