@@ -71,24 +71,53 @@ struct Money
         raise UnknownCurrencyError.new(value)
     end
 
-    getter type : Type?
-    getter priority : Int32?
-    getter iso_numeric : Int32?
-    getter code : String
-    getter name : String?
-    getter symbol : String?
-    getter disambiguate_symbol : String?
-    getter alternate_symbols : Array(String)?
-    getter subunit : String?
-    getter subunit_to_unit : UInt64
-    getter? symbol_first : Bool?
-    getter html_entity : String?
-    getter decimal_mark : String?
-    getter thousands_separator : String?
-    getter smallest_denomination : Int32?
-
-    # Currency ID, for time being lower-cased `#code`.
+    # Currency ID (lower-cased `#code`).
     getter id : String { code.downcase }
+
+    # Currency type.
+    getter type : Type?
+
+    # Currency priority (used for sorting).
+    getter priority : Int32?
+
+    # ISO 4217 numeric code.
+    getter iso_numeric : Int32?
+
+    # Currency code.
+    getter code : String
+
+    # Currency name.
+    getter name : String?
+
+    # Currency symbol.
+    getter symbol : String?
+
+    # Disambiguation symbol.
+    getter disambiguate_symbol : String?
+
+    # Alternate symbols.
+    getter alternate_symbols : Array(String)?
+
+    # Currency subunit.
+    getter subunit : String?
+
+    # Subunit to unit value.
+    getter subunit_to_unit : UInt64
+
+    # Should the symbol be placed before the amount?
+    getter? symbol_first : Bool?
+
+    # HTML entity.
+    getter html_entity : String?
+
+    # Decimal mark.
+    getter decimal_mark : String?
+
+    # Thousands separator.
+    getter thousands_separator : String?
+
+    # Smallest denomination.
+    getter smallest_denomination : Int32?
 
     def initialize(
       *,
