@@ -9,7 +9,8 @@ class Money::Currency
 
     property api_key : String do
       ENV["FREECURRENCY_API_KEY"]? ||
-        raise "Missing `FREECURRENCY_API_KEY` environment variable"
+        raise RateProviderAPIKeyMissingError.new \
+          "Missing `FREECURRENCY_API_KEY` environment variable"
     end
     property host : URI do
       URI.parse("https://api.freecurrencyapi.com")

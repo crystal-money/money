@@ -9,7 +9,8 @@ class Money::Currency
 
     property app_id : String do
       ENV["OPEN_EXCHANGE_RATES_APP_ID"]? ||
-        raise "Missing `OPEN_EXCHANGE_RATES_APP_ID` environment variable"
+        raise RateProviderAPIKeyMissingError.new \
+          "Missing `OPEN_EXCHANGE_RATES_APP_ID` environment variable"
     end
     property host : URI do
       URI.parse("https://openexchangerates.org")

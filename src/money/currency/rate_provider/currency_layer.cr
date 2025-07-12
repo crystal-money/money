@@ -9,7 +9,8 @@ class Money::Currency
 
     property access_key : String do
       ENV["CURRENCY_LAYER_ACCESS_KEY"]? ||
-        raise "Missing `CURRENCY_LAYER_ACCESS_KEY` environment variable"
+        raise RateProviderAPIKeyMissingError.new \
+          "Missing `CURRENCY_LAYER_ACCESS_KEY` environment variable"
     end
     property host : URI do
       URI.parse("https://api.currencylayer.com")

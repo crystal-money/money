@@ -9,7 +9,8 @@ class Money::Currency
 
     property api_key : String do
       ENV["ABSTRACT_API_KEY"]? ||
-        raise "Missing `ABSTRACT_API_KEY` environment variable"
+        raise RateProviderAPIKeyMissingError.new \
+          "Missing `ABSTRACT_API_KEY` environment variable"
     end
     property host : URI do
       URI.parse("https://exchange-rates.abstractapi.com")

@@ -42,6 +42,10 @@ struct Money
     end
   end
 
+  # Raised when a rate provider is missing an API key.
+  class RateProviderAPIKeyMissingError < Error
+  end
+
   # Raised by `Currency::Exchange::SingleCurrency` when trying to exchange currencies.
   class DifferentCurrencyError < Error
     def initialize(base : Currency, target : Currency)

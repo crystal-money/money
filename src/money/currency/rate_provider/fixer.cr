@@ -9,7 +9,8 @@ class Money::Currency
 
     property access_key : String do
       ENV["FIXER_ACCESS_KEY"]? ||
-        raise "Missing `FIXER_ACCESS_KEY` environment variable"
+        raise RateProviderAPIKeyMissingError.new \
+          "Missing `FIXER_ACCESS_KEY` environment variable"
     end
     property host : URI do
       URI.parse("https://data.fixer.io")
