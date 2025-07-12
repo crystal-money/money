@@ -22,6 +22,12 @@ describe Money::Currency do
     it "raises ArgumentError for non-upper-case-alphanumeric :code values" do
       expect_raises(ArgumentError) do
         Money::Currency.new(
+          code: "",
+          subunit_to_unit: 1
+        )
+      end
+      expect_raises(ArgumentError) do
+        Money::Currency.new(
           code: "foo",
           subunit_to_unit: 1
         )
