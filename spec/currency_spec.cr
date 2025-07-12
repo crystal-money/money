@@ -4,6 +4,7 @@ describe Money::Currency do
   describe ".new" do
     it "initializes a new currency" do
       currency = Money::Currency.new(
+        type: :metal,
         priority: 1,
         code: "XXX111",
         name: "Golden Doubloon",
@@ -21,31 +22,19 @@ describe Money::Currency do
 
     it "raises ArgumentError for non-upper-case-alphanumeric :code values" do
       expect_raises(ArgumentError) do
-        Money::Currency.new(
-          code: "",
-          subunit_to_unit: 1
-        )
+        Money::Currency.new(subunit_to_unit: 1, code: "")
       end
       expect_raises(ArgumentError) do
-        Money::Currency.new(
-          code: "foo",
-          subunit_to_unit: 1
-        )
+        Money::Currency.new(subunit_to_unit: 1, code: "foo")
       end
       expect_raises(ArgumentError) do
-        Money::Currency.new(
-          code: "foo1",
-          subunit_to_unit: 1
-        )
+        Money::Currency.new(subunit_to_unit: 1, code: "foo1")
       end
     end
 
     it "raises ArgumentError for non-positive :subunit_to_unit values" do
       expect_raises(ArgumentError) do
-        Money::Currency.new(
-          code: "XXX",
-          subunit_to_unit: 0
-        )
+        Money::Currency.new(subunit_to_unit: 0, code: "XXX")
       end
     end
 
