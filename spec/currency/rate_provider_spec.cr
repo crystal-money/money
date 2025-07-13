@@ -1,7 +1,7 @@
 require "../spec_helper"
 
 class Money::Currency
-  class RateProvider::Dummy < RateProvider
+  class RateProvider::DummyFX < RateProvider
     getter base_currency_codes : Array(String) = %w[USD CAD EUR]
     getter rates : Hash({String, String}, Rate)
 
@@ -21,22 +21,22 @@ end
 describe Money::Currency::RateProvider do
   context ".key" do
     it "returns provider key" do
-      Money::Currency::RateProvider::Dummy.key.should eq "dummy"
+      Money::Currency::RateProvider::DummyFX.key.should eq "dummy_fx"
     end
   end
 
   context ".providers" do
     it "registers subclasses in providers" do
-      Money::Currency::RateProvider.providers.has_key?("dummy").should be_true
-      Money::Currency::RateProvider.providers["dummy"]
-        .should eq Money::Currency::RateProvider::Dummy
+      Money::Currency::RateProvider.providers.has_key?("dummy_fx").should be_true
+      Money::Currency::RateProvider.providers["dummy_fx"]
+        .should eq Money::Currency::RateProvider::DummyFX
     end
   end
 
   context ".find?" do
     it "returns provider by name" do
-      Money::Currency::RateProvider.find?("dummy")
-        .should eq Money::Currency::RateProvider::Dummy
+      Money::Currency::RateProvider.find?("dummy_fx")
+        .should eq Money::Currency::RateProvider::DummyFX
     end
 
     it "returns nil for unknown provider" do
@@ -46,8 +46,8 @@ describe Money::Currency::RateProvider do
 
   context ".find" do
     it "returns provider by name" do
-      Money::Currency::RateProvider.find("dummy")
-        .should eq Money::Currency::RateProvider::Dummy
+      Money::Currency::RateProvider.find("dummy_fx")
+        .should eq Money::Currency::RateProvider::DummyFX
     end
 
     it "raises ArgumentError for unknown provider" do
@@ -65,12 +65,12 @@ describe Money::Currency::RateProvider do
     end
 
     it "builds a provider by name" do
-      provider = Money::Currency::RateProvider.build("dummy")
-      provider.should be_a Money::Currency::RateProvider::Dummy
+      provider = Money::Currency::RateProvider.build("dummy_fx")
+      provider.should be_a Money::Currency::RateProvider::DummyFX
     end
 
     it "builds a provider with options" do
-      provider = Money::Currency::RateProvider.build "dummy",
+      provider = Money::Currency::RateProvider.build "dummy_fx",
         base_currency_codes: ["USD"]
       provider.base_currency_codes.should eq ["USD"]
     end
@@ -78,7 +78,7 @@ describe Money::Currency::RateProvider do
 
   context "#base_currency_codes" do
     it "returns supported base currency codes" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
 
       provider.base_currency_codes.should contain("USD")
       provider.base_currency_codes.should contain("CAD")
@@ -88,7 +88,7 @@ describe Money::Currency::RateProvider do
 
   context "#target_currency_codes" do
     it "returns #base_currency_codes by default" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
 
       provider.target_currency_codes
         .should be provider.base_currency_codes
@@ -97,7 +97,7 @@ describe Money::Currency::RateProvider do
 
   context "#exchange_rate?" do
     it "returns exchange rate if available" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
       usd = Money::Currency.find("USD")
       cad = Money::Currency.find("CAD")
 
@@ -106,7 +106,7 @@ describe Money::Currency::RateProvider do
     end
 
     it "returns nil for missing exchange rate" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
       usd = Money::Currency.find("USD")
       eur = Money::Currency.find("EUR")
 
@@ -116,7 +116,7 @@ describe Money::Currency::RateProvider do
 
   context "#supports_currency_pair?" do
     it "returns `true` if both codes are present" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
       usd = Money::Currency.find("USD")
       cad = Money::Currency.find("CAD")
 
@@ -124,7 +124,7 @@ describe Money::Currency::RateProvider do
     end
 
     it "returns `false` if base is missing" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
       usd = Money::Currency.find("USD")
       jpy = Money::Currency.find("JPY")
 
@@ -132,7 +132,7 @@ describe Money::Currency::RateProvider do
     end
 
     it "returns `false` if target is missing" do
-      provider = Money::Currency::RateProvider::Dummy.new
+      provider = Money::Currency::RateProvider::DummyFX.new
       usd = Money::Currency.find("USD")
       jpy = Money::Currency.find("JPY")
 
