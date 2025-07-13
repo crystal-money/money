@@ -32,7 +32,7 @@ describe Money::Currency::Rate do
   end
 
   it "#to_json" do
-    rate.to_json.should eq <<-JSON.gsub(/\s+/, "")
+    rate.to_pretty_json.should eq <<-JSON
       {
         "base": "USD",
         "target": "CAD",
