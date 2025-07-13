@@ -1,9 +1,5 @@
-require "../mixins/initialize_with"
-
 class Money::Currency
   abstract class RateProvider
-    include Mixin::InitializeWith
-
     # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
 
@@ -38,18 +34,6 @@ class Money::Currency
     def self.find(name : String) : RateProvider.class
       find?(name) ||
         raise UnknownRateProviderError.new(name)
-    end
-
-    # Creates a new rate provider instance.
-    def self.build(name : String, options : NamedTuple | Hash) : RateProvider
-      find(name).new.tap do |provider|
-        provider.initialize_with(options)
-      end
-    end
-
-    # :ditto:
-    def self.build(name : String, **options) : RateProvider
-      build(name, options)
     end
 
     # Returns the value of the environment variable *key* or raises

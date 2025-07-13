@@ -57,25 +57,6 @@ describe Money::Currency::RateProvider do
     end
   end
 
-  context ".build" do
-    it "raises ArgumentError for unknown provider" do
-      expect_raises(Money::UnknownRateProviderError, "Unknown rate provider: foo") do
-        Money::Currency::RateProvider.build("foo")
-      end
-    end
-
-    it "builds a provider by name" do
-      provider = Money::Currency::RateProvider.build("dummy_fx")
-      provider.should be_a Money::Currency::RateProvider::DummyFX
-    end
-
-    it "builds a provider with options" do
-      provider = Money::Currency::RateProvider.build "dummy_fx",
-        base_currency_codes: ["USD"]
-      provider.base_currency_codes.should eq ["USD"]
-    end
-  end
-
   context "#base_currency_codes" do
     it "returns supported base currency codes" do
       provider = Money::Currency::RateProvider::DummyFX.new
