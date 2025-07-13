@@ -19,6 +19,12 @@ class Money::Currency
 end
 
 describe Money::Currency::RateProvider do
+  context ".key" do
+    it "returns provider key" do
+      Money::Currency::RateProvider::Dummy.key.should eq "dummy"
+    end
+  end
+
   context ".providers" do
     it "registers subclasses in providers" do
       Money::Currency::RateProvider.providers.has_key?("dummy").should be_true

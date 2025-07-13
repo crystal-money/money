@@ -20,6 +20,11 @@ class Money::Currency
           end
       %}
       ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
+
+      # Returns the provider key.
+      def self.key : String
+        {{ name.stringify }}
+      end
     end
 
     # Returns the rate provider class for the given *name* if found,
