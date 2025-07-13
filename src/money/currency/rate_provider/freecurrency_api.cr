@@ -1,8 +1,8 @@
 require "log"
 
 class Money::Currency
-  # [FreeCurrency](https://freecurrencyapi.com/) currency rate provider.
-  class RateProvider::Freecurrency < RateProvider
+  # [FreecurrencyAPI](https://freecurrencyapi.com/) currency rate provider.
+  class RateProvider::FreecurrencyAPI < RateProvider
     include RateProvider::HTTP
 
     Log = ::Log.for(self)
