@@ -187,8 +187,8 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/Freecurrency" data-name="money::currency::rateprovider::freecurrency">
-      <a href="../../../Money/Currency/RateProvider/Freecurrency.html">Freecurrency</a>
+  <li class=" " data-id="money/Money/Currency/RateProvider/FreecurrencyAPI" data-name="money::currency::rateprovider::freecurrencyapi">
+      <a href="../../../Money/Currency/RateProvider/FreecurrencyAPI.html">FreecurrencyAPI</a>
       
     </li>
   
@@ -327,6 +327,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/RateProviderRequiredOptionError" data-name="money::rateproviderrequiredoptionerror">
+      <a href="../../../Money/RateProviderRequiredOptionError.html">RateProviderRequiredOptionError</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Rounding" data-name="money::rounding">
       <a href="../../../Money/Rounding.html">Rounding</a>
       
@@ -438,7 +443,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L5" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L5" target="_blank">
         money/currency/rate_provider/currency_layer.cr
       </a>
     
@@ -488,6 +493,25 @@
 
 
   
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#key%3AString-class-method" class="signature"><strong>.key</strong> : String</a>
+        
+          <div class="summary"><p>Returns the provider key.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
   
 
@@ -598,8 +622,8 @@
   <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateProvider.html#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="tooltip">
-      <span>build(name : String, options : NamedTuple | Hash) : RateProvider<br/>build(name : String, **options) : RateProvider</span>
+    <a href="../../../Money/Currency/RateProvider.html#build%28key%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="tooltip">
+      <span>build(key : String, options : NamedTuple | Hash) : RateProvider<br/>build(key : String, **options) : RateProvider</span>
     build</a>
     
   
@@ -610,13 +634,13 @@
   <h3>Class methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateProvider.html#find%28name%3AString%29%3ARateProvider.class-class-method" class="tooltip">
-      <span>find(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span></span>
+    <a href="../../../Money/Currency/RateProvider.html#find%28key%3AString%29%3ARateProvider.class-class-method" class="tooltip">
+      <span>find(key : String) : <span class="t">RateProvider</span>.<span class="k">class</span></span>
     find</a>, 
     
   
-    <a href="../../../Money/Currency/RateProvider.html#find%3F%28name%3AString%29%3ARateProvider.class%7CNil-class-method" class="tooltip">
-      <span>find?(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</span>
+    <a href="../../../Money/Currency/RateProvider.html#find%3F%28key%3AString%29%3ARateProvider.class%7CNil-class-method" class="tooltip">
+      <span>find?(key : String) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</span>
     find?</a>, 
     
   
@@ -702,7 +726,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -710,6 +734,37 @@
 
 
   
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="key:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>key</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#key%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the provider key.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
@@ -734,7 +789,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -750,7 +805,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -771,7 +826,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -792,7 +847,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -817,7 +872,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -833,7 +888,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/be41039/src/money/currency/rate_provider/currency_layer.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/currency/rate_provider/currency_layer.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

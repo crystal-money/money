@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::UnknownCurrencyError - money master</title>
+  <title>Money::RateProviderRequiredOptionError - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -327,7 +327,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/RateProviderRequiredOptionError" data-name="money::rateproviderrequiredoptionerror">
+  <li class=" current" data-id="money/Money/RateProviderRequiredOptionError" data-name="money::rateproviderrequiredoptionerror">
       <a href="../Money/RateProviderRequiredOptionError.html">RateProviderRequiredOptionError</a>
       
     </li>
@@ -342,7 +342,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
+  <li class=" " data-id="money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
       <a href="../Money/UnknownCurrencyError.html">UnknownCurrencyError</a>
       
     </li>
@@ -383,12 +383,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>UnknownCurrencyError
+  </span> Money::<wbr>RateProviderRequiredOptionError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/UnknownCurrencyError.html">Money::UnknownCurrencyError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/RateProviderRequiredOptionError.html">Money::RateProviderRequiredOptionError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -402,7 +402,7 @@
     Overview
   </h2>
 
-  <p>Raised when trying to find an unknown currency.</p>
+  <p>Raised when a rate provider is missing a required option.</p>
 
 
 
@@ -429,7 +429,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/error.cr#L7" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/error.cr#L46" target="_blank">
         money/error.cr
       </a>
     
@@ -441,23 +441,6 @@
 
 
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28key%29-class-method" class="signature"><strong>.new</strong>(key)</a>
-        
-      </li>
-    
-  </ul>
-
 
   
 
@@ -523,32 +506,6 @@
   </div>
 
   
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(key)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(key)
-
-        <a class="method-permalink" href="#new%28key%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/ce93bc1/src/money/error.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
   
 
