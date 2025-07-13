@@ -1,8 +1,8 @@
 require "log"
 
 class Money::Currency
-  # [UniRate](https://unirateapi.com/) currency rate provider.
-  class RateProvider::UniRate < RateProvider
+  # [UniRateAPI](https://unirateapi.com/) currency rate provider.
+  class RateProvider::UniRateAPI < RateProvider
     include RateProvider::HTTP
 
     Log = ::Log.for(self)
