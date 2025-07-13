@@ -19,7 +19,7 @@ class Money::Currency
             @type.raise "class must be placed inside `#{superclass_name}` namespace"
           end
       %}
-      ::Money::Currency::RateProvider.providers[{{ name.stringify }}] = self
+      {{ superclass_name }}.providers[{{ name.stringify }}] = self
 
       # Returns the provider key.
       def self.key : String
