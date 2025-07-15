@@ -19,7 +19,9 @@ class Money::Currency
     end
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
-      providers.find_value do |provider|
+      errors = [] of Exception
+
+      rate = providers.find_value do |provider|
         if provider.supports_currency_pair?(base, target)
           provider.exchange_rate?(base, target)
         end
@@ -27,7 +29,13 @@ class Money::Currency
         Log.debug(exception: ex) do
           "Fetching rate for #{base} -> #{target} failed (#{provider.class})"
         end
+        errors << ex
         nil
+      end
+      return rate if rate
+
+      if errors.present?
+        raise AggregateError.new("Failed to fetch rate for #{base} -> #{target}", errors)
       end
     end
   end

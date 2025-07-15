@@ -16,7 +16,7 @@ class Money::Currency
     end
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
-      raise "Simulated error" if @simulate_error
+      raise "Simulated error (#{object_id})" if @simulate_error
       @rates[{base.code, target.code}]?
     end
   end
@@ -75,6 +75,24 @@ describe Money::Currency::RateProvider::Compound do
         [error_provider, provider2] of Money::Currency::RateProvider
       )
       compound_with_error.exchange_rate?(eur, usd).should eq rate_eur_usd
+    end
+
+    it "raises an exception if no rate is found and any matching provider raises" do
+      error_provider =
+        Money::Currency::RateProvider::CompoundDummy.new(
+          base_currency_codes: %w[USD],
+          target_currency_codes: %w[EUR],
+          simulate_error: true
+        )
+      compound_with_error = Money::Currency::RateProvider::Compound.new(
+        [error_provider, error_provider, provider2] of Money::Currency::RateProvider
+      )
+      message = "Failed to fetch rate for USD -> EUR: %1$s, %1$s" % {
+        "Simulated error (#{error_provider.object_id})",
+      }
+      expect_raises(Money::AggregateError, message) do
+        compound_with_error.exchange_rate?(usd, eur)
+      end
     end
   end
 end
