@@ -3,6 +3,41 @@ struct Money
   class Error < Exception
   end
 
+  # Exception class for aggregating individual errors.
+  class AggregateError < Error
+    getter errors : Array(Exception)
+
+    def initialize(message : String, @errors = [] of Exception)
+      super(message)
+    end
+
+    def initialize(@errors, message : String = "Aggregate Error")
+      super(message)
+    end
+
+    def to_s(io : IO) : Nil
+      super
+      return if errors.empty?
+
+      io << ": "
+      errors.each_with_index do |error, index|
+        io << ", " unless index.zero?
+        error.to_s(io)
+      end
+    end
+
+    def inspect_with_backtrace(io : IO) : Nil
+      super
+      return if errors.empty?
+
+      io << "\n"
+      errors.each_with_index do |error, index|
+        io << "\n" unless index.zero?
+        error.inspect_with_backtrace(io)
+      end
+    end
+  end
+
   # Raised when trying to find an unknown currency.
   class UnknownCurrencyError < Error
     def initialize(key)
