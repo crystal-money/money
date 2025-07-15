@@ -1,5 +1,6 @@
 require "json"
 require "big/json"
+require "uri/json"
 
 class Money::Currency
   include JSON::Serializable

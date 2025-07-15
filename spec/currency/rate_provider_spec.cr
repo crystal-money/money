@@ -2,10 +2,12 @@ require "../spec_helper"
 
 class Money::Currency
   class RateProvider::DummyFX < RateProvider
+    getter? foo_option : Bool
+
     getter base_currency_codes : Array(String) = %w[USD CAD EUR]
     getter rates = {} of String => Rate
 
-    def initialize
+    def initialize(*, @foo_option = false)
       @rates = {
         "USD_CAD" => Rate.new(Currency.find("USD"), Currency.find("CAD"), 1.25.to_big_d),
         "EUR_USD" => Rate.new(Currency.find("EUR"), Currency.find("USD"), 1.1.to_big_d),
@@ -19,6 +21,37 @@ class Money::Currency
 end
 
 describe Money::Currency::RateProvider do
+  context "JSON serialization" do
+    dummy_fx_provider_json = <<-JSON
+      {
+        "foo_option": true,
+        "base_currency_codes": [
+          "FOO"
+        ],
+        "rates": {}
+      }
+      JSON
+
+    describe ".from_json" do
+      it "returns unserialized object" do
+        provider =
+          Money::Currency::RateProvider::DummyFX.from_json(dummy_fx_provider_json)
+
+        provider.foo_option?.should be_true
+        provider.base_currency_codes.should eq %w[FOO]
+        provider.rates.should be_empty
+      end
+    end
+
+    describe "#to_json" do
+      it "works as intended" do
+        Money::Currency::RateProvider::DummyFX
+          .from_json(dummy_fx_provider_json).to_pretty_json
+          .should eq dummy_fx_provider_json
+      end
+    end
+  end
+
   context ".key" do
     it "returns provider key" do
       Money::Currency::RateProvider::DummyFX.key.should eq "dummy_fx"
@@ -30,6 +63,26 @@ describe Money::Currency::RateProvider do
       Money::Currency::RateProvider.providers.has_key?("dummy_fx").should be_true
       Money::Currency::RateProvider.providers["dummy_fx"]
         .should eq Money::Currency::RateProvider::DummyFX
+    end
+
+    context "JSON serialization" do
+      it "each provider is serializable" do
+        Money::Currency::RateProvider.providers.each do |key, klass|
+          provider = klass.new
+          provider.to_json.should match /\A\{(.*)\}\z/m
+        rescue ex
+          fail "Failed to serialize #{key.inspect} provider: #{ex}"
+        end
+      end
+
+      it "each provider is deserializable" do
+        Money::Currency::RateProvider.providers.each do |key, klass|
+          provider = klass.from_json(klass.new.to_json)
+          provider.class.should eq klass
+        rescue ex
+          fail "Failed to deserialize #{key.inspect} provider: #{ex}"
+        end
+      end
     end
   end
 
