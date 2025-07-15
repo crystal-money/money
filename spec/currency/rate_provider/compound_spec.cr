@@ -45,7 +45,7 @@ describe Money::Currency::RateProvider::Compound do
     rates: {"EUR_USD" => rate_eur_usd}
   )
 
-  compound = Money::Currency::RateProvider::Compound.new(
+  subject = Money::Currency::RateProvider::Compound.new(
     [provider1, provider2] of Money::Currency::RateProvider
   )
 
@@ -94,24 +94,24 @@ describe Money::Currency::RateProvider::Compound do
 
   describe "#base_currency_codes" do
     it "returns unique base currency codes from all providers" do
-      compound.base_currency_codes.sort.should eq ["EUR", "USD"]
+      subject.base_currency_codes.sort.should eq ["EUR", "USD"]
     end
   end
 
   describe "#target_currency_codes" do
     it "returns unique target currency codes from all providers" do
-      compound.target_currency_codes.sort.should eq ["CAD", "USD"]
+      subject.target_currency_codes.sort.should eq ["CAD", "USD"]
     end
   end
 
   describe "#exchange_rate?" do
     it "returns the rate from the first provider that supports the pair" do
-      compound.exchange_rate?(usd, cad).should eq rate_usd_cad
-      compound.exchange_rate?(eur, usd).should eq rate_eur_usd
+      subject.exchange_rate?(usd, cad).should eq rate_usd_cad
+      subject.exchange_rate?(eur, usd).should eq rate_eur_usd
     end
 
     it "returns nil if no provider supports the pair" do
-      compound.exchange_rate?(usd, eur).should be_nil
+      subject.exchange_rate?(usd, eur).should be_nil
     end
 
     it "skips providers that raise exceptions and continues" do
