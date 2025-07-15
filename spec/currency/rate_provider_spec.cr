@@ -20,6 +20,50 @@ class Money::Currency
   end
 end
 
+private class FooWithGenericProvider
+  include JSON::Serializable
+
+  @[JSON::Field(converter: Money::Currency::RateProvider::Converter)]
+  property provider : Money::Currency::RateProvider
+
+  def initialize(@provider)
+  end
+end
+
+describe Money::Currency::RateProvider::Converter do
+  context "JSON serialization" do
+    foo_json = <<-JSON
+      {
+        "provider": {
+          "name": "dummy_fx",
+          "options": {
+            "foo_option": true,
+            "base_currency_codes": [
+              "USD",
+              "CAD",
+              "EUR"
+            ],
+            "rates": {}
+          }
+        }
+      }
+      JSON
+
+    it "serializes correctly" do
+      provider = Money::Currency::RateProvider::DummyFX.new(foo_option: true)
+      provider.rates.clear
+
+      FooWithGenericProvider.new(provider).to_pretty_json
+        .should eq foo_json
+    end
+
+    it "deserializes correctly" do
+      FooWithGenericProvider.from_json(foo_json).to_pretty_json
+        .should eq foo_json
+    end
+  end
+end
+
 describe Money::Currency::RateProvider do
   context "JSON serialization" do
     dummy_fx_provider_json = <<-JSON

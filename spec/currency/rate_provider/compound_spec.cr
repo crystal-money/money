@@ -27,8 +27,12 @@ describe Money::Currency::RateProvider::Compound do
   cad = Money::Currency.find("CAD")
   eur = Money::Currency.find("EUR")
 
-  rate_usd_cad = Money::Currency::Rate.new(usd, cad, 1.5.to_big_d)
-  rate_eur_usd = Money::Currency::Rate.new(eur, usd, 1.1.to_big_d)
+  rate_usd_cad = Money::Currency::Rate.new(
+    usd, cad, 1.5.to_big_d, Time.parse_utc("2025-05-22", "%F")
+  )
+  rate_eur_usd = Money::Currency::Rate.new(
+    eur, usd, 1.1.to_big_d, Time.parse_utc("2025-05-22", "%F")
+  )
 
   provider1 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR USD],
@@ -44,6 +48,49 @@ describe Money::Currency::RateProvider::Compound do
   compound = Money::Currency::RateProvider::Compound.new(
     [provider1, provider2] of Money::Currency::RateProvider
   )
+
+  context "JSON serialization" do
+    dummy_provider_json = <<-JSON
+      {
+        "providers": [
+          {
+            "name": "compound_dummy",
+            "options": {
+              "base_currency_codes": [
+                "EUR",
+                "USD"
+              ],
+              "target_currency_codes": [
+                "USD",
+                "CAD"
+              ],
+              "rates": {
+                "USD_CAD": {
+                  "base": "USD",
+                  "target": "CAD",
+                  "value": 1.5,
+                  "updated_at": "2025-05-22T00:00:00Z"
+                }
+              },
+              "simulate_error": false
+            }
+          }
+        ]
+      }
+      JSON
+
+    it "serializes providers" do
+      compound = Money::Currency::RateProvider::Compound.new(
+        [provider1] of Money::Currency::RateProvider
+      )
+      compound.to_pretty_json.should eq dummy_provider_json
+    end
+
+    it "deserializes providers" do
+      compound = Money::Currency::RateProvider::Compound.from_json(dummy_provider_json)
+      compound.to_pretty_json.should eq dummy_provider_json
+    end
+  end
 
   describe "#base_currency_codes" do
     it "returns unique base currency codes from all providers" do
