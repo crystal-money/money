@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::RateProviderRequestError - money master</title>
+  <title>Money::AggregateError - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -72,7 +72,7 @@
       
         <ul>
   
-  <li class=" " data-id="money/Money/AggregateError" data-name="money::aggregateerror">
+  <li class=" current" data-id="money/Money/AggregateError" data-name="money::aggregateerror">
       <a href="../Money/AggregateError.html">AggregateError</a>
       
     </li>
@@ -327,7 +327,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/RateProviderRequestError" data-name="money::rateproviderrequesterror">
+  <li class=" " data-id="money/Money/RateProviderRequestError" data-name="money::rateproviderrequesterror">
       <a href="../Money/RateProviderRequestError.html">RateProviderRequestError</a>
       
     </li>
@@ -388,12 +388,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>RateProviderRequestError
+  </span> Money::<wbr>AggregateError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/RateProviderRequestError.html">Money::RateProviderRequestError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Money/AggregateError.html">Money::AggregateError</a></li><li class="superclass"><a href="../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -407,7 +407,7 @@
     Overview
   </h2>
 
-  <p>Raised when a request to a rate provider fails.</p>
+  <p>Exception class for aggregating individual errors.</p>
 
 
 
@@ -434,7 +434,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L74" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L7" target="_blank">
         money/error.cr
       </a>
     
@@ -457,7 +457,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28status%29-class-method" class="signature"><strong>.new</strong>(status)</a>
+        <a href="#new%28message%3AString%2Cerrors%3AArray%28Exception%29%3D%5B%5DofException%29-class-method" class="signature"><strong>.new</strong>(message : String, errors : Array(Exception) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Exception</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28errors%3AArray%28Exception%29%2Cmessage%3AString%3D%22AggregateError%22%29-class-method" class="signature"><strong>.new</strong>(errors : Array(Exception), message : String = <span class="s">&quot;Aggregate Error&quot;</span>)</a>
         
       </li>
     
@@ -469,6 +474,35 @@
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#errors%3AArray%28Exception%29-instance-method" class="signature"><strong>#errors</strong> : Array(Exception)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect_with_backtrace%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#inspect_with_backtrace</strong>(io : IO) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
@@ -537,18 +571,34 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(status)-class-method">
+    <div class="entry-detail" id="new(message:String,errors:Array(Exception)=[]ofException)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(status)
+        def self.<strong>new</strong>(message : <a href="../String.html">String</a>, errors : Array(Exception) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Exception</span>)
 
-        <a class="method-permalink" href="#new%28status%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28message%3AString%2Cerrors%3AArray%28Exception%29%3D%5B%5DofException%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(errors:Array(Exception),message:String=&quot;AggregateError&quot;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(errors : Array(Exception), message : <a href="../String.html">String</a> = <span class="s">&quot;Aggregate Error&quot;</span>)
+
+        <a class="method-permalink" href="#new%28errors%3AArray%28Exception%29%2Cmessage%3AString%3D%22AggregateError%22%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -560,6 +610,80 @@
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="errors:Array(Exception)-instance-method">
+      <div class="signature">
+        
+        def <strong>errors</strong> : Array(Exception)
+
+        <a class="method-permalink" href="#errors%3AArray%28Exception%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect_with_backtrace(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect_with_backtrace</strong>(io : IO) : Nil
+
+        <a class="method-permalink" href="#inspect_with_backtrace%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO) : Nil
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/error.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
