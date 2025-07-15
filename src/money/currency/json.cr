@@ -28,12 +28,12 @@ class Money::Currency
     include JSON::Serializable
 
     def to_json(json : JSON::Builder)
-      json.object do
-        json.field "base", base.to_s
-        json.field "target", target.to_s
-        json.field "value", value
-        json.field "updated_at", updated_at
-      end
+      {
+        base:       base.to_s,
+        target:     target.to_s,
+        value:      value,
+        updated_at: updated_at,
+      }.to_json(json)
     end
   end
 end
