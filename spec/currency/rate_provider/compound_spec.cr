@@ -4,12 +4,12 @@ class Money::Currency
   class RateProvider::CompoundDummy < RateProvider
     getter base_currency_codes : Array(String)
     getter target_currency_codes : Array(String)
-    getter rates : Hash({String, String}, Rate)
+    getter rates = {} of String => Rate
 
     def initialize(
       @base_currency_codes = %w[],
       @target_currency_codes = %w[],
-      @rates = {} of {String, String} => Rate,
+      @rates = {} of String => Rate,
       *,
       @simulate_error = false,
     )
@@ -17,7 +17,7 @@ class Money::Currency
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       raise "Simulated error (#{object_id})" if @simulate_error
-      @rates[{base.code, target.code}]?
+      @rates["%s_%s" % {base.code, target.code}]?
     end
   end
 end
@@ -33,12 +33,12 @@ describe Money::Currency::RateProvider::Compound do
   provider1 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR USD],
     target_currency_codes: %w[USD CAD],
-    rates: { {"USD", "CAD"} => rate_usd_cad }
+    rates: {"USD_CAD" => rate_usd_cad}
   )
   provider2 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR],
     target_currency_codes: %w[USD],
-    rates: { {"EUR", "USD"} => rate_eur_usd }
+    rates: {"EUR_USD" => rate_eur_usd}
   )
 
   compound = Money::Currency::RateProvider::Compound.new(

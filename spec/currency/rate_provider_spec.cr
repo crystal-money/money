@@ -3,17 +3,17 @@ require "../spec_helper"
 class Money::Currency
   class RateProvider::DummyFX < RateProvider
     getter base_currency_codes : Array(String) = %w[USD CAD EUR]
-    getter rates : Hash({String, String}, Rate)
+    getter rates = {} of String => Rate
 
     def initialize
       @rates = {
-        {"USD", "CAD"} => Rate.new(Currency.find("USD"), Currency.find("CAD"), 1.25.to_big_d),
-        {"EUR", "USD"} => Rate.new(Currency.find("EUR"), Currency.find("USD"), 1.1.to_big_d),
+        "USD_CAD" => Rate.new(Currency.find("USD"), Currency.find("CAD"), 1.25.to_big_d),
+        "EUR_USD" => Rate.new(Currency.find("EUR"), Currency.find("USD"), 1.1.to_big_d),
       }
     end
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
-      @rates[{base.code, target.code}]?
+      @rates["%s_%s" % {base.code, target.code}]?
     end
   end
 end
