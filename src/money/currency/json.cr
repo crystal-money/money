@@ -13,6 +13,16 @@ class Money::Currency
     end
   end
 
+  # :nodoc:
+  def self.from_json_object_key?(value : String) : Currency
+    find(value)
+  end
+
+  # :nodoc:
+  def to_json_object_key : String
+    to_s
+  end
+
   struct Rate
     include JSON::Serializable
 

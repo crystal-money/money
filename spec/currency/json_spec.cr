@@ -27,9 +27,23 @@ describe Money::Currency do
     end
   end
 
+  describe ".from_json_object_key?" do
+    it "works as intended" do
+      hash = Hash(Money::Currency, String).from_json(%({"USD": "foo"}))
+      hash.should eq({Money::Currency.find("USD") => "foo"})
+    end
+  end
+
   describe "#to_json" do
     it "works as intended" do
       Money::Currency.from_json(foo_json).to_json.should eq foo_json.gsub(/\s+/, "")
+    end
+  end
+
+  describe "#to_json_object_key" do
+    it "works as intended" do
+      hash = {Money::Currency.find("USD") => "foo"}
+      hash.to_json.should eq %({"USD":"foo"})
     end
   end
 end
