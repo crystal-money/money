@@ -1,8 +1,6 @@
-require "../mixins/initialize_with"
-
 class Money::Currency
   abstract class RateProvider
-    include Mixin::InitializeWith
+    include JSON::Serializable
 
     # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
@@ -27,6 +25,14 @@ class Money::Currency
       end
     end
 
+    # :nodoc:
+    #
+    # This method will be replaced by `JSON::Serializable` for each
+    # descendant rate provider class.
+    def self.new(pull : JSON::PullParser)
+      raise "unreachable"
+    end
+
     # Returns the rate provider class for the given *name* if found,
     # `nil` otherwise.
     def self.find?(name : String) : RateProvider.class | Nil
@@ -38,18 +44,6 @@ class Money::Currency
     def self.find(name : String) : RateProvider.class
       find?(name) ||
         raise UnknownRateProviderError.new(name)
-    end
-
-    # Creates a new rate provider instance.
-    def self.build(name : String, options : NamedTuple | Hash) : RateProvider
-      find(name).new.tap do |provider|
-        provider.initialize_with(options)
-      end
-    end
-
-    # :ditto:
-    def self.build(name : String, **options) : RateProvider
-      build(name, options)
     end
 
     # Returns the value of the environment variable *key* or raises
