@@ -225,3 +225,4 @@ struct Money
 end
 
 require "./currency/json"
+require "./currency/yaml"

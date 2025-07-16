@@ -1,12 +1,8 @@
-require "json"
+{% skip_file unless @top_level.has_constant?(:JSON) %}
+
 require "big/json"
 
 struct Money
-  include JSON::Serializable
-
-  @[JSON::Field(ignore: true)]
-  @exchange : Currency::Exchange?
-
   def self.new(pull : JSON::PullParser)
     case pull.kind
     when .string?

@@ -22,8 +22,10 @@ end
 
 private class FooWithGenericProvider
   include JSON::Serializable
+  include YAML::Serializable
 
   @[JSON::Field(converter: Money::Currency::RateProvider::Converter)]
+  @[YAML::Field(converter: Money::Currency::RateProvider::Converter)]
   property provider : Money::Currency::RateProvider
 
   def initialize(@provider)
@@ -62,6 +64,34 @@ describe Money::Currency::RateProvider::Converter do
         .should eq foo_json
     end
   end
+
+  context "YAML serialization" do
+    foo_yaml = <<-YAML
+      ---
+      provider:
+        name: dummy_fx
+        options:
+          foo_option: true
+          base_currency_codes:
+          - USD
+          - CAD
+          - EUR
+          rates: {}\n
+      YAML
+
+    it "serializes correctly" do
+      provider = Money::Currency::RateProvider::DummyFX.new(foo_option: true)
+      provider.rates.clear
+
+      FooWithGenericProvider.new(provider).to_yaml
+        .should eq foo_yaml
+    end
+
+    it "deserializes correctly" do
+      FooWithGenericProvider.from_yaml(foo_yaml).to_yaml
+        .should eq foo_yaml
+    end
+  end
 end
 
 describe Money::Currency::RateProvider do
@@ -96,6 +126,35 @@ describe Money::Currency::RateProvider do
     end
   end
 
+  context "YAML serialization" do
+    dummy_fx_provider_yaml = <<-YAML
+      ---
+      foo_option: true
+      base_currency_codes:
+      - FOO
+      rates: {}\n
+      YAML
+
+    describe ".from_yaml" do
+      it "returns unserialized object" do
+        provider =
+          Money::Currency::RateProvider::DummyFX.from_yaml(dummy_fx_provider_yaml)
+
+        provider.foo_option?.should be_true
+        provider.base_currency_codes.should eq %w[FOO]
+        provider.rates.should be_empty
+      end
+    end
+
+    describe "#to_yaml" do
+      it "works as intended" do
+        Money::Currency::RateProvider::DummyFX
+          .from_yaml(dummy_fx_provider_yaml).to_yaml
+          .should eq dummy_fx_provider_yaml
+      end
+    end
+  end
+
   context ".key" do
     it "returns provider key" do
       Money::Currency::RateProvider::DummyFX.key.should eq "dummy_fx"
@@ -122,6 +181,26 @@ describe Money::Currency::RateProvider do
       it "each provider is deserializable" do
         Money::Currency::RateProvider.providers.each do |key, klass|
           provider = klass.from_json(klass.new.to_json)
+          provider.class.should eq klass
+        rescue ex
+          fail "Failed to deserialize #{key.inspect} provider: #{ex}"
+        end
+      end
+    end
+
+    context "YAML serialization" do
+      it "each provider is serializable" do
+        Money::Currency::RateProvider.providers.each do |key, klass|
+          provider = klass.new
+          provider.to_yaml.should_not be_nil
+        rescue ex
+          fail "Failed to serialize #{key.inspect} provider: #{ex}"
+        end
+      end
+
+      it "each provider is deserializable" do
+        Money::Currency::RateProvider.providers.each do |key, klass|
+          provider = klass.from_yaml(klass.new.to_yaml)
           provider.class.should eq klass
         rescue ex
           fail "Failed to deserialize #{key.inspect} provider: #{ex}"
