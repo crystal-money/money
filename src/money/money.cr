@@ -33,6 +33,9 @@ struct Money
   {% if @top_level.has_constant?(:JSON) %}
     include JSON::Serializable
   {% end %}
+  {% if @top_level.has_constant?(:YAML) %}
+    include YAML::Serializable
+  {% end %}
 
   # Yields the given block with the current `Money.context` as an argument.
   #
@@ -156,6 +159,9 @@ struct Money
   {% if @top_level.has_constant?(:JSON) %}
     @[JSON::Field(ignore: true)]
   {% end %}
+  {% if @top_level.has_constant?(:YAML) %}
+    @[YAML::Field(ignore: true)]
+  {% end %}
   property exchange : Currency::Exchange?
 
   # :ditto:
@@ -271,3 +277,4 @@ struct Money
 end
 
 require "./money/json"
+require "./money/yaml"
