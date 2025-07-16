@@ -13,8 +13,14 @@ class Money::Currency
     property host : URI do
       URI.parse("https://openexchangerates.org")
     end
+    property? show_alternative = true
 
-    def initialize(*, @app_id = nil, @host = nil)
+    def initialize(
+      *,
+      @app_id = nil,
+      @host = nil,
+      @show_alternative = true,
+    )
     end
 
     # <https://docs.openexchangerates.org/reference/currencies-json>
@@ -23,7 +29,7 @@ class Money::Currency
 
       params = {
         "app_id":           app_id,
-        "show_alternative": "true",
+        "show_alternative": show_alternative?.to_s,
       }
       request("/api/currencies.json", params) do |response|
         result = JSON.parse(response.body_io).as_h
@@ -42,7 +48,7 @@ class Money::Currency
         "app_id":           app_id,
         "base":             base.code,
         "symbols":          target.code,
-        "show_alternative": "true",
+        "show_alternative": show_alternative?.to_s,
       }
       request("/api/latest.json", params) do |response|
         result = JSON.parse(response.body_io).as_h
