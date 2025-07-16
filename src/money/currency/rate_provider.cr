@@ -1,6 +1,8 @@
 class Money::Currency
   abstract class RateProvider
-    include JSON::Serializable
+    {% if @top_level.has_constant?(:JSON) %}
+      include JSON::Serializable
+    {% end %}
 
     # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
@@ -25,13 +27,15 @@ class Money::Currency
       end
     end
 
-    # :nodoc:
-    #
-    # This method will be replaced by `JSON::Serializable` for each
-    # descendant rate provider class.
-    def self.new(pull : JSON::PullParser)
-      raise "unreachable"
-    end
+    {% if @top_level.has_constant?(:JSON) %}
+      # :nodoc:
+      #
+      # This method will be replaced by `JSON::Serializable` for each
+      # descendant rate provider class.
+      def self.new(pull : JSON::PullParser)
+        raise "unreachable"
+      end
+    {% end %}
 
     # Returns the rate provider class for the given *name* if found,
     # `nil` otherwise.

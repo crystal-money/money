@@ -1,4 +1,5 @@
-require "json"
+{% skip_file unless @top_level.has_constant?(:JSON) %}
+
 require "big/json"
 
 struct Money
