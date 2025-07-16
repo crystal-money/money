@@ -11,4 +11,11 @@ struct Money
       previous_def
     end
   end
+
+  def to_json(json : JSON::Builder)
+    {
+      amount:   amount,
+      currency: currency.to_s,
+    }.to_json(json)
+  end
 end

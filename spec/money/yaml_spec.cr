@@ -3,7 +3,7 @@ require "../spec_helper"
 describe Money do
   money_yaml = <<-YAML
     ---
-    amount: 10.00
+    amount: 10.0
     currency: USD\n
     YAML
 
@@ -14,6 +14,7 @@ describe Money do
         money.fractional.should eq 10_00
         money.amount.should eq 10.0
         money.currency.should eq Money::Currency.find("USD")
+        money.to_yaml.should eq money_yaml
       end
     end
 
