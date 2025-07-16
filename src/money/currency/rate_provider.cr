@@ -1,11 +1,11 @@
 class Money::Currency
   abstract class RateProvider
-    {% if @top_level.has_constant?(:JSON) %}
+    if_defined?(:JSON) do
       include JSON::Serializable
-    {% end %}
-    {% if @top_level.has_constant?(:YAML) %}
+    end
+    if_defined?(:YAML) do
       include YAML::Serializable
-    {% end %}
+    end
 
     # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
@@ -30,7 +30,7 @@ class Money::Currency
       end
     end
 
-    {% if @top_level.has_constant?(:JSON) %}
+    if_defined?(:JSON) do
       # :nodoc:
       #
       # This method will be replaced by `JSON::Serializable` for each
@@ -38,9 +38,9 @@ class Money::Currency
       def self.new(pull : JSON::PullParser)
         raise "unreachable"
       end
-    {% end %}
+    end
 
-    {% if @top_level.has_constant?(:YAML) %}
+    if_defined?(:YAML) do
       # :nodoc:
       #
       # This method will be replaced by `YAML::Serializable` for each
@@ -48,7 +48,7 @@ class Money::Currency
       def self.new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
         raise "unreachable"
       end
-    {% end %}
+    end
 
     # Returns the rate provider class for the given *name* if found,
     # `nil` otherwise.

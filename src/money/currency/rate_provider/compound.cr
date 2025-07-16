@@ -5,12 +5,12 @@ class Money::Currency
   class RateProvider::Compound < RateProvider
     Log = ::Log.for(self)
 
-    {% if @top_level.has_constant?(:JSON) %}
+    if_defined?(:JSON) do
       @[JSON::Field(converter: JSON::ArrayConverter(Money::Currency::RateProvider::Converter))]
-    {% end %}
-    {% if @top_level.has_constant?(:YAML) %}
+    end
+    if_defined?(:YAML) do
       @[YAML::Field(converter: YAML::ArrayConverter(Money::Currency::RateProvider::Converter))]
-    {% end %}
+    end
     property providers : Array(RateProvider)
 
     def initialize(@providers = [] of RateProvider)

@@ -6,13 +6,13 @@ class Money::Currency
     # inside of `data/currencies` directory.
     def load_currencies
       currency_table = {} of String => Currency
-      {% if @top_level.has_constant?(:JSON) %}
+      if_defined?(:JSON) do
         Dir.each_child(DATA_PATH) do |filename|
           if currency = parse_currency_file(filename)
             currency_table[currency.id] = currency
           end
         end
-      {% end %}
+      end
       currency_table
     end
 
