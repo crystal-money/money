@@ -30,6 +30,10 @@ struct Money
   include Comparable(Money)
   include Steppable
 
+  {% if @top_level.has_constant?(:JSON) %}
+    include JSON::Serializable
+  {% end %}
+
   # Yields the given block with the current `Money.context` as an argument.
   #
   # ```
@@ -149,6 +153,9 @@ struct Money
   # The `Currency::Exchange` object which currency exchanges are performed with.
   #
   # NOTE: Will return `Money.default_exchange` if set to `nil` (the default).
+  {% if @top_level.has_constant?(:JSON) %}
+    @[JSON::Field(ignore: true)]
+  {% end %}
   property exchange : Currency::Exchange?
 
   # :ditto:
