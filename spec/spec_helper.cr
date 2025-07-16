@@ -1,3 +1,4 @@
+require "yaml"
 require "spec"
 require "../src/money"
 

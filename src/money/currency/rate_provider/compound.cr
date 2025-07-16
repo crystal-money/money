@@ -8,6 +8,9 @@ class Money::Currency
     {% if @top_level.has_constant?(:JSON) %}
       @[JSON::Field(converter: JSON::ArrayConverter(Money::Currency::RateProvider::Converter))]
     {% end %}
+    {% if @top_level.has_constant?(:YAML) %}
+      @[YAML::Field(converter: YAML::ArrayConverter(Money::Currency::RateProvider::Converter))]
+    {% end %}
     property providers : Array(RateProvider)
 
     def initialize(@providers = [] of RateProvider)
