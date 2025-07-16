@@ -157,6 +157,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/RateProvider/Converter" data-name="money::currency::rateprovider::converter">
+      <a href="../../../Money/Currency/RateProvider/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/CurrencyAPI" data-name="money::currency::rateprovider::currencyapi">
       <a href="../../../Money/Currency/RateProvider/CurrencyAPI.html">CurrencyAPI</a>
       
@@ -292,21 +297,6 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Mixin" data-name="money::mixin">
-      <a href="../../../Money/Mixin.html">Mixin</a>
-      
-        <ul>
-  
-  <li class=" " data-id="money/Money/Mixin/InitializeWith" data-name="money::mixin::initializewith">
-      <a href="../../../Money/Mixin/InitializeWith.html">InitializeWith</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
   <li class="parent " data-id="money/Money/Parse" data-name="money::parse">
       <a href="../../../Money/Parse.html">Parse</a>
       
@@ -434,7 +424,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L5" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L5" target="_blank">
         money/currency/rate_provider/compound.cr
       </a>
     
@@ -474,6 +464,13 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Currency rate provider composed of multiple other rate providers.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28providers%3AArray%28Money%3A%3ACurrency%3A%3ARateProvider%29%3D%5B%5DofRateProvider%29-class-method" class="signature"><strong>.new</strong>(providers : Array(Money::Currency::RateProvider) = <span class="o">[]</span> <span class="k">of</span> <span class="t">RateProvider</span>)</a>
@@ -583,15 +580,6 @@
 
       
 
-  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
-  
-  
-    <a href="../../../Money/Currency/RateProvider.html#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="tooltip">
-      <span>build(name : String, options : NamedTuple | Hash) : RateProvider<br/>build(name : String, **options) : RateProvider</span>
-    build</a>
-    
-  
-
 
       
 
@@ -620,15 +608,6 @@
 
     
       
-
-  <h3>Instance methods inherited from module <code><a href="../../../Money/Mixin/InitializeWith.html">Money::Mixin::InitializeWith</a></code></h3>
-  
-  
-    <a href="../../../Money/Mixin/InitializeWith.html#initialize_with%28attributes%29-instance-method" class="tooltip">
-      <span>initialize_with(attributes)<br/>initialize_with(**attributes)</span>
-    initialize_with</a>
-    
-  
 
 
       
@@ -679,6 +658,27 @@
     Constructor Detail
   </h2>
   
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Currency rate provider composed of multiple other rate providers.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="new(providers:Array(Money::Currency::RateProvider)=[]ofRateProvider)-class-method">
       <div class="signature">
         
@@ -690,7 +690,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -723,7 +723,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -762,7 +762,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -787,7 +787,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -803,7 +803,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -819,7 +819,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -844,7 +844,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/compound.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/compound.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>

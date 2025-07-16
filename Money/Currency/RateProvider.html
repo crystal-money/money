@@ -157,6 +157,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/RateProvider/Converter" data-name="money::currency::rateprovider::converter">
+      <a href="../../Money/Currency/RateProvider/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/CurrencyAPI" data-name="money::currency::rateprovider::currencyapi">
       <a href="../../Money/Currency/RateProvider/CurrencyAPI.html">CurrencyAPI</a>
       
@@ -292,21 +297,6 @@
       
     </li>
   
-  <li class="parent " data-id="money/Money/Mixin" data-name="money::mixin">
-      <a href="../../Money/Mixin.html">Mixin</a>
-      
-        <ul>
-  
-  <li class=" " data-id="money/Money/Mixin/InitializeWith" data-name="money::mixin::initializewith">
-      <a href="../../Money/Mixin/InitializeWith.html">InitializeWith</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
   <li class="parent " data-id="money/Money/Parse" data-name="money::parse">
       <a href="../../Money/Parse.html">Parse</a>
       
@@ -414,7 +404,7 @@
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../Money/Mixin/InitializeWith.html">Money::Mixin::InitializeWith</a></li>
+      <li class="other-type">JSON::Serializable</li>
     
   </ul>
 
@@ -485,7 +475,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L4" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L2" target="_blank">
         money/currency/rate_provider.cr
       </a>
     
@@ -497,32 +487,6 @@
 
 
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="signature"><strong>.build</strong>(name : String, options : NamedTuple | Hash) : RateProvider</a>
-        
-          <div class="summary"><p>Creates a new rate provider instance.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#build%28name%3AString%2C%2A%2Aoptions%29%3ARateProvider-class-method" class="signature"><strong>.build</strong>(name : String, **options) : RateProvider</a>
-        
-          <div class="summary"><p>Creates a new rate provider instance.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
   
   <h2>
@@ -608,15 +572,6 @@
     
       
 
-  <h3>Instance methods inherited from module <code><a href="../../Money/Mixin/InitializeWith.html">Money::Mixin::InitializeWith</a></code></h3>
-  
-  
-    <a href="../../Money/Mixin/InitializeWith.html#initialize_with%28attributes%29-instance-method" class="tooltip">
-      <span>initialize_with(attributes)<br/>initialize_with(**attributes)</span>
-    initialize_with</a>
-    
-  
-
 
       
 
@@ -657,58 +612,6 @@
   </div>
 
   
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="build(name:String,options:NamedTuple|Hash):RateProvider-class-method">
-      <div class="signature">
-        
-        def self.<strong>build</strong>(name : <a href="../../String.html">String</a>, options : NamedTuple | Hash) : <a href="../../Money/Currency/RateProvider.html">RateProvider</a>
-
-        <a class="method-permalink" href="#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a new rate provider instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L44" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="build(name:String,**options):RateProvider-class-method">
-      <div class="signature">
-        
-        def self.<strong>build</strong>(name : <a href="../../String.html">String</a>, **options) : <a href="../../Money/Currency/RateProvider.html">RateProvider</a>
-
-        <a class="method-permalink" href="#build%28name%3AString%2C%2A%2Aoptions%29%3ARateProvider-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a new rate provider instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L51" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
   
   <h2>
@@ -737,7 +640,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -759,7 +662,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -780,7 +683,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -815,7 +718,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L64" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -836,7 +739,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -857,7 +760,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -878,7 +781,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -157,6 +157,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/RateProvider/Converter" data-name="money::currency::rateprovider::converter">
+      <a href="../../../Money/Currency/RateProvider/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/CurrencyAPI" data-name="money::currency::rateprovider::currencyapi">
       <a href="../../../Money/Currency/RateProvider/CurrencyAPI.html">CurrencyAPI</a>
       
@@ -289,21 +294,6 @@
   
   <li class=" " data-id="money/Money/Formatting" data-name="money::formatting">
       <a href="../../../Money/Formatting.html">Formatting</a>
-      
-    </li>
-  
-  <li class="parent " data-id="money/Money/Mixin" data-name="money::mixin">
-      <a href="../../../Money/Mixin.html">Mixin</a>
-      
-        <ul>
-  
-  <li class=" " data-id="money/Money/Mixin/InitializeWith" data-name="money::mixin::initializewith">
-      <a href="../../../Money/Mixin/InitializeWith.html">InitializeWith</a>
-      
-    </li>
-  
-</ul>
-
       
     </li>
   
@@ -448,7 +438,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L6" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L6" target="_blank">
         money/currency/rate_provider/float_rates.cr
       </a>
     
@@ -488,6 +478,13 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p><a href="https://www.floatrates.com/">FloatRates</a> currency rate provider.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
@@ -614,15 +611,6 @@
 
       
 
-  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
-  
-  
-    <a href="../../../Money/Currency/RateProvider.html#build%28name%3AString%2Coptions%3ANamedTuple%7CHash%29%3ARateProvider-class-method" class="tooltip">
-      <span>build(name : String, options : NamedTuple | Hash) : RateProvider<br/>build(name : String, **options) : RateProvider</span>
-    build</a>
-    
-  
-
 
       
 
@@ -651,15 +639,6 @@
 
     
       
-
-  <h3>Instance methods inherited from module <code><a href="../../../Money/Mixin/InitializeWith.html">Money::Mixin::InitializeWith</a></code></h3>
-  
-  
-    <a href="../../../Money/Mixin/InitializeWith.html#initialize_with%28attributes%29-instance-method" class="tooltip">
-      <span>initialize_with(attributes)<br/>initialize_with(**attributes)</span>
-    initialize_with</a>
-    
-  
 
 
       
@@ -710,6 +689,27 @@
     Constructor Detail
   </h2>
   
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://www.floatrates.com/">FloatRates</a> currency rate provider.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
       <div class="signature">
         
@@ -721,7 +721,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -754,7 +754,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -789,7 +789,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -814,7 +814,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -839,7 +839,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -855,7 +855,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f2d18e6/src/money/currency/rate_provider/float_rates.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6b2be4e/src/money/currency/rate_provider/float_rates.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
