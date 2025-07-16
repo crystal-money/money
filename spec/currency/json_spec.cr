@@ -1,7 +1,7 @@
 require "../spec_helper"
 
 describe Money::Currency do
-  foo_json = <<-JSON
+  currency_json = <<-JSON
     {
       "code": "FOO",
       "subunit_to_unit": 100
@@ -11,9 +11,9 @@ describe Money::Currency do
   describe ".from_json" do
     context "(object)" do
       it "returns unserialized Currency object" do
-        foo_currency = Money::Currency.from_json(foo_json)
-        foo_currency.code.should eq "FOO"
-        foo_currency.decimal_places.should eq 2
+        currency = Money::Currency.from_json(currency_json)
+        currency.code.should eq "FOO"
+        currency.decimal_places.should eq 2
       end
     end
 
@@ -22,7 +22,9 @@ describe Money::Currency do
         Money::Currency.from_json(%q("USD")).should eq Money::Currency.find("USD")
       end
       it "raises UnknownCurrencyError when unknown key is given" do
-        expect_raises(Money::UnknownCurrencyError) { Money::Currency.from_json(%q("FOO")) }
+        expect_raises(Money::UnknownCurrencyError) do
+          Money::Currency.from_json(%q("FOO"))
+        end
       end
     end
   end
@@ -36,7 +38,8 @@ describe Money::Currency do
 
   describe "#to_json" do
     it "works as intended" do
-      Money::Currency.from_json(foo_json).to_pretty_json.should eq foo_json
+      Money::Currency.from_json(currency_json).to_pretty_json
+        .should eq currency_json
     end
   end
 
