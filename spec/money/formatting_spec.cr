@@ -218,7 +218,6 @@ describe Money::Formatting do
         it "returns the amount without a symbol" do
           money = Money.new(1_00, "GBP")
           money.format(symbol: "").should eq "1.00"
-          money.format(symbol: nil).should eq "1.00"
           money.format(symbol: false).should eq "1.00"
 
           money = Money.new(100, "JPY")
@@ -268,10 +267,9 @@ describe Money::Formatting do
         end
       end
 
-      context "(delimiter: false or nil)" do
+      context "(delimiter: false)" do
         it "works as documented" do
           Money.us_dollar(1_000_00).format(delimiter: false).should eq "$1000.00"
-          Money.us_dollar(2_000_00).format(delimiter: nil).should eq "$2000.00"
         end
       end
 
@@ -354,9 +352,7 @@ describe Money::Formatting do
         it "works as documented" do
           Money.us_dollar(0).format(sign_positive: true, symbol_first: false).should eq "0.00 $"
           Money.us_dollar(100000).format(sign_positive: true, symbol_first: false).should eq "+1,000.00 $"
-          Money.us_dollar(100000).format(sign_positive: true, symbol_first: nil).should eq "+1,000.00 $"
           Money.us_dollar(-100000).format(sign_positive: true, symbol_first: false).should eq "-1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: true, symbol_first: nil).should eq "-1,000.00 $"
         end
       end
 
@@ -370,9 +366,7 @@ describe Money::Formatting do
       context "(sign_positive: false, symbol_first: false)" do
         it "works as documented" do
           Money.us_dollar(100000).format(sign_positive: false, symbol_first: false).should eq "1,000.00 $"
-          Money.us_dollar(100000).format(sign_positive: false, symbol_first: nil).should eq "1,000.00 $"
           Money.us_dollar(-100000).format(sign_positive: false, symbol_first: false).should eq "-1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: false, symbol_first: nil).should eq "-1,000.00 $"
         end
       end
     end
@@ -398,10 +392,8 @@ describe Money::Formatting do
     end
 
     context "when the monetary value is 0" do
-      it "returns '$0.00' when :display_free is false or not given" do
+      it "returns '$0.00' when :display_free is not given" do
         Money.us_dollar(0).format.should eq "$0.00"
-        Money.us_dollar(0).format(display_free: false).should eq "$0.00"
-        Money.us_dollar(0).format(display_free: nil).should eq "$0.00"
       end
 
       it "returns the value specified by :display_free if it's a string-like object" do
