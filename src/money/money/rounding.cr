@@ -6,7 +6,7 @@ struct Money
     # cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
     # and for CHF 0.08, CHF 0.10.
     #
-    # See also `#rounded_to_nearest_cash_value` and `Currency#smallest_denomination`.
+    # See also `#round_to_nearest_cash_value` and `Currency#smallest_denomination`.
     protected def nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : BigDecimal?
       return unless smallest_denomination = currency.smallest_denomination
 
@@ -24,11 +24,11 @@ struct Money
     # and for CHF 0.08, CHF 0.10.
     #
     # ```
-    # Money.new(0.07, "CHF").rounded_to_nearest_cash_value? # => Money(@amount = 0.05)
-    # Money.new(0.08, "CHF").rounded_to_nearest_cash_value? # => Money(@amount = 0.1)
-    # Money.new(10.0, "XAG").rounded_to_nearest_cash_value? # nil
+    # Money.new(0.07, "CHF").round_to_nearest_cash_value? # => Money(@amount = 0.05)
+    # Money.new(0.08, "CHF").round_to_nearest_cash_value? # => Money(@amount = 0.1)
+    # Money.new(10.0, "XAG").round_to_nearest_cash_value? # nil
     # ```
-    def rounded_to_nearest_cash_value?(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money?
+    def round_to_nearest_cash_value?(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money?
       if nearest_cash_value = nearest_cash_value(rounding_mode)
         copy_with(fractional: nearest_cash_value)
       end
@@ -37,18 +37,18 @@ struct Money
     # :ditto:
     #
     # NOTE: This variant raises `UndefinedSmallestDenominationError` if
-    # `#rounded_to_nearest_cash_value?` returns `nil`.
-    def rounded_to_nearest_cash_value!(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money
-      rounded_to_nearest_cash_value?(rounding_mode) ||
+    # `#round_to_nearest_cash_value?` returns `nil`.
+    def round_to_nearest_cash_value!(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money
+      round_to_nearest_cash_value?(rounding_mode) ||
         raise UndefinedSmallestDenominationError.new(currency)
     end
 
     # :ditto:
     #
-    # NOTE: This variant returns `self` if `#rounded_to_nearest_cash_value?`
+    # NOTE: This variant returns `self` if `#round_to_nearest_cash_value?`
     # returns `nil`.
-    def rounded_to_nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money
-      rounded_to_nearest_cash_value?(rounding_mode) || self
+    def round_to_nearest_cash_value(rounding_mode : Number::RoundingMode = Money.rounding_mode) : Money
+      round_to_nearest_cash_value?(rounding_mode) || self
     end
 
     # Rounds the monetary amount to smallest unit of coinage, using

@@ -50,7 +50,7 @@ describe Money do
               Money.new(value, "USD").round(2).should eq Money.new(expected, "USD")
               Money.new(value, "USD").amount.should eq expected.to_big_d
               Money.new(value, "USD")
-                .rounded_to_nearest_cash_value
+                .round_to_nearest_cash_value
                 .should eq Money.new(expected, "USD")
             end
           ensure

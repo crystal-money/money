@@ -22,45 +22,45 @@ private NEAREST_CASH_VALUES = {
 }
 
 describe Money::Rounding do
-  describe "#rounded_to_nearest_cash_value?" do
+  describe "#round_to_nearest_cash_value?" do
     it "rounds to the nearest possible cash value" do
       NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
-        Money.new(fractional, currency).rounded_to_nearest_cash_value?
+        Money.new(fractional, currency).round_to_nearest_cash_value?
           .should eq Money.new(expected, currency)
       end
     end
 
     it "returns `nil` if smallest denomination is not defined" do
-      Money.new(100, "XAG").rounded_to_nearest_cash_value?.should be_nil
+      Money.new(100, "XAG").round_to_nearest_cash_value?.should be_nil
     end
   end
 
-  describe "#rounded_to_nearest_cash_value!" do
+  describe "#round_to_nearest_cash_value!" do
     it "rounds to the nearest possible cash value" do
       NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
-        Money.new(fractional, currency).rounded_to_nearest_cash_value!
+        Money.new(fractional, currency).round_to_nearest_cash_value!
           .should eq Money.new(expected, currency)
       end
     end
 
     it "raises an exception if smallest denomination is not defined" do
       expect_raises(Money::UndefinedSmallestDenominationError) do
-        Money.new(100, "XAG").rounded_to_nearest_cash_value!
+        Money.new(100, "XAG").round_to_nearest_cash_value!
       end
     end
   end
 
-  describe "#rounded_to_nearest_cash_value" do
+  describe "#round_to_nearest_cash_value" do
     it "rounds to the nearest possible cash value" do
       NEAREST_CASH_VALUES.each do |(fractional, currency, expected)|
-        Money.new(fractional, currency).rounded_to_nearest_cash_value
+        Money.new(fractional, currency).round_to_nearest_cash_value
           .should eq Money.new(expected, currency)
       end
     end
 
     it "returns `self` if smallest denomination is not defined" do
       money = Money.new(100, "XAG")
-      money.rounded_to_nearest_cash_value.should eq money
+      money.round_to_nearest_cash_value.should eq money
     end
   end
 
