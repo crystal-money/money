@@ -225,6 +225,16 @@ struct Money
     end
   end
 
+  # Returns a new `Money` instance with incremented `fractional` value.
+  #
+  # ```
+  # Money.new(1_00, "USD").succ # => Money.new(1_01, "USD")
+  # Money.new(1, "JPY").succ    # => Money.new(2, "JPY")
+  # ```
+  def succ : Money
+    copy_with(fractional: fractional + 1)
+  end
+
   # Returns a new `Money` instance in a given currency - if it's different
   # from the current `#currency` - or `self` otherwise, leaving the amount
   # intact and **not** performing currency conversion.

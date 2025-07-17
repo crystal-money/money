@@ -229,6 +229,29 @@ describe Money do
     end
   end
 
+  describe "#succ" do
+    it "returns the next value" do
+      Money.new(1_00, "USD").succ.should eq Money.new(1_01, "USD")
+      Money.new(1, "JPY").succ.should eq Money.new(2, "JPY")
+    end
+
+    it "works with ranges" do
+      range = Money.new(1_00, "USD")..Money.new(1_03, "USD")
+      range.to_a.should eq [
+        Money.new(1_00, "USD"),
+        Money.new(1_01, "USD"),
+        Money.new(1_02, "USD"),
+        Money.new(1_03, "USD"),
+      ]
+      range = Money.new(1, "JPY")..Money.new(3, "JPY")
+      range.to_a.should eq [
+        Money.new(1, "JPY"),
+        Money.new(2, "JPY"),
+        Money.new(3, "JPY"),
+      ]
+    end
+  end
+
   describe "#copy_with" do
     it "copies the currency" do
       Money.new(1_00, "EUR").copy_with(fractional: 3_00)
