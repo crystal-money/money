@@ -167,8 +167,10 @@ class Money::Currency
 
     # Removes rates for the given *base* currency.
     def clear(base : String | Symbol | Currency) : Nil
+      base = Currency.wrap(base)
+
       transaction(mutable: true) do
-        clear_rates(Currency.wrap(base))
+        clear_rates(base)
       end
     end
   end
