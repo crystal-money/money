@@ -38,18 +38,16 @@ describe Money::Currency::Exchange do
     exchange.rate_store["USD", "EUR"] = 1.33
 
     it "returns the exchange rate between two currencies" do
-      exchange.exchange_rate(Money::Currency.find("USD"), Money::Currency.find("EUR"))
-        .should eq 1.33.to_big_d
+      exchange.exchange_rate("USD", "EUR").should eq 1.33.to_big_d
     end
 
     it "return 1 if the currencies are the same" do
-      exchange.exchange_rate(Money::Currency.find("JPY"), Money::Currency.find("JPY"))
-        .should eq 1.to_big_d
+      exchange.exchange_rate("JPY", "JPY").should eq 1.to_big_d
     end
 
     it "raises an UnknownRateError exception when an unknown rate is requested" do
       expect_raises(Money::UnknownRateError) do
-        exchange.exchange_rate(Money::Currency.find("USD"), Money::Currency.find("JPY"))
+        exchange.exchange_rate("USD", "JPY")
       end
     end
   end
@@ -59,18 +57,15 @@ describe Money::Currency::Exchange do
     exchange.rate_store["USD", "EUR"] = 1.33
 
     it "returns the exchange rate between two currencies" do
-      exchange.exchange_rate?(Money::Currency.find("USD"), Money::Currency.find("EUR"))
-        .should eq 1.33.to_big_d
+      exchange.exchange_rate?("USD", "EUR").should eq 1.33.to_big_d
     end
 
     it "return 1 if the currencies are the same" do
-      exchange.exchange_rate?(Money::Currency.find("JPY"), Money::Currency.find("JPY"))
-        .should eq 1.to_big_d
+      exchange.exchange_rate?("JPY", "JPY").should eq 1.to_big_d
     end
 
     it "returns nil when an unknown rate is requested" do
-      exchange.exchange_rate?(Money::Currency.find("USD"), Money::Currency.find("JPY"))
-        .should be_nil
+      exchange.exchange_rate?("USD", "JPY").should be_nil
     end
   end
 
@@ -79,23 +74,23 @@ describe Money::Currency::Exchange do
     exchange.rate_store["USD", "EUR"] = 1.33
 
     it "exchanges one currency to another" do
-      exchange.exchange(Money.new(100, "USD"), Money::Currency.find("EUR"))
+      exchange.exchange(Money.new(100, "USD"), "EUR")
         .should eq Money.new(133, "EUR")
     end
 
     it "returns the same amount when the currencies are the same" do
-      exchange.exchange(Money.new(100, "JPY"), Money::Currency.find("JPY"))
+      exchange.exchange(Money.new(100, "JPY"), "JPY")
         .should eq Money.new(100, "JPY")
     end
 
     it "truncates extra digits" do
-      exchange.exchange(Money.new(10, "USD"), Money::Currency.find("EUR"))
+      exchange.exchange(Money.new(10, "USD"), "EUR")
         .should eq Money.new(13, "EUR")
     end
 
     it "raises an UnknownRateError exception when an unknown rate is requested" do
       expect_raises(Money::UnknownRateError) do
-        exchange.exchange(Money.new(100, "USD"), Money::Currency.find("JPY"))
+        exchange.exchange(Money.new(100, "USD"), "JPY")
       end
     end
   end
@@ -106,10 +101,10 @@ describe Money::Currency::Exchange do
     exchange.rate_store["ETH", "BTC"] = "0.024656261065523388".to_big_d
 
     it "handles cryptocurrencies" do
-      exchange.exchange(Money.from_amount(1_000_000, "BTC"), Money::Currency.find("ETH"))
+      exchange.exchange(Money.from_amount(1_000_000, "BTC"), "ETH")
         .should eq Money.from_amount("40559089.09574122", "ETH")
 
-      exchange.exchange(Money.from_amount(1_000_000, "ETH"), Money::Currency.find("BTC"))
+      exchange.exchange(Money.from_amount(1_000_000, "ETH"), "BTC")
         .should eq Money.from_amount("24656.26106552", "BTC")
     end
   end

@@ -45,7 +45,7 @@ class Money::Currency
 
     # Exchanges the given `Money` object to a new `Money` object in
     # *to* `Currency`.
-    def exchange(from : Money, to : Currency) : Money
+    def exchange(from : Money, to : String | Symbol | Currency) : Money
       amount =
         from.amount * exchange_rate(from.currency, to)
 
@@ -54,7 +54,10 @@ class Money::Currency
 
     # Returns the exchange rate between *base* and *target* currency,
     # or `nil` if not found.
-    def exchange_rate?(base : Currency, target : Currency) : BigDecimal?
+    def exchange_rate?(base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal?
+      base, target =
+        Currency.wrap(base), Currency.wrap(target)
+
       return 1.to_big_d if base == target
 
       @mutex.synchronize do
@@ -65,7 +68,7 @@ class Money::Currency
 
     # Returns the exchange rate between *base* and *target* currency,
     # or raises `UnknownRateError` if not found.
-    def exchange_rate(base : Currency, target : Currency) : BigDecimal
+    def exchange_rate(base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal
       exchange_rate?(base, target) ||
         raise UnknownRateError.new(base, target)
     end
