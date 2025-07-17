@@ -420,7 +420,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5c6f2db/src/money/money/rounding.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/6a58134/src/money/money/rounding.cr#L2" target="_blank">
         money/money/rounding.cr
       </a>
     
@@ -456,21 +456,21 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#rounded_to_nearest_cash_value%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method" class="signature"><strong>#rounded_to_nearest_cash_value</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money</a>
+        <a href="#round_to_nearest_cash_value%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method" class="signature"><strong>#round_to_nearest_cash_value</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> instance with the nearest possible amount in cash value (cents), or <code>nil</code> if the <code>#currency</code> has no smallest denomination defined.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#rounded_to_nearest_cash_value%21%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method" class="signature"><strong>#rounded_to_nearest_cash_value!</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money</a>
+        <a href="#round_to_nearest_cash_value%21%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method" class="signature"><strong>#round_to_nearest_cash_value!</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> instance with the nearest possible amount in cash value (cents), or <code>nil</code> if the <code>#currency</code> has no smallest denomination defined.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#rounded_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method" class="signature"><strong>#rounded_to_nearest_cash_value?</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money | Nil</a>
+        <a href="#round_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method" class="signature"><strong>#round_to_nearest_cash_value?</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : Money | Nil</a>
         
           <div class="summary"><p>Returns a new <code><a href="../Money.html">Money</a></code> instance with the nearest possible amount in cash value (cents), or <code>nil</code> if the <code>#currency</code> has no smallest denomination defined.</p></div>
         
@@ -520,17 +520,17 @@ rounding <em>mode</em> if given, or <code>Money.rounding_mode</code> otherwise.<
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5c6f2db/src/money/money/rounding.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6a58134/src/money/money/rounding.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="rounded_to_nearest_cash_value(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money-instance-method">
+    <div class="entry-detail" id="round_to_nearest_cash_value(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money-instance-method">
       <div class="signature">
         
-        def <strong>rounded_to_nearest_cash_value</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a>
+        def <strong>round_to_nearest_cash_value</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#rounded_to_nearest_cash_value%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#round_to_nearest_cash_value%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -540,27 +540,27 @@ rounding <em>mode</em> if given, or <code>Money.rounding_mode</code> otherwise.<
 <p>For example, in Swiss franc (CHF), the smallest possible amount of
 cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
 and for CHF 0.08, CHF 0.10.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
-<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
-<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
-<p><span class="flag purple">NOTE</span>  This variant returns <code>self</code> if <code><a href="../Money/Rounding.html#rounded_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#rounded_to_nearest_cash_value?</a></code>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
+<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
+<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).round_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
+<p><span class="flag purple">NOTE</span>  This variant returns <code>self</code> if <code><a href="../Money/Rounding.html#round_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#round_to_nearest_cash_value?</a></code>
 returns <code>nil</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5c6f2db/src/money/money/rounding.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6a58134/src/money/money/rounding.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="rounded_to_nearest_cash_value!(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money-instance-method">
+    <div class="entry-detail" id="round_to_nearest_cash_value!(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money-instance-method">
       <div class="signature">
         
-        def <strong>rounded_to_nearest_cash_value!</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a>
+        def <strong>round_to_nearest_cash_value!</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#rounded_to_nearest_cash_value%21%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#round_to_nearest_cash_value%21%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -570,27 +570,27 @@ returns <code>nil</code>.</p>
 <p>For example, in Swiss franc (CHF), the smallest possible amount of
 cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
 and for CHF 0.08, CHF 0.10.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
-<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
-<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
+<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
+<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).round_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
 <p><span class="flag purple">NOTE</span>  This variant raises <code><a href="../Money/UndefinedSmallestDenominationError.html">UndefinedSmallestDenominationError</a></code> if
-<code><a href="../Money/Rounding.html#rounded_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#rounded_to_nearest_cash_value?</a></code> returns <code>nil</code>.</p>
+<code><a href="../Money/Rounding.html#round_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#round_to_nearest_cash_value?</a></code> returns <code>nil</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5c6f2db/src/money/money/rounding.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6a58134/src/money/money/rounding.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="rounded_to_nearest_cash_value?(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money|Nil-instance-method">
+    <div class="entry-detail" id="round_to_nearest_cash_value?(rounding_mode:Number::RoundingMode=Money.rounding_mode):Money|Nil-instance-method">
       <div class="signature">
         
-        def <strong>rounded_to_nearest_cash_value?</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a> | Nil
+        def <strong>round_to_nearest_cash_value?</strong>(rounding_mode : Number::RoundingMode = <span class="t">Money</span>.rounding_mode) : <a href="../Money.html">Money</a> | Nil
 
-        <a class="method-permalink" href="#rounded_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#</a>
+        <a class="method-permalink" href="#round_to_nearest_cash_value%3F%28rounding_mode%3ANumber%3A%3ARoundingMode%3DMoney.rounding_mode%29%3AMoney%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -600,15 +600,15 @@ and for CHF 0.08, CHF 0.10.</p>
 <p>For example, in Swiss franc (CHF), the smallest possible amount of
 cash value is CHF 0.05. Therefore, for CHF 0.07 this method returns CHF 0.05,
 and for CHF 0.08, CHF 0.10.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
-<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
-<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).rounded_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">0.07</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.05)</span>
+<span class="t">Money</span>.new(<span class="n">0.08</span>, <span class="s">&quot;CHF&quot;</span>).round_to_nearest_cash_value? <span class="c"># =&gt; Money(@amount = 0.1)</span>
+<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;XAG&quot;</span>).round_to_nearest_cash_value? <span class="c"># nil</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5c6f2db/src/money/money/rounding.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/6a58134/src/money/money/rounding.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
