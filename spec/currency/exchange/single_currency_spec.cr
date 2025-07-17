@@ -6,7 +6,7 @@ describe Money::Currency::Exchange::SingleCurrency do
 
     it "raises when called" do
       expect_raises(Money::DifferentCurrencyError, "No exchanging of currencies allowed for USD -> EUR") do
-        exchange.exchange(Money.new(100, "USD"), Money::Currency.find("EUR"))
+        exchange.exchange(Money.new(1_00, "USD"), Money::Currency.find("EUR"))
       end
     end
   end

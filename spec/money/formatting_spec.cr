@@ -33,8 +33,8 @@ describe Money::Formatting do
 
   describe "#format" do
     it "returns the monetary value as a string" do
-      Money.new(100, "CAD").format.should eq "$1.00"
-      Money.new(40008).format.should eq "$400.08"
+      Money.new(1_00, "CAD").format.should eq "$1.00"
+      Money.new(400_08).format.should eq "$400.08"
       Money.new(1999_98, "BCH").format.should eq "0.00199998 ₿"
     end
 
@@ -98,7 +98,7 @@ describe Money::Formatting do
 
     describe ":with_currency option" do
       it "works as documented" do
-        Money.new(100, "CAD").format(with_currency: true).should eq "$1.00 CAD"
+        Money.new(1_00, "CAD").format(with_currency: true).should eq "$1.00 CAD"
         Money.new(85, "USD").format(with_currency: true).should eq "$0.85 USD"
       end
     end
@@ -106,10 +106,10 @@ describe Money::Formatting do
     describe ":no_cents option" do
       context "(with_currency: true)" do
         it "works as documented" do
-          Money.new(100, "CAD").format(no_cents: true).should eq "$1"
-          Money.new(599, "CAD").format(no_cents: true).should eq "$5"
-          Money.new(570, "CAD").format(no_cents: true, with_currency: true).should eq "$5 CAD"
-          Money.new(39000, "CAD").format(no_cents: true).should eq "$390"
+          Money.new(1_00, "CAD").format(no_cents: true).should eq "$1"
+          Money.new(5_99, "CAD").format(no_cents: true).should eq "$5"
+          Money.new(5_70, "CAD").format(no_cents: true, with_currency: true).should eq "$5 CAD"
+          Money.new(390_00, "CAD").format(no_cents: true).should eq "$390"
         end
       end
 
@@ -216,7 +216,7 @@ describe Money::Formatting do
 
       context "(symbol: \"\", nil or false)" do
         it "returns the amount without a symbol" do
-          money = Money.new(100, "GBP")
+          money = Money.new(1_00, "GBP")
           money.format(symbol: "").should eq "1.00"
           money.format(symbol: nil).should eq "1.00"
           money.format(symbol: false).should eq "1.00"
@@ -227,22 +227,22 @@ describe Money::Formatting do
       end
 
       it "defaults :symbol to true" do
-        money = Money.new(100)
+        money = Money.new(1_00)
         money.format.should eq "$1.00"
 
-        money = Money.new(100, "GBP")
+        money = Money.new(1_00, "GBP")
         money.format.should eq "£1.00"
 
-        money = Money.new(100, "EUR")
+        money = Money.new(1_00, "EUR")
         money.format.should eq "€1,00"
       end
 
       context "(symbol: false)" do
         it "returns a signed amount without a symbol" do
-          money = Money.new(-100, "EUR")
+          money = Money.new(-1_00, "EUR")
           money.format(symbol: false).should eq "-1,00"
 
-          money = Money.new(100, "EUR")
+          money = Money.new(1_00, "EUR")
           money.format(symbol: false, sign_positive: true).should eq "+1,00"
         end
       end
@@ -251,32 +251,32 @@ describe Money::Formatting do
     describe ":separator option" do
       context "(separator: a separator string)" do
         it "works as documented" do
-          Money.us_dollar(100).format(separator: ",").should eq "$1,00"
+          Money.us_dollar(1_00).format(separator: ",").should eq "$1,00"
         end
       end
 
       it "defaults to '.' if currency isn't recognized" do
-        # Money.new(100, "ZWD").format.should eq "$1.00"
+        # Money.new(1_00, "ZWD").format.should eq "$1.00"
       end
     end
 
     describe ":delimiter option" do
       context "(delimiter: a delimiter string)" do
         it "works as documented" do
-          Money.us_dollar(100000).format(delimiter: ".").should eq "$1.000.00"
-          Money.us_dollar(200000).format(delimiter: "").should eq "$2000.00"
+          Money.us_dollar(1_000_00).format(delimiter: ".").should eq "$1.000.00"
+          Money.us_dollar(2_000_00).format(delimiter: "").should eq "$2000.00"
         end
       end
 
       context "(delimiter: false or nil)" do
         it "works as documented" do
-          Money.us_dollar(100000).format(delimiter: false).should eq "$1000.00"
-          Money.us_dollar(200000).format(delimiter: nil).should eq "$2000.00"
+          Money.us_dollar(1_000_00).format(delimiter: false).should eq "$1000.00"
+          Money.us_dollar(2_000_00).format(delimiter: nil).should eq "$2000.00"
         end
       end
 
       it "defaults to ',' if currency isn't recognized" do
-        # Money.new(100000, "ZWD").format.should eq "$1,000.00"
+        # Money.new(1000_00, "ZWD").format.should eq "$1,000.00"
       end
 
       it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies that have no subunit" do
@@ -284,22 +284,22 @@ describe Money::Formatting do
       end
 
       it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies with subunits that drop_trailing_zeros" do
-        Money.new(300_000, "USD").format(delimiter: ".", separator: ",", drop_trailing_zeros: true).should eq "$3.000"
+        Money.new(3_000_00, "USD").format(delimiter: ".", separator: ",", drop_trailing_zeros: true).should eq "$3.000"
       end
     end
 
     describe ":delimiter and :separator option" do
       context "(delimiter: a delimiter string, separator: a separator string)" do
         it "works as documented" do
-          Money.new(123_456_789, "USD").format(delimiter: ".", separator: ",").should eq "$1.234.567,89"
-          Money.new(987_654_321, "USD").format(delimiter: " ", separator: ".").should eq "$9 876 543.21"
+          Money.new(1_234_567_89, "USD").format(delimiter: ".", separator: ",").should eq "$1.234.567,89"
+          Money.new(9_876_543_21, "USD").format(delimiter: " ", separator: ".").should eq "$9 876 543.21"
         end
       end
     end
 
     describe ":html option" do
       it "should fallback to symbol if entity is not available" do
-        Money.new(570, "DKK").format(html: true).should eq "5,70 kr."
+        Money.new(5_70, "DKK").format(html: true).should eq "5,70 kr."
       end
     end
 
@@ -345,8 +345,8 @@ describe Money::Formatting do
       context "(sign_positive: true, symbol_first: true)" do
         it "works as documented" do
           Money.us_dollar(0).format(sign_positive: true, symbol_first: true).should eq "$0.00"
-          Money.us_dollar(100000).format(sign_positive: true, symbol_first: true).should eq "+$1,000.00"
-          Money.us_dollar(-100000).format(sign_positive: true, symbol_first: true).should eq "-$1,000.00"
+          Money.us_dollar(1_000_00).format(sign_positive: true, symbol_first: true).should eq "+$1,000.00"
+          Money.us_dollar(-1_000_00).format(sign_positive: true, symbol_first: true).should eq "-$1,000.00"
         end
       end
 
@@ -445,53 +445,53 @@ describe Money::Formatting do
 
   context "currencies with ambiguous signs" do
     it "returns ambiguous signs when disambiguate is not set" do
-      Money.new(1999_98, "USD").format.should eq "$1,999.98"
-      Money.new(1999_98, "CAD").format.should eq "$1,999.98"
-      Money.new(1999_98, "DKK").format.should eq "1.999,98 kr."
-      Money.new(1999_98, "NOK").format.should eq "1.999,98 kr"
-      Money.new(1999_98, "SEK").format.should eq "1 999,98 kr"
-      Money.new(1999_98, "BCH").format.should eq "0.00199998 ₿"
-      Money.new(1999_98, "USDC").format.should eq "0.199998 USDC"
+      Money.new(1_999_98, "USD").format.should eq "$1,999.98"
+      Money.new(1_999_98, "CAD").format.should eq "$1,999.98"
+      Money.new(1_999_98, "DKK").format.should eq "1.999,98 kr."
+      Money.new(1_999_98, "NOK").format.should eq "1.999,98 kr"
+      Money.new(1_999_98, "SEK").format.should eq "1 999,98 kr"
+      Money.new(1_999_98, "BCH").format.should eq "0.00199998 ₿"
+      Money.new(1_999_98, "USDC").format.should eq "0.199998 USDC"
     end
 
     it "returns ambiguous signs when disambiguate: false" do
-      Money.new(1999_98, "USD").format(disambiguate: false).should eq "$1,999.98"
-      Money.new(1999_98, "CAD").format(disambiguate: false).should eq "$1,999.98"
-      Money.new(1999_98, "DKK").format(disambiguate: false).should eq "1.999,98 kr."
-      Money.new(1999_98, "NOK").format(disambiguate: false).should eq "1.999,98 kr"
-      Money.new(1999_98, "SEK").format(disambiguate: false).should eq "1 999,98 kr"
-      Money.new(1999_98, "BCH").format(disambiguate: false).should eq "0.00199998 ₿"
-      Money.new(1999_98, "USDC").format(disambiguate: false).should eq "0.199998 USDC"
+      Money.new(1_999_98, "USD").format(disambiguate: false).should eq "$1,999.98"
+      Money.new(1_999_98, "CAD").format(disambiguate: false).should eq "$1,999.98"
+      Money.new(1_999_98, "DKK").format(disambiguate: false).should eq "1.999,98 kr."
+      Money.new(1_999_98, "NOK").format(disambiguate: false).should eq "1.999,98 kr"
+      Money.new(1_999_98, "SEK").format(disambiguate: false).should eq "1 999,98 kr"
+      Money.new(1_999_98, "BCH").format(disambiguate: false).should eq "0.00199998 ₿"
+      Money.new(1_999_98, "USDC").format(disambiguate: false).should eq "0.199998 USDC"
     end
 
     it "returns disambiguate signs when disambiguate: true" do
-      Money.new(1999_98, "USD").format(disambiguate: true).should eq "US$1,999.98"
-      Money.new(1999_98, "CAD").format(disambiguate: true).should eq "C$1,999.98"
-      Money.new(1999_98, "DKK").format(disambiguate: true).should eq "1.999,98 DKK"
-      Money.new(1999_98, "NOK").format(disambiguate: true).should eq "1.999,98 NOK"
-      Money.new(1999_98, "SEK").format(disambiguate: true).should eq "1 999,98 SEK"
-      Money.new(1999_98, "BCH").format(disambiguate: true).should eq "0.00199998 ₿CH"
-      Money.new(1999_98, "USDC").format(disambiguate: true).should eq "0.199998 USDC"
+      Money.new(1_999_98, "USD").format(disambiguate: true).should eq "US$1,999.98"
+      Money.new(1_999_98, "CAD").format(disambiguate: true).should eq "C$1,999.98"
+      Money.new(1_999_98, "DKK").format(disambiguate: true).should eq "1.999,98 DKK"
+      Money.new(1_999_98, "NOK").format(disambiguate: true).should eq "1.999,98 NOK"
+      Money.new(1_999_98, "SEK").format(disambiguate: true).should eq "1 999,98 SEK"
+      Money.new(1_999_98, "BCH").format(disambiguate: true).should eq "0.00199998 ₿CH"
+      Money.new(1_999_98, "USDC").format(disambiguate: true).should eq "0.199998 USDC"
     end
 
     it "returns disambiguate signs when disambiguate: true and symbol: true" do
-      Money.new(1999_98, "USD").format(disambiguate: true, symbol: true).should eq "US$1,999.98"
-      Money.new(1999_98, "CAD").format(disambiguate: true, symbol: true).should eq "C$1,999.98"
-      Money.new(1999_98, "DKK").format(disambiguate: true, symbol: true).should eq "1.999,98 DKK"
-      Money.new(1999_98, "NOK").format(disambiguate: true, symbol: true).should eq "1.999,98 NOK"
-      Money.new(1999_98, "SEK").format(disambiguate: true, symbol: true).should eq "1 999,98 SEK"
-      Money.new(1999_98, "BCH").format(disambiguate: true, symbol: true).should eq "0.00199998 ₿CH"
-      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: true).should eq "0.199998 USDC"
+      Money.new(1_999_98, "USD").format(disambiguate: true, symbol: true).should eq "US$1,999.98"
+      Money.new(1_999_98, "CAD").format(disambiguate: true, symbol: true).should eq "C$1,999.98"
+      Money.new(1_999_98, "DKK").format(disambiguate: true, symbol: true).should eq "1.999,98 DKK"
+      Money.new(1_999_98, "NOK").format(disambiguate: true, symbol: true).should eq "1.999,98 NOK"
+      Money.new(1_999_98, "SEK").format(disambiguate: true, symbol: true).should eq "1 999,98 SEK"
+      Money.new(1_999_98, "BCH").format(disambiguate: true, symbol: true).should eq "0.00199998 ₿CH"
+      Money.new(1_999_98, "USDC").format(disambiguate: true, symbol: true).should eq "0.199998 USDC"
     end
 
     it "returns no signs when disambiguate: true and symbol: false" do
-      Money.new(1999_98, "USD").format(disambiguate: true, symbol: false).should eq "1,999.98"
-      Money.new(1999_98, "CAD").format(disambiguate: true, symbol: false).should eq "1,999.98"
-      Money.new(1999_98, "DKK").format(disambiguate: true, symbol: false).should eq "1.999,98"
-      Money.new(1999_98, "NOK").format(disambiguate: true, symbol: false).should eq "1.999,98"
-      Money.new(1999_98, "SEK").format(disambiguate: true, symbol: false).should eq "1 999,98"
-      Money.new(1999_98, "BCH").format(disambiguate: true, symbol: false).should eq "0.00199998"
-      Money.new(1999_98, "USDC").format(disambiguate: true, symbol: false).should eq "0.199998"
+      Money.new(1_999_98, "USD").format(disambiguate: true, symbol: false).should eq "1,999.98"
+      Money.new(1_999_98, "CAD").format(disambiguate: true, symbol: false).should eq "1,999.98"
+      Money.new(1_999_98, "DKK").format(disambiguate: true, symbol: false).should eq "1.999,98"
+      Money.new(1_999_98, "NOK").format(disambiguate: true, symbol: false).should eq "1.999,98"
+      Money.new(1_999_98, "SEK").format(disambiguate: true, symbol: false).should eq "1 999,98"
+      Money.new(1_999_98, "BCH").format(disambiguate: true, symbol: false).should eq "0.00199998"
+      Money.new(1_999_98, "USDC").format(disambiguate: true, symbol: false).should eq "0.199998"
     end
 
     it "should never return an ambiguous format with disambiguate: true" do
@@ -500,7 +500,7 @@ describe Money::Formatting do
       # When we format the same amount in all known currencies, disambiguate
       # should return all different values
       Money::Currency.all.each do |currency|
-        format = Money.new(1999_98, currency).format(disambiguate: true)
+        format = Money.new(1_999_98, currency).format(disambiguate: true)
         if found = results[format]?
           fail "Format '#{format}' for #{currency} is ambiguous with currency #{found}"
         end

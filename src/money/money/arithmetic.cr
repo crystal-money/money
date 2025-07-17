@@ -3,9 +3,9 @@ struct Money
     # Returns the sign of the money amount.
     #
     # ```
-    # Money.new(-100).sign # => -1
-    # Money.new(0).sign    # => 0
-    # Money.new(100).sign  # => 1
+    # Money.new(-1_00).sign # => -1
+    # Money.new(0).sign     # => 0
+    # Money.new(1_00).sign  # => 1
     # ```
     def sign : Int32
       amount.sign
@@ -47,7 +47,7 @@ struct Money
     # Returns absolute value of `self` as a new `Money` object.
     #
     # ```
-    # Money.new(-100).abs # => Money(@amount=1.0)
+    # Money.new(-1_00).abs # => Money(@amount=1.0)
     # ```
     def abs : Money
       copy_with(amount: amount.abs)
@@ -56,7 +56,7 @@ struct Money
     # Alias of `#abs`.
     #
     # ```
-    # +Money.new(-100) # => Money(@amount=1.0)
+    # +Money.new(-1_00) # => Money(@amount=1.0)
     # ```
     @[AlwaysInline]
     def + : Money
@@ -66,7 +66,7 @@ struct Money
     # Returns a new `Money` object with changed polarity.
     #
     # ```
-    # -Money.new(100) # => Money(@amount=-1.0)
+    # -Money.new(1_00) # => Money(@amount=-1.0)
     # ```
     def - : Money
       copy_with(amount: -amount)
@@ -76,7 +76,7 @@ struct Money
     # operands' monetary values.
     #
     # ```
-    # Money.new(100) + Money.new(100) # => Money(@amount=2.0)
+    # Money.new(1_00) + Money.new(1_00) # => Money(@amount=2.0)
     # ```
     def +(other : Money) : Money
       return self if other.zero?
@@ -90,7 +90,7 @@ struct Money
     # operands' monetary values.
     #
     # ```
-    # Money.new(100) - Money.new(99) # => Money(@amount=0.01)
+    # Money.new(1_00) - Money.new(99) # => Money(@amount=0.01)
     # ```
     def -(other : Money) : Money
       return self if other.zero?
@@ -104,7 +104,7 @@ struct Money
     # a new `Money` object with this monetary value and the same `#currency`.
     #
     # ```
-    # Money.new(100) * 2 # => Money(@amount=2.0)
+    # Money.new(1_00) * 2 # => Money(@amount=2.0)
     # ```
     def *(other : Number) : Money
       copy_with(amount: amount * other)
@@ -114,7 +114,7 @@ struct Money
     # a new `Money` object with this monetary value and the same `#currency`.
     #
     # ```
-    # Money.new(100) / 10 # => Money(@amount=0.1)
+    # Money.new(1_00) / 10 # => Money(@amount=0.1)
     # ```
     def /(other : Number) : Money
       copy_with(amount: amount / other)
@@ -124,7 +124,7 @@ struct Money
     # returns a ratio.
     #
     # ```
-    # Money.new(100) / Money.new(10) # => 10.0
+    # Money.new(1_00) / Money.new(10) # => 10.0
     # ```
     def /(other : Money) : BigDecimal
       with_same_currency(other) do |converted_other|
@@ -136,8 +136,8 @@ struct Money
     # quotient and modulus.
     #
     # ```
-    # Money.new(100).divmod(9)            # => {Money(@amount=0.11), Money(@amount=0.01)}
-    # Money.new(100).divmod(Money.new(9)) # => {11.0, Money(@amount=0.01)}
+    # Money.new(1_00).divmod(9)            # => {Money(@amount=0.11), Money(@amount=0.01)}
+    # Money.new(1_00).divmod(Money.new(9)) # => {11.0, Money(@amount=0.01)}
     # ```
     def divmod(other : Money) : {BigDecimal, Money}
       with_same_currency(other) do |converted_other|
@@ -159,8 +159,8 @@ struct Money
     # Equivalent to `#divmod(other)[1]`.
     #
     # ```
-    # Money.new(100).modulo(9)            # => Money(@amount=0.01)
-    # Money.new(100).modulo(Money.new(9)) # => Money(@amount=0.01)
+    # Money.new(1_00).modulo(9)            # => Money(@amount=0.01)
+    # Money.new(1_00).modulo(Money.new(9)) # => Money(@amount=0.01)
     # ```
     def modulo(other : Number | Money) : Money
       divmod(other)[1]
@@ -175,7 +175,7 @@ struct Money
     # If different signs `#modulo(other) - other`, otherwise `#modulo(other)`.
     #
     # ```
-    # Money.new(100).remainder(9) # => Money(@amount=0.01)
+    # Money.new(1_00).remainder(9) # => Money(@amount=0.01)
     # ```
     def remainder(other : Number) : Money
       if (negative? && other.negative?) || (positive? && other.positive?)
@@ -189,7 +189,7 @@ struct Money
     # monetary value.
     #
     # ```
-    # Money.new(100).percentage(10) # => Money(@amount=0.1)
+    # Money.new(1_00).percentage(10) # => Money(@amount=0.1)
     # ```
     def percentage(value : Number) : Money
       self * (value / 100)

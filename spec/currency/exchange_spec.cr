@@ -74,8 +74,8 @@ describe Money::Currency::Exchange do
     exchange.rate_store["USD", "EUR"] = 1.33
 
     it "exchanges one currency to another" do
-      exchange.exchange(Money.new(100, "USD"), "EUR")
-        .should eq Money.new(133, "EUR")
+      exchange.exchange(Money.new(1_00, "USD"), "EUR")
+        .should eq Money.new(1_33, "EUR")
     end
 
     it "returns the same amount when the currencies are the same" do
@@ -90,7 +90,7 @@ describe Money::Currency::Exchange do
 
     it "raises an UnknownRateError exception when an unknown rate is requested" do
       expect_raises(Money::UnknownRateError) do
-        exchange.exchange(Money.new(100, "USD"), "JPY")
+        exchange.exchange(Money.new(1_00, "USD"), "JPY")
       end
     end
   end
