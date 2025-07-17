@@ -27,19 +27,37 @@ describe Money::Currency::Rate do
     end
   end
 
-  it ".from_json" do
-    Money::Currency::Rate.from_json(rate.to_json).should eq rate
+  context "JSON serialization" do
+    it ".from_json" do
+      Money::Currency::Rate.from_json(rate.to_json).should eq rate
+    end
+
+    it "#to_json" do
+      rate.to_pretty_json.should eq <<-JSON
+        {
+          "base": "USD",
+          "target": "CAD",
+          "value": 1.1,
+          "updated_at": "2025-05-22T00:00:00Z"
+        }
+        JSON
+    end
   end
 
-  it "#to_json" do
-    rate.to_pretty_json.should eq <<-JSON
-      {
-        "base": "USD",
-        "target": "CAD",
-        "value": 1.1,
-        "updated_at": "2025-05-22T00:00:00Z"
-      }
-      JSON
+  context "YAML serialization" do
+    it ".from_yaml" do
+      Money::Currency::Rate.from_yaml(rate.to_yaml).should eq rate
+    end
+
+    it "#to_yaml" do
+      rate.to_yaml.should eq <<-YAML
+        ---
+        base: USD
+        target: CAD
+        value: 1.1
+        updated_at: 2025-05-22\n
+        YAML
+    end
   end
 
   it "#<=>" do
