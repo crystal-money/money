@@ -1,12 +1,5 @@
 class Money::Currency
   abstract class RateProvider
-    if_defined?(:JSON) do
-      include JSON::Serializable
-    end
-    if_defined?(:YAML) do
-      include YAML::Serializable
-    end
-
     # All registered rate providers.
     class_getter providers = {} of String => RateProvider.class
 
@@ -31,6 +24,8 @@ class Money::Currency
     end
 
     if_defined?(:JSON) do
+      include JSON::Serializable
+
       # :nodoc:
       #
       # This method will be replaced by `JSON::Serializable` for each
@@ -41,6 +36,8 @@ class Money::Currency
     end
 
     if_defined?(:YAML) do
+      include YAML::Serializable
+
       # :nodoc:
       #
       # This method will be replaced by `YAML::Serializable` for each
