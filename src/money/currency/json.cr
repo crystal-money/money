@@ -7,8 +7,7 @@ class Money::Currency
   include JSON::Serializable
 
   def self.new(pull : JSON::PullParser)
-    case pull.kind
-    when .string?
+    if pull.kind.string?
       find(pull.read_string)
     else
       previous_def

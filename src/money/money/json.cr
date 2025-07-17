@@ -4,8 +4,7 @@ require "big/json"
 
 struct Money
   def self.new(pull : JSON::PullParser)
-    case pull.kind
-    when .string?
+    if pull.kind.string?
       parse(pull.read_string)
     else
       previous_def
