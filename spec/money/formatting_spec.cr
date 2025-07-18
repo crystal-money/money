@@ -35,7 +35,7 @@ describe Money::Formatting do
     it "returns the monetary value as a string" do
       Money.new(1_00, "CAD").format.should eq "$1.00"
       Money.new(400_08).format.should eq "$400.08"
-      Money.new(1999_98, "BCH").format.should eq "0.00199998 ₿"
+      Money.new(199998, "BCH").format.should eq "0.00199998 ₿"
     end
 
     it "respects :subunit_to_unit currency property" do
@@ -48,7 +48,7 @@ describe Money::Formatting do
 
     it "respects the thousands_separator and decimal_mark defaults" do
       one_thousand = ->(currency : String) do
-        Money.new(1000_00, currency).format
+        Money.new(1_000_00, currency).format
       end
 
       # Pounds
@@ -96,21 +96,19 @@ describe Money::Formatting do
       Money.bitcoin("0.00000966".to_big_d).format.should eq "₿0.00000966"
     end
 
-    describe ":with_currency option" do
+    describe ":format option" do
       it "works as documented" do
-        Money.new(1_00, "CAD").format(with_currency: true).should eq "$1.00 CAD"
-        Money.new(85, "USD").format(with_currency: true).should eq "$0.85 USD"
+        money = Money.euro(-1_234_567_12)
+        money.format(format: "%{sign}%{symbol}%{amount}").should eq "-€1.234.567,12"
+        money.format(format: "%{sign}%{amount} %{currency}").should eq "-1.234.567,12 EUR"
       end
     end
 
     describe ":no_cents option" do
-      context "(with_currency: true)" do
-        it "works as documented" do
-          Money.new(1_00, "CAD").format(no_cents: true).should eq "$1"
-          Money.new(5_99, "CAD").format(no_cents: true).should eq "$5"
-          Money.new(5_70, "CAD").format(no_cents: true, with_currency: true).should eq "$5 CAD"
-          Money.new(390_00, "CAD").format(no_cents: true).should eq "$390"
-        end
+      it "works as documented" do
+        Money.new(1_00, "CAD").format(no_cents: true).should eq "$1"
+        Money.new(5_99, "CAD").format(no_cents: true).should eq "$5"
+        Money.new(390_00, "CAD").format(no_cents: true).should eq "$390"
       end
 
       it "respects :subunit_to_unit currency property" do
@@ -124,9 +122,7 @@ describe Money::Formatting do
       end
 
       it "does correctly format HTML" do
-        money = Money.new(1999, "RUB")
-        output = money.format(html: true, no_cents: true)
-        output.should eq "19 &#x20BD;"
+        Money.new(1999, "RUB").format(html: true, no_cents: true).should eq "19 &#x20BD;"
       end
     end
 
@@ -218,7 +214,6 @@ describe Money::Formatting do
         it "returns the amount without a symbol" do
           money = Money.new(1_00, "GBP")
           money.format(symbol: "").should eq "1.00"
-          money.format(symbol: nil).should eq "1.00"
           money.format(symbol: false).should eq "1.00"
 
           money = Money.new(100, "JPY")
@@ -248,10 +243,10 @@ describe Money::Formatting do
       end
     end
 
-    describe ":separator option" do
-      context "(separator: a separator string)" do
+    describe ":decimal_mark option" do
+      context "(decimal_mark: a separator string)" do
         it "works as documented" do
-          Money.us_dollar(1_00).format(separator: ",").should eq "$1,00"
+          Money.us_dollar(1_00).format(decimal_mark: ",").should eq "$1,00"
         end
       end
 
@@ -260,18 +255,17 @@ describe Money::Formatting do
       end
     end
 
-    describe ":delimiter option" do
-      context "(delimiter: a delimiter string)" do
+    describe ":thousands_separator option" do
+      context "(thousands_separator: a delimiter string)" do
         it "works as documented" do
-          Money.us_dollar(1_000_00).format(delimiter: ".").should eq "$1.000.00"
-          Money.us_dollar(2_000_00).format(delimiter: "").should eq "$2000.00"
+          Money.us_dollar(1_000_00).format(thousands_separator: ".").should eq "$1.000.00"
+          Money.us_dollar(2_000_00).format(thousands_separator: "").should eq "$2000.00"
         end
       end
 
-      context "(delimiter: false or nil)" do
+      context "(thousands_separator: false)" do
         it "works as documented" do
-          Money.us_dollar(1_000_00).format(delimiter: false).should eq "$1000.00"
-          Money.us_dollar(2_000_00).format(delimiter: nil).should eq "$2000.00"
+          Money.us_dollar(1_000_00).format(thousands_separator: false).should eq "$1000.00"
         end
       end
 
@@ -279,21 +273,25 @@ describe Money::Formatting do
         # Money.new(1000_00, "ZWD").format.should eq "$1,000.00"
       end
 
-      it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies that have no subunit" do
-        Money.new(300_000, "ISK").format(delimiter: ",", separator: ".").should eq "300,000 kr."
+      it "should respect explicit overriding of delimiter/separator when there's no decimal component for currencies that have no subunit" do
+        Money.new(300_000, "ISK")
+          .format(thousands_separator: ",", decimal_mark: ".")
+          .should eq "300,000 kr."
       end
 
-      it "should respect explicit overriding of delimiter/separator when there’s no decimal component for currencies with subunits that drop_trailing_zeros" do
-        Money.new(3_000_00, "USD").format(delimiter: ".", separator: ",", drop_trailing_zeros: true).should eq "$3.000"
+      it "should respect explicit overriding of delimiter/separator when there's no decimal component for currencies with subunits that drop_trailing_zeros" do
+        Money.new(3_000_00, "USD")
+          .format(thousands_separator: ".", decimal_mark: ",", drop_trailing_zeros: true)
+          .should eq "$3.000"
       end
     end
 
-    describe ":delimiter and :separator option" do
-      context "(delimiter: a delimiter string, separator: a separator string)" do
-        it "works as documented" do
-          Money.new(1_234_567_89, "USD").format(delimiter: ".", separator: ",").should eq "$1.234.567,89"
-          Money.new(9_876_543_21, "USD").format(delimiter: " ", separator: ".").should eq "$9 876 543.21"
-        end
+    describe ":thousands_separator and :decimal_mark" do
+      it "works as documented" do
+        Money.new(1_234_567_89, "USD").format(thousands_separator: ".", decimal_mark: ",")
+          .should eq "$1.234.567,89"
+        Money.new(9_876_543_21, "USD").format(thousands_separator: " ", decimal_mark: ".")
+          .should eq "$9 876 543.21"
       end
     end
 
@@ -303,76 +301,19 @@ describe Money::Formatting do
       end
     end
 
-    describe ":symbol_first option" do
-      it "inserts currency symbol before the amount when set to :before" do
-        Money.euro(1_234_567_12).format(symbol_first: true).should eq "€1.234.567,12"
-      end
-
-      it "inserts currency symbol after the amount when set to :after" do
-        Money.us_dollar(1_000_000_000_12).format(symbol_first: false).should eq "1,000,000,000.12 $"
-      end
-    end
-
-    describe ":symbol_before_without_space option" do
-      it "does not insert space between currency symbol and amount when set to true" do
-        Money.euro(1_234_567_12).format(symbol_first: true, symbol_before_without_space: true).should eq "€1.234.567,12"
-      end
-
-      it "inserts space between currency symbol and amount when set to false" do
-        Money.euro(1_234_567_12).format(symbol_first: true, symbol_before_without_space: false).should eq "€ 1.234.567,12"
-      end
-
-      it "defaults to true" do
-        Money.euro(1_234_567_12).format(symbol_first: true).should eq "€1.234.567,12"
-      end
-    end
-
-    describe ":symbol_after_without_space option" do
-      it "does not insert space between amount and currency symbol when set to true" do
-        Money.euro(1_234_567_12).format(symbol_first: false, symbol_after_without_space: true).should eq "1.234.567,12€"
-      end
-
-      it "inserts space between amount and currency symbol when set to false" do
-        Money.euro(1_234_567_12).format(symbol_first: false, symbol_after_without_space: false).should eq "1.234.567,12 €"
-      end
-
-      it "defaults to false" do
-        Money.euro(1_234_567_12).format(symbol_first: false).should eq "1.234.567,12 €"
-      end
-    end
-
     describe ":sign_positive option" do
-      context "(sign_positive: true, symbol_first: true)" do
+      context "(sign_positive: true)" do
         it "works as documented" do
-          Money.us_dollar(0).format(sign_positive: true, symbol_first: true).should eq "$0.00"
-          Money.us_dollar(1_000_00).format(sign_positive: true, symbol_first: true).should eq "+$1,000.00"
-          Money.us_dollar(-1_000_00).format(sign_positive: true, symbol_first: true).should eq "-$1,000.00"
+          Money.us_dollar(0).format(sign_positive: true).should eq "$0.00"
+          Money.us_dollar(1_000_00).format(sign_positive: true).should eq "+$1,000.00"
+          Money.us_dollar(-1_000_00).format(sign_positive: true).should eq "-$1,000.00"
         end
       end
 
-      context "(sign_positive: true, symbol_first: false)" do
+      context "(sign_positive: false)" do
         it "works as documented" do
-          Money.us_dollar(0).format(sign_positive: true, symbol_first: false).should eq "0.00 $"
-          Money.us_dollar(100000).format(sign_positive: true, symbol_first: false).should eq "+1,000.00 $"
-          Money.us_dollar(100000).format(sign_positive: true, symbol_first: nil).should eq "+1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: true, symbol_first: false).should eq "-1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: true, symbol_first: nil).should eq "-1,000.00 $"
-        end
-      end
-
-      context "(sign_positive: false, symbol_first: true)" do
-        it "works as documented" do
-          Money.us_dollar(100000).format(sign_positive: false, symbol_first: true).should eq "$1,000.00"
-          Money.us_dollar(-100000).format(sign_positive: false, symbol_first: true).should eq "-$1,000.00"
-        end
-      end
-
-      context "(sign_positive: false, symbol_first: false)" do
-        it "works as documented" do
-          Money.us_dollar(100000).format(sign_positive: false, symbol_first: false).should eq "1,000.00 $"
-          Money.us_dollar(100000).format(sign_positive: false, symbol_first: nil).should eq "1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: false, symbol_first: false).should eq "-1,000.00 $"
-          Money.us_dollar(-100000).format(sign_positive: false, symbol_first: nil).should eq "-1,000.00 $"
+          Money.us_dollar(100000).format(sign_positive: false).should eq "$1,000.00"
+          Money.us_dollar(-100000).format(sign_positive: false).should eq "-$1,000.00"
         end
       end
     end
@@ -380,28 +321,34 @@ describe Money::Formatting do
     describe ":drop_trailing_zeros option" do
       context "(drop_trailing_zeros: true)" do
         it "works as documented" do
-          Money.new(89000, "BTC").format(drop_trailing_zeros: true, symbol: false).should eq "0.00089"
-          Money.new(100089000, "BTC").format(drop_trailing_zeros: true, symbol: false).should eq "1.00089"
-          Money.new(100000000, "BTC").format(drop_trailing_zeros: true, symbol: false).should eq "1"
-          Money.new(110, "AUD").format(drop_trailing_zeros: true, symbol: false).should eq "1.1"
+          Money.new(89000, "BTC").format(drop_trailing_zeros: true, symbol: false)
+            .should eq "0.00089"
+          Money.new(1_00089000, "BTC").format(drop_trailing_zeros: true, symbol: false)
+            .should eq "1.00089"
+          Money.new(1_00000000, "BTC").format(drop_trailing_zeros: true, symbol: false)
+            .should eq "1"
+          Money.new(1_10, "AUD").format(drop_trailing_zeros: true, symbol: false)
+            .should eq "1.1"
         end
       end
 
       context "(drop_trailing_zeros: false)" do
         it "works as documented" do
-          Money.new(89000, "BTC").format(drop_trailing_zeros: false, symbol: false).should eq "0.00089000"
-          Money.new(100089000, "BTC").format(drop_trailing_zeros: false, symbol: false).should eq "1.00089000"
-          Money.new(100000000, "BTC").format(drop_trailing_zeros: false, symbol: false).should eq "1.00000000"
-          Money.new(110, "AUD").format(drop_trailing_zeros: false, symbol: false).should eq "1.10"
+          Money.new(89000, "BTC").format(drop_trailing_zeros: false, symbol: false)
+            .should eq "0.00089000"
+          Money.new(1_00089000, "BTC").format(drop_trailing_zeros: false, symbol: false)
+            .should eq "1.00089000"
+          Money.new(1_00000000, "BTC").format(drop_trailing_zeros: false, symbol: false)
+            .should eq "1.00000000"
+          Money.new(1_10, "AUD").format(drop_trailing_zeros: false, symbol: false)
+            .should eq "1.10"
         end
       end
     end
 
     context "when the monetary value is 0" do
-      it "returns '$0.00' when :display_free is false or not given" do
+      it "returns '$0.00' when :display_free is not given" do
         Money.us_dollar(0).format.should eq "$0.00"
-        Money.us_dollar(0).format(display_free: false).should eq "$0.00"
-        Money.us_dollar(0).format(display_free: nil).should eq "$0.00"
       end
 
       it "returns the value specified by :display_free if it's a string-like object" do

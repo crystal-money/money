@@ -1,10 +1,17 @@
 struct Money
   module Formatting
-    private DELIMITER_REGEX = /(\d)(?=(\d\d\d)+(?!\d))/
-
     # Creates a formatted price string according to several rules.
     #
-    # **display_free** (`Bool | String`) — default: `false`
+    # ### `:format`
+    #
+    # The format string to use for the resulting string.
+    #
+    # ```
+    # Money.us_dollar(-1_23).format(format: "%{sign}%{symbol}%{amount}")    # => "-$1.23"
+    # Money.us_dollar(-1_23).format(format: "%{sign}%{amount} %{currency}") # => "-1.23 USD"
+    # ```
+    #
+    # ### `:display_free`
     #
     # Whether a zero amount of money should be formatted as the supplied string.
     #
@@ -13,271 +20,218 @@ struct Money
     # Money.us_dollar(0).format                         # => "$0.00"
     # ```
     #
-    # **sign_positive** (`Bool`) — default: `false`
+    # ### `:sign_positive`
     #
     # Whether positive numbers should be signed, too.
     #
     # ```
-    # # You can specify to display the sign with positive numbers
-    # Money.new(100, "GBP").format(sign_positive: true) # => "+£1.00"
-    # Money.new(100, "GBP").format                      # => "£1.00"
+    # Money.new(1_00, "GBP").format(sign_positive: true) # => "+£1.00"
+    # Money.new(1_00, "GBP").format                      # => "£1.00"
     # ```
     #
-    # **with_currency** (`Bool`) — default: `false`
-    #
-    # Whether the currency name should be appended to the result string.
-    #
-    # ```
-    # Money.us_dollar(100).format                      # => "$1.00"
-    # Money.us_dollar(100).format(with_currency: true) # => "$1.00 USD"
-    # Money.us_dollar(85).format(with_currency: true)  # => "$0.85 USD"
-    # ```
-    #
-    # **no_cents** (`Bool`) — default: `false`
+    # ### `:no_cents`
     #
     # Whether cents should be omitted.
     #
     # ```
-    # Money.us_dollar(100).format(no_cents: true) # => "$1"
-    # Money.us_dollar(599).format(no_cents: true) # => "$5"
+    # Money.us_dollar(1_00).format(no_cents: true) # => "$1"
+    # Money.us_dollar(5_99).format(no_cents: true) # => "$5"
     # ```
     #
-    # **no_cents_if_whole** (`Bool`) — default: `false`
+    # ### `:no_cents_if_whole`
     #
     # Whether cents should be omitted if the cent value is zero.
     #
     # ```
-    # Money.us_dollar(10000).format(no_cents_if_whole: true) # => "$100"
-    # Money.us_dollar(10034).format(no_cents_if_whole: true) # => "$100.34"
+    # Money.us_dollar(100_00).format(no_cents_if_whole: true) # => "$100"
+    # Money.us_dollar(100_34).format(no_cents_if_whole: true) # => "$100.34"
     # ```
     #
-    # **drop_trailing_zeros** (`Bool`) — default: `false`
+    # ### `:drop_trailing_zeros`
+    #
+    # Whether trailing zeros should be omitted.
     #
     # ```
     # Money.new(89000, :btc).format(drop_trailing_zeros: true) # => ฿0.00089
-    # Money.new(110, :usd).format(drop_trailing_zeros: true)   # => $1.1
+    # Money.new(1_10, :usd).format(drop_trailing_zeros: true)  # => $1.1
     # ```
     #
-    # **symbol_first** (`Bool`) — default: `false`
+    # ### `:symbol`
     #
-    # Whether a money symbol should go before the amount.
-    #
-    # ```
-    # Money.new(10000, "USD").format(symbol_first: true)  # => "$100.00"
-    # Money.new(10000, "USD").format(symbol_first: false) # => "100.00 $"
-    # ```
-    #
-    # **symbol** (`Bool | String`) — default: `true`
-    #
-    # Whether a money symbol should be prepended to the result string.
-    # This method attempts to pick a symbol that's suitable for the given currency.
+    # Specifies the currency symbol to be used.
     #
     # ```
-    # Money.new(100, "USD") # => "$1.00"
-    # Money.new(100, "GBP") # => "£1.00"
-    # Money.new(100, "EUR") # => "€1.00"
+    # Money.new(1_00, "USD") # => "$1.00"
+    # Money.new(1_00, "GBP") # => "£1.00"
+    # Money.new(1_00, "EUR") # => "€1.00"
     #
     # # Same thing.
-    # Money.new(100, "USD").format(symbol: true) # => "$1.00"
-    # Money.new(100, "GBP").format(symbol: true) # => "£1.00"
-    # Money.new(100, "EUR").format(symbol: true) # => "€1.00"
+    # Money.new(1_00, "USD").format(symbol: true) # => "$1.00"
+    # Money.new(1_00, "GBP").format(symbol: true) # => "£1.00"
+    # Money.new(1_00, "EUR").format(symbol: true) # => "€1.00"
     #
-    # # You can pass `false` or an empty string to disable
-    # # prepending a money symbol.
-    # Money.new(100, "USD").format(symbol: false) # => "1.00"
-    # Money.new(100, "GBP").format(symbol: nil)   # => "1.00"
-    # Money.new(100, "EUR").format(symbol: "")    # => "1.00"
+    # # You can pass `false` or an empty string to disable prepending a money symbol.
+    # Money.new(1_00, "USD").format(symbol: false) # => "1.00"
+    # Money.new(1_00, "EUR").format(symbol: "")    # => "1.00"
     #
     # # If the symbol for the given currency isn't known, then it will default
     # # to "¤" as symbol.
-    # Money.new(100, "XBC").format(symbol: true) # => "1.00 ¤"
+    # Money.new(1_00, "XBC").format(symbol: true) # => "1.00 ¤"
     #
     # # You can specify a string as value to enforce using a particular symbol.
-    # Money.new(100, "XBC").format(symbol: "ƒ") # => "1.00 ƒ"
+    # Money.new(1_00, "XBC").format(symbol: "ƒ") # => "1.00 ƒ"
     # ```
     #
-    # **disambiguate** (`Bool`) — default: `false`
+    # ### `:disambiguate`
     #
     # Prevents the result from being ambiguous due to equal symbols for different currencies.
-    # Uses the `disambiguate_symbol`.
+    # Uses the `Currency#disambiguate_symbol`.
     #
     # ```
-    # Money.new(100, "USD").format(disambiguate: false) # => "$100.00"
-    # Money.new(100, "CAD").format(disambiguate: false) # => "$100.00"
-    # Money.new(100, "USD").format(disambiguate: true)  # => "US$100.00"
-    # Money.new(100, "CAD").format(disambiguate: true)  # => "C$100.00"
+    # Money.new(100_00, "USD").format(disambiguate: false) # => "$100.00"
+    # Money.new(100_00, "CAD").format(disambiguate: false) # => "$100.00"
+    # Money.new(100_00, "USD").format(disambiguate: true)  # => "US$100.00"
+    # Money.new(100_00, "CAD").format(disambiguate: true)  # => "C$100.00"
     # ```
     #
-    # **symbol_before_without_space** (`Bool`) — default: `true`
+    # ### `:decimal_mark`
     #
-    # Whether a space between the money symbol and the amount should be inserted
-    # when `:symbol_first` is `true`. The default is `true` (meaning no space).
-    # Ignored if `:symbol` is `false` or `:symbol_first` is `false`.
-    #
-    # ```
-    # # Default is to not insert a space.
-    # Money.new(100, "USD").format # => "$1.00"
-    #
-    # # Same thing.
-    # Money.new(100, "USD").format(symbol_before_without_space: true) # => "$1.00"
-    #
-    # # If set to false, will insert a space.
-    # Money.new(100, "USD").format(symbol_before_without_space: false) # => "$ 1.00"
-    # ```
-    #
-    # **symbol_after_without_space** (`Bool`) — default: `false`
-    #
-    # Whether a space between the amount and the money symbol should be inserted
-    # when `:symbol_first` is `false`. The default is `false` (meaning space).
-    # Ignored if `:symbol` is `false` or `:symbol_first` is `true`.
-    #
-    # ```
-    # # Default is to insert a space.
-    # Money.new(100, "USD").format(symbol_first: false) # => "1.00 $"
-    #
-    # # If set to true, will not insert a space.
-    # Money.new(100, "USD").format(symbol_first: false, symbol_after_without_space: true) # => "1.00$"
-    # ```
-    #
-    # **separator** (`Bool | String`) — default: `true`
-    #
-    # Whether the currency should be separated by the specified character or ".".
+    # Decimal mark to use between the whole and fractional parts of the number.
     #
     # ```
     # # If a string is specified, it's value is used.
-    # Money.new(100, "USD").format(separator: ",") # => "$1,00"
+    # Money.new(1_00, "USD").format(decimal_mark: ",") # => "$1,00"
     #
-    # # If the separator for a given currency isn't known, then it will default
-    # # to "." as separator.
-    # Money.new(100, "FOO").format # => "$1.00"
+    # # If the separator for a given currency isn't known, then it will default to ".".
+    # Money.new(1_00, "FOO").format # => "$1.00"
     # ```
     #
-    # **delimiter** (`Bool | String`) — default: `true`
+    # ### `:thousands_separator`
     #
-    # Whether the currency should be delimited by the specified character or ",".
+    # Thousands separator to use between groups of three digits.
     #
     # ```
-    # # If falsy value is specified, no delimiter is used.
-    # Money.new(100000, "USD").format(delimiter: false) # => "1000.00"
-    # Money.new(100000, "USD").format(delimiter: nil)   # => "1000.00"
-    # Money.new(100000, "USD").format(delimiter: "")    # => "1000.00"
+    # # If false or empty value is specified, no delimiter is used.
+    # Money.new(1_000_00, "USD").format(thousands_separator: false) # => "1000.00"
+    # Money.new(1_000_00, "USD").format(thousands_separator: "")    # => "1000.00"
     #
     # # If a string is specified, it's value is used.
-    # Money.new(100000, "USD").format(delimiter: ".") # => "$1.000.00"
+    # Money.new(1_000_00, "USD").format(thousands_separator: ".") # => "$1.000.00"
     #
-    # # If the delimiter for a given currency isn't known, then it will
-    # # default to "," as delimiter.
-    # Money.new(100000, "FOO").format # => "$1,000.00"
+    # # If the delimiter for a given currency isn't known, then it will default to ",".
+    # Money.new(1_000_00, "FOO").format # => "$1,000.00"
     # ```
     #
-    # **html** (`Bool`) — default: `false`
+    # ### `:html`
     #
-    # Whether the currency should be HTML-formatted.
+    # Whether the currency symbol should be HTML-formatted.
     #
     # ```
-    # Money.new(1999, "RUB").format(html: true, no_cents: true) # => "19 &#x20BD;"
+    # Money.new(19_99, "RUB").format(html: true, no_cents: true) # => "19 &#x20BD;"
     # ```
-    def format(options : NamedTuple) : String
-      default_options = {
-        display_free:                false,
-        sign_positive:               false,
-        with_currency:               false,
-        html:                        false,
-        no_cents:                    false,
-        no_cents_if_whole:           false,
-        drop_trailing_zeros:         false,
-        disambiguate:                false,
-        symbol_before_without_space: true,
-        symbol_after_without_space:  false,
-        symbol_first:                currency.symbol_first? || false,
-        separator:                   currency.decimal_mark || ".",
-        delimiter:                   currency.thousands_separator || ",",
+    def format(
+      *,
+      format : String? = nil,
+      display_free : String? = nil,
+      sign_positive : Bool = false,
+      html : Bool = false,
+      no_cents : Bool = false,
+      no_cents_if_whole : Bool = false,
+      drop_trailing_zeros : Bool = false,
+      disambiguate : Bool = false,
+      symbol : String | Char | Bool? = nil,
+      decimal_mark : String | Char | Bool? = nil,
+      thousands_separator : String | Char | Bool? = nil,
+    ) : String
+      if zero? && display_free
+        return display_free
+      end
+
+      formatted_amount = format_amount(
+        no_cents: no_cents,
+        no_cents_if_whole: no_cents_if_whole,
+        drop_trailing_zeros: drop_trailing_zeros,
+        decimal_mark: decimal_mark,
+        thousands_separator: thousands_separator,
+      )
+
+      symbol = format_symbol(
+        disambiguate: disambiguate,
+        symbol: symbol,
+        html: html,
+      )
+
+      sign = '-' if negative?
+      sign = '+' if positive? && sign_positive
+
+      format ||=
+        if currency.symbol_first?
+          "%{sign}%{symbol}%{amount}"
+        else
+          "%{sign}%{amount} %{symbol}"
+        end
+
+      formatted = format % {
+        sign:     sign,
+        amount:   formatted_amount,
+        symbol:   symbol.presence,
+        currency: currency.code,
       }
-      options = default_options.merge(options)
+      formatted.strip
+    end
 
-      {% for key in %i[separator delimiter] %}
-        if options[{{ key }}] === true
-          options = options.merge {{ key.id }}: default_options[{{ key }}]
-        end
-      {% end %}
+    # ameba:disable Metrics/CyclomaticComplexity
+    private def format_amount(*, no_cents, no_cents_if_whole, drop_trailing_zeros, decimal_mark, thousands_separator) : String
+      decimal_mark =
+        currency.decimal_mark || "." if decimal_mark.in?(true, nil)
 
-      if zero?
-        display_free = options[:display_free]
-        if display_free.is_a?(String)
-          return display_free
-        end
-      end
+      thousands_separator =
+        currency.thousands_separator || "," if thousands_separator.in?(true, nil)
 
-      parts = amount.abs.format(separator: '.', delimiter: nil).split('.')
-      unit, subunit = parts[0], parts[1]?
-      subunit = nil if subunit == "0"
+      unit, _, subunit =
+        amount.abs
+          .format(separator: '.', delimiter: ',', group: 3)
+          .rpartition('.')
 
-      formatted = unit
+      formatted =
+        unit.gsub(',', thousands_separator || "")
 
-      delimiter = options[:delimiter]
-      if delimiter
-        formatted = formatted.gsub(DELIMITER_REGEX) do |digit_to_delimit|
-          "#{digit_to_delimit}#{delimiter}"
-        end
-      end
+      hide_cents =
+        no_cents || (no_cents_if_whole && subunit == "0")
 
-      display_cents = true
-      if options[:no_cents] || (options[:no_cents_if_whole] && !subunit)
-        display_cents = false
-      end
+      if !hide_cents && currency.decimal_places.positive?
+        subunit = subunit.ljust(currency.decimal_places, '0')
+        subunit = subunit.rstrip('0') if drop_trailing_zeros
 
-      decimal_places = currency.decimal_places
-      if display_cents && decimal_places > 0
-        subunit = subunit.to_s.ljust(decimal_places, '0')
-        subunit = subunit.rstrip('0') if options[:drop_trailing_zeros]
-        unless subunit.empty?
-          formatted += "#{options[:separator]}#{subunit}"
+        if subunit = subunit.presence
+          formatted += decimal_mark if decimal_mark
+          formatted += subunit
         end
       end
 
-      sign = negative? ? '-' : (options[:sign_positive] && positive?) ? '+' : nil
+      formatted
+    end
 
+    private def format_symbol(*, disambiguate, symbol, html) : String?
       default_symbol =
-        if options[:disambiguate] && currency.disambiguate_symbol
+        if disambiguate && currency.disambiguate_symbol
           currency.disambiguate_symbol
         else
           currency.symbol || "¤"
         end
 
-      symbol =
-        case
-        when options[:html] && currency.html_entity
-          currency.html_entity
-        when options.has_key?(:symbol)
-          case options[:symbol]?
-          when true
-            default_symbol
-          when String
-            options[:symbol]?
-          end
-        else
-          default_symbol
-        end
-
-      if symbol.is_a?(String) && !symbol.empty?
-        if options[:symbol_first]
-          symbol_space = options[:symbol_before_without_space] ? nil : ' '
-          formatted = "#{sign}#{symbol}#{symbol_space}#{formatted}"
-        else
-          symbol_space = options[:symbol_after_without_space] ? nil : ' '
-          formatted = "#{sign}#{formatted}#{symbol_space}#{symbol}"
-        end
+      if html && currency.html_entity
+        currency.html_entity
       else
-        formatted = "#{sign}#{formatted}"
+        case symbol
+        in Nil
+          default_symbol
+        in Bool
+          default_symbol if symbol
+        in String, Char
+          symbol.to_s
+        end
       end
-
-      formatted += " #{currency}" if options[:with_currency]
-      formatted
-    end
-
-    # :nodoc:
-    def format(**options) : String
-      format(options)
     end
 
     # See also `#format`.
