@@ -420,7 +420,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/d77b31b/src/money/money/formatting.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/b0b979f/src/money/money/formatting.cr#L2" target="_blank">
         money/money/formatting.cr
       </a>
     
@@ -589,9 +589,9 @@ Uses the <code><a href="../Money/Currency.html#disambiguate_symbol%3AString%7CNi
 </a><code>:decimal_mark</code></h3>
 <p>Decimal mark to use between the whole and fractional parts of the number.</p>
 <pre><code class="language-crystal"><span class="c"># If `false`, `nil` or empty value is specified, no separator is used.</span>
-<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="n">false</span>) <span class="c"># =&gt; &quot;100&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;100&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;100&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="n">false</span>) <span class="c"># =&gt; &quot;$100&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;$100&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;$100&quot;</span>
 
 <span class="c"># If a string is specified, it&#39;s value is used.</span>
 <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format(decimal_mark: <span class="s">&quot;,&quot;</span>) <span class="c"># =&gt; &quot;$1,00&quot;</span>
@@ -605,9 +605,9 @@ Uses the <code><a href="../Money/Currency.html#disambiguate_symbol%3AString%7CNi
 </a><code>:thousands_separator</code></h3>
 <p>Thousands separator to use between groups of three digits.</p>
 <pre><code class="language-crystal"><span class="c"># If `false`, `nil` or empty value is specified, no delimiter is used.</span>
-<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="n">false</span>) <span class="c"># =&gt; &quot;1000.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;1000.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;1000.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="n">false</span>) <span class="c"># =&gt; &quot;$1000.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="n">nil</span>)   <span class="c"># =&gt; &quot;$1000.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="s">&quot;&quot;</span>)    <span class="c"># =&gt; &quot;$1000.00&quot;</span>
 
 <span class="c"># If a string is specified, it&#39;s value is used.</span>
 <span class="t">Money</span>.new(<span class="n">1_000_00</span>, <span class="s">&quot;USD&quot;</span>).format(thousands_separator: <span class="s">&quot;.&quot;</span>) <span class="c"># =&gt; &quot;$1.000.00&quot;</span>
@@ -626,7 +626,7 @@ Uses the <code><a href="../Money/Currency.html#disambiguate_symbol%3AString%7CNi
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d77b31b/src/money/money/formatting.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/b0b979f/src/money/money/formatting.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -647,7 +647,7 @@ Uses the <code><a href="../Money/Currency.html#disambiguate_symbol%3AString%7CNi
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d77b31b/src/money/money/formatting.cr#L247" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/b0b979f/src/money/money/formatting.cr#L247" target="_blank">View source</a>]
         
       </div>
     </div>
