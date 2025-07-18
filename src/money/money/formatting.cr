@@ -70,8 +70,9 @@ struct Money
     # Money.new(1_00, "GBP").format(symbol: true) # => "£1.00"
     # Money.new(1_00, "EUR").format(symbol: true) # => "€1.00"
     #
-    # # You can pass `false` or an empty string to disable prepending a money symbol.
+    # # You can pass `false`, `nil` or an empty string to disable prepending a money symbol.
     # Money.new(1_00, "USD").format(symbol: false) # => "1.00"
+    # Money.new(1_00, "USD").format(symbol: nil)   # => "1.00"
     # Money.new(1_00, "EUR").format(symbol: "")    # => "1.00"
     #
     # # If the symbol for the given currency isn't known, then it will default
@@ -99,6 +100,11 @@ struct Money
     # Decimal mark to use between the whole and fractional parts of the number.
     #
     # ```
+    # # If `false`, `nil` or empty value is specified, no separator is used.
+    # Money.new(1_00, "USD").format(decimal_mark: false) # => "$100"
+    # Money.new(1_00, "USD").format(decimal_mark: nil)   # => "$100"
+    # Money.new(1_00, "USD").format(decimal_mark: "")    # => "$100"
+    #
     # # If a string is specified, it's value is used.
     # Money.new(1_00, "USD").format(decimal_mark: ",") # => "$1,00"
     #
@@ -111,9 +117,10 @@ struct Money
     # Thousands separator to use between groups of three digits.
     #
     # ```
-    # # If false or empty value is specified, no delimiter is used.
-    # Money.new(1_000_00, "USD").format(thousands_separator: false) # => "1000.00"
-    # Money.new(1_000_00, "USD").format(thousands_separator: "")    # => "1000.00"
+    # # If `false`, `nil` or empty value is specified, no delimiter is used.
+    # Money.new(1_000_00, "USD").format(thousands_separator: false) # => "$1000.00"
+    # Money.new(1_000_00, "USD").format(thousands_separator: nil)   # => "$1000.00"
+    # Money.new(1_000_00, "USD").format(thousands_separator: "")    # => "$1000.00"
     #
     # # If a string is specified, it's value is used.
     # Money.new(1_000_00, "USD").format(thousands_separator: ".") # => "$1.000.00"
@@ -139,9 +146,9 @@ struct Money
       no_cents_if_whole : Bool = false,
       drop_trailing_zeros : Bool = false,
       disambiguate : Bool = false,
-      symbol : String | Char | Bool? = nil,
-      decimal_mark : String | Char | Bool? = nil,
-      thousands_separator : String | Char | Bool? = nil,
+      symbol : String | Char | Bool? = true,
+      decimal_mark : String | Char | Bool? = true,
+      thousands_separator : String | Char | Bool? = true,
     ) : String
       if zero? && display_free
         return display_free
@@ -159,7 +166,7 @@ struct Money
         disambiguate: disambiguate,
         symbol: symbol,
         html: html,
-      )
+      ).presence
 
       sign = '-' if negative?
       sign = '+' if positive? && sign_positive
@@ -174,7 +181,7 @@ struct Money
       formatted = format % {
         sign:     sign,
         amount:   formatted_amount,
-        symbol:   symbol.presence,
+        symbol:   symbol,
         currency: currency.code,
       }
       formatted.strip
@@ -182,11 +189,15 @@ struct Money
 
     # ameba:disable Metrics/CyclomaticComplexity
     private def format_amount(*, no_cents, no_cents_if_whole, drop_trailing_zeros, decimal_mark, thousands_separator) : String
-      decimal_mark =
-        currency.decimal_mark || "." if decimal_mark.in?(true, nil)
+      if decimal_mark.is_a?(Bool)
+        decimal_mark =
+          decimal_mark ? currency.decimal_mark || "." : nil
+      end
 
-      thousands_separator =
-        currency.thousands_separator || "," if thousands_separator.in?(true, nil)
+      if thousands_separator.is_a?(Bool)
+        thousands_separator =
+          thousands_separator ? currency.thousands_separator || "," : nil
+      end
 
       unit, _, subunit =
         amount.abs
@@ -194,7 +205,7 @@ struct Money
           .rpartition('.')
 
       formatted =
-        unit.gsub(',', thousands_separator || "")
+        unit.gsub(',', thousands_separator)
 
       hide_cents =
         no_cents || (no_cents_if_whole && subunit == "0")
@@ -213,6 +224,10 @@ struct Money
     end
 
     private def format_symbol(*, disambiguate, symbol, html) : String?
+      if html && currency.html_entity
+        return currency.html_entity
+      end
+
       default_symbol =
         if disambiguate && currency.disambiguate_symbol
           currency.disambiguate_symbol
@@ -220,17 +235,11 @@ struct Money
           currency.symbol || "¤"
         end
 
-      if html && currency.html_entity
-        currency.html_entity
-      else
-        case symbol
-        in Nil
-          default_symbol
-        in Bool
-          default_symbol if symbol
-        in String, Char
-          symbol.to_s
-        end
+      case symbol
+      when Bool
+        default_symbol if symbol
+      when String, Char
+        symbol.to_s
       end
     end
 

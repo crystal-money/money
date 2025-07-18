@@ -214,6 +214,7 @@ describe Money::Formatting do
         it "returns the amount without a symbol" do
           money = Money.new(1_00, "GBP")
           money.format(symbol: "").should eq "1.00"
+          money.format(symbol: nil).should eq "1.00"
           money.format(symbol: false).should eq "1.00"
 
           money = Money.new(100, "JPY")
@@ -250,6 +251,13 @@ describe Money::Formatting do
         end
       end
 
+      context "(decimal_mark: false)" do
+        it "works as documented" do
+          Money.us_dollar(1_00).format(decimal_mark: false).should eq "$100"
+          Money.us_dollar(1_00).format(decimal_mark: nil).should eq "$100"
+        end
+      end
+
       it "defaults to '.' if currency isn't recognized" do
         # Money.new(1_00, "ZWD").format.should eq "$1.00"
       end
@@ -266,6 +274,7 @@ describe Money::Formatting do
       context "(thousands_separator: false)" do
         it "works as documented" do
           Money.us_dollar(1_000_00).format(thousands_separator: false).should eq "$1000.00"
+          Money.us_dollar(1_000_00).format(thousands_separator: nil).should eq "$1000.00"
         end
       end
 
