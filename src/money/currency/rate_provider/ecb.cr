@@ -7,9 +7,9 @@ class Money::Currency
   class RateProvider::ECB < RateProvider
     include RateProvider::HTTP
 
-    private BASE_CURRENCY_CODE = "EUR"
-
     Log = ::Log.for(self)
+
+    private BASE_CURRENCY_CODE = "EUR"
 
     property host : URI do
       URI.parse("https://www.ecb.europa.eu")

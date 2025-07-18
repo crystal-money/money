@@ -163,9 +163,9 @@ struct Money
       )
 
       symbol = format_symbol(
-        disambiguate: disambiguate,
         symbol: symbol,
         html: html,
+        disambiguate: disambiguate,
       ).presence
 
       sign = '-' if negative?

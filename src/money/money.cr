@@ -196,7 +196,9 @@ struct Money
   # Returns a new `Money` instance with same `currency` and `exchange`
   # properties set as in `self`.
   protected def copy_with(**options) : Money
-    options = {currency: @currency, exchange: @exchange}.merge(options)
+    options =
+      {currency: @currency, exchange: @exchange}.merge(options)
+
     Money.new(**options)
   end
 
