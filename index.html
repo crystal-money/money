@@ -587,6 +587,9 @@ methods like <code>each</code>, <code>map</code>, <code>find</code>, <code>selec
 <p>Or to select all the crypto currencies:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.<span class="k">select</span>(<span class="o">&amp;</span>.crypto?)
 <span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;BTC&quot;&gt;, #&lt;Money::Currency @code=&quot;ETH&quot;&gt;, ...]</span></code></pre>
+<p>To return an array of registered currencies (ordered by their priority),
+call <code>Money::Currency.all</code> or <code>.to_a</code>:</p>
+<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.all <span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span></code></pre>
 <h3><a id="registering-a-new-currency" class="anchor" href="#registering-a-new-currency">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -708,7 +711,8 @@ of the exchange rates:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_exchange <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Exchange</span>.new(
   rate_provider: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span><span class="t">::</span><span class="t">Null</span>.new
 )</code></pre>
-<p>There are multiple providers available under the <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code> namespace
+<p>There are multiple providers available under the <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code>
+<a href="https://github.com/crystal-money/money/tree/master/src/money/currency/rate_provider">namespace</a>
 which can be used OOTB to fetch exchange rates from different sources.</p>
 <p>You can choose one of them, roll your own, or combine them with the <code>Compound</code> provider:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_provider <span class="o">=</span>
