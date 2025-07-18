@@ -26,24 +26,18 @@ class Money::Currency
     if_defined?(:JSON) do
       include JSON::Serializable
 
-      # :nodoc:
-      #
-      # This method will be replaced by `JSON::Serializable` for each
-      # descendant rate provider class.
+      # Alias of `Converter.from_json`.
       def self.new(pull : JSON::PullParser)
-        raise "unreachable"
+        Converter.from_json(pull)
       end
     end
 
     if_defined?(:YAML) do
       include YAML::Serializable
 
-      # :nodoc:
-      #
-      # This method will be replaced by `YAML::Serializable` for each
-      # descendant rate provider class.
+      # Alias of `Converter.from_yaml`.
       def self.new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
-        raise "unreachable"
+        Converter.from_yaml(ctx, node)
       end
     end
 

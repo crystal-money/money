@@ -107,6 +107,26 @@ describe Money::Currency::RateProvider do
       JSON
 
     describe ".from_json" do
+      context "(generic)" do
+        it "returns unserialized object" do
+          provider = Money::Currency::RateProvider.from_json <<-JSON
+            {
+              "name": "DummyFX",
+              "options": {
+                "foo_option": true,
+                "base_currency_codes": ["FOO"],
+                "rates": {}
+              }
+            }
+            JSON
+
+          provider = provider.should be_a Money::Currency::RateProvider::DummyFX
+          provider.foo_option?.should be_true
+          provider.base_currency_codes.should eq %w[FOO]
+          provider.rates.should be_empty
+        end
+      end
+
       it "returns unserialized object" do
         provider =
           Money::Currency::RateProvider::DummyFX.from_json(dummy_fx_provider_json)
@@ -136,6 +156,23 @@ describe Money::Currency::RateProvider do
       YAML
 
     describe ".from_yaml" do
+      context "(generic)" do
+        it "returns unserialized object" do
+          provider = Money::Currency::RateProvider.from_yaml <<-YAML
+            name: DummyFX
+            options:
+              foo_option: true
+              base_currency_codes: [FOO]
+              rates: {}
+            YAML
+
+          provider = provider.should be_a Money::Currency::RateProvider::DummyFX
+          provider.foo_option?.should be_true
+          provider.base_currency_codes.should eq %w[FOO]
+          provider.rates.should be_empty
+        end
+      end
+
       it "returns unserialized object" do
         provider =
           Money::Currency::RateProvider::DummyFX.from_yaml(dummy_fx_provider_yaml)
