@@ -147,57 +147,19 @@ struct Money
         return display_free
       end
 
-      formatted_amount = begin
-        decimal_mark =
-          currency.decimal_mark || "." if decimal_mark.in?(true, nil)
+      formatted_amount = format_amount(
+        no_cents: no_cents,
+        no_cents_if_whole: no_cents_if_whole,
+        drop_trailing_zeros: drop_trailing_zeros,
+        decimal_mark: decimal_mark,
+        thousands_separator: thousands_separator,
+      )
 
-        thousands_separator =
-          currency.thousands_separator || "," if thousands_separator.in?(true, nil)
-
-        unit, _, subunit =
-          amount.abs
-            .format(separator: '.', delimiter: ',', group: 3)
-            .rpartition('.')
-
-        formatted =
-          unit.gsub(',', thousands_separator || "")
-
-        hide_cents =
-          no_cents || (no_cents_if_whole && subunit == "0")
-
-        if !hide_cents && currency.decimal_places.positive?
-          subunit = subunit.ljust(currency.decimal_places, '0')
-          subunit = subunit.rstrip('0') if drop_trailing_zeros
-
-          if subunit = subunit.presence
-            formatted += decimal_mark if decimal_mark
-            formatted += subunit
-          end
-        end
-
-        formatted
-      end
-
-      default_symbol =
-        if disambiguate && currency.disambiguate_symbol
-          currency.disambiguate_symbol
-        else
-          currency.symbol || "¤"
-        end
-
-      symbol =
-        if html && currency.html_entity
-          currency.html_entity
-        else
-          case symbol
-          in Nil
-            default_symbol
-          in Bool
-            default_symbol if symbol
-          in String, Char
-            symbol.to_s
-          end
-        end
+      symbol = format_symbol(
+        disambiguate: disambiguate,
+        symbol: symbol,
+        html: html,
+      )
 
       sign = '-' if negative?
       sign = '+' if positive? && sign_positive
@@ -216,6 +178,60 @@ struct Money
         currency: currency.code,
       }
       formatted.strip
+    end
+
+    # ameba:disable Metrics/CyclomaticComplexity
+    private def format_amount(*, no_cents, no_cents_if_whole, drop_trailing_zeros, decimal_mark, thousands_separator) : String
+      decimal_mark =
+        currency.decimal_mark || "." if decimal_mark.in?(true, nil)
+
+      thousands_separator =
+        currency.thousands_separator || "," if thousands_separator.in?(true, nil)
+
+      unit, _, subunit =
+        amount.abs
+          .format(separator: '.', delimiter: ',', group: 3)
+          .rpartition('.')
+
+      formatted =
+        unit.gsub(',', thousands_separator || "")
+
+      hide_cents =
+        no_cents || (no_cents_if_whole && subunit == "0")
+
+      if !hide_cents && currency.decimal_places.positive?
+        subunit = subunit.ljust(currency.decimal_places, '0')
+        subunit = subunit.rstrip('0') if drop_trailing_zeros
+
+        if subunit = subunit.presence
+          formatted += decimal_mark if decimal_mark
+          formatted += subunit
+        end
+      end
+
+      formatted
+    end
+
+    private def format_symbol(*, disambiguate, symbol, html) : String?
+      default_symbol =
+        if disambiguate && currency.disambiguate_symbol
+          currency.disambiguate_symbol
+        else
+          currency.symbol || "¤"
+        end
+
+      if html && currency.html_entity
+        currency.html_entity
+      else
+        case symbol
+        in Nil
+          default_symbol
+        in Bool
+          default_symbol if symbol
+        in String, Char
+          symbol.to_s
+        end
+      end
     end
 
     # See also `#format`.
