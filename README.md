@@ -1,31 +1,19 @@
 # money [![CI](https://github.com/crystal-money/money/actions/workflows/ci.yml/badge.svg)](https://github.com/crystal-money/money/actions/workflows/ci.yml) [![Releases](https://img.shields.io/github/release/crystal-money/money.svg)](https://github.com/crystal-money/money/releases) [![License](https://img.shields.io/github/license/crystal-money/money.svg)](https://github.com/crystal-money/money/blob/master/LICENSE)
 
-## Introduction
+Hey there! 👋 Welcome to **money**, a Crystal shard for handling money and currency conversion, inspired by [RubyMoney](https://github.com/RubyMoney/money).
 
-A Crystal shard for dealing with money and currency conversion inspired by [RubyMoney](https://github.com/RubyMoney/money).
+## Why Use This Library?
 
-### Features
+Here’s what you get out of the box:
 
-- Provides a `Money` class which encapsulates all information about an certain
-  amount of money, such as its value and its currency.
-- Provides a `Money::Currency` class which encapsulates all information about
-  a monetary unit.
-- Represents monetary values as big decimals. This avoids floating point
-  rounding errors.
-- Represents currency as `Money::Currency` instances providing a high level of
-  flexibility.
-- Provides APIs for exchanging money from one currency to another.
-
-### Resources
-
-- [API Documentation](https://crystal-money.github.io/money/)
-- [Git Repository](https://github.com/crystal-money/money)
-
-### Notes
-
-- Your app must use UTF-8 to function with this library. There are a
-  number of non-ASCII currency attributes.
-- This app requires JSON.
+- A `Money` class to represent amounts and their currencies.
+- A flexible `Money::Currency` class for all your currency info needs.
+- `BigDecimal`-based values—no more floating point rounding headaches!
+- Easy APIs for currency exchange.
+- Multiple exchange rate providers (use built-in or roll your own).
+- Formatting and parsing for money values.
+- Rounding and truncation helpers.
+- JSON/YAML serialization and deserialization support.
 
 ## Installation
 
@@ -37,105 +25,241 @@ dependencies:
     github: crystal-money/money
 ```
 
-Install with `shards install`.
+Then run:
 
-## Usage
+```shell
+shards install
+```
+
+And require it in your project:
 
 ```crystal
 require "money"
+```
 
-# 10.00 USD
-money = Money.new(1000, "USD")
+> [!TIP]
+> If you wish to use YAML serialization, remember to `require "yaml"`
+> **before** requiring `money`.
+
+## Quick Examples
+
+### Creating Money
+
+> [!NOTE]
+> `Money.new` first positional argument will treat the given value as the `fractional`
+> if it's an integer, and the `amount` otherwise.
+
+```crystal
+money = Money.new(10_00, "USD")
+money.to_s          # => "$10.00"
 money.amount        # => 10.0
 money.fractional    # => 1000.0
 money.currency.code # => "USD"
+```
 
-# Comparisons
-Money.new(1000, "USD") == Money.new(1000, "USD") # => true
-Money.new(1000, "USD") == Money.new(100,  "USD") # => false
-Money.new(1000, "USD") == Money.new(1000, "EUR") # => false
-Money.new(1000, "USD") != Money.new(1000, "EUR") # => true
+#### From fractional amount
 
-# Arithmetic
-Money.new(1000, "USD") + Money.new(500, "USD") == Money.new(1500, "USD")
-Money.new(1000, "USD") - Money.new(200, "USD") == Money.new(800,  "USD")
-Money.new(1000, "USD") / 5                     == Money.new(200,  "USD")
-Money.new(1000, "USD") * 5                     == Money.new(5000, "USD")
+```crystal
+Money.new(fractional: 10.0, currency: "USD")
+Money.new(fractional: 10_00, currency: "USD")
+Money.new(10_00, "USD")
+```
 
-# Unit to subunit conversions
-Money.from_amount(5, "USD") == Money.new(500,  "USD") # 5 USD
-Money.from_amount(5, "JPY") == Money.new(5,    "JPY") # 5 JPY
-Money.from_amount(5, "TND") == Money.new(5000, "TND") # 5 TND
+#### From whole amount
 
-# Currency conversions
-some_code_to_setup_exchange_rates
-Money.new(1000, "USD").exchange_to("EUR") == Money.new(some_value, "EUR")
+```crystal
+Money.new(amount: 10.0, currency: "USD")
+Money.new(amount: 10, currency: "USD")
+Money.new(10.0, "USD")
 
-# Formatting (see Formatting section for more options)
-Money.new(100, "USD").format # => "$1.00"
-Money.new(100, "GBP").format # => "£1.00"
-Money.new(100, "EUR").format # => "€1.00"
+Money.from_amount(10.0, "USD")
+Money.from_amount(10, "USD")
+```
 
-# Steppable ranges
-(Money.new(1_00, "USD")..Money.new(3_00, "USD"))
+### Comparing Money
+
+> [!NOTE]
+> Performs currency conversion if necessary.
+
+```crystal
+Money.new(11_00, "USD") == Money.new(11_00, "USD") # => true
+Money.new(11_00, "USD") == Money.new(11_00, "EUR") # => false
+
+Money.new(11_00, "USD") < Money.new(33_00, "USD") # => true
+Money.new(11_00, "USD") > Money.new(33_00, "USD") # => false
+```
+
+> [!CAUTION]
+> Two `Money` objects with `0` amount are considered equal, regardless of their currency.
+
+```crystal
+Money.zero("USD") == Money.zero("EUR") # => true
+```
+
+### Arithmetic
+
+> [!NOTE]
+> Performs currency conversion if necessary.
+
+```crystal
+Money.new(10_00, "USD") + Money.new(5_00, "USD") # => Money(@amount=15.00, @currency="USD")
+Money.new(22_00, "USD") - Money.new(2_00, "USD") # => Money(@amount=20.00, @currency="USD")
+Money.new(22_00, "USD") / 2                      # => Money(@amount=11.00, @currency="USD")
+Money.new(11_00, "USD") * 5                      # => Money(@amount=55.00, @currency="USD")
+```
+
+### Unit/Subunit Conversions
+
+```crystal
+Money.from_amount(5, "USD").fractional # => 500.0
+Money.from_amount(5, "JPY").fractional # => 5.0
+Money.from_amount(5, "TND").fractional # => 5000.0
+```
+
+### Currency Conversion
+
+In order to perform currency exchange, you need to set up a `Money::Currency::Exchange::RateProvider` or add the rates manually:
+
+```crystal
+Money.default_exchange.rate_store["USD", "EUR"] = 1.24515
+Money.default_exchange.rate_store["EUR", "USD"] = 0.803115
+```
+
+Then you can perform the exchange:
+
+```crystal
+Money.new(1_00, "USD").exchange_to("EUR") # => Money(@amount=1.24, @currency="EUR")
+Money.new(1_00, "EUR").exchange_to("USD") # => Money(@amount=0.8, @currency="USD")
+```
+
+Comparison and arithmetic operations work as expected:
+
+```crystal
+Money.new(10_00, "EUR") == Money.new(10_00, "USD") # => false
+Money.new(10_00, "EUR") + Money.new(10_00, "USD")  # => Money(@amount=22.45, @currency="EUR")
+```
+
+### Formatting
+
+```crystal
+Money.new(1_00, "USD").format # => "$1.00"
+Money.new(1_00, "GBP").format # => "£1.00"
+Money.new(1_00, "EUR").format # => "€1.00"
+```
+
+### Money Ranges
+
+```crystal
+range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
+range.to_a(&.to_s)
+# => ["$1.00", "$1.01", "$1.02", ..., "$2.99", "$3.00"]
+```
+
+#### Steppable Ranges
+
+```crystal
+range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
+range
   .step(by: Money.new(1_00, "USD"))
-  .map(&.to_s)
-  .to_a
+  .to_a(&.to_s)
 # => ["$1.00", "$2.00", "$3.00"]
 ```
 
 ## Infinite Precision
 
-By default, `Money` objects are rounded to the nearest cent and the additional
-precision is not preserved:
+By default, `Money` objects are rounded to the nearest cent and the extra precision
+is **not** preserved:
 
 ```crystal
 Money.new(2.34567).to_s # => "$2.35"
 ```
 
-If you wish to work with the additional precision, you can use either of the
-following:
+If you want to keep all the digits, you can enable infinite precision globally:
 
 ```crystal
-# Set the value globally
 Money.infinite_precision = true
+Money.new(2.34567).to_s # => "$2.34567"
+```
 
-Money.new(2.34567).to_s   # => "$2.34567"
+Or use the block-scoped `Money.with_infinite_precision`:
 
-# or
-
-# Set the value within the block
+```crystal
 Money.with_infinite_precision do
   Money.new(2.34567).to_s # => "$2.34567"
 end
 ```
 
-## Currency
+## Currencies
 
-Currencies are consistently represented as instances of `Money::Currency`.
-The most part of `Money` APIs allows you to supply either a `String`, `Symbol`
-or a `Money::Currency`.
+A `Money::Currency` instance holds all the info about the currency:
 
 ```crystal
-Money.new(1000, "USD") == Money.new(1000, Money::Currency.find("USD"))
-Money.new(1000, "EUR").currency == Money::Currency.find(:eur)
-Money.new(1000, "PLN").currency == Money::Currency[:pln]
+currency = Money::Currency.find("USD")
+currency.code   # => "USD"
+currency.name   # => "United States Dollar"
+currency.symbol # => "$"
+currency.fiat?  # => true
 ```
 
-A `Money::Currency` instance holds all the information about the currency,
-including the currency symbol, name and much more.
+Most APIs let you use a `String`, `Symbol`, or a `Money::Currency`:
 
 ```crystal
-currency = Money.new(1000, "USD").currency
-currency.code # => "USD"
-currency.name # => "United States Dollar"
+# All of the following are equivalent:
+
+Money.default_currency = Money::Currency.find("CAD")
+Money.default_currency = "CAD"
+Money.default_currency = :cad
 ```
 
-To define a new `Money::Currency` use `Money::Currency.register` as shown
-below.
+### Currency Lookup
+
+`Money::Currency.find` and `Money::Currency.[]` methods let you find a currency by its code:
+
+```crystal
+Money::Currency.find("USD") # => #<Money::Currency @code="USD">
+Money::Currency[:usd]       # => #<Money::Currency @code="USD">
+Money::Currency[:foo]       # => raises Money::UnknownCurrencyError
+```
+
+There are also `Money::Currency.find?` and `Money::Currency.[]?` non-raising methods:
+
+```crystal
+Money::Currency.find?("USD") # => #<Money::Currency @code="USD">
+Money::Currency[:usd]?       # => #<Money::Currency @code="USD">
+Money::Currency[:foo]?       # => nil
+```
+
+### Currency Enumeration
+
+> [!TIP]
+> `Money::Currency` class implements `Enumerable` module, so you can use all of its
+> methods like `each`, `map`, `find`, `select`, etc.
+
+For example, to find a currency by ISO 4217 numeric code:
+
+```crystal
+Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @code="EUR">
+```
+
+Or to select all the crypto currencies:
+
+```crystal
+Money::Currency.select(&.crypto?)
+# => [#<Money::Currency @code="BTC">, #<Money::Currency @code="ETH">, ...]
+```
+
+To return an array of registered currencies (ordered by their priority),
+call `Money::Currency.all` or `.to_a`:
+
+```crystal
+Money::Currency.all # => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
+```
+
+### Registering a New Currency
 
 ```crystal
 currency = Money::Currency.new(
+  type:                :fiat,
   priority:            1,
   code:                "USD",
   iso_numeric:         840,
@@ -151,69 +275,49 @@ currency = Money::Currency.new(
 Money::Currency.register(currency)
 ```
 
-The pre-defined set of attributes includes:
+#### Currency Attributes
 
-- `:priority` a numerical value you can use to sort/group the currency list
-- `:code` the international 3-letter code as defined by the ISO 4217 standard
-- `:iso_numeric` the international 3-digit code as defined by the ISO 4217 standard
-- `:name` the currency name
-- `:symbol` the currency symbol (UTF-8 encoded)
-- `:symbol_first` whether a money symbol should go before the amount
-- `:subunit` the name of the fractional monetary unit
-- `:subunit_to_unit` the proportion between the unit and the subunit
-- `:decimal_mark` character between the whole and fraction amounts
-- `:thousands_separator` character between each thousands place
+- `:type` — a `Money::Currency::Type` - either `Metal`, `Fiat` or `Crypto`
+- `:priority` — a numerical value you can use to sort/group the currency list
+- `:code` — the international 3-letter code as defined by the ISO 4217 standard
+- `:iso_numeric` — the international 3-digit code as defined by the ISO 4217 standard
+- `:name` — the currency name
+- `:symbol` — the currency symbol (UTF-8 encoded)
+- `:symbol_first` — whether a money symbol should go before the amount
+- `:subunit` — the name of the fractional monetary unit
+- `:subunit_to_unit` — the proportion between the unit and the subunit
+- `:decimal_mark` — character between the whole and fraction amounts
+- `:thousands_separator` — character between each thousands place
 
 All attributes except `:code` and `:subunit_to_unit` are optional.
-Some attributes, such as `:symbol`, are used by the `Money` class to print out a
-representation of the object. Other attributes, such as `:name` or `:priority`,
-exist to provide a basic API you can take advantage of to build your application.
 
-### :priority
+#### Priority
 
-The priority attribute is an arbitrary numerical value you can assign to the
-`Money::Currency` and use in sorting/grouping operation.
-
-For instance, let's assume your web application needs to render a currency
-selector like the one available [here](https://finance.yahoo.com/currency-converter/).
-You can create a couple of custom methods to return the list of major currencies and
-all currencies as follows:
+You can use the `priority` attribute to sort or group currencies:
 
 ```crystal
-# Returns an array of currency id where priority < 10
-def major_currencies(hash)
-  hash.values.sort.take_while(&.priority.try(&.<(10))).map(&.id)
+# Returns an array of currencies where priority is less than 10
+def major_currencies(currencies)
+  currencies.take_while(&.priority.try(&.<(10)))
 end
 
-# Returns an array of all currency id
-def all_currencies(hash)
-  hash.keys
-end
-
-major_currencies(Money::Currency.table)
-# => ["usd", "eur", "gbp", "aud", "cad", "jpy"]
-
-all_currencies(Money::Currency.table)
-# => ["aed", "afn", "all", ...]
+major_currencies(Money::Currency)
+# => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
 ```
 
 ### Default Currency
 
-By default `Money` defaults to USD as its currency. This can be overwritten
-using:
+By default, `Money` uses `USD`. You can change it:
 
 ```crystal
-Money.default_currency = Money::Currency.find("CAD")
-# or
-Money.default_currency = :cad
+Money.default_currency = :xag
 ```
 
 ### Currency Exponent
 
 The exponent of a money value is the number of digits after the decimal
 separator (which separates the major unit from the minor unit). See e.g.
-[ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) for more
-information. You can find the exponent (as an `Int32`) by
+[ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) for more information.
 
 ```crystal
 Money::Currency.find("USD").exponent # => 2
@@ -221,24 +325,15 @@ Money::Currency.find("JPY").exponent # => 0
 Money::Currency.find("MGA").exponent # => 1
 ```
 
-### Currency Lookup
-
-To find a given currency by ISO 4217 numeric code (three digits) you can do
-
-```crystal
-Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @iso_numeric=978, @code="EUR", @name="Euro", @symbol="€", @subunit="Cent", @subunit_to_unit=100, @symbol_first=true ...>
-```
-
 ## Currency Exchange
 
-Exchanging money is performed through a `Currency::Exchange` object.
-This is done by fetching the exchange rate from a `Currency::Exchange#rate_store`
-object. If the rate is not available (or stale), it is then fetched from a
-`Currency::Exchange#rate_provider`.
+Exchanging money is performed through a `Money::Currency::Exchange` object.
+This is done by fetching the exchange rate from a `#rate_store` first.
+If the rate is not available (or stale), it is then fetched from a `#rate_provider`.
 
-The default `Currency::Exchange` object uses `Currency::RateStore::Memory`
-in conjunction with `Currency::RateProvider::Null` which requires one to
-manually specify the exchange rate.
+The default `Money::Currency::Exchange` object uses `Memory` rate store
+in conjunction with `Null` rate provider, which requires one to manually
+specify the exchange rate.
 
 Here's an example of how it works:
 
@@ -246,27 +341,17 @@ Here's an example of how it works:
 Money.default_exchange.rate_store["USD", "EUR"] = 1.24515
 Money.default_exchange.rate_store["EUR", "USD"] = 0.803115
 
-Money.new(100, "USD").exchange_to("EUR") # => Money.new(@amount=1.24, @currency="EUR")
-Money.new(100, "EUR").exchange_to("USD") # => Money.new(@amount=0.8,  @currency="USD")
+Money.new(1_00, "USD").exchange_to("EUR") # => Money(@amount=1.24, @currency="EUR")
+Money.new(1_00, "EUR").exchange_to("USD") # => Money(@amount=0.8, @currency="USD")
 ```
 
-Comparison and arithmetic operations work as expected:
+### Exchange Rate Stores
 
-```crystal
-Money.new(1000, "USD") <=> Money.new(900, "USD") # => 1; 9.00 USD is smaller
-Money.new(1000, "EUR") + Money.new(10, "EUR")    # => Money.new(@amount=10.1, @currency="EUR")
-
-Money.default_exchange.rate_store["USD", "EUR"] = 0.5
-Money.new(1000, "EUR") + Money.new(1000, "USD") # => Money.new(@amount=15.0, @currency="EUR")
-```
-
-### Exchange rate stores
-
-The default exchange is initialized with an in-memory store for exchange rates.
+The default exchange uses an in-memory store:
 
 ```crystal
 Money.default_exchange = Money::Currency::Exchange.new(
-  store: Money::Currency::RateStore::Memory.new
+  rate_store: Money::Currency::RateStore::Memory.new
 )
 ```
 
@@ -275,41 +360,67 @@ of the exchange rates:
 
 ```crystal
 Money.default_exchange = Money::Currency::Exchange.new(
-  store: Money::Currency::RateStore::Memory.new(ttl: 1.hour)
+  rate_store: Money::Currency::RateStore::Memory.new(ttl: 1.hour)
 )
 ```
 
-You can pass you own store implementation, ie. for storing and retrieving rates off a database, file, cache, etc.
+Or use your own store (database, file, cache, etc):
 
 ```crystal
 Money.default_exchange.rate_store = MyCustomStore.new
+```
 
+The store can be used directly:
+
+```crystal
 # Add to the underlying store
 Money.default_exchange.rate_store["USD", "CAD"] = 0.9
 
 # Retrieve from the underlying store
 Money.default_exchange.rate_store["USD", "CAD"] # => 0.9
-
-# Exchanging amounts just works
-Money.new(10.0, "USD").exchange_to("CAD") # => Money(@amount=9.0 @currency="CAD")
 ```
 
-### Exchange rate providers
-
-The default exchange is initialized with a `Currency::RateProvider::Null` provider,
-which returns `nil` for all exchange rates.
-
-There is nothing stopping you from creating rate provider object which scrapes
-[XE](https://www.xe.com) for the current rates or just returns `rand(2)`:
+As long as the store holds the exchange rates, `Money` will use them.
 
 ```crystal
-Money.default_exchange.rate_provider = XeDotComProvider.new
+Money.new(10_00, "USD").exchange_to("CAD")        # => Money(@amount=9.0 @currency="CAD")
+Money.new(10_00, "CAD") + Money.new(10_00, "USD") # => Money(@amount=19.0 @currency="CAD")
 ```
 
-### Disabling currency conversion
+### Exchange Rate Providers
 
-If you wish to disable automatic currency conversion to prevent arithmetic when
-currencies don't match:
+By default, the exchange uses a `Null` provider, which returns `nil` for all rates.
+
+```crystal
+Money.default_exchange = Money::Currency::Exchange.new(
+  rate_provider: Money::Currency::RateProvider::Null.new
+)
+```
+
+There are multiple providers available under the `Money::Currency::RateProvider`
+[namespace](https://github.com/crystal-money/money/tree/master/src/money/currency/rate_provider)
+which can be used OOTB to fetch exchange rates from different sources.
+
+You can choose one of them, roll your own, or combine them with the `Compound` provider:
+
+```crystal
+Money.default_exchange.rate_provider =
+  Money::Currency::RateProvider::Compound.new([
+    Money::Currency::RateProvider::ECB.new,
+    Money::Currency::RateProvider::FloatRates.new,
+    Money::Currency::RateProvider::UniRateAPI.new(
+      api_key: "valid-api-key"
+    ),
+  ])
+```
+
+> [!TIP]
+> `Compound` rate provider takes an array of `Money::Currency::RateProvider` instances
+> which are used in order to fetch the exchange rate.
+
+### Disabling Currency Conversion
+
+If you want to prevent automatic currency conversion:
 
 ```crystal
 Money.disallow_currency_conversion!
@@ -317,24 +428,32 @@ Money.disallow_currency_conversion!
 
 ## Rounding
 
-By default, `Money` objects are rounded to the nearest cent and the additional precision is not preserved:
+By default, `Money` rounds to the nearest cent:
 
 ```crystal
 Money.new(2.34567).to_s # => "$2.35"
 ```
 
-To round to the nearest cent (or anything more precise), you can use the `Money#round` method.
+You can change the rounding precision:
 
 ```crystal
-Money.new(2.34567).round(4).to_s # => "$2.35"
+Money.new(2.34567).round(1).to_s # => "$2.30"
 ```
 
-To retain the additional precision, you will also need to set `Money.infinite_precision` to `true`.
+You can change the rounding mode:
+
+```crystal
+Money.new(2.34567).round(1, :to_positive).to_s # => "$2.40"
+Money.new(2.34567).round(1, :to_negative).to_s # => "$2.30"
+```
+
+To keep extra digits, enable infinite precision:
 
 ```crystal
 Money.infinite_precision = true
 
-Money.new(2.34567).to_s                    # => "$2.3457"
+Money.new(2.34567).to_s                    # => "$2.34567"
+Money.new(2.34567).round(4).to_s           # => "$2.3457"
 Money.new(2.34567).round(4, :to_zero).to_s # => "$2.3456"
 
 # or
@@ -344,10 +463,145 @@ Money.with_rounding_mode(:to_zero) do
 end
 ```
 
-## Working with fibers
+### Nearest Cash Value
 
-By default, global settings are not shared between fibers. You can use the
-`Money.spawn_with_same_context` to spawn a new fiber with the same global settings:
+If you want to round to the nearest cash value, use `Money#round_to_nearest_cash_value`:
+
+```crystal
+Money.new(10_07, "CHF").round_to_nearest_cash_value
+# => Money(@amount=10.05, @currency="CHF")
+
+Money.new(10_08, "CHF").round_to_nearest_cash_value
+# => Money(@amount=10.1, @currency="CHF")
+```
+
+## JSON/YAML Serialization
+
+`Money`, `Money::Currency`, `Money::Currency::Rate` and `Money::Currency::RateProvider` implements `JSON::Serializable` and `YAML::Serializable`:
+
+### `Money`
+
+```crystal
+Money.new(10_00, "USD").to_json # => "{\"amount\":10.0,\"currency\":\"USD\"}"
+Money.new(10_00, "USD").to_yaml # => "---\namount: 10.0\ncurrency: USD\n"
+
+Money.from_json(%({"amount": 10.0, "currency": "USD"}))
+# => Money(@amount=10.0, @currency="USD")
+
+Money.from_yaml("{ amount: 10.0, currency: USD }")
+# => Money(@amount=10.0, @currency="USD")
+```
+
+### `Money::Currency`
+
+```crystal
+# Serialize existing `Money::Currency`
+
+Money::Currency.find("USD").to_json # => "{\"code\":\"USD\", ...}"
+Money::Currency.find("USD").to_yaml # => "---\ncode: USD\n ..."
+
+# Instantiate new `Money::Currency`
+
+Money::Currency.from_json(%({"code": "FOO", ...})) # => #<Money::Currency @code="FOO">
+Money::Currency.from_yaml("{ code: FOO, ... }")    # => #<Money::Currency @code="FOO">
+
+# Lookup existing `Money::Currency`
+
+Money::Currency.from_json(%("USD")) # => #<Money::Currency @code="USD">
+Money::Currency.from_yaml("USD")    # => #<Money::Currency @code="USD">
+```
+
+### `Money::Currency::Rate`
+
+```crystal
+rate = Money::Currency::Rate.new(
+  Money::Currency.find("USD"),
+  Money::Currency.find("EUR"),
+  1.25.to_big_d,
+  Time.parse_utc("2025-05-22", "%F"),
+)
+
+rate.to_json # => "{\"base\":\"USD\",\"target\":\"EUR\",\"value\":1.25,\"updated_at\":\"2025-05-22T00:00:00.000Z\"}"
+rate.to_yaml # => "---\nbase: USD\ntarget: EUR\nvalue: 1.25\nupdated_at: 2025-05-22\n"
+```
+
+### `Money::Currency::RateProvider`
+
+You can use `.from_json` and `.from_yaml` methods to deserialize generic
+rate provider instances providing the `name` (in _CamelCase_ or _snake_case_)
+and `options` - optional hash that's being passed to the provider initializer.
+
+```crystal
+provider = Money::Currency::RateProvider.from_yaml <<-YAML
+  name: Compound
+  options:
+    providers:
+    - name: ECB
+    - name: FloatRates
+    - name: UniRateAPI
+      options:
+        api_key: valid-api-key
+  YAML
+
+provider.class # => Money::Currency::RateProvider::Compound
+```
+
+For specific providers you pass the `options` directly:
+
+```crystal
+compound_provider = Money::Currency::RateProvider::Compound.from_yaml <<-YAML
+  providers:
+  - name: ECB
+  - name: FloatRates
+  YAML
+
+compound_provider.providers << Money::Currency::RateProvider::UniRateAPI.from_yaml <<-YAML
+  api_key: valid-api-key
+  YAML
+
+compound_provider.providers.size # => 3
+```
+
+#### Using with `JSON::Serializable` and `YAML::Serializable`
+
+In order to (de)serialize generic `Money::Currency::RateProvider` instances,
+you need to add a `JSON/YAML::Field` annotation with a custom converter —
+`Money::Currency::RateProvider::Converter`.
+
+```crystal
+class FooWithGenericProvider
+  include JSON::Serializable
+  include YAML::Serializable
+
+  @[JSON::Field(converter: Money::Currency::RateProvider::Converter)]
+  @[YAML::Field(converter: Money::Currency::RateProvider::Converter)]
+  property provider : Money::Currency::RateProvider
+
+  def initialize(@provider)
+  end
+end
+
+foo = FooWithGenericProvider.from_yaml <<-YAML
+  provider:
+    name: Compound
+    options:
+      providers:
+      - name: ECB
+      - name: FloatRates
+      - name: UniRateAPI
+        options:
+          api_key: valid-api-key
+  YAML
+
+foo.provider.class # => Money::Currency::RateProvider::Compound
+```
+
+## Working with Fibers
+
+Global settings are being kept in a single, fiber-local `Money.context` object,
+and are not shared between fibers by default.
+
+Use this to `spawn` a fiber with the same settings as the current one:
 
 ```crystal
 Money.default_currency = "EUR"
@@ -357,20 +611,27 @@ Money.spawn_with_same_context do
 end
 ```
 
+All of the `Money` APIs and classes are (or at least should be) fiber-safe.
+
+> [!CAUTION]
+> `Money.spawn_with_same_context` duplicates the `Money.context` instance,
+> by calling `#dup` on it and thus only the values are being duplicated,
+> references are shared.
+
 ## Formatting
 
-There are several formatting rules for when `Money#format` is called. For more information, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or read the latest release's [docs](https://crystal-money.github.io/money/Money/Formatting.html).
+There are several formatting rules for when `Money#format` is called. For more info, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or the [docs](https://crystal-money.github.io/money/Money/Formatting.html).
 
-If you wish to format money according to the EU's [Rules for expressing monetary units](https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO) in either English, Irish, Latvian or Maltese:
+If you want to format money according to the EU's [Rules for expressing monetary units](https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO):
 
 ```crystal
-money = Money.new(123, :gbp)               # => Money(@amount=1.23 @currency="GBP")
-money.format(symbol: "#{money.currency} ") # => "GBP 1.23"
+money = Money.new(1_23, "GBP")                       # => Money(@amount=1.23 @currency="GBP")
+money.format(format: "%{currency} %{sign}%{amount}") # => "GBP 1.23"
 ```
 
-## Heuristics
+## Parsing
 
-To parse a `String` containing amount with currency code or symbol you can do
+You can parse a string with an amount and currency code or symbol:
 
 ```crystal
 Money.parse("$12.34")    # => Money(@amount=12.34, @currency="USD")
@@ -379,4 +640,4 @@ Money.parse("12.34 USD") # => Money(@amount=12.34, @currency="USD")
 
 ## Contributors
 
-- [Sija](https://github.com/Sija) Sijawusz Pur Rahnama - creator, maintainer
+- [Sija](https://github.com/Sija) Sijawusz Pur Rahnama (creator & maintainer)
