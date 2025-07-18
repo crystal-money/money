@@ -154,14 +154,13 @@ struct Money
         return display_free
       end
 
-      formatted_amount = format_amount(
+      amount = format_amount(
         no_cents: no_cents,
         no_cents_if_whole: no_cents_if_whole,
         drop_trailing_zeros: drop_trailing_zeros,
         decimal_mark: decimal_mark,
         thousands_separator: thousands_separator,
       )
-
       symbol = format_symbol(
         symbol: symbol,
         html: html,
@@ -180,7 +179,7 @@ struct Money
 
       formatted = format % {
         sign:     sign,
-        amount:   formatted_amount,
+        amount:   amount,
         symbol:   symbol,
         currency: currency.code,
       }
@@ -224,20 +223,16 @@ struct Money
     end
 
     private def format_symbol(*, disambiguate, symbol, html) : String?
-      if html && currency.html_entity
-        return currency.html_entity
-      end
-
-      default_symbol =
-        if disambiguate && currency.disambiguate_symbol
+      case symbol
+      when true
+        case
+        when html && currency.html_entity
+          currency.html_entity
+        when disambiguate && currency.disambiguate_symbol
           currency.disambiguate_symbol
         else
           currency.symbol || "¤"
         end
-
-      case symbol
-      when Bool
-        default_symbol if symbol
       when String, Char
         symbol.to_s
       end
