@@ -198,16 +198,16 @@ describe Money::Currency::RateProvider do
     end
   end
 
-  context ".providers" do
+  context ".registry" do
     it "registers subclasses in providers" do
-      Money::Currency::RateProvider.providers.has_key?("dummy_fx").should be_true
-      Money::Currency::RateProvider.providers["dummy_fx"]
+      Money::Currency::RateProvider.registry.has_key?("dummy_fx").should be_true
+      Money::Currency::RateProvider.registry["dummy_fx"]
         .should eq Money::Currency::RateProvider::DummyFX
     end
 
     context "JSON serialization" do
       it "each provider is serializable" do
-        Money::Currency::RateProvider.providers.each do |key, klass|
+        Money::Currency::RateProvider.registry.each do |key, klass|
           provider = klass.new
           provider.to_json.should match /\A\{(.*)\}\z/m
         rescue ex
@@ -216,7 +216,7 @@ describe Money::Currency::RateProvider do
       end
 
       it "each provider is deserializable" do
-        Money::Currency::RateProvider.providers.each do |key, klass|
+        Money::Currency::RateProvider.registry.each do |key, klass|
           provider = klass.from_json(klass.new.to_json)
           provider.class.should eq klass
         rescue ex
@@ -227,7 +227,7 @@ describe Money::Currency::RateProvider do
 
     context "YAML serialization" do
       it "each provider is serializable" do
-        Money::Currency::RateProvider.providers.each do |key, klass|
+        Money::Currency::RateProvider.registry.each do |key, klass|
           provider = klass.new
           provider.to_yaml.should_not be_nil
         rescue ex
@@ -236,7 +236,7 @@ describe Money::Currency::RateProvider do
       end
 
       it "each provider is deserializable" do
-        Money::Currency::RateProvider.providers.each do |key, klass|
+        Money::Currency::RateProvider.registry.each do |key, klass|
           provider = klass.from_yaml(klass.new.to_yaml)
           provider.class.should eq klass
         rescue ex

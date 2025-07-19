@@ -1,7 +1,7 @@
 class Money::Currency
   abstract class RateProvider
     # All registered rate providers.
-    class_getter providers = {} of String => RateProvider.class
+    class_getter registry = {} of String => RateProvider.class
 
     macro inherited
       {% @type.raise "abstract rate providers are not allowed" if @type.abstract? %}
@@ -15,7 +15,7 @@ class Money::Currency
             @type.raise "class must be placed inside `#{superclass_name}` namespace"
           end
       %}
-      {{ superclass_name }}.providers[{{ name.stringify }}] = self
+      {{ superclass_name }}.registry[{{ name.stringify }}] = self
 
       # Returns the provider key.
       def self.key : String
@@ -44,7 +44,7 @@ class Money::Currency
     # Returns the rate provider class for the given *name* if found,
     # `nil` otherwise.
     def self.find?(name : String) : RateProvider.class | Nil
-      providers[name.underscore]?
+      registry[name.underscore]?
     end
 
     # Returns the rate provider class for the given *name* if found,
