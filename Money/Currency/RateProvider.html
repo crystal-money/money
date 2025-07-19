@@ -470,7 +470,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L2" target="_blank">
         money/currency/rate_provider.cr
       </a>
     
@@ -514,21 +514,21 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#find%28name%3AString%29%3ARateProvider.class-class-method" class="signature"><strong>.find</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span></a>
+        <a href="#find%28name%3AString%7CSymbol%29%3ARateProvider.class-class-method" class="signature"><strong>.find</strong>(name : String | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span></a>
         
           <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find%3F%28name%3AString%29%3ARateProvider.class%7CNil-class-method" class="signature"><strong>.find?</strong>(name : String) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</a>
+        <a href="#find%3F%28name%3AString%7CSymbol%29%3ARateProvider.class%7CNil-class-method" class="signature"><strong>.find?</strong>(name : String | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</a>
         
           <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, <code>nil</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#providers-class-method" class="signature"><strong>.providers</strong></a>
+        <a href="#registry-class-method" class="signature"><strong>.registry</strong></a>
         
           <div class="summary"><p>All registered rate providers.</p></div>
         
@@ -651,7 +651,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -668,12 +668,12 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="find(name:String):RateProvider.class-class-method">
+    <div class="entry-detail" id="find(name:String|Symbol):RateProvider.class-class-method">
       <div class="signature">
         
-        def self.<strong>find</strong>(name : <a href="../../String.html">String</a>) : <span class="t">RateProvider</span>.<span class="k">class</span>
+        def self.<strong>find</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span>
 
-        <a class="method-permalink" href="#find%28name%3AString%29%3ARateProvider.class-class-method">#</a>
+        <a class="method-permalink" href="#find%28name%3AString%7CSymbol%29%3ARateProvider.class-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -685,17 +685,17 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="find?(name:String):RateProvider.class|Nil-class-method">
+    <div class="entry-detail" id="find?(name:String|Symbol):RateProvider.class|Nil-class-method">
       <div class="signature">
         
-        def self.<strong>find?</strong>(name : <a href="../../String.html">String</a>) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil
+        def self.<strong>find?</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil
 
-        <a class="method-permalink" href="#find%3F%28name%3AString%29%3ARateProvider.class%7CNil-class-method">#</a>
+        <a class="method-permalink" href="#find%3F%28name%3AString%7CSymbol%29%3ARateProvider.class%7CNil-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -707,17 +707,17 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="providers-class-method">
+    <div class="entry-detail" id="registry-class-method">
       <div class="signature">
         
-        def self.<strong>providers</strong>
+        def self.<strong>registry</strong>
 
-        <a class="method-permalink" href="#providers-class-method">#</a>
+        <a class="method-permalink" href="#registry-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -728,7 +728,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -763,7 +763,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -784,7 +784,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -805,7 +805,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L77" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -826,7 +826,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/796f447/src/money/currency/rate_provider.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/62940a9/src/money/currency/rate_provider.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
