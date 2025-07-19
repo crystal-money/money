@@ -247,8 +247,13 @@ describe Money::Currency::RateProvider do
   end
 
   context ".find?" do
-    it "returns provider by name" do
+    it "returns provider by name (string)" do
       Money::Currency::RateProvider.find?("dummy_fx")
+        .should eq Money::Currency::RateProvider::DummyFX
+    end
+
+    it "returns provider by name (symbol)" do
+      Money::Currency::RateProvider.find?(:dummy_fx)
         .should eq Money::Currency::RateProvider::DummyFX
     end
 
@@ -258,8 +263,13 @@ describe Money::Currency::RateProvider do
   end
 
   context ".find" do
-    it "returns provider by name" do
+    it "returns provider by name (string)" do
       Money::Currency::RateProvider.find("dummy_fx")
+        .should eq Money::Currency::RateProvider::DummyFX
+    end
+
+    it "returns provider by name (symbol)" do
+      Money::Currency::RateProvider.find(:dummy_fx)
         .should eq Money::Currency::RateProvider::DummyFX
     end
 

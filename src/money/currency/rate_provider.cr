@@ -43,13 +43,13 @@ class Money::Currency
 
     # Returns the rate provider class for the given *name* if found,
     # `nil` otherwise.
-    def self.find?(name : String) : RateProvider.class | Nil
-      registry[name.underscore]?
+    def self.find?(name : String | Symbol) : RateProvider.class | Nil
+      registry[name.to_s.underscore]?
     end
 
     # Returns the rate provider class for the given *name* if found,
     # raises `UnknownRateProviderError` otherwise.
-    def self.find(name : String) : RateProvider.class
+    def self.find(name : String | Symbol) : RateProvider.class
       find?(name) ||
         raise UnknownRateProviderError.new(name)
     end
