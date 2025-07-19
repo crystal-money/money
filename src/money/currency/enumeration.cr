@@ -10,8 +10,8 @@ class Money::Currency
     # Money::Currency.find("FOO") # => nil
     # ```
     def find?(key : String | Symbol) : Currency?
-      @@table_mutex.synchronize do
-        table[key.to_s.downcase]?
+      @@registry_mutex.synchronize do
+        registry[key.to_s.downcase]?
       end
     end
 
@@ -41,8 +41,8 @@ class Money::Currency
 
     # Returns a sorted list of all registered currencies.
     def all : Array(Currency)
-      @@table_mutex.synchronize do
-        table.values.sort!
+      @@registry_mutex.synchronize do
+        registry.values.sort!
       end
     end
 

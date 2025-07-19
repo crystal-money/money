@@ -16,36 +16,36 @@ struct Money
     extend Currency::Loader
     extend Currency::Enumeration
 
-    @@table_mutex = Mutex.new(:reentrant)
-    @@table : Hash(String, Currency)?
+    @@registry_mutex = Mutex.new(:reentrant)
+    @@registry : Hash(String, Currency)?
 
     # List of known currencies.
-    def self.table : Hash(String, Currency)
-      @@table_mutex.synchronize do
-        @@table ||= load_currencies
+    def self.registry : Hash(String, Currency)
+      @@registry_mutex.synchronize do
+        @@registry ||= load_currencies
       end
     end
 
     # Registers a new currency.
     def self.register(currency : Currency) : Currency
-      @@table_mutex.synchronize do
-        table[currency.id] = currency
+      @@registry_mutex.synchronize do
+        registry[currency.id] = currency
       end
     end
 
     # Unregisters a currency.
     def self.unregister(currency : String | Symbol | Currency) : Currency?
       if currency = wrap?(currency)
-        @@table_mutex.synchronize do
-          table.delete(currency.id)
+        @@registry_mutex.synchronize do
+          registry.delete(currency.id)
         end
       end
     end
 
     # Resets all registered currencies to their defaults.
     def self.reset! : Nil
-      @@table_mutex.synchronize do
-        @@table = load_currencies
+      @@registry_mutex.synchronize do
+        @@registry = load_currencies
       end
     end
 
