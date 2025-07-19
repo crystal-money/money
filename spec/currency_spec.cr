@@ -73,25 +73,6 @@ describe Money::Currency do
     end
   end
 
-  describe ".wrap?" do
-    it "returns nil for invalid ids" do
-      Money::Currency.wrap?(:foo).should be_nil
-    end
-    it "returns passed object if object is Currency" do
-      Money::Currency.wrap?(Money::Currency.find(:usd)).should be Money::Currency.find(:usd)
-    end
-    it "returns Currency object matching given id if object is String or Symbol" do
-      Money::Currency.wrap?("USD").should be Money::Currency.find(:usd)
-      Money::Currency.wrap?(:usd).should be Money::Currency.find(:usd)
-    end
-  end
-
-  describe ".wrap" do
-    it "raises UnknownCurrencyError for invalid ids" do
-      expect_raises(Money::UnknownCurrencyError) { Money::Currency.wrap(:foo) }
-    end
-  end
-
   describe ".register" do
     it "registers a new currency" do
       currency = Money::Currency.new(

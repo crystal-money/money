@@ -176,7 +176,7 @@ struct Money
   # Money.new(amount: 13.37) # => Money(@amount=13.37)
   # ```
   def initialize(*, amount : Number, currency = Money.default_currency, exchange = nil)
-    @currency = Currency.wrap(currency)
+    @currency = Currency[currency]
     @amount = amount.to_big_d
     @exchange = exchange
   end
@@ -188,7 +188,7 @@ struct Money
   # Money.new(fractional: 13_37) # => Money(@amount=13.37)
   # ```
   def initialize(*, fractional : Number, currency = Money.default_currency, exchange = nil)
-    @currency = Currency.wrap(currency)
+    @currency = Currency[currency]
     @amount = fractional.to_big_d / @currency.subunit_to_unit
     @exchange = exchange
   end
@@ -241,7 +241,7 @@ struct Money
   # from the current `#currency` - or `self` otherwise, leaving the amount
   # intact and **not** performing currency conversion.
   def with_currency(new_currency : String | Symbol | Currency) : Money
-    new_currency = Currency.wrap(new_currency)
+    new_currency = Currency[new_currency]
     if new_currency == currency
       self
     else

@@ -21,6 +21,12 @@ class Money::Currency
       find?(key)
     end
 
+    # Returns given `Currency` instance.
+    @[AlwaysInline]
+    def []?(key : Currency) : Currency?
+      key
+    end
+
     # Lookup a currency with given *key* an returns a `Currency` instance on
     # success, raises `UnknownCurrencyError` otherwise.
     #
@@ -37,6 +43,12 @@ class Money::Currency
     @[AlwaysInline]
     def [](key : String | Symbol) : Currency
       find(key)
+    end
+
+    # Returns given `Currency` instance.
+    @[AlwaysInline]
+    def [](key : Currency) : Currency
+      key
     end
 
     # Returns a sorted list of all registered currencies.

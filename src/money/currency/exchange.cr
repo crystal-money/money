@@ -56,7 +56,7 @@ class Money::Currency
     # or `nil` if not found.
     def exchange_rate?(base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal?
       base, target =
-        Currency.wrap(base), Currency.wrap(target)
+        Currency[base], Currency[target]
 
       return 1.to_big_d if base == target
 

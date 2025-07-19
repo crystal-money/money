@@ -37,7 +37,7 @@ class Money::Currency
     # ```
     def []=(base : String | Symbol | Currency, target : String | Symbol | Currency, value : Number) : Nil
       base, target =
-        Currency.wrap(base), Currency.wrap(target)
+        Currency[base], Currency[target]
 
       transaction(mutable: true) do
         set_rate(Rate.new(base, target, value.to_big_d))
@@ -104,7 +104,7 @@ class Money::Currency
     # ```
     def []?(base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal?
       base, target =
-        Currency.wrap(base), Currency.wrap(target)
+        Currency[base], Currency[target]
 
       transaction do
         if rate = get_rate?(base, target)
@@ -167,7 +167,7 @@ class Money::Currency
 
     # Removes rates for the given *base* currency.
     def clear(base : String | Symbol | Currency) : Nil
-      base = Currency.wrap(base)
+      base = Currency[base]
 
       transaction(mutable: true) do
         clear_rates(base)

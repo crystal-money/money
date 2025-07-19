@@ -2,7 +2,7 @@ struct Money
   module Exchange
     # Exchanges `self` to a new `Money` object in *other_currency*.
     def exchange_to(other_currency : String | Symbol | Currency) : Money
-      other_currency = Currency.wrap(other_currency)
+      other_currency = Currency[other_currency]
       case
       when other_currency == currency
         self

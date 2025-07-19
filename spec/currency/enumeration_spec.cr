@@ -79,17 +79,33 @@ describe Money::Currency::Enumeration do
     end
   end
 
-  describe ".[]" do
-    it "acts as an alias of .find" do
-      Money::Currency["USD"].should eq Money::Currency.find("USD")
-      expect_raises(Money::UnknownCurrencyError) { Money::Currency.find("ZZZ") }
+  describe ".[]?" do
+    it "returns nil for invalid ids" do
+      Money::Currency[:foo]?.should be_nil
+    end
+
+    it "returns passed object if object is Currency" do
+      Money::Currency[Money::Currency.find(:usd)]?.should be Money::Currency.find(:usd)
+    end
+
+    it "returns Currency object matching given id if object is String or Symbol" do
+      Money::Currency["USD"]?.should be Money::Currency.find(:usd)
+      Money::Currency[:usd]?.should be Money::Currency.find(:usd)
     end
   end
 
-  describe ".[]?" do
-    it "acts as an alias of .find?" do
-      Money::Currency["USD"]?.should eq Money::Currency.find?("USD")
-      Money::Currency["ZZZ"]?.should be_nil
+  describe ".[]" do
+    it "raises UnknownCurrencyError for invalid ids" do
+      expect_raises(Money::UnknownCurrencyError) { Money::Currency[:foo] }
+    end
+
+    it "returns passed object if object is Currency" do
+      Money::Currency[Money::Currency.find(:usd)].should be Money::Currency.find(:usd)
+    end
+
+    it "returns Currency object matching given id if object is String or Symbol" do
+      Money::Currency["USD"].should be Money::Currency.find(:usd)
+      Money::Currency[:usd].should be Money::Currency.find(:usd)
     end
   end
 

@@ -35,7 +35,7 @@ struct Money
 
     # Unregisters a currency.
     def self.unregister(currency : String | Symbol | Currency) : Currency?
-      if currency = wrap?(currency)
+      if currency = self[currency]?
         @@registry_mutex.synchronize do
           registry.delete(currency.id)
         end
@@ -47,28 +47,6 @@ struct Money
       @@registry_mutex.synchronize do
         @@registry = load_currencies
       end
-    end
-
-    # Wraps the *value* in a `Currency` object.
-    #
-    # ```
-    # c1 = Money::Currency.find(:usd)
-    # Money::Currency.wrap?(c1)    # => #<Money::Currency @id="usd">
-    # Money::Currency.wrap?("usd") # => #<Money::Currency @id="usd">
-    # Money::Currency.wrap?(:usd)  # => #<Money::Currency @id="usd">
-    # Money::Currency.wrap?(:foo)  # => nil
-    # ```
-    def self.wrap?(value : String | Symbol | Currency) : Currency?
-      case value
-      when String, Symbol then find?(value)
-      when Currency       then value
-      end
-    end
-
-    # :ditto:
-    def self.wrap(value : String | Symbol | Currency) : Currency
-      wrap?(value) ||
-        raise UnknownCurrencyError.new(value)
     end
 
     # Currency ID (lower-cased `#code`).
