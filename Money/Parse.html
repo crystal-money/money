@@ -406,7 +406,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/parse.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/parse.cr#L2" target="_blank">
         money/money/parse.cr
       </a>
     
@@ -485,12 +485,15 @@
           <p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string.</p>
 <p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first matching
 currency for ambiguous values, otherwise raises <code><a href="../Money/Parse/Error.html">Error</a></code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse(<span class="s">&quot;10.00 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse(<span class="s">&quot;$10.00&quot;</span>)    <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse(<span class="s">&quot;10.00&quot;</span>)     <span class="c"># raises Money::Parse::Error</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/parse.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/parse.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -508,12 +511,15 @@ currency for ambiguous values, otherwise raises <code><a href="../Money/Parse/Er
           <p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p>
 <p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first
 matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;10.00 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>)    <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;10.00&quot;</span>)     <span class="c"># =&gt; nil</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/parse.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/parse.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>

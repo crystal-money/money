@@ -567,7 +567,7 @@ currency.fiat?  <span class="c"># =&gt; true</span></code></pre>
 <p><code>Money::Currency.find</code> and <code>Money::Currency.[]</code> methods let you find a currency by its code:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:usd</span>]       <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:foo</span>]       <span class="c"># =&gt; raises Money::UnknownCurrencyError</span></code></pre>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:foo</span>]       <span class="c"># raises Money::UnknownCurrencyError</span></code></pre>
 <p>There are also <code>Money::Currency.find?</code> and <code>Money::Currency.[]?</code> non-raising methods:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find?(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:usd</span>]?       <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>

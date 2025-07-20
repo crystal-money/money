@@ -420,7 +420,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/exchange.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/exchange.cr#L2" target="_blank">
         money/money/exchange.cr
       </a>
     
@@ -497,12 +497,17 @@
         <div class="doc">
           
           <p>Exchanges <code>self</code> to a new <code><a href="../Money.html">Money</a></code> object in <em>other_currency</em>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">1.23</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.82</span>
+
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money(@amount=1.23, @currency=&quot;EUR&quot;)</span>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;EUR&quot;</span>).exchange_to(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=0.82, @currency=&quot;USD&quot;)</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/exchange.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/exchange.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -523,7 +528,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/dfb91fd/src/money/money/exchange.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/9e289aa/src/money/money/exchange.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
