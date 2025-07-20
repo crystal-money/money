@@ -14,6 +14,12 @@ struct Money
     #
     # If `allow_ambiguous` is `true` (default), returns the first matching
     # currency for ambiguous values, otherwise raises `Error`.
+    #
+    # ```
+    # Money.parse("10.00 USD") # => Money(@amount=10.0, @currency="USD")
+    # Money.parse("$10.00")    # => Money(@amount=10.0, @currency="USD")
+    # Money.parse("10.00")     # raises Money::Parse::Error
+    # ```
     def parse(str : String, *, allow_ambiguous = true) : Money
       parse(str, allow_ambiguous) { |ex| raise ex }
     end
@@ -22,6 +28,12 @@ struct Money
     #
     # If `allow_ambiguous` is `true` (default), returns the first
     # matching currency for ambiguous values, otherwise returns `nil`.
+    #
+    # ```
+    # Money.parse?("10.00 USD") # => Money(@amount=10.0, @currency="USD")
+    # Money.parse?("$10.00")    # => Money(@amount=10.0, @currency="USD")
+    # Money.parse?("10.00")     # => nil
+    # ```
     def parse?(str : String, *, allow_ambiguous = true) : Money?
       parse(str, allow_ambiguous) { nil }
     end

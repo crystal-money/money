@@ -6,7 +6,7 @@ class Money::Currency
     # success, `nil` otherwise.
     #
     # ```
-    # Money::Currency.find("EUR") # => #<Money::Currency @id="eur">
+    # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
     # Money::Currency.find("FOO") # => nil
     # ```
     def find?(key : String | Symbol) : Currency?
@@ -31,7 +31,7 @@ class Money::Currency
     # success, raises `UnknownCurrencyError` otherwise.
     #
     # ```
-    # Money::Currency.find("EUR") # => #<Money::Currency @id="eur">
+    # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
     # Money::Currency.find("FOO") # => raises UnknownCurrencyError
     # ```
     def find(key : String | Symbol) : Currency

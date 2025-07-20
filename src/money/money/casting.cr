@@ -16,7 +16,7 @@ struct Money
     # currency or working with another system that requires floats.
     #
     # ```
-    # Money.us_dollar(100).to_big_f # => BigFloat.new("1.0")
+    # Money.us_dollar(1_00).to_big_f # => BigFloat.new("1.0")
     # ```
     def to_big_f : BigFloat
       amount.to_big_f

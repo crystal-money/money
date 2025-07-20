@@ -230,8 +230,8 @@ struct Money
   # Returns a new `Money` instance with incremented `fractional` value.
   #
   # ```
-  # Money.new(1_00, "USD").succ # => Money.new(1_01, "USD")
-  # Money.new(1, "JPY").succ    # => Money.new(2, "JPY")
+  # Money.new(1_00, "USD").succ # => Money(@amount=1.01 @currency="USD")
+  # Money.new(1, "JPY").succ    # => Money(@amount=2 @currency="JPY")
   # ```
   def succ : Money
     copy_with(fractional: fractional + 1)

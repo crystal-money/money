@@ -218,7 +218,7 @@ Money.default_currency = :cad
 ```crystal
 Money::Currency.find("USD") # => #<Money::Currency @code="USD">
 Money::Currency[:usd]       # => #<Money::Currency @code="USD">
-Money::Currency[:foo]       # => raises Money::UnknownCurrencyError
+Money::Currency[:foo]       # raises Money::UnknownCurrencyError
 ```
 
 There are also `Money::Currency.find?` and `Money::Currency.[]?` non-raising methods:

@@ -145,6 +145,11 @@ struct Money
 
     # Returns the relation between subunit and unit as a base 10 exponent.
     #
+    # ```
+    # Money::Currency.find(:usd).exponent # => 2
+    # Money::Currency.find(:btc).exponent # => 8
+    # ```
+    #
     # NOTE: MGA and MRU are exceptions and are rounded to 1.
     #
     # See [Active_codes](https://en.wikipedia.org/wiki/ISO_4217#Active_codes).
@@ -160,6 +165,11 @@ struct Money
 
     # Returns `true` if iso currency.
     #
+    # ```
+    # Money::Currency.find(:usd).iso? # => true
+    # Money::Currency.find(:btc).iso? # => false
+    # ```
+    #
     # See also `#iso_numeric`.
     def iso? : Bool
       !!iso_numeric
@@ -169,6 +179,7 @@ struct Money
     #
     # ````
     # Money::Currency.find(:usd).cents_based? # => true
+    # Money::Currency.find(:btc).cents_based? # => false
     # ````
     def cents_based? : Bool
       subunit_to_unit == 100
@@ -194,7 +205,7 @@ struct Money
     #
     # ```
     # Money::Currency.find(:usd).to_s # => "USD"
-    # Money::Currency.find(:eur).to_s # => "EUR"
+    # Money::Currency.find(:btc).to_s # => "BTC"
     # ```
     def to_s(io : IO) : Nil
       io << code
