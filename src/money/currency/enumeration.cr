@@ -6,8 +6,8 @@ class Money::Currency
     # success, `nil` otherwise.
     #
     # ```
-    # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
-    # Money::Currency.find("FOO") # => nil
+    # Money::Currency.find?("EUR") # => #<Money::Currency @code="EUR">
+    # Money::Currency.find?("FOO") # => nil
     # ```
     def find?(key : String | Symbol) : Currency?
       @@registry_mutex.synchronize do
