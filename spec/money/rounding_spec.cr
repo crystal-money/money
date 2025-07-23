@@ -80,7 +80,7 @@ describe Money::Rounding do
           Money.new(10.12345, "USD").round(1).amount.should eq 10.1.to_big_d
           Money.new(10.12345, "USD").round(2).amount.should eq 10.12.to_big_d
           Money.new(10.12345, "USD").round(3).amount.should eq 10.123.to_big_d
-          Money.new(10.12345, "USD").round(4).amount.should eq 10.1234.to_big_d
+          Money.new(10.12345, "USD").round(4).amount.should eq 10.1235.to_big_d
         end
       end
 

@@ -35,8 +35,8 @@ describe Money::Context do
   end
 
   describe "#rounding_mode" do
-    it "is set to `:ties_even` by default" do
-      subject.rounding_mode.should eq Number::RoundingMode::TIES_EVEN
+    it "is set to `:ties_away` by default" do
+      subject.rounding_mode.should eq Number::RoundingMode::TIES_AWAY
     end
   end
 

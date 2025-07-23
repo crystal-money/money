@@ -32,7 +32,7 @@ struct Money
     property? infinite_precision : Bool = false
 
     # Default rounding mode.
-    property rounding_mode : Number::RoundingMode = :ties_even
+    property rounding_mode : Number::RoundingMode = :ties_away
 
     # Default currency for creating new `Money` object.
     property default_currency : Currency { Currency.find("USD") }
