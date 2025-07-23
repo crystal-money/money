@@ -137,7 +137,7 @@ struct Money
     def_equals_and_hash id
 
     {% for type in Type.constants.map(&.underscore.id) %}
-      # Returns `true` if the currency `#type` is `{{ type }}`, otherwise `false`.
+      # Returns `true` if the currency `#type` is `{{ type.camelcase }}`, otherwise `false`.
       def {{ type }}? : Bool
         !!type.try(&.{{ type }}?)
       end

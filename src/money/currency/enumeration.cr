@@ -2,8 +2,8 @@ class Money::Currency
   module Enumeration
     include Enumerable(Currency)
 
-    # Lookup a currency with given *key* an returns a `Currency` instance on
-    # success, `nil` otherwise.
+    # Looks up a currency with the given *key* and returns a `Currency` instance
+    # on success, `nil` otherwise.
     #
     # ```
     # Money::Currency.find?("EUR") # => #<Money::Currency @code="EUR">
@@ -27,8 +27,8 @@ class Money::Currency
       key
     end
 
-    # Lookup a currency with given *key* an returns a `Currency` instance on
-    # success, raises `UnknownCurrencyError` otherwise.
+    # Looks up a currency with the given *key* and returns a `Currency` instance
+    # on success, raises `UnknownCurrencyError` otherwise.
     #
     # ```
     # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
