@@ -584,9 +584,21 @@ methods like <code>each</code>, <code>map</code>, <code>find</code>, <code>selec
 </blockquote>
 <p>For example, to find a currency by ISO 4217 numeric code:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="o">&amp;</span>.iso_numeric.<span class="o">==</span>(<span class="n">978</span>)) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;EUR&quot;&gt;</span></code></pre>
-<p>Or to select all the crypto currencies:</p>
-<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.<span class="k">select</span>(<span class="o">&amp;</span>.crypto?)
-<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;BTC&quot;&gt;, #&lt;Money::Currency @code=&quot;ETH&quot;&gt;, ...]</span></code></pre>
+<p>Or to select all the ISO currencies:</p>
+<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.<span class="k">select</span>(<span class="o">&amp;</span>.iso?)
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span></code></pre>
+<p>In addition, there are <code>Money::Currency.metal</code>, <code>Money::Currency.fiat</code> and
+<code>Money::Currency.crypto</code> methods to get all the currencies of a particular <code>type</code>:</p>
+<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.metal
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;XAG&quot;&gt;, #&lt;Money::Currency @code=&quot;XAU&quot;&gt;, ...]</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.fiat
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.crypto
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;BTC&quot;&gt;, #&lt;Money::Currency @code=&quot;ETH&quot;&gt;, ...]</span>
+
+<span class="c"># or</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.reject(<span class="o">&amp;</span>.metal?)
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span></code></pre>
 <p>To return an array of registered currencies (ordered by their priority),
 call <code>Money::Currency.all</code> or <code>.to_a</code>:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.all <span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span></code></pre>
