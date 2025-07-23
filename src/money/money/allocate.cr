@@ -14,9 +14,9 @@ struct Money
 
       result = [] of BigDecimal
       remaining_amount = amount
+      parts_sum = parts.sum
 
       until parts.empty?
-        parts_sum = parts.sum
         part = parts.pop
 
         if parts_sum.positive?
@@ -28,6 +28,7 @@ struct Money
 
         result.unshift current_split
         remaining_amount -= current_split
+        parts_sum -= part
       end
 
       result
