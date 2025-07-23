@@ -241,11 +241,27 @@ For example, to find a currency by ISO 4217 numeric code:
 Money::Currency.find(&.iso_numeric.==(978)) # => #<Money::Currency @code="EUR">
 ```
 
-Or to select all the crypto currencies:
+Or to select all the ISO currencies:
 
 ```crystal
-Money::Currency.select(&.crypto?)
+Money::Currency.select(&.iso?)
+# => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
+```
+
+In addition, there are `Money::Currency.metal`, `Money::Currency.fiat` and
+`Money::Currency.crypto` methods to get all the currencies of a particular `type`:
+
+```crystal
+Money::Currency.metal
+# => [#<Money::Currency @code="XAG">, #<Money::Currency @code="XAU">, ...]
+Money::Currency.fiat
+# => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
+Money::Currency.crypto
 # => [#<Money::Currency @code="BTC">, #<Money::Currency @code="ETH">, ...]
+
+# or
+Money::Currency.reject(&.metal?)
+# => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
 ```
 
 To return an array of registered currencies (ordered by their priority),

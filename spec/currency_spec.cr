@@ -181,6 +181,24 @@ describe Money::Currency do
     end
   end
 
+  describe ".metal" do
+    it "works as documented" do
+      Money::Currency.metal.should contain Money::Currency.find(:xag)
+    end
+  end
+
+  describe ".fiat" do
+    it "works as documented" do
+      Money::Currency.fiat.should contain Money::Currency.find(:usd)
+    end
+  end
+
+  describe ".crypto" do
+    it "works as documented" do
+      Money::Currency.crypto.should contain Money::Currency.find(:btc)
+    end
+  end
+
   describe "#to_s" do
     it "works as documented" do
       Money::Currency.find(:usd).to_s.should eq "USD"

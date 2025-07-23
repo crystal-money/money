@@ -141,6 +141,11 @@ struct Money
       def {{ type }}? : Bool
         !!type.try(&.{{ type }}?)
       end
+
+      # Returns an array of currencies of type `{{ type.camelcase }}`.
+      def self.{{ type }} : Array(Currency)
+        self.select(&.{{ type }}?)
+      end
     {% end %}
 
     # Returns the relation between subunit and unit as a base 10 exponent.
