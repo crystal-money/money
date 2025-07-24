@@ -327,6 +327,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/UndefinedCurrencyError" data-name="money::undefinedcurrencyerror">
+      <a href="../Money/UndefinedCurrencyError.html">UndefinedCurrencyError</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/UndefinedSmallestDenominationError" data-name="money::undefinedsmallestdenominationerror">
       <a href="../Money/UndefinedSmallestDenominationError.html">UndefinedSmallestDenominationError</a>
       
@@ -421,7 +426,7 @@ Each <code><a href="../Fiber.html">Fiber</a></code> has its own <code><a href=".
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L6" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L6" target="_blank">
         money/context.cr
       </a>
     
@@ -458,6 +463,13 @@ Each <code><a href="../Fiber.html">Fiber</a></code> has its own <code><a href=".
     
       <li class="entry-summary">
         <a href="#default_currency%3D%28currency_code%3AString%7CSymbol%29-instance-method" class="signature"><strong>#default_currency=</strong>(currency_code : String | Symbol)</a>
+        
+          <div class="summary"><p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_currency%3D%28default_currency%3ANil%29-instance-method" class="signature"><strong>#default_currency=</strong>(default_currency : Nil)</a>
         
           <div class="summary"><p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p></div>
         
@@ -600,13 +612,14 @@ Each <code><a href="../Fiber.html">Fiber</a></code> has its own <code><a href=".
       
         <div class="doc">
           
-          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.
+Raises <code><a href="../Money/UndefinedCurrencyError.html">UndefinedCurrencyError</a></code> if not set.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,13 +634,36 @@ Each <code><a href="../Fiber.html">Fiber</a></code> has its own <code><a href=".
       
         <div class="doc">
           
-          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.
+Raises <code><a href="../Money/UndefinedCurrencyError.html">UndefinedCurrencyError</a></code> if not set.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_currency=(default_currency:Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>default_currency=</strong>(default_currency : Nil)
+
+        <a class="method-permalink" href="#default_currency%3D%28default_currency%3ANil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.
+Raises <code><a href="../Money/UndefinedCurrencyError.html">UndefinedCurrencyError</a></code> if not set.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -642,13 +678,14 @@ Each <code><a href="../Fiber.html">Fiber</a></code> has its own <code><a href=".
       
         <div class="doc">
           
-          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.</p>
+          <p>Default currency for creating new <code><a href="../Money.html">Money</a></code> object.
+Raises <code><a href="../Money/UndefinedCurrencyError.html">UndefinedCurrencyError</a></code> if not set.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,7 +709,7 @@ The default value for this property is an instance of
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -696,7 +733,7 @@ The default value for this property is an instance of
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -717,7 +754,7 @@ The default value for this property is an instance of
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -738,7 +775,7 @@ The default value for this property is an instance of
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -761,7 +798,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -784,7 +821,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -805,7 +842,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -826,7 +863,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +884,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -868,7 +905,7 @@ storing exchange rates.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/3ffb0b7/src/money/context.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e0da879/src/money/context.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
