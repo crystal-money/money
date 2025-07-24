@@ -41,8 +41,37 @@ describe Money::Context do
   end
 
   describe "#default_currency" do
-    it "is set to `USD` by default" do
-      subject.default_currency.should eq Money::Currency.find("USD")
+    it "raises UndefinedCurrencyError by default" do
+      expect_raises(Money::UndefinedCurrencyError) { subject.default_currency }
+    end
+
+    context "allows setting the default currency" do
+      context = Money::Context.new
+
+      it "by Currency" do
+        context.default_currency = Money::Currency.find("PLN")
+        context.default_currency.should be_a Money::Currency
+        context.default_currency.should eq Money::Currency.find("PLN")
+      end
+
+      it "by String" do
+        context.default_currency = "EUR"
+        context.default_currency.should be_a Money::Currency
+        context.default_currency.should eq Money::Currency.find("EUR")
+      end
+
+      it "by Symbol" do
+        context.default_currency = :xag
+        context.default_currency.should be_a Money::Currency
+        context.default_currency.should eq Money::Currency.find("XAG")
+      end
+
+      it "by Nil" do
+        context.default_currency = nil
+        expect_raises(Money::UndefinedCurrencyError, "No default currency set") do
+          context.default_currency
+        end
+      end
     end
   end
 

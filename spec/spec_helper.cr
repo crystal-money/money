@@ -33,3 +33,10 @@ def with_default_exchange(exchange = nil, &)
     Money.default_exchange = previous_exchange
   end
 end
+
+Spec.around_each do |example|
+  Money.default_currency = "USD"
+  example.run
+ensure
+  Money.default_currency = nil
+end

@@ -38,6 +38,13 @@ struct Money
     end
   end
 
+  # Raised when `Money.default_currency` is not set.
+  class UndefinedCurrencyError < Error
+    def initialize
+      super("No default currency set")
+    end
+  end
+
   # Raised when trying to find an unknown currency.
   class UnknownCurrencyError < Error
     def initialize(key)
