@@ -35,11 +35,16 @@ struct Money
     property rounding_mode : Number::RoundingMode = :ties_away
 
     # Default currency for creating new `Money` object.
-    property default_currency : Currency { Currency.find("USD") }
+    # Raises `UndefinedCurrencyError` if not set.
+    property default_currency : Currency { raise UndefinedCurrencyError.new }
 
     # :ditto:
     def default_currency=(currency_code : String | Symbol)
       self.default_currency = Currency.find(currency_code)
+    end
+
+    # :ditto:
+    def default_currency=(@default_currency : Nil)
     end
 
     # Each `Money` object is associated to a currency exchange object.

@@ -323,7 +323,7 @@ major_currencies(Money::Currency)
 
 ### Default Currency
 
-By default, `Money` uses `USD`. You can change it:
+By default, `Money` does not have a default currency. You can set it like so:
 
 ```crystal
 Money.default_currency = :xag
