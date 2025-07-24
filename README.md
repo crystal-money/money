@@ -171,21 +171,21 @@ By default, `Money` objects are rounded to the nearest cent and the extra precis
 is **not** preserved:
 
 ```crystal
-Money.new(2.34567).to_s # => "$2.35"
+Money.new(2.34567, "USD").to_s # => "$2.35"
 ```
 
 If you want to keep all the digits, you can enable infinite precision globally:
 
 ```crystal
 Money.infinite_precision = true
-Money.new(2.34567).to_s # => "$2.34567"
+Money.new(2.34567, "USD").to_s # => "$2.34567"
 ```
 
 Or use the block-scoped `Money.with_infinite_precision`:
 
 ```crystal
 Money.with_infinite_precision do
-  Money.new(2.34567).to_s # => "$2.34567"
+  Money.new(2.34567, "USD").to_s # => "$2.34567"
 end
 ```
 
@@ -447,20 +447,20 @@ Money.disallow_currency_conversion!
 By default, `Money` rounds to the nearest cent:
 
 ```crystal
-Money.new(2.34567).to_s # => "$2.35"
+Money.new(2.34567, "USD").to_s # => "$2.35"
 ```
 
 You can change the rounding precision:
 
 ```crystal
-Money.new(2.34567).round(1).to_s # => "$2.30"
+Money.new(2.34567, "USD").round(1).to_s # => "$2.30"
 ```
 
 You can change the rounding mode:
 
 ```crystal
-Money.new(2.34567).round(1, :to_positive).to_s # => "$2.40"
-Money.new(2.34567).round(1, :to_negative).to_s # => "$2.30"
+Money.new(2.34567, "USD").round(1, :to_positive).to_s # => "$2.40"
+Money.new(2.34567, "USD").round(1, :to_negative).to_s # => "$2.30"
 ```
 
 To keep extra digits, enable infinite precision:
@@ -468,14 +468,14 @@ To keep extra digits, enable infinite precision:
 ```crystal
 Money.infinite_precision = true
 
-Money.new(2.34567).to_s                    # => "$2.34567"
-Money.new(2.34567).round(4).to_s           # => "$2.3457"
-Money.new(2.34567).round(4, :to_zero).to_s # => "$2.3456"
+Money.new(2.34567, "USD").to_s                    # => "$2.34567"
+Money.new(2.34567, "USD").round(4).to_s           # => "$2.3457"
+Money.new(2.34567, "USD").round(4, :to_zero).to_s # => "$2.3456"
 
 # or
 
 Money.with_rounding_mode(:to_zero) do
-  Money.new(2.34567).round(4).to_s         # => "$2.3456"
+  Money.new(2.34567, "USD").round(4).to_s         # => "$2.3456"
 end
 ```
 
