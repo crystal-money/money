@@ -247,12 +247,20 @@ describe Money::Currency::RateProvider do
   end
 
   context ".find?" do
-    it "returns provider by name (string)" do
-      Money::Currency::RateProvider.find?("dummy_fx")
+    it "returns provider by CamelCase name (string)" do
+      Money::Currency::RateProvider.find?("DummyFX")
         .should eq Money::Currency::RateProvider::DummyFX
     end
 
-    it "returns provider by name (symbol)" do
+    it "returns provider by snake_case name (string)" do
+      Money::Currency::RateProvider.find?("dummy_fx")
+        .should eq Money::Currency::RateProvider::DummyFX
+
+      Money::Currency::RateProvider.find?("DUMMY_FX")
+        .should eq Money::Currency::RateProvider::DummyFX
+    end
+
+    it "returns provider by snake_case name (symbol)" do
       Money::Currency::RateProvider.find?(:dummy_fx)
         .should eq Money::Currency::RateProvider::DummyFX
     end
