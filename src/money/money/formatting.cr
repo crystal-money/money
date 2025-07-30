@@ -54,8 +54,8 @@ struct Money
     # Whether trailing zeros should be omitted.
     #
     # ```
-    # Money.new(89000, :btc).format(drop_trailing_zeros: true) # => ฿0.00089
-    # Money.new(1_10, :usd).format(drop_trailing_zeros: true)  # => $1.1
+    # Money.new(89000, "BTC").format(drop_trailing_zeros: true) # => ฿0.00089
+    # Money.new(1_10, "USD").format(drop_trailing_zeros: true)  # => $1.1
     # ```
     #
     # ### `:symbol`
