@@ -8,10 +8,11 @@ Here’s what you get out of the box:
 
 - A `Money` class to represent amounts and their currencies.
 - A flexible `Money::Currency` class for all your currency info needs.
+- A growing list of 200+ supported currencies (metals, fiat, cryptocurrencies).
 - `BigDecimal`-based values—no more floating point rounding headaches!
 - Easy APIs for currency exchange.
 - Multiple exchange rate providers (use built-in or roll your own).
-- Formatting and parsing for money values.
+- Formatting and parsing money values.
 - Rounding and truncation helpers.
 - JSON/YAML serialization and deserialization support.
 
@@ -60,11 +61,11 @@ money.currency.code # => "USD"
 #### From fractional amount
 
 ```crystal
-Money.new(fractional: 10.0, currency: "USD")
+Money.new(fractional: 10_00.0, currency: "USD")
 Money.new(fractional: 10_00, currency: "USD")
 Money.new(10_00, "USD")
 
-Money.from_fractional(10.0, "USD")
+Money.from_fractional(10_00.0, "USD")
 Money.from_fractional(10_00, "USD")
 ```
 
