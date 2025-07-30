@@ -440,7 +440,10 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
 </a>From fractional amount</h4>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(fractional: <span class="n">10.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.new(fractional: <span class="n">10_00</span>, currency: <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
+<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)
+
+<span class="t">Money</span>.from_fractional(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.from_fractional(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h4><a id="from-whole-amount" class="anchor" href="#from-whole-amount">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
