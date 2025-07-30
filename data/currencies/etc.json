@@ -1,0 +1,13 @@
+{
+  "type": "crypto",
+  "code": "ETC",
+  "name": "Ethereum Classic",
+  "symbol": "Ξ",
+  "disambiguate_symbol": "ETC",
+  "subunit": "Wei",
+  "subunit_to_unit": 1000000000000000000,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
