@@ -156,6 +156,9 @@ struct Money
         return display_free
       end
 
+      sign = '-' if negative?
+      sign = '+' if positive? && sign_positive
+
       amount = format_amount(
         no_cents: no_cents,
         no_cents_if_whole: no_cents_if_whole,
@@ -167,9 +170,6 @@ struct Money
         symbol: symbol,
         disambiguate: disambiguate,
       ).presence
-
-      sign = '-' if negative?
-      sign = '+' if positive? && sign_positive
 
       if html
         amount &&= HTML.escape(amount)
