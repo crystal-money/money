@@ -122,6 +122,25 @@ describe Money::Constructors do
     end
   end
 
+  describe ".from_fractional" do
+    it "accepts numeric values" do
+      Money.from_fractional(1, "USD").should eq Money.new(1, "USD")
+      Money.from_fractional(1.0, "USD").should eq Money.new(1, "USD")
+      Money.from_fractional(1.to_big_d, "USD").should eq Money.new(1, "USD")
+    end
+
+    it "uses the default currency when no currency is provided" do
+      Money.from_fractional(1).currency.should eq Money.default_currency
+    end
+
+    it "accepts an optional currency" do
+      Money::Currency.find("JPY").tap do |jpy|
+        Money.from_fractional(1, jpy).currency.should be jpy
+        Money.from_fractional(1, "JPY").currency.should be jpy
+      end
+    end
+  end
+
   describe ".zero" do
     it "creates a new Money object of 0 cents" do
       Money.zero.should eq Money.new(0)

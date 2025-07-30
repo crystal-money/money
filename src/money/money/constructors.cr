@@ -17,6 +17,23 @@ struct Money
       )
     end
 
+    # Creates a new `Money` object of value given in the fractional *unit* of
+    # the given *currency*.
+    #
+    # ```
+    # Money.from_fractional(23_45.67, "USD") # => Money(@amount=23.4567 @currency="USD")
+    # Money.from_fractional(23_45, "USD")    # => Money(@amount=23.45 @currency="USD")
+    # ```
+    #
+    # See also `#initialize`.
+    def from_fractional(fractional : Number | String, currency = Money.default_currency, exchange = nil) : Money
+      new(
+        fractional: fractional.to_big_d,
+        currency: currency,
+        exchange: exchange,
+      )
+    end
+
     # Creates a new `Money` object with value `0`.
     #
     # ```

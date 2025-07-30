@@ -63,6 +63,9 @@ money.currency.code # => "USD"
 Money.new(fractional: 10.0, currency: "USD")
 Money.new(fractional: 10_00, currency: "USD")
 Money.new(10_00, "USD")
+
+Money.from_fractional(10.0, "USD")
+Money.from_fractional(10_00, "USD")
 ```
 
 #### From whole amount
