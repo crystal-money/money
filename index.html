@@ -388,10 +388,11 @@
 <ul>
 <li>A <code><a href="Money.html">Money</a></code> class to represent amounts and their currencies.</li>
 <li>A flexible <code><a href="Money/Currency.html">Money::Currency</a></code> class for all your currency info needs.</li>
+<li>A growing list of 200+ supported currencies (metals, fiat, cryptocurrencies).</li>
 <li><code>BigDecimal</code>-based values—no more floating point rounding headaches!</li>
 <li>Easy APIs for currency exchange.</li>
 <li>Multiple exchange rate providers (use built-in or roll your own).</li>
-<li>Formatting and parsing for money values.</li>
+<li>Formatting and parsing money values.</li>
 <li>Rounding and truncation helpers.</li>
 <li>JSON/YAML serialization and deserialization support.</li>
 </ul>
@@ -438,11 +439,11 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>From fractional amount</h4>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(fractional: <span class="n">10.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
+<pre><code class="language-crystal"><span class="t">Money</span>.new(fractional: <span class="n">10_00.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.new(fractional: <span class="n">10_00</span>, currency: <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)
 
-<span class="t">Money</span>.from_fractional(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.from_fractional(<span class="n">10_00.0</span>, <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.from_fractional(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h4><a id="from-whole-amount" class="anchor" href="#from-whole-amount">
   <svg class="octicon-link" aria-hidden="true">
