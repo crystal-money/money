@@ -1,0 +1,12 @@
+{
+  "type": "crypto",
+  "code": "DOT",
+  "name": "Polkadot",
+  "symbol": "DOT",
+  "subunit": "Planck",
+  "subunit_to_unit": 10000000000,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
