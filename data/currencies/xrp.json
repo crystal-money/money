@@ -6,7 +6,6 @@
   "subunit": "Drop",
   "subunit_to_unit": 1000000,
   "symbol_first": true,
-  "html_entity": "&#x2715;",
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 1

@@ -8,7 +8,6 @@
   "subunit": "Cent",
   "subunit_to_unit": 100,
   "symbol_first": true,
-  "html_entity": "&euro;",
   "decimal_mark": ",",
   "thousands_separator": ".",
   "smallest_denomination": 1

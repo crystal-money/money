@@ -7,7 +7,6 @@
   "subunit": "Céntimo",
   "subunit_to_unit": 1,
   "symbol_first": true,
-  "html_entity": "&#x20B2;",
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 5000

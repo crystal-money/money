@@ -8,7 +8,6 @@
   "subunit": "Piaster",
   "subunit_to_unit": 100,
   "symbol_first": false,
-  "html_entity": "&#x00A3;",
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 5

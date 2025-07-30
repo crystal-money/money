@@ -10,7 +10,6 @@ describe Money::Formatting do
     subunit: "Cent",
     subunit_to_unit: 10000,
     symbol_first: true,
-    html_entity: "$",
     decimal_mark: ".",
     thousands_separator: ",",
     smallest_denomination: 1
@@ -25,7 +24,6 @@ describe Money::Formatting do
     subunit: "Cent",
     subunit_to_unit: 10000,
     symbol_first: true,
-    html_entity: "€",
     decimal_mark: ",",
     thousands_separator: ".",
     smallest_denomination: 1
@@ -122,7 +120,7 @@ describe Money::Formatting do
       end
 
       it "does correctly format HTML" do
-        Money.new(1999, "RUB").format(html: true, no_cents: true).should eq "19 &#x20BD;"
+        Money.new(100_000_00, "CHF").format(html: true).should eq "CHF100&#39;000.00"
       end
     end
 

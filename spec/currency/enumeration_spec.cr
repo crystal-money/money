@@ -10,7 +10,6 @@ describe Money::Currency::Enumeration do
     subunit: "Cent",
     subunit_to_unit: 1000,
     symbol_first: true,
-    html_entity: "$",
     decimal_mark: ".",
     thousands_separator: ",",
     smallest_denomination: 1

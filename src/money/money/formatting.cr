@@ -1,3 +1,5 @@
+require "html"
+
 struct Money
   module Formatting
     # Creates a formatted price string according to several rules.
@@ -131,10 +133,10 @@ struct Money
     #
     # ### `:html`
     #
-    # Whether the currency symbol should be HTML-formatted.
+    # Whether the currency symbol and amount should be HTML-formatted.
     #
     # ```
-    # Money.new(19_99, "RUB").format(html: true, no_cents: true) # => "19 &#x20BD;"
+    # Money.new(100_000_00, "CHF").format(html: true) => "CHF100&#39;000.00"
     # ```
     def format(
       *,
@@ -163,12 +165,16 @@ struct Money
       )
       symbol = format_symbol(
         symbol: symbol,
-        html: html,
         disambiguate: disambiguate,
       ).presence
 
       sign = '-' if negative?
       sign = '+' if positive? && sign_positive
+
+      if html
+        amount &&= HTML.escape(amount)
+        symbol &&= HTML.escape(symbol)
+      end
 
       format ||=
         if currency.symbol_first?
@@ -222,12 +228,10 @@ struct Money
       formatted
     end
 
-    private def format_symbol(*, disambiguate, symbol, html) : String?
+    private def format_symbol(*, disambiguate, symbol) : String?
       case symbol
       when true
         case
-        when html && currency.html_entity
-          currency.html_entity
         when disambiguate && currency.disambiguate_symbol
           currency.disambiguate_symbol
         else

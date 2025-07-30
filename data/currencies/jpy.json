@@ -9,7 +9,6 @@
   "alternate_symbols": ["円", "圓"],
   "subunit_to_unit": 1,
   "symbol_first": true,
-  "html_entity": "&#x00A5;",
   "decimal_mark": ".",
   "thousands_separator": ",",
   "smallest_denomination": 1

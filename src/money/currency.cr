@@ -85,9 +85,6 @@ struct Money
     # Should the symbol be placed before the amount?
     getter? symbol_first : Bool?
 
-    # HTML entity.
-    getter html_entity : String?
-
     # Decimal mark.
     getter decimal_mark : String?
 
@@ -110,7 +107,6 @@ struct Money
       @subunit = nil,
       @subunit_to_unit,
       @symbol_first = nil,
-      @html_entity = nil,
       @decimal_mark = nil,
       @thousands_separator = nil,
       @smallest_denomination = nil,
