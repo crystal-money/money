@@ -1,0 +1,12 @@
+{
+  "type": "crypto",
+  "code": "BNB",
+  "name": "Binance Coin",
+  "symbol": "BNB",
+  "subunit": "Jager",
+  "subunit_to_unit": 100000000,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
