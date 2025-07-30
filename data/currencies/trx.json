@@ -1,0 +1,12 @@
+{
+  "type": "crypto",
+  "code": "TRX",
+  "name": "Tron",
+  "symbol": "TRX",
+  "subunit": "Sun",
+  "subunit_to_unit": 1000000,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
