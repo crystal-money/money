@@ -128,9 +128,6 @@ struct Money
 
   # :nodoc:
   def self.new(value : Float | BigDecimal | BigRational, currency, exchange)
-    if value.responds_to?(:finite?) && !value.finite?
-      raise ArgumentError.new "Must be initialized with a finite value"
-    end
     new(
       amount: value,
       currency: currency,
