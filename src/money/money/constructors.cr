@@ -10,7 +10,11 @@ struct Money
     #
     # See also `#initialize`.
     def from_amount(amount : Number | String, currency = Money.default_currency, exchange = nil) : Money
-      new(amount.to_big_d, currency, exchange)
+      new(
+        amount: amount.to_big_d,
+        currency: currency,
+        exchange: exchange,
+      )
     end
 
     # Creates a new `Money` object with value `0`.
