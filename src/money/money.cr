@@ -109,36 +109,35 @@ struct Money
     self.default_exchange = Currency::Exchange::SingleCurrency.new
   end
 
-  # Creates a new `Money` object of *value* given as an amount
-  # of the given *currency* (as fractional if `Int`, or whole amount otherwise).
+  # Creates a new `Money` object of *value* given as an fractional amount
+  # of the given *currency*.
   #
   # ```
-  # Money.new                      # => Money(@amount=0.0 @currency="USD")
-  # Money.new(1_50)                # => Money(@amount=1.5 @currency="USD")
-  # Money.new(1.5, :usd)           # => Money(@amount=1.5 @currency="USD")
+  # Money.new(0, "USD")    # => Money(@amount=0.0 @currency="USD")
+  # Money.new(1_50, "USD") # => Money(@amount=1.5 @currency="USD")
+  # ```
+  def self.new(value : Int = 0, currency = Money.default_currency, exchange = nil)
+    new(
+      fractional: value,
+      currency: currency,
+      exchange: exchange,
+    )
+  end
+
+  # Creates a new `Money` object of *value* given as an whole amount
+  # of the given *currency*.
+  #
+  # ```
+  # Money.new(1.5, "USD")          # => Money(@amount=1.5 @currency="USD")
   # Money.new(1.5.to_big_d, "USD") # => Money(@amount=1.5 @currency="USD")
   # ```
   #
   # WARNING: Floating points cannot guarantee precision. Therefore, they
   # should only be used when you no longer need to represent currency or
   # working with another system that requires floats.
-  def self.new(value : Number = 0, currency = Money.default_currency, exchange = nil)
-    new(value, currency, exchange)
-  end
-
-  # :nodoc:
-  def self.new(value : Float | BigDecimal | BigRational, currency, exchange)
+  def self.new(value : Number, currency = Money.default_currency, exchange = nil)
     new(
       amount: value,
-      currency: currency,
-      exchange: exchange,
-    )
-  end
-
-  # :nodoc:
-  def self.new(value : Int, currency, exchange)
-    new(
-      fractional: value,
       currency: currency,
       exchange: exchange,
     )
