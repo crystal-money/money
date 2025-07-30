@@ -48,20 +48,20 @@ struct Money
     # American dollar currency.
     #
     # ```
-    # Money.us_dollar(100) # => Money(@amount=1.0 @currency="USD")
+    # Money.us_dollar(1_00) # => Money(@amount=1.0 @currency="USD")
     # ```
-    def us_dollar(cents, exchange = nil)
-      new(cents, "USD", exchange)
+    def us_dollar(value, exchange = nil) : Money
+      new(value, "USD", exchange)
     end
 
     # Creates a new `Money` object of the given value, using the
     # Euro currency.
     #
     # ```
-    # Money.euro(100) # => Money(@amount=1.0 @currency="EUR")
+    # Money.euro(1_00) # => Money(@amount=1.0 @currency="EUR")
     # ```
-    def euro(cents, exchange = nil)
-      new(cents, "EUR", exchange)
+    def euro(value, exchange = nil) : Money
+      new(value, "EUR", exchange)
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -70,8 +70,8 @@ struct Money
     # ```
     # Money.bitcoin(100) # => Money(@amount=0.000001 @currency="BTC")
     # ```
-    def bitcoin(cents, exchange = nil)
-      new(cents, "BTC", exchange)
+    def bitcoin(value, exchange = nil) : Money
+      new(value, "BTC", exchange)
     end
   end
 end
