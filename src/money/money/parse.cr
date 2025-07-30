@@ -45,6 +45,9 @@ struct Money
       if thousands_separator = currency.thousands_separator
         amount = amount.gsub(thousands_separator, '_')
       end
+      if decimal_mark = currency.decimal_mark
+        amount = amount.gsub(decimal_mark, '.')
+      end
 
       Money.from_amount(amount, currency)
     rescue ex : Money::Error

@@ -43,11 +43,15 @@ describe Money::Parse do
     it "parses amount with thousands separators present" do
       Money.parse?("1,000 USD").should eq Money.from_amount(1_000, "USD")
       Money.parse?("1,000,000 USD").should eq Money.from_amount(1_000_000, "USD")
+      Money.parse?("1.000 EUR").should eq Money.from_amount(1_000, "EUR")
+      Money.parse?("1.000.000 EUR").should eq Money.from_amount(1_000_000, "EUR")
     end
 
     it "parses amount with thousands and decimal separators present" do
       Money.parse?("1,000.00 USD").should eq Money.from_amount(1_000, "USD")
       Money.parse?("1,000,000.00 USD").should eq Money.from_amount(1_000_000, "USD")
+      Money.parse?("1.000,00 EUR").should eq Money.from_amount(1_000, "EUR")
+      Money.parse?("1.000.000,00 EUR").should eq Money.from_amount(1_000_000, "EUR")
     end
 
     it "parses amount with `_` as thousands separator" do
