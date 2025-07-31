@@ -125,7 +125,25 @@ describe Money do
     end
   end
 
-  describe ".disallow_currency_conversions!" do
+  describe ".without_currency_conversion" do
+    it "disallows conversions within the yielded block" do
+      with_default_exchange do
+        prev_exchange = Money.default_exchange
+
+        Money.without_currency_conversion do
+          expect_raises(Money::DifferentCurrencyError) do
+            Money.new(100, "USD") == Money.new(100, "EUR")
+          end
+          expect_raises(Money::DifferentCurrencyError) do
+            Money.new(100, "USD") + Money.new(100, "EUR")
+          end
+        end
+        Money.default_exchange.should eq prev_exchange
+      end
+    end
+  end
+
+  describe ".disallow_currency_conversion!" do
     it "disallows conversions when doing money arithmetic" do
       with_default_exchange do
         Money.disallow_currency_conversion!

@@ -103,6 +103,19 @@ struct Money
     end
   end
 
+  # Disallows currency conversion within the lifetime of the given block.
+  #
+  # See also `Money.disallow_currency_conversion!`.
+  def self.without_currency_conversion(&)
+    prev_exchange = default_exchange
+    disallow_currency_conversion!
+    begin
+      yield
+    ensure
+      self.default_exchange = prev_exchange
+    end
+  end
+
   # Sets the default exchange to be a `Currency::Exchange::SingleCurrency` exchange that raises
   # on currency exchange. Useful when apps operate in a single currency at a time.
   def self.disallow_currency_conversion!
