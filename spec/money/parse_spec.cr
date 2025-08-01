@@ -35,6 +35,11 @@ describe Money::Parse do
       Money.parse?("-0.00300101 BTC").should eq Money.from_amount(-0.00300101, "BTC")
     end
 
+    it "parses currency code in case insensitive manner" do
+      Money.parse?("10 pln").should eq Money.from_amount(10.0, "PLN")
+      Money.parse?("10 uSd").should eq Money.from_amount(10.0, "USD")
+    end
+
     it "parses currency from disambiguated symbol" do
       Money.parse?("0.00300101 ₿CH").should eq Money.from_amount(0.00300101, "BCH")
       Money.parse?("1000.00 A-UM").should eq Money.from_amount(1000, "MRO")
