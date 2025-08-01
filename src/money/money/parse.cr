@@ -83,16 +83,14 @@ struct Money
     end
 
     private def parse_currencies(symbol : String) : Array(Currency)
-      symbol = symbol.downcase
+      matcher = ->(str : String) do
+        symbol.compare(str, case_insensitive: true).zero?
+      end
 
-      matches =
-        Currency.select(&.code.downcase.==(symbol))
-      matches.empty? && (matches =
-        Currency.select(&.symbol.try(&.downcase.==(symbol))))
-      matches.empty? && (matches =
-        Currency.select(&.disambiguate_symbol.try(&.downcase.==(symbol))))
-      matches.empty? && (matches =
-        Currency.select(&.alternate_symbols.try(&.any?(&.downcase.==(symbol)))))
+      matches = Currency.select(&.code.try(&matcher))
+      matches = Currency.select(&.symbol.try(&matcher)) if matches.empty?
+      matches = Currency.select(&.disambiguate_symbol.try(&matcher)) if matches.empty?
+      matches = Currency.select(&.alternate_symbols.try(&.find(&matcher))) if matches.empty?
 
       matches
     end
