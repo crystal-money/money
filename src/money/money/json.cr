@@ -11,6 +11,16 @@ struct Money
     end
   end
 
+  # :nodoc:
+  def self.from_json_object_key?(value : String) : Money
+    parse(value)
+  end
+
+  # :nodoc:
+  def to_json_object_key : String
+    to_s
+  end
+
   def to_json(json : JSON::Builder)
     {
       amount:   amount,

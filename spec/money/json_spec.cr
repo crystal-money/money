@@ -29,10 +29,24 @@ describe Money do
     end
   end
 
+  describe ".from_json_object_key?" do
+    it "works as intended" do
+      hash = Hash(Money, String).from_json(%({"10 USD": "foo"}))
+      hash.should eq({Money.new(10_00, "USD") => "foo"})
+    end
+  end
+
   describe "#to_json" do
     it "works as intended" do
       Money.from_json(money_json).to_json
         .should eq Money.new(10_00, "USD").to_json
+    end
+  end
+
+  describe "#to_json_object_key" do
+    it "works as intended" do
+      hash = {Money.new(10_00, "USD") => "foo"}
+      hash.to_json.should eq %({"10 USD":"foo"})
     end
   end
 end
