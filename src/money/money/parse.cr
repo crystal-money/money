@@ -10,44 +10,48 @@ struct Money
         (?<symbol>[^0-9,._\s]+)\s*(?<amount>\d+(?:[.,_\s]\d+)*)
       )/x
 
-    # Creates a `Money` instance from a string.
-    #
-    # If `allow_ambiguous` is `true` (default), returns the first matching
-    # currency for ambiguous values, otherwise raises `Error`.
-    #
-    # ```
-    # Money.parse("10.00 USD") # => Money(@amount=10.0, @currency="USD")
-    # Money.parse("$10.00")    # => Money(@amount=10.0, @currency="USD")
-    # Money.parse("10.00")     # raises Money::Parse::Error
-    # ```
-    def parse(str : String, *, allow_ambiguous = true) : Money
-      parse(str, allow_ambiguous) { |ex| raise ex }
-    end
-
     # Creates a `Money` instance from a string, or returns `nil` on failure.
-    #
-    # If `allow_ambiguous` is `true` (default), returns the first
-    # matching currency for ambiguous values, otherwise returns `nil`.
     #
     # ```
     # Money.parse?("10.00 USD") # => Money(@amount=10.0, @currency="USD")
     # Money.parse?("$10.00")    # => Money(@amount=10.0, @currency="USD")
     # Money.parse?("10.00")     # => nil
     # ```
-    def parse?(str : String, *, allow_ambiguous = true) : Money?
+    #
+    # If `allow_ambiguous` is `true` (default), returns the first
+    # matching currency for ambiguous values, otherwise returns `nil`.
+    #
+    # ```
+    # Money.parse?("$10.00", allow_ambiguous: true)  # => Money(@amount=10.0, @currency="USD")
+    # Money.parse?("$10.00", allow_ambiguous: false) # => nil
+    # ```
+    #
+    # Thousands separator and decimal mark are guessed from the string.
+    #
+    # ```
+    # Money.parse?("$10.00") # => Money(@amount=10.0, @currency="USD")
+    # Money.parse?("$10,00") # => Money(@amount=10.0, @currency="USD")
+    #
+    # Money.parse?("$100,000") # => Money(@amount=100000.0, @currency="USD")
+    # Money.parse?("$100.000") # => Money(@amount=100000.0, @currency="USD")
+    # ```
+    def parse?(str : String, *, allow_ambiguous : Bool = true) : Money?
       parse(str, allow_ambiguous) { nil }
     end
 
-    private def parse(str : String, allow_ambiguous : Bool, &)
+    # :ditto:
+    #
+    # NOTE: Raises `Money::Parse::Error` on failure instead of returning `nil`.
+    def parse(str : String, *, allow_ambiguous : Bool = true) : Money
+      parse(str, allow_ambiguous) { |ex| raise ex }
+    end
+
+    private def parse(str, allow_ambiguous, &)
       amount, symbol = parse_amount_and_symbol(str)
       currency = parse_currency(symbol, allow_ambiguous)
 
-      if thousands_separator = currency.thousands_separator
-        amount = amount.gsub(thousands_separator, '_')
-      end
-      if decimal_mark = currency.decimal_mark
-        amount = amount.gsub(decimal_mark, '.')
-      end
+      amount =
+        normalize_amount(amount, currency)
 
       Money.from_amount(amount, currency)
     rescue ex
@@ -93,6 +97,34 @@ struct Money
       matches = Currency.select(&.alternate_symbols.try(&.find(&matcher))) if matches.empty?
 
       matches
+    end
+
+    # Normalizes *amount* string by standardizing thousands separators
+    # to underscores (`_`) and decimal mark to dot (`.`).
+    private def normalize_amount(amount : String, currency : Currency) : String
+      # potential thousands separators: spaces
+      amount = amount.gsub { |char| char.whitespace? ? '_' : char }
+
+      # potential thousands separators: 2+ occurrences of the same character
+      amount = amount.gsub(',', '_') if amount.count(',') > 1
+      amount = amount.gsub('.', '_') if amount.count('.') > 1
+
+      # potential thousands separators: leftmost character
+      if amount.count(',').positive? && amount.count('.').positive?
+        if amount.rindex!(',') > amount.rindex!('.')
+          amount = amount.gsub('.', '_')
+        else
+          amount = amount.gsub(',', '_')
+        end
+      end
+
+      if currency.decimal_places < 3
+        # potential thousands separators: groups of 3 digits
+        amount = amount.gsub(/[,.](\d{3})(?=\W|$)/, "_\\1")
+      end
+
+      # potential decimal mark: remaining comma
+      amount.gsub(',', '.')
     end
   end
 end

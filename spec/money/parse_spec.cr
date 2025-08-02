@@ -46,17 +46,34 @@ describe Money::Parse do
     end
 
     it "parses amount with thousands separators present" do
+      Money.parse?("1 000 USD").should eq Money.from_amount(1_000, "USD")
       Money.parse?("1,000 USD").should eq Money.from_amount(1_000, "USD")
-      Money.parse?("1,000,000 USD").should eq Money.from_amount(1_000_000, "USD")
+      Money.parse?("1.000 USD").should eq Money.from_amount(1_000, "USD")
       Money.parse?("1.000 EUR").should eq Money.from_amount(1_000, "EUR")
-      Money.parse?("1.000.000 EUR").should eq Money.from_amount(1_000_000, "EUR")
+      Money.parse?("10,000 USD").should eq Money.from_amount(10_000, "USD")
+      Money.parse?("100,000 USD").should eq Money.from_amount(100_000, "USD")
+      Money.parse?("100.000 USD").should eq Money.from_amount(100_000, "USD")
+      Money.parse?("1_000_000 USD").should eq Money.from_amount(1_000_000, "USD")
+      Money.parse?("1,000,000 USD").should eq Money.from_amount(1_000_000, "USD")
+      Money.parse?("1.000.000 USD").should eq Money.from_amount(1_000_000, "USD")
+    end
+
+    it "parses amount with decimal separators present" do
+      Money.parse?("1000.5 USD").should eq Money.from_amount(1_000.5, "USD")
+      Money.parse?("1000,5 USD").should eq Money.from_amount(1_000.5, "USD")
+      Money.parse?("1000.22 USD").should eq Money.from_amount(1_000.22, "USD")
+      Money.parse?("1000,22 USD").should eq Money.from_amount(1_000.22, "USD")
+      Money.parse?("100.003 BTC").should eq Money.from_amount(100.003, "BTC")
+      Money.parse?("0.003 BTC").should eq Money.from_amount(0.003, "BTC")
     end
 
     it "parses amount with thousands and decimal separators present" do
-      Money.parse?("1,000.00 USD").should eq Money.from_amount(1_000, "USD")
-      Money.parse?("1,000,000.00 USD").should eq Money.from_amount(1_000_000, "USD")
-      Money.parse?("1.000,00 EUR").should eq Money.from_amount(1_000, "EUR")
-      Money.parse?("1.000.000,00 EUR").should eq Money.from_amount(1_000_000, "EUR")
+      Money.parse?("1_000.22 USD").should eq Money.from_amount(1_000.22, "USD")
+      Money.parse?("1,000.22 USD").should eq Money.from_amount(1_000.22, "USD")
+      Money.parse?("1.000,22 USD").should eq Money.from_amount(1_000.22, "USD")
+      Money.parse?("1_000_000.22 USD").should eq Money.from_amount(1_000_000.22, "USD")
+      Money.parse?("1,000,000.22 USD").should eq Money.from_amount(1_000_000.22, "USD")
+      Money.parse?("1.000.000,22 USD").should eq Money.from_amount(1_000_000.22, "USD")
     end
 
     it "parses amount with `_` as thousands separator" do
