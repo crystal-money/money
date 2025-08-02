@@ -9,8 +9,8 @@ struct Money
     # The format string to use for the resulting string.
     #
     # ```
-    # Money.us_dollar(-1_23).format(format: "%{sign}%{symbol}%{amount}")    # => "-$1.23"
-    # Money.us_dollar(-1_23).format(format: "%{sign}%{amount} %{currency}") # => "-1.23 USD"
+    # Money.us_dollar(-1_23).format("%{sign}%{symbol}%{amount}")    # => "-$1.23"
+    # Money.us_dollar(-1_23).format("%{sign}%{amount} %{currency}") # => "-1.23 USD"
     # ```
     #
     # ### `:display_free`
@@ -139,8 +139,8 @@ struct Money
     # Money.new(100_000_00, "CHF").format(html: true) => "CHF100&#39;000.00"
     # ```
     def format(
-      *,
       format : String? = nil,
+      *,
       display_free : String? = nil,
       sign_positive : Bool = false,
       html : Bool = false,
