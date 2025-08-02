@@ -94,6 +94,14 @@ describe Money::Formatting do
       Money.bitcoin("0.00000966".to_big_d).format.should eq "₿0.00000966"
     end
 
+    describe "#to_s" do
+      it "works as documented" do
+        Money.new(-1_000_10, "USD").to_s.should eq "-1000.10 USD"
+        Money.new(-1_000_00, "USD").to_s.should eq "-1000 USD"
+        Money.new(-1, "BTC").to_s.should eq "-0.00000001 BTC"
+      end
+    end
+
     describe ":format option" do
       it "works as documented" do
         money = Money.euro(-1_234_567_12)

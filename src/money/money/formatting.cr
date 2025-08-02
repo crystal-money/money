@@ -242,9 +242,20 @@ struct Money
       end
     end
 
+    # Returns an unambiguous string representation of `self`.
+    # Suitable for serialization.
+    #
+    # ```
+    # Money.new(1_000_10, "USD").to_s # => "1000.10 USD"
+    # Money.new(1_000_00, "USD").to_s # => "1000 USD"
+    # ```
+    #
     # See also `#format`.
     def to_s(io : IO) : Nil
-      io << format
+      io << format "%{sign}%{amount} %{currency}",
+        no_cents_if_whole: true,
+        thousands_separator: nil,
+        decimal_mark: '.'
     end
   end
 end

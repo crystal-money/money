@@ -52,7 +52,8 @@ require "money"
 
 ```crystal
 money = Money.new(10_00, "USD")
-money.to_s          # => "$10.00"
+money.to_s          # => "10 USD"
+money.format        # => "$10.00"
 money.amount        # => 10.0
 money.fractional    # => 1000.0
 money.currency.code # => "USD"
@@ -155,7 +156,7 @@ Money.new(1_00, "EUR").format # => "€1.00"
 
 ```crystal
 range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
-range.to_a(&.to_s)
+range.to_a(&.format)
 # => ["$1.00", "$1.01", "$1.02", ..., "$2.99", "$3.00"]
 ```
 
@@ -165,7 +166,7 @@ range.to_a(&.to_s)
 range = Money.new(1_00, "USD")..Money.new(3_00, "USD")
 range
   .step(by: Money.new(1_00, "USD"))
-  .to_a(&.to_s)
+  .to_a(&.format)
 # => ["$1.00", "$2.00", "$3.00"]
 ```
 
@@ -175,21 +176,21 @@ By default, `Money` objects are rounded to the nearest cent and the extra precis
 is **not** preserved:
 
 ```crystal
-Money.new(2.34567, "USD").to_s # => "$2.35"
+Money.new(2.34567, "USD").format # => "$2.35"
 ```
 
 If you want to keep all the digits, you can enable infinite precision globally:
 
 ```crystal
 Money.infinite_precision = true
-Money.new(2.34567, "USD").to_s # => "$2.34567"
+Money.new(2.34567, "USD").format # => "$2.34567"
 ```
 
 Or use the block-scoped `Money.with_infinite_precision`:
 
 ```crystal
 Money.with_infinite_precision do
-  Money.new(2.34567, "USD").to_s # => "$2.34567"
+  Money.new(2.34567, "USD").format # => "$2.34567"
 end
 ```
 
@@ -451,20 +452,20 @@ Money.disallow_currency_conversion!
 By default, `Money` rounds to the nearest cent:
 
 ```crystal
-Money.new(2.34567, "USD").to_s # => "$2.35"
+Money.new(2.34567, "USD").format # => "$2.35"
 ```
 
 You can change the rounding precision:
 
 ```crystal
-Money.new(2.34567, "USD").round(1).to_s # => "$2.30"
+Money.new(2.34567, "USD").round(1).format # => "$2.30"
 ```
 
 You can change the rounding mode:
 
 ```crystal
-Money.new(2.34567, "USD").round(1, :to_positive).to_s # => "$2.40"
-Money.new(2.34567, "USD").round(1, :to_negative).to_s # => "$2.30"
+Money.new(2.34567, "USD").round(1, :to_positive).format # => "$2.40"
+Money.new(2.34567, "USD").round(1, :to_negative).format # => "$2.30"
 ```
 
 To keep extra digits, enable infinite precision:
@@ -472,14 +473,14 @@ To keep extra digits, enable infinite precision:
 ```crystal
 Money.infinite_precision = true
 
-Money.new(2.34567, "USD").to_s                    # => "$2.34567"
-Money.new(2.34567, "USD").round(4).to_s           # => "$2.3457"
-Money.new(2.34567, "USD").round(4, :to_zero).to_s # => "$2.3456"
+Money.new(2.34567, "USD").format                    # => "$2.34567"
+Money.new(2.34567, "USD").round(4).format           # => "$2.3457"
+Money.new(2.34567, "USD").round(4, :to_zero).format # => "$2.3456"
 
 # or
 
 Money.with_rounding_mode(:to_zero) do
-  Money.new(2.34567, "USD").round(4).to_s         # => "$2.3456"
+  Money.new(2.34567, "USD").round(4).format         # => "$2.3456"
 end
 ```
 
