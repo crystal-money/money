@@ -16,7 +16,7 @@ describe Money::Currency::Enumeration do
   )
 
   describe ".find" do
-    it "returns currency matching given id" do
+    it "returns currency matching given code" do
       with_registered_currency(foo_currency) do
         expected = Money::Currency.find(:foo)
         Money::Currency.find(:foo).should be expected
@@ -28,7 +28,6 @@ describe Money::Currency::Enumeration do
 
     it "lookups data from loaded config" do
       us_dollar = Money::Currency.find("USD")
-      us_dollar.id.should eq "usd"
       us_dollar.priority.should eq 1
       us_dollar.code.should eq "USD"
       us_dollar.iso_numeric.should eq 840
@@ -40,7 +39,7 @@ describe Money::Currency::Enumeration do
     end
 
     it "caches instances" do
-      Money::Currency.find("USD").should be Money::Currency.registry["usd"]
+      Money::Currency.find("USD").should be Money::Currency.registry["USD"]
     end
 
     it "raises UnknownCurrency with unknown currency" do
@@ -63,7 +62,7 @@ describe Money::Currency::Enumeration do
   end
 
   describe ".find?" do
-    it "returns currency matching given id" do
+    it "returns currency matching given code" do
       with_registered_currency(foo_currency) do
         expected = Money::Currency.find?(:foo)
         Money::Currency.find?(:foo).should be expected
@@ -73,13 +72,13 @@ describe Money::Currency::Enumeration do
       end
     end
 
-    it "returns nil unless currency matches given id" do
+    it "returns nil unless currency matches given code" do
       Money::Currency.find?("ZZZ").should be_nil
     end
   end
 
   describe ".[]?" do
-    it "returns nil for invalid ids" do
+    it "returns nil for invalid codes" do
       Money::Currency[:foo]?.should be_nil
     end
 
@@ -87,14 +86,14 @@ describe Money::Currency::Enumeration do
       Money::Currency[Money::Currency.find(:usd)]?.should be Money::Currency.find(:usd)
     end
 
-    it "returns Currency object matching given id if object is String or Symbol" do
+    it "returns Currency object matching given code if object is String or Symbol" do
       Money::Currency["USD"]?.should be Money::Currency.find(:usd)
       Money::Currency[:usd]?.should be Money::Currency.find(:usd)
     end
   end
 
   describe ".[]" do
-    it "raises UnknownCurrencyError for invalid ids" do
+    it "raises UnknownCurrencyError for invalid codes" do
       expect_raises(Money::UnknownCurrencyError) { Money::Currency[:foo] }
     end
 
@@ -102,7 +101,7 @@ describe Money::Currency::Enumeration do
       Money::Currency[Money::Currency.find(:usd)].should be Money::Currency.find(:usd)
     end
 
-    it "returns Currency object matching given id if object is String or Symbol" do
+    it "returns Currency object matching given code if object is String or Symbol" do
       Money::Currency["USD"].should be Money::Currency.find(:usd)
       Money::Currency[:usd].should be Money::Currency.find(:usd)
     end

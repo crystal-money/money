@@ -11,7 +11,7 @@ class Money::Currency
     # ```
     def find?(key : String | Symbol) : Currency?
       @@registry_mutex.synchronize do
-        registry[key.to_s.downcase]?
+        registry[key.to_s.upcase]?
       end
     end
 

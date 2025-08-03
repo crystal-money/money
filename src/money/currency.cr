@@ -29,7 +29,7 @@ struct Money
     # Registers a new currency.
     def self.register(currency : Currency) : Currency
       @@registry_mutex.synchronize do
-        registry[currency.id] = currency
+        registry[currency.code] = currency
       end
     end
 
@@ -37,7 +37,7 @@ struct Money
     def self.unregister(currency : String | Symbol | Currency) : Currency?
       if currency = self[currency]?
         @@registry_mutex.synchronize do
-          registry.delete(currency.id)
+          registry.delete(currency.code)
         end
       end
     end
@@ -48,9 +48,6 @@ struct Money
         @@registry = load_currencies
       end
     end
-
-    # Currency ID (lower-cased `#code`).
-    getter id : String { code.downcase }
 
     # Currency type.
     getter type : Type?
@@ -134,7 +131,7 @@ struct Money
       end
     end
 
-    def_equals_and_hash id
+    def_equals_and_hash code
 
     {% for type in Type.constants.map(&.underscore.id) %}
       # Returns `true` if the currency `#type` is `{{ type.camelcase }}`, otherwise `false`.
@@ -191,17 +188,17 @@ struct Money
     end
 
     # Compares `self` with *other* currency against the value of
-    # `priority` and `id` attributes.
+    # `priority` and `code` attributes.
     def <=>(other : Currency) : Int32
       case {(priority = self.priority), (other_priority = other.priority)}
       in {Int32, Int32}
         comparison = priority <=> other_priority
-        comparison = id <=> other.id if comparison.zero?
+        comparison = code <=> other.code if comparison.zero?
         comparison
       in {Int32, nil} then -1
       in {nil, Int32} then 1
       in {nil, nil}
-        id <=> other.id
+        code <=> other.code
       end
     end
 

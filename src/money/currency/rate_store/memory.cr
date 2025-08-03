@@ -37,7 +37,7 @@ class Money::Currency
     end
 
     private def rate_key_for(base : Currency, target : Currency)
-      {base.id, target.id}.join(INDEX_KEY_SEPARATOR)
+      {base.code, target.code}.join(INDEX_KEY_SEPARATOR)
     end
   end
 end

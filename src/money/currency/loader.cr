@@ -9,7 +9,7 @@ class Money::Currency
       if_defined?(:JSON) do
         Dir.each_child(DATA_PATH) do |filename|
           if currency = parse_currency_file(filename)
-            currency_table[currency.id] = currency
+            currency_table[currency.code] = currency
           end
         end
       end
