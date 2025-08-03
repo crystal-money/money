@@ -12,7 +12,7 @@ describe Money::Formatting do
     symbol_first: true,
     decimal_mark: ".",
     thousands_separator: ",",
-    smallest_denomination: 1
+    smallest_denomination: 1,
   )
 
   eu4_currency = Money::Currency.new(
@@ -26,7 +26,7 @@ describe Money::Formatting do
     symbol_first: true,
     decimal_mark: ",",
     thousands_separator: ".",
-    smallest_denomination: 1
+    smallest_denomination: 1,
   )
 
   describe "#format" do
@@ -105,8 +105,8 @@ describe Money::Formatting do
     describe ":format option" do
       it "works as documented" do
         money = Money.euro(-1_234_567_12)
-        money.format(format: "%{sign}%{symbol}%{amount}").should eq "-€1.234.567,12"
-        money.format(format: "%{sign}%{amount} %{currency}").should eq "-1.234.567,12 EUR"
+        money.format("%{sign}%{symbol}%{amount}").should eq "-€1.234.567,12"
+        money.format("%{sign}%{amount} %{currency}").should eq "-1.234.567,12 EUR"
       end
 
       it "uses `currency.format` if not given" do
@@ -199,7 +199,6 @@ describe Money::Formatting do
           one.call("CAD").should eq "$1.00"
           one.call("AUD").should eq "$1.00"
           one.call("NZD").should eq "$1.00"
-          # one.call("ZWD").should eq "$1.00"
 
           # Yen
           one.call("JPY").should eq "¥100"
@@ -222,7 +221,6 @@ describe Money::Formatting do
 
           # Other
           one.call("SEK").should eq "1,00 kr"
-          # one.call("GHC").should eq "₵1.00"
         end
       end
 
@@ -275,7 +273,13 @@ describe Money::Formatting do
       end
 
       it "defaults to '.' if currency isn't recognized" do
-        # Money.new(1_00, "ZWD").format.should eq "$1.00"
+        currency = Money::Currency.new(
+          code: "FOO",
+          subunit_to_unit: 100,
+          symbol: "$",
+          symbol_first: true,
+        )
+        Money.new(1_00, currency).format.should eq "$1.00"
       end
     end
 
@@ -295,7 +299,13 @@ describe Money::Formatting do
       end
 
       it "defaults to ',' if currency isn't recognized" do
-        # Money.new(1000_00, "ZWD").format.should eq "$1,000.00"
+        currency = Money::Currency.new(
+          code: "FOO",
+          subunit_to_unit: 100,
+          symbol: "$",
+          symbol_first: true,
+        )
+        Money.new(1_000_00, currency).format.should eq "$1,000.00"
       end
 
       it "should respect explicit overriding of delimiter/separator when there's no decimal component for currencies that have no subunit" do

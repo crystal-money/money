@@ -37,12 +37,12 @@ describe Money::Currency::RateProvider::Compound do
   provider1 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR USD],
     target_currency_codes: %w[USD CAD],
-    rates: {"USD_CAD" => rate_usd_cad}
+    rates: {"USD_CAD" => rate_usd_cad},
   )
   provider2 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR],
     target_currency_codes: %w[USD],
-    rates: {"EUR_USD" => rate_eur_usd}
+    rates: {"EUR_USD" => rate_eur_usd},
   )
 
   subject = Money::Currency::RateProvider::Compound.new(
@@ -129,7 +129,7 @@ describe Money::Currency::RateProvider::Compound do
         Money::Currency::RateProvider::CompoundDummy.new(
           base_currency_codes: %w[USD],
           target_currency_codes: %w[EUR],
-          simulate_error: true
+          simulate_error: true,
         )
       compound_with_error = Money::Currency::RateProvider::Compound.new(
         [error_provider, error_provider, provider2] of Money::Currency::RateProvider

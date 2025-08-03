@@ -12,7 +12,7 @@ describe Money::Currency::Enumeration do
     symbol_first: true,
     decimal_mark: ".",
     thousands_separator: ",",
-    smallest_denomination: 1
+    smallest_denomination: 1,
   )
 
   describe ".find" do

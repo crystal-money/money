@@ -45,14 +45,14 @@ describe Money::Currency do
         Money::Currency.new(
           code: "XXX",
           subunit_to_unit: 1,
-          iso_numeric: 0
+          iso_numeric: 0,
         )
       end
       expect_raises(ArgumentError) do
         Money::Currency.new(
           code: "XXX",
           subunit_to_unit: 1,
-          iso_numeric: -1
+          iso_numeric: -1,
         )
       end
     end
@@ -62,14 +62,14 @@ describe Money::Currency do
         Money::Currency.new(
           code: "XXX",
           subunit_to_unit: 1,
-          smallest_denomination: 0
+          smallest_denomination: 0,
         )
       end
       expect_raises(ArgumentError) do
         Money::Currency.new(
           code: "XXX",
           subunit_to_unit: 1,
-          smallest_denomination: -1
+          smallest_denomination: -1,
         )
       end
     end
@@ -83,7 +83,7 @@ describe Money::Currency do
         name: "Golden Doubloon",
         symbol: "%",
         symbol_first: false,
-        subunit_to_unit: 100
+        subunit_to_unit: 100,
       )
       with_registered_currency(currency) do
         new_currency = Money::Currency.find("XXX")
@@ -102,7 +102,7 @@ describe Money::Currency do
       name: "Golden Doubloon",
       symbol: "%",
       symbol_first: false,
-      subunit_to_unit: 100
+      subunit_to_unit: 100,
     )
 
     it "unregisters a currency" do
@@ -140,7 +140,7 @@ describe Money::Currency do
       name: "Golden Doubloon",
       symbol: "%",
       symbol_first: false,
-      subunit_to_unit: 100
+      subunit_to_unit: 100,
     )
 
     it "resets all registered currencies to their defaults" do

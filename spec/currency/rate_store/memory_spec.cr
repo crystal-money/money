@@ -7,13 +7,13 @@ describe Money::Currency::RateStore::Memory do
       Money::Currency.find("USD"),
       Money::Currency.find("CAD"),
       0.9.to_big_d,
-      Time.utc
+      Time.utc,
     )
     store << Money::Currency::Rate.new(
       Money::Currency.find("CAD"),
       Money::Currency.find("USD"),
       1.1.to_big_d,
-      Time.utc - (1.hour + 1.second)
+      Time.utc - (1.hour + 1.second),
     )
 
     describe "#[]?" do
@@ -75,7 +75,7 @@ describe Money::Currency::RateStore::Memory do
       store << Money::Currency::Rate.new(
         Money::Currency.find("USD"),
         Money::Currency.find("CAD"),
-        0.9.to_big_d
+        0.9.to_big_d,
       )
       store["USD", "CAD"].should eq 0.9.to_big_d
     end
@@ -89,12 +89,12 @@ describe Money::Currency::RateStore::Memory do
         Money::Currency::Rate.new(
           Money::Currency.find("USD"),
           Money::Currency.find("CAD"),
-          0.9.to_big_d
+          0.9.to_big_d,
         ),
         Money::Currency::Rate.new(
           Money::Currency.find("CAD"),
           Money::Currency.find("USD"),
-          1.1.to_big_d
+          1.1.to_big_d,
         ),
       ]
       store["USD", "CAD"].should eq 0.9.to_big_d
