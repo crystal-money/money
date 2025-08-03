@@ -2,6 +2,7 @@ require "./currency/type"
 require "./currency/enumeration"
 require "./currency/loader"
 require "./currency/exchange"
+require "./currency/validation"
 require "./currency/rate"
 require "./currency/rate_store"
 require "./currency/rate_provider"
@@ -15,6 +16,8 @@ struct Money
 
     extend Currency::Loader
     extend Currency::Enumeration
+
+    include Currency::Validation
 
     @@registry_mutex = Mutex.new(:reentrant)
     @@registry : Hash(String, Currency)?
@@ -112,23 +115,8 @@ struct Money
       @smallest_denomination = nil,
       @format = nil,
     )
-      unless code.presence &&
-             code.chars.all? { |char| char.ascii_uppercase? || char.ascii_number? }
-        raise ArgumentError.new \
-          "Code must be all uppercase letters and/or digits: #{code.inspect}"
-      end
-      unless subunit_to_unit.positive?
-        raise ArgumentError.new \
-          "Subunit to unit value must be positive: #{subunit_to_unit}"
-      end
-      if iso_numeric && !iso_numeric.positive?
-        raise ArgumentError.new \
-          "ISO numeric value must be positive: #{iso_numeric}"
-      end
-      if smallest_denomination && !smallest_denomination.positive?
-        raise ArgumentError.new \
-          "Smallest denomination value must be positive: #{smallest_denomination}"
-      end
+      normalize!
+      validate!
     end
 
     def_equals_and_hash code
