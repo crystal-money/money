@@ -184,9 +184,7 @@ struct Money
     def <=>(other : Currency) : Int32
       case {(priority = self.priority), (other_priority = other.priority)}
       in {Int32, Int32}
-        comparison = priority <=> other_priority
-        comparison = code <=> other.code if comparison.zero?
-        comparison
+        {priority, code} <=> {other_priority, other.code}
       in {Int32, nil} then -1
       in {nil, Int32} then 1
       in {nil, nil}

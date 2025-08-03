@@ -153,8 +153,60 @@ describe Money::Currency do
 
   describe "#<=>" do
     it "compares objects by priority" do
-      Money::Currency.find(:cad).should be > Money::Currency.find(:usd)
-      Money::Currency.find(:usd).should be < Money::Currency.find(:eur)
+      currency_a = Money::Currency.new(
+        code: "FOO",
+        subunit_to_unit: 100,
+        priority: 1,
+      )
+      currency_b = Money::Currency.new(
+        code: "BAR",
+        subunit_to_unit: 100,
+        priority: 2,
+      )
+      currency_a.should be < currency_b
+      currency_b.should be > currency_a
+    end
+
+    it "compares objects by priority (partial)" do
+      currency_a = Money::Currency.new(
+        code: "FOO",
+        subunit_to_unit: 100,
+        priority: 1,
+      )
+      currency_b = Money::Currency.new(
+        code: "BAR",
+        subunit_to_unit: 100,
+      )
+      currency_a.should be < currency_b
+      currency_b.should be > currency_a
+    end
+
+    it "compares objects by code" do
+      currency_a = Money::Currency.new(
+        code: "ABC",
+        subunit_to_unit: 100,
+      )
+      currency_b = Money::Currency.new(
+        code: "DEF",
+        subunit_to_unit: 100,
+      )
+      currency_a.should be < currency_b
+      currency_b.should be > currency_a
+    end
+
+    it "compares objects by priority and code" do
+      currency_a = Money::Currency.new(
+        code: "ABC",
+        subunit_to_unit: 100,
+        priority: 1,
+      )
+      currency_b = Money::Currency.new(
+        code: "DEF",
+        subunit_to_unit: 100,
+        priority: 1,
+      )
+      currency_a.should be < currency_b
+      currency_b.should be > currency_a
     end
   end
 
