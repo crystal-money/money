@@ -115,6 +115,10 @@ struct Money
       @smallest_denomination = nil,
       @format = nil,
     )
+      after_initialize
+    end
+
+    protected def after_initialize
       normalize!
       validate!
     end

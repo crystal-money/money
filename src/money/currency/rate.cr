@@ -8,6 +8,14 @@ class Money::Currency
     getter updated_at : Time
 
     def initialize(@base, @target, @value, @updated_at = Time.utc)
+      after_initialize
+    end
+
+    protected def after_initialize
+      validate!
+    end
+
+    protected def validate!
       raise ArgumentError.new("Invalid rate: #{value}") unless value.positive?
     end
 
