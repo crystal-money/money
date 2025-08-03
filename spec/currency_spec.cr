@@ -10,7 +10,8 @@ describe Money::Currency do
         name: "Golden Doubloon",
         symbol: "%",
         symbol_first: false,
-        subunit_to_unit: 100
+        subunit_to_unit: 100,
+        format: "%{symbol}%{sign}%{amount} %{currency}",
       )
       currency.priority.should eq 1
       currency.code.should eq "XXX111"
@@ -18,6 +19,7 @@ describe Money::Currency do
       currency.symbol.should eq "%"
       currency.symbol_first?.should be_false
       currency.subunit_to_unit.should eq 100
+      currency.format.should eq "%{symbol}%{sign}%{amount} %{currency}"
     end
 
     it "raises ArgumentError for non-upper-case-alphanumeric :code values" do

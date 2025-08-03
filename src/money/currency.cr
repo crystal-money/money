@@ -94,6 +94,9 @@ struct Money
     # Smallest denomination.
     getter smallest_denomination : Int32?
 
+    # Format string.
+    getter format : String?
+
     def initialize(
       *,
       @type = nil,
@@ -110,6 +113,7 @@ struct Money
       @decimal_mark = nil,
       @thousands_separator = nil,
       @smallest_denomination = nil,
+      @format = nil,
     )
       unless code.presence &&
              code.chars.all? { |char| char.ascii_uppercase? || char.ascii_number? }

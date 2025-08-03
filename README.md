@@ -309,6 +309,7 @@ Money::Currency.register(currency)
 - `:subunit_to_unit` — the proportion between the unit and the subunit
 - `:decimal_mark` — character between the whole and fraction amounts
 - `:thousands_separator` — character between each thousands place
+- `:format` — a format string passed to `Money#format`
 
 All attributes except `:code` and `:subunit_to_unit` are optional.
 

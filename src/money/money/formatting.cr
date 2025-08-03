@@ -176,6 +176,7 @@ struct Money
         symbol &&= HTML.escape(symbol)
       end
 
+      format ||= currency.format
       format ||=
         if currency.symbol_first?
           "%{sign}%{symbol}%{amount}"

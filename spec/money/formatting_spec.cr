@@ -108,6 +108,16 @@ describe Money::Formatting do
         money.format(format: "%{sign}%{symbol}%{amount}").should eq "-€1.234.567,12"
         money.format(format: "%{sign}%{amount} %{currency}").should eq "-1.234.567,12 EUR"
       end
+
+      it "uses `currency.format` if not given" do
+        currency = Money::Currency.new(
+          code: "FOO",
+          subunit_to_unit: 100,
+          symbol: "^",
+          format: "%{symbol}%{sign}%{amount} %{currency}",
+        )
+        Money.new(-10_11, currency).format.should eq "^-10.11 FOO"
+      end
     end
 
     describe ":no_cents option" do
