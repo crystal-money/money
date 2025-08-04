@@ -18,11 +18,10 @@ describe Money::Currency::Enumeration do
   describe ".find" do
     it "returns currency matching given code" do
       with_registered_currency(foo_currency) do
-        expected = Money::Currency.find(:foo)
-        Money::Currency.find(:foo).should be expected
-        Money::Currency.find(:FOO).should be expected
-        Money::Currency.find("foo").should be expected
-        Money::Currency.find("FOO").should be expected
+        Money::Currency.find(:foo).should be foo_currency
+        Money::Currency.find(:FOO).should be foo_currency
+        Money::Currency.find("foo").should be foo_currency
+        Money::Currency.find("FOO").should be foo_currency
       end
     end
 
@@ -64,11 +63,10 @@ describe Money::Currency::Enumeration do
   describe ".find?" do
     it "returns currency matching given code" do
       with_registered_currency(foo_currency) do
-        expected = Money::Currency.find?(:foo)
-        Money::Currency.find?(:foo).should be expected
-        Money::Currency.find?(:FOO).should be expected
-        Money::Currency.find?("foo").should be expected
-        Money::Currency.find?("FOO").should be expected
+        Money::Currency.find?(:foo).should be foo_currency
+        Money::Currency.find?(:FOO).should be foo_currency
+        Money::Currency.find?("foo").should be foo_currency
+        Money::Currency.find?("FOO").should be foo_currency
       end
     end
 
@@ -113,7 +111,7 @@ describe Money::Currency::Enumeration do
     end
     it "includes registered currencies" do
       with_registered_currency(foo_currency) do
-        Money::Currency.all.should contain Money::Currency.find(:foo)
+        Money::Currency.all.should contain foo_currency
       end
     end
     it "is sorted by priority" do
@@ -123,16 +121,11 @@ describe Money::Currency::Enumeration do
 
   describe ".each" do
     it "yields each currency to the block" do
-      Money::Currency.responds_to?(:each).should be_true
       currencies = [] of Money::Currency
       Money::Currency.each do |currency|
         currencies << currency
       end
-
-      # Don't bother testing every single currency
-      currencies[0].should eq Money::Currency.all[0]
-      currencies[1].should eq Money::Currency.all[1]
-      currencies[-1].should eq Money::Currency.all[-1]
+      currencies.should eq Money::Currency.all
     end
   end
 
