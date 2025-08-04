@@ -169,7 +169,7 @@ struct Money
       symbol = format_symbol(
         symbol: symbol,
         disambiguate: disambiguate,
-      ).presence
+      )
 
       if html
         amount &&= HTML.escape(amount)
@@ -193,17 +193,12 @@ struct Money
       formatted.strip
     end
 
-    # ameba:disable Metrics/CyclomaticComplexity
     private def format_amount(*, no_cents, no_cents_if_whole, drop_trailing_zeros, decimal_mark, thousands_separator) : String
-      if decimal_mark.is_a?(Bool)
-        decimal_mark =
-          decimal_mark ? currency.decimal_mark || "." : nil
-      end
+      decimal_mark =
+        transform_bool(decimal_mark) { currency.decimal_mark || '.' }
 
-      if thousands_separator.is_a?(Bool)
-        thousands_separator =
-          thousands_separator ? currency.thousands_separator || "," : nil
-      end
+      thousands_separator =
+        transform_bool(thousands_separator) { currency.thousands_separator || ',' }
 
       unit, _, subunit =
         amount.abs
@@ -230,17 +225,22 @@ struct Money
     end
 
     private def format_symbol(*, disambiguate, symbol) : String?
-      case symbol
-      when true
-        case
-        when disambiguate && currency.disambiguate_symbol
+      symbol = transform_bool(symbol) do
+        if disambiguate && currency.disambiguate_symbol
           currency.disambiguate_symbol
         else
-          currency.symbol || "¤"
+          currency.symbol || '¤'
         end
-      when String, Char
-        symbol.to_s
       end
+      symbol.try(&.to_s.presence)
+    end
+
+    private def transform_bool(value : Bool, &)
+      yield if value
+    end
+
+    private def transform_bool(value, &)
+      value
     end
 
     # Returns an unambiguous string representation of `self`.
