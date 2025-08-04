@@ -25,7 +25,7 @@ struct Money
     # List of known currencies.
     def self.registry : Hash(String, Currency)
       @@registry_mutex.synchronize do
-        @@registry ||= load_currencies
+        @@registry ||= load_defaults
       end
     end
 
@@ -48,7 +48,7 @@ struct Money
     # Resets all registered currencies to their defaults.
     def self.reset! : Nil
       @@registry_mutex.synchronize do
-        @@registry = load_currencies
+        @@registry = load_defaults
       end
     end
 

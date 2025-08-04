@@ -4,7 +4,7 @@ class Money::Currency
 
     # Loads and returns the currencies stored in JSON files
     # inside of `data/currencies` directory.
-    def load_currencies
+    def load_defaults : Hash(String, Currency)
       currency_table = {} of String => Currency
       if_defined?(:JSON) do
         Dir.each_child(DATA_PATH) do |filename|
