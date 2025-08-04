@@ -1,28 +1,29 @@
-class Money::Currency
-  module Loader
-    private DATA_PATH = Path["../../../data/currencies"].expand(__DIR__)
+require "baked_file_system"
 
+class Money::Currency
+  private class FileStorage
+    extend BakedFileSystem
+
+    if_defined?(:JSON) do
+      bake_folder "../../../data/currencies"
+    end
+  end
+
+  module Loader
     # Loads and returns the currencies stored in JSON files
     # inside of `data/currencies` directory.
     def load_defaults : Hash(String, Currency)
       currency_table = {} of String => Currency
+
       if_defined?(:JSON) do
-        Dir.each_child(DATA_PATH) do |filename|
-          if currency = parse_currency_file(filename)
-            currency_table[currency.code] = currency
-          end
+        FileStorage.files.each do |file|
+          currency = Currency.from_json(file)
+          currency_table[currency.code] = currency
+        ensure
+          file.rewind
         end
       end
       currency_table
-    end
-
-    private def parse_currency_file(filename)
-      filepath = DATA_PATH / filename
-      if File.file?(filepath)
-        File.open(filepath) do |file|
-          Currency.from_json(file)
-        end
-      end
     end
   end
 end
