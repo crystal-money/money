@@ -94,6 +94,15 @@ describe Money::Formatting do
       Money.bitcoin("0.00000966".to_big_d).format.should eq "₿0.00000966"
     end
 
+    it "respects `Money.infinite_precision?`" do
+      Money.with_infinite_precision do
+        Money.new(1.23, "JPY").format.should eq "¥1.23"
+      end
+      Money.with_infinite_precision(false) do
+        Money.new(1.23, "JPY").format.should eq "¥1"
+      end
+    end
+
     describe "#to_s" do
       it "works as documented" do
         Money.new(-1_000_10, "USD").to_s.should eq "-1000.10 USD"

@@ -206,7 +206,7 @@ struct Money
       unit =
         unit.gsub(',', thousands_separator)
 
-      no_cents ||= currency.decimal_places.zero?
+      no_cents ||= currency.decimal_places.zero? && !Money.infinite_precision?
       no_cents ||= no_cents_if_whole && subunit == "0"
 
       if no_cents
