@@ -152,9 +152,7 @@ struct Money
       decimal_mark : String | Char | Bool? = true,
       thousands_separator : String | Char | Bool? = true,
     ) : String
-      if zero? && display_free
-        return display_free
-      end
+      return display_free if zero? && display_free
 
       sign = '-' if negative?
       sign = '+' if positive? && sign_positive
@@ -205,23 +203,23 @@ struct Money
           .format(separator: '.', delimiter: ',', group: 3)
           .rpartition('.')
 
-      formatted =
+      unit =
         unit.gsub(',', thousands_separator)
 
-      hide_cents =
-        no_cents || (no_cents_if_whole && subunit == "0")
+      no_cents ||= currency.decimal_places.zero?
+      no_cents ||= no_cents_if_whole && subunit == "0"
 
-      if !hide_cents && currency.decimal_places.positive?
+      if no_cents
+        subunit = nil
+      else
         subunit = subunit.ljust(currency.decimal_places, '0')
         subunit = subunit.rstrip('0') if drop_trailing_zeros
-
-        if subunit = subunit.presence
-          formatted += decimal_mark if decimal_mark
-          formatted += subunit
-        end
+        subunit = subunit.presence
       end
 
-      formatted
+      amount = unit
+      amount += "#{decimal_mark}#{subunit}" if subunit
+      amount
     end
 
     private def format_symbol(*, disambiguate, symbol) : String?
