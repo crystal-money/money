@@ -175,6 +175,29 @@ describe Money do
     end
   end
 
+  describe "#=~" do
+    exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
+    exchange.rate_store["EUR", "USD"] = 2
+
+    it "returns true even if exchange differs" do
+      (Money.new(1_00, "USD", Money::Currency::Exchange.new) =~
+        Money.new(1_00, "USD", Money::Currency::Exchange.new)).should be_true
+    end
+
+    it "returns true if both amounts are zero, even if currency differs" do
+      (Money.zero("USD") =~ Money.zero("USD")).should be_true
+      (Money.zero("USD") =~ Money.zero("EUR")).should be_true
+      (Money.zero("EUR") =~ Money.zero("JPY")).should be_true
+    end
+
+    it "returns true if converted amount is equal" do
+      with_default_exchange(exchange) do
+        (Money.new(2_00, "USD") =~ Money.new(1_00, "EUR")).should be_true
+        (Money.new(6_00, "USD") =~ Money.new(1_00, "EUR")).should be_false
+      end
+    end
+  end
+
   describe "#<=>" do
     exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
     exchange.rate_store["EUR", "USD"] = 1.5

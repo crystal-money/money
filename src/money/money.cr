@@ -213,7 +213,9 @@ struct Money
 
   def_equals_and_hash amount, currency
 
-  # Compares two `Money` objects.
+  # Compares two `Money` objects. Returns `0` if the two objects are equal,
+  # a negative number if this object is considered less than *other* or
+  # a positive number if this object is considered greater than *other*.
   #
   # NOTE: Two `Money` objects with `0` amount are considered equal,
   # regardless of their currency.
@@ -225,6 +227,17 @@ struct Money
     with_same_currency(other) do |converted_other|
       amount <=> converted_other.amount
     end
+  end
+
+  # Compares two `Money` objects. Returns `true` if `self` is equal to *other*,
+  # `false` otherwise.
+  #
+  # NOTE: Two `Money` objects with `0` amount are considered equal,
+  # regardless of their currency.
+  #
+  # NOTE: Performs currency conversion if necessary.
+  def =~(other : Money) : Bool
+    (self <=> other).zero?
   end
 
   # Returns a new `Money` instance with incremented `fractional` value.
