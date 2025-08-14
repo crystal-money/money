@@ -198,6 +198,20 @@ struct Money
       thousands_separator =
         transform_bool(thousands_separator) { currency.thousands_separator || ',' }
 
+      unit, subunit = format_unit(
+        thousands_separator: thousands_separator,
+      )
+      subunit = format_subunit(subunit,
+        no_cents: no_cents,
+        no_cents_if_whole: no_cents_if_whole,
+        drop_trailing_zeros: drop_trailing_zeros,
+      )
+      amount = unit
+      amount += "#{decimal_mark}#{subunit}" if subunit
+      amount
+    end
+
+    private def format_unit(*, thousands_separator) : {String, String}
       unit, _, subunit =
         amount.abs
           .format(separator: '.', delimiter: ',', group: 3)
@@ -206,20 +220,18 @@ struct Money
       unit =
         unit.gsub(',', thousands_separator)
 
+      {unit, subunit}
+    end
+
+    private def format_subunit(subunit, *, no_cents, no_cents_if_whole, drop_trailing_zeros) : String?
       no_cents ||= currency.decimal_places.zero? && !Money.infinite_precision?
       no_cents ||= no_cents_if_whole && subunit == "0"
 
-      if no_cents
-        subunit = nil
-      else
-        subunit = subunit.ljust(currency.decimal_places, '0')
-        subunit = subunit.rstrip('0') if drop_trailing_zeros
-        subunit = subunit.presence
-      end
+      return if no_cents
 
-      amount = unit
-      amount += "#{decimal_mark}#{subunit}" if subunit
-      amount
+      subunit = subunit.ljust(currency.decimal_places, '0')
+      subunit = subunit.rstrip('0') if drop_trailing_zeros
+      subunit.presence
     end
 
     private def format_symbol(*, disambiguate, symbol) : String?
