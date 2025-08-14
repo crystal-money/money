@@ -32,7 +32,7 @@ class Money::Currency
     #
     # ```
     # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
-    # Money::Currency.find("FOO") # => raises UnknownCurrencyError
+    # Money::Currency.find("FOO") # raises Money::UnknownCurrencyError
     # ```
     def find(key : String | Symbol) : Currency
       find?(key) ||

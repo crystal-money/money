@@ -9,12 +9,17 @@ Here’s what you get out of the box:
 - A `Money` class to represent amounts and their currencies.
 - A flexible `Money::Currency` class for all your currency info needs.
 - A growing list of 200+ supported currencies (metals, fiat, cryptocurrencies).
-- `BigDecimal`-based values—no more floating point rounding headaches!
+- `BigDecimal`-based values — i.e. no more floating point rounding headaches!
 - Easy APIs for currency exchange.
 - Multiple exchange rate providers (use built-in or roll your own).
-- Formatting and parsing money values.
-- Rounding and truncation helpers.
+- Comprehensive support for formatting and parsing money values.
+- Mathematical operations on `Money` objects:
+  - Arithmetic: addition, subtraction, multiplication, division, etc.
+  - Rounding and truncation helpers.
+  - Allocation and splitting.
+- Money ranges.
 - JSON/YAML serialization and deserialization support.
+- Extensible architecture of exchange rate providers and stores.
 
 ## Installation
 
@@ -52,8 +57,6 @@ require "money"
 
 ```crystal
 money = Money.new(10_00, "USD")
-money.to_s          # => "10 USD"
-money.format        # => "$10.00"
 money.amount        # => 10.0
 money.fractional    # => 1000.0
 money.currency.code # => "USD"
@@ -62,23 +65,23 @@ money.currency.code # => "USD"
 #### From fractional amount
 
 ```crystal
+Money.from_fractional(10_00.0, "USD")
+Money.from_fractional(10_00, "USD")
+
 Money.new(fractional: 10_00.0, currency: "USD")
 Money.new(fractional: 10_00, currency: "USD")
 Money.new(10_00, "USD")
-
-Money.from_fractional(10_00.0, "USD")
-Money.from_fractional(10_00, "USD")
 ```
 
 #### From whole amount
 
 ```crystal
+Money.from_amount(10.0, "USD")
+Money.from_amount(10, "USD")
+
 Money.new(amount: 10.0, currency: "USD")
 Money.new(amount: 10, currency: "USD")
 Money.new(10.0, "USD")
-
-Money.from_amount(10.0, "USD")
-Money.from_amount(10, "USD")
 ```
 
 ### Comparing Money
@@ -87,18 +90,37 @@ Money.from_amount(10, "USD")
 > Performs currency conversion if necessary.
 
 ```crystal
-Money.new(11_00, "USD") == Money.new(11_00, "USD") # => true
-Money.new(11_00, "USD") == Money.new(11_00, "EUR") # => false
+Money.default_exchange.rate_store["EUR", "USD"] = 1
 
 Money.new(11_00, "USD") < Money.new(33_00, "USD") # => true
-Money.new(11_00, "USD") > Money.new(33_00, "USD") # => false
+Money.new(11_00, "USD") > Money.new(33_00, "EUR") # => false
+```
+
+#### Strict Comparison (`==` / `!=`)
+
+> [!NOTE]
+> Does **not** perform currency conversion.
+
+```crystal
+Money.new(11_00, "USD") == Money.new(11_00, "USD") # => true
+Money.new(11_00, "USD") == Money.new(11_00, "EUR") # => false
+```
+
+#### Loose Comparison (`=~` / `!~`)
+
+> [!NOTE]
+> Performs currency conversion if necessary.
+
+```crystal
+Money.new(11_00, "USD") =~ Money.new(11_00, "USD") # => true
+Money.new(11_00, "USD") =~ Money.new(11_00, "EUR") # => true
 ```
 
 > [!CAUTION]
 > Two `Money` objects with `0` amount are considered equal, regardless of their currency.
 
 ```crystal
-Money.zero("USD") == Money.zero("EUR") # => true
+Money.zero("USD") =~ Money.zero("EUR") # => true
 ```
 
 ### Arithmetic
@@ -107,10 +129,10 @@ Money.zero("USD") == Money.zero("EUR") # => true
 > Performs currency conversion if necessary.
 
 ```crystal
-Money.new(10_00, "USD") + Money.new(5_00, "USD") # => Money(@amount=15.00, @currency="USD")
-Money.new(22_00, "USD") - Money.new(2_00, "USD") # => Money(@amount=20.00, @currency="USD")
-Money.new(22_00, "USD") / 2                      # => Money(@amount=11.00, @currency="USD")
-Money.new(11_00, "USD") * 5                      # => Money(@amount=55.00, @currency="USD")
+Money.new(10_00, "USD") + Money.new(5_00, "USD") # => Money(@amount=15.0, @currency="USD")
+Money.new(22_00, "USD") - Money.new(2_00, "USD") # => Money(@amount=20.0, @currency="USD")
+Money.new(22_00, "USD") / 2                      # => Money(@amount=11.0, @currency="USD")
+Money.new(11_00, "USD") * 5                      # => Money(@amount=55.0, @currency="USD")
 ```
 
 ### Unit/Subunit Conversions
@@ -127,7 +149,7 @@ In order to perform currency exchange, you need to set up a `Money::Currency::Ex
 
 ```crystal
 Money.default_exchange.rate_store["USD", "EUR"] = 1.24515
-Money.default_exchange.rate_store["EUR", "USD"] = 0.803115
+Money.default_exchange.rate_store["EUR", "USD"] = 0.80311
 ```
 
 Then you can perform the exchange:
@@ -140,7 +162,7 @@ Money.new(1_00, "EUR").exchange_to("USD") # => Money(@amount=0.8, @currency="USD
 Comparison and arithmetic operations work as expected:
 
 ```crystal
-Money.new(10_00, "EUR") == Money.new(10_00, "USD") # => false
+Money.new(10_00, "EUR") =~ Money.new(10_00, "USD") # => false
 Money.new(10_00, "EUR") + Money.new(10_00, "USD")  # => Money(@amount=22.45, @currency="EUR")
 ```
 
@@ -148,8 +170,8 @@ Money.new(10_00, "EUR") + Money.new(10_00, "USD")  # => Money(@amount=22.45, @cu
 
 ```crystal
 Money.new(1_00, "USD").format # => "$1.00"
-Money.new(1_00, "GBP").format # => "£1.00"
 Money.new(1_00, "EUR").format # => "€1.00"
+Money.new(1_00, "PLN").format # => "1,00 zł"
 ```
 
 ### Money Ranges
@@ -168,6 +190,21 @@ range
   .step(by: Money.new(1_00, "USD"))
   .to_a(&.format)
 # => ["$1.00", "$2.00", "$3.00"]
+```
+
+#### Clamping
+
+```crystal
+Money.new(10_00, "USD").clamp(
+  min: Money.new(1_00, "USD"),
+  max: Money.new(9_00, "USD"),
+) # => Money(@amount=9.0, @currency="USD")
+
+# or
+
+Money.new(10_00, "USD").clamp(
+  Money.new(1_00, "USD")..Money.new(9_00, "USD"),
+) # => Money(@amount=9.0, @currency="USD")
 ```
 
 ## Infinite Precision
@@ -361,7 +398,7 @@ Here's an example of how it works:
 
 ```crystal
 Money.default_exchange.rate_store["USD", "EUR"] = 1.24515
-Money.default_exchange.rate_store["EUR", "USD"] = 0.803115
+Money.default_exchange.rate_store["EUR", "USD"] = 0.80311
 
 Money.new(1_00, "USD").exchange_to("EUR") # => Money(@amount=1.24, @currency="EUR")
 Money.new(1_00, "EUR").exchange_to("USD") # => Money(@amount=0.8, @currency="USD")
@@ -442,10 +479,18 @@ Money.default_exchange.rate_provider =
 
 ### Disabling Currency Conversion
 
-If you want to prevent automatic currency conversion:
+If you want to prevent automatic currency conversion, you can do so globally:
 
 ```crystal
 Money.disallow_currency_conversion!
+```
+
+Or use the block-scoped version:
+
+```crystal
+Money.disallow_currency_conversion do
+  # ...
+end
 ```
 
 ## Rounding
@@ -565,7 +610,8 @@ provider = Money::Currency::RateProvider.from_yaml <<-YAML
         api_key: valid-api-key
   YAML
 
-provider.class # => Money::Currency::RateProvider::Compound
+typeof(provider) # => Money::Currency::RateProvider
+provider.class   # => Money::Currency::RateProvider::Compound
 ```
 
 For specific providers you pass the `options` directly:
@@ -644,11 +690,22 @@ All of the `Money` APIs and classes are (or at least should be) fiber-safe.
 
 There are several formatting rules for when `Money#format` is called. For more info, check out the [formatting module source](https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr), or the [docs](https://crystal-money.github.io/money/Money/Formatting.html).
 
+Here are some examples:
+
+```crystal
+money = Money.new(1_23, "USD")    # => Money(@amount=1.23 @currency="USD")
+money.format                      # => "$1.23"
+money.format(sign_positive: true) # => "+$1.23"
+money.format(no_cents: true)      # => "$1"
+money.format(disambiguate: true)  # => "US$1.23"
+money.to_s                        # => "1.23 USD"
+```
+
 If you want to format money according to the EU's [Rules for expressing monetary units](https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO):
 
 ```crystal
-money = Money.new(1_23, "GBP")                       # => Money(@amount=1.23 @currency="GBP")
-money.format(format: "%{currency} %{sign}%{amount}") # => "GBP 1.23"
+money = Money.new(1_23, "GBP")               # => Money(@amount=1.23 @currency="GBP")
+money.format("%{currency} %{sign}%{amount}") # => "GBP 1.23"
 ```
 
 ## Parsing

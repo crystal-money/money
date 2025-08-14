@@ -13,6 +13,19 @@ struct Money
     # Money.us_dollar(-1_23).format("%{sign}%{amount} %{currency}") # => "-1.23 USD"
     # ```
     #
+    # You can also use it to pass the HTML template string in combination
+    # with `:html` option.
+    #
+    # ```
+    # Money.us_dollar(-1_23).format <<-HTML, html: true
+    #   <span class="money">
+    #     <span class="sign">%{sign}</span>
+    #     <span class="amount">%{amount}</span>
+    #     <span class="currency">%{currency}</span>
+    #   </span>
+    #   HTML
+    # ```
+    #
     # ### `:display_free`
     #
     # Whether a zero amount of money should be formatted as the supplied string.

@@ -121,7 +121,7 @@ class Money::Currency
     # store["USD", "CAD"] = 1.24515
     #
     # store["USD", "CAD"] # => 1.24515
-    # store["CAD", "USD"] # raises UnknownRateError
+    # store["CAD", "USD"] # raises Money::UnknownRateError
     # ```
     def [](base : String | Symbol | Currency, target : String | Symbol | Currency) : BigDecimal
       self[base, target]? ||

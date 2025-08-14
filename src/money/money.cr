@@ -244,7 +244,7 @@ struct Money
   #
   # ```
   # Money.new(1_00, "USD").succ # => Money(@amount=1.01 @currency="USD")
-  # Money.new(1, "JPY").succ    # => Money(@amount=2 @currency="JPY")
+  # Money.new(1, "JPY").succ    # => Money(@amount=2.0 @currency="JPY")
   # ```
   def succ : Money
     copy_with(fractional: fractional + 1)
