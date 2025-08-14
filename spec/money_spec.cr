@@ -132,9 +132,6 @@ describe Money do
 
         Money.without_currency_conversion do
           expect_raises(Money::DifferentCurrencyError) do
-            Money.new(100, "USD") == Money.new(100, "EUR")
-          end
-          expect_raises(Money::DifferentCurrencyError) do
             Money.new(100, "USD") + Money.new(100, "EUR")
           end
         end
@@ -163,24 +160,6 @@ describe Money do
       Money.new(1_00, "EUR").hash.should_not eq Money.new(1_00, "USD").hash
       Money.new(1_00, "EUR").hash.should_not eq Money.new(2_00, "USD").hash
     end
-
-    pending "can be used to return the intersection of Money object arrays" do
-      moneys = [Money.new(1_00, "EUR"), Money.new(1_00, "USD")]
-
-      intersection = moneys & [Money.new(1_00, "EUR")]
-      intersection.should eq [Money.new(1_00, "EUR")]
-    end
-  end
-
-  describe "#eql?" do
-    it "compares the two object amounts and currencies without performing currency conversion" do
-      Money.new(1_00, "USD").eql?(Money.new(1_00, "USD")).should be_true
-      Money.new(1_00, "USD").eql?(Money.new(1_00, "EUR")).should be_false
-      Money.new(1_00, "USD").eql?(Money.new(1_23, "USD")).should be_false
-
-      Money.zero("USD").eql?(Money.zero("USD")).should be_true
-      Money.zero("USD").eql?(Money.zero("EUR")).should be_false
-    end
   end
 
   describe "#==" do
@@ -189,11 +168,10 @@ describe Money do
         .should eq Money.new(1_00, "USD", Money::Currency::Exchange.new)
     end
 
-    it "returns true if both amounts are zero, even if currency differs" do
-      Money.new(0, "USD").should eq Money.new(0, "USD")
-      Money.new(0, "USD").should eq Money.new(0, "EUR")
-      Money.new(0, "USD").should eq Money.new(0, "AUD")
-      Money.new(0, "USD").should eq Money.new(0, "JPY")
+    it "returns true if amounts and currencies are equal" do
+      Money.new(1_00, "USD").should eq Money.new(1_00, "USD")
+      Money.new(1_00, "USD").should_not eq Money.new(5_00, "USD")
+      Money.new(1_00, "USD").should_not eq Money.new(1_00, "EUR")
     end
   end
 
@@ -206,6 +184,10 @@ describe Money do
       (Money.new(1_00, "USD") <=> Money.new(1_00, "USD")).should eq 0
       (Money.new(1_00, "USD") <=> Money.new(99, "USD")).should be > 0
       (Money.new(1_00, "USD") <=> Money.new(2_00, "USD")).should be < 0
+    end
+
+    it "compares the two object amounts (zero amounts)" do
+      (Money.zero("USD") <=> Money.zero("EUR")).should eq 0
     end
 
     it "converts other object amount to current currency, then compares the two object amounts (different currency)" do

@@ -211,16 +211,7 @@ struct Money
     Money.new(**options)
   end
 
-  # Returns hash value based on the `amount` and `currency` attributes.
-  def_hash amount, currency
-
-  # Returns `true` if the two `Money` objects have same `#amount` and `#currency`,
-  # `false` otherwise.
-  #
-  # NOTE: Unlike `#==` it does **not** perform currency conversion.
-  def eql?(other : Money) : Bool
-    hash == other.hash
-  end
+  def_equals_and_hash amount, currency
 
   # Compares two `Money` objects.
   #
