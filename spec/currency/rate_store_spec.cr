@@ -12,7 +12,7 @@ class Money::Currency
       @rates[{base, target}]?
     end
 
-    protected def each_rate(& : Rate -> _)
+    protected def each_rate(& : Rate ->)
       @rates.values.each { |rate| yield rate }
     end
 

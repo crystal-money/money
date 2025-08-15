@@ -59,7 +59,7 @@ class Money::Currency
     end
 
     # Iterates over all registered currencies.
-    def each(& : Currency -> _) : Nil
+    def each(& : Currency ->) : Nil
       all.each do |currency|
         yield currency
       end

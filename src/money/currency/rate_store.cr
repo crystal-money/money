@@ -129,7 +129,7 @@ class Money::Currency
     end
 
     # Same as `#each`, but doesn't use concurrency-safe transaction.
-    protected abstract def each_rate(& : Rate -> _)
+    protected abstract def each_rate(& : Rate ->)
 
     # Iterates over list of `Rate` objects.
     #
@@ -138,7 +138,7 @@ class Money::Currency
     #   puts rate
     # end
     # ```
-    def each(& : Rate -> _) : Nil
+    def each(& : Rate ->) : Nil
       transaction do
         each_rate do |rate|
           yield rate unless stale_rate?(rate)

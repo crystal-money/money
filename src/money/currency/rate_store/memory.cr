@@ -24,7 +24,7 @@ class Money::Currency
       @index[rate_key_for(base, target)]?
     end
 
-    protected def each_rate(& : Rate -> _)
+    protected def each_rate(& : Rate ->)
       @index.each_value { |rate| yield rate }
     end
 
