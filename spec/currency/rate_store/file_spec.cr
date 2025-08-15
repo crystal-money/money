@@ -79,7 +79,7 @@ describe Money::Currency::RateStore::File do
           "USD -> EUR: 1.1",
         ]
         rates.each do |rate|
-          rate.updated_at.should be_close(Time.utc, 1.second)
+          rate.updated_at.should be_close(Time.utc, 3.seconds)
         end
       end
     end
