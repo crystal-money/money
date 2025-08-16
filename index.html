@@ -267,6 +267,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/Validation" data-name="money::currency::validation">
+      <a href="Money/Currency/Validation.html">Validation</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -389,12 +394,20 @@
 <li>A <code><a href="Money.html">Money</a></code> class to represent amounts and their currencies.</li>
 <li>A flexible <code><a href="Money/Currency.html">Money::Currency</a></code> class for all your currency info needs.</li>
 <li>A growing list of 200+ supported currencies (metals, fiat, cryptocurrencies).</li>
-<li><code>BigDecimal</code>-based values—no more floating point rounding headaches!</li>
+<li><code>BigDecimal</code>-based values — i.e. no more floating point rounding headaches!</li>
 <li>Easy APIs for currency exchange.</li>
 <li>Multiple exchange rate providers (use built-in or roll your own).</li>
-<li>Formatting and parsing money values.</li>
+<li>Comprehensive support for formatting and parsing money values.</li>
+<li>Mathematical operations on <code><a href="Money.html">Money</a></code> objects:
+<ul>
+<li>Arithmetic: addition, subtraction, multiplication, division, etc.</li>
 <li>Rounding and truncation helpers.</li>
+<li>Allocation and splitting.</li>
+</ul>
+</li>
+<li>Money ranges.</li>
 <li>JSON/YAML serialization and deserialization support.</li>
+<li>Extensible architecture of exchange rate providers and stores.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -430,7 +443,6 @@ If you wish to use YAML serialization, remember to <code>require &quot;yaml&quot
 if it's an integer, and the <code>amount</code> otherwise.</p>
 </blockquote>
 <pre><code class="language-crystal">money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)
-money.to_s          <span class="c"># =&gt; &quot;$10.00&quot;</span>
 money.amount        <span class="c"># =&gt; 10.0</span>
 money.fractional    <span class="c"># =&gt; 1000.0</span>
 money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
@@ -439,23 +451,23 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>From fractional amount</h4>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(fractional: <span class="n">10_00.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.new(fractional: <span class="n">10_00</span>, currency: <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)
+<pre><code class="language-crystal"><span class="t">Money</span>.from_fractional(<span class="n">10_00.0</span>, <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.from_fractional(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)
 
-<span class="t">Money</span>.from_fractional(<span class="n">10_00.0</span>, <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.from_fractional(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
+<span class="t">Money</span>.new(fractional: <span class="n">10_00.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.new(fractional: <span class="n">10_00</span>, currency: <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h4><a id="from-whole-amount" class="anchor" href="#from-whole-amount">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>From whole amount</h4>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(amount: <span class="n">10.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.new(amount: <span class="n">10</span>, currency: <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)
+<pre><code class="language-crystal"><span class="t">Money</span>.from_amount(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.from_amount(<span class="n">10</span>, <span class="s">&quot;USD&quot;</span>)
 
-<span class="t">Money</span>.from_amount(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)
-<span class="t">Money</span>.from_amount(<span class="n">10</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
+<span class="t">Money</span>.new(amount: <span class="n">10.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.new(amount: <span class="n">10</span>, currency: <span class="s">&quot;USD&quot;</span>)
+<span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h3><a id="comparing-money" class="anchor" href="#comparing-money">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -465,16 +477,37 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
 <p>[!NOTE]
 Performs currency conversion if necessary.</p>
 </blockquote>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; true</span>
-<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; false</span>
+<pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">1</span>
 
 <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">&lt;</span> <span class="t">Money</span>.new(<span class="n">33_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; true</span>
-<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">&gt;</span> <span class="t">Money</span>.new(<span class="n">33_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">&gt;</span> <span class="t">Money</span>.new(<span class="n">33_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<h4><a id="strict-comparison" class="anchor" href="#strict-comparison">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Strict Comparison (<code>==</code> / <code>!=</code>)</h4>
+<blockquote>
+<p>[!NOTE]
+Does <strong>not</strong> perform currency conversion.</p>
+</blockquote>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; true</span>
+<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; false</span></code></pre>
+<h4><a id="loose-comparison-~-~" class="anchor" href="#loose-comparison-~-~">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Loose Comparison (<code>=~</code> / <code>!~</code>)</h4>
+<blockquote>
+<p>[!NOTE]
+Performs currency conversion if necessary.</p>
+</blockquote>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">=~</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; true</span>
+<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">=~</span> <span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
 <blockquote>
 <p>[!CAUTION]
 Two <code><a href="Money.html">Money</a></code> objects with <code>0</code> amount are considered equal, regardless of their currency.</p>
 </blockquote>
-<pre><code class="language-crystal"><span class="t">Money</span>.zero(<span class="s">&quot;USD&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.zero(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.zero(<span class="s">&quot;USD&quot;</span>) <span class="o">=~</span> <span class="t">Money</span>.zero(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; true</span></code></pre>
 <h3><a id="arithmetic" class="anchor" href="#arithmetic">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -484,10 +517,10 @@ Two <code><a href="Money.html">Money</a></code> objects with <code>0</code> amou
 <p>[!NOTE]
 Performs currency conversion if necessary.</p>
 </blockquote>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">5_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=15.00, @currency=&quot;USD&quot;)</span>
-<span class="t">Money</span>.new(<span class="n">22_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">-</span> <span class="t">Money</span>.new(<span class="n">2_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=20.00, @currency=&quot;USD&quot;)</span>
-<span class="t">Money</span>.new(<span class="n">22_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">/</span> <span class="n">2</span>                      <span class="c"># =&gt; Money(@amount=11.00, @currency=&quot;USD&quot;)</span>
-<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">*</span> <span class="n">5</span>                      <span class="c"># =&gt; Money(@amount=55.00, @currency=&quot;USD&quot;)</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">5_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=15.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.new(<span class="n">22_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">-</span> <span class="t">Money</span>.new(<span class="n">2_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=20.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.new(<span class="n">22_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">/</span> <span class="n">2</span>                      <span class="c"># =&gt; Money(@amount=11.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.new(<span class="n">11_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="o">*</span> <span class="n">5</span>                      <span class="c"># =&gt; Money(@amount=55.0, @currency=&quot;USD&quot;)</span></code></pre>
 <h3><a id="unitsubunit-conversions" class="anchor" href="#unitsubunit-conversions">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -503,12 +536,12 @@ Performs currency conversion if necessary.</p>
 </a>Currency Conversion</h3>
 <p>In order to perform currency exchange, you need to set up a <code>Money::Currency::Exchange::RateProvider</code> or add the rates manually:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
-<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.803115</span></code></pre>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.80311</span></code></pre>
 <p>Then you can perform the exchange:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money(@amount=1.24, @currency=&quot;EUR&quot;)</span>
 <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;EUR&quot;</span>).exchange_to(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=0.8, @currency=&quot;USD&quot;)</span></code></pre>
 <p>Comparison and arithmetic operations work as expected:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">==</span> <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; false</span>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">=~</span> <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; false</span>
 <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;EUR&quot;</span>) <span class="o">+</span> <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)  <span class="c"># =&gt; Money(@amount=22.45, @currency=&quot;EUR&quot;)</span></code></pre>
 <h3><a id="formatting" class="anchor" href="#formatting">
   <svg class="octicon-link" aria-hidden="true">
@@ -516,15 +549,15 @@ Performs currency conversion if necessary.</p>
   </svg>
 </a>Formatting</h3>
 <pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;GBP&quot;</span>).format <span class="c"># =&gt; &quot;£1.00&quot;</span>
-<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;EUR&quot;</span>).format <span class="c"># =&gt; &quot;€1.00&quot;</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;EUR&quot;</span>).format <span class="c"># =&gt; &quot;€1.00&quot;</span>
+<span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;PLN&quot;</span>).format <span class="c"># =&gt; &quot;1,00 zł&quot;</span></code></pre>
 <h3><a id="money-ranges" class="anchor" href="#money-ranges">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Money Ranges</h3>
 <pre><code class="language-crystal">range <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>)..<span class="t">Money</span>.new(<span class="n">3_00</span>, <span class="s">&quot;USD&quot;</span>)
-range.to_a(<span class="o">&amp;</span>.to_s)
+range.to_a(<span class="o">&amp;</span>.format)
 <span class="c"># =&gt; [&quot;$1.00&quot;, &quot;$1.01&quot;, &quot;$1.02&quot;, ..., &quot;$2.99&quot;, &quot;$3.00&quot;]</span></code></pre>
 <h4><a id="steppable-ranges" class="anchor" href="#steppable-ranges">
   <svg class="octicon-link" aria-hidden="true">
@@ -534,8 +567,23 @@ range.to_a(<span class="o">&amp;</span>.to_s)
 <pre><code class="language-crystal">range <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>)..<span class="t">Money</span>.new(<span class="n">3_00</span>, <span class="s">&quot;USD&quot;</span>)
 range
   .step(by: <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>))
-  .to_a(<span class="o">&amp;</span>.to_s)
+  .to_a(<span class="o">&amp;</span>.format)
 <span class="c"># =&gt; [&quot;$1.00&quot;, &quot;$2.00&quot;, &quot;$3.00&quot;]</span></code></pre>
+<h4><a id="clamping" class="anchor" href="#clamping">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Clamping</h4>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>).clamp(
+  min: <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>),
+  max: <span class="t">Money</span>.new(<span class="n">9_00</span>, <span class="s">&quot;USD&quot;</span>),
+) <span class="c"># =&gt; Money(@amount=9.0, @currency=&quot;USD&quot;)</span>
+
+<span class="c"># or</span>
+
+<span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>).clamp(
+  <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>)..<span class="t">Money</span>.new(<span class="n">9_00</span>, <span class="s">&quot;USD&quot;</span>),
+) <span class="c"># =&gt; Money(@amount=9.0, @currency=&quot;USD&quot;)</span></code></pre>
 <h2><a id="infinite-precision" class="anchor" href="#infinite-precision">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -543,13 +591,13 @@ range
 </a>Infinite Precision</h2>
 <p>By default, <code><a href="Money.html">Money</a></code> objects are rounded to the nearest cent and the extra precision
 is <strong>not</strong> preserved:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).to_s <span class="c"># =&gt; &quot;$2.35&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$2.35&quot;</span></code></pre>
 <p>If you want to keep all the digits, you can enable infinite precision globally:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.infinite_precision <span class="o">=</span> <span class="n">true</span>
-<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).to_s <span class="c"># =&gt; &quot;$2.34567&quot;</span></code></pre>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$2.34567&quot;</span></code></pre>
 <p>Or use the block-scoped <code>Money.with_infinite_precision</code>:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.with_infinite_precision <span class="k">do</span>
-  <span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).to_s <span class="c"># =&gt; &quot;$2.34567&quot;</span>
+  <span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$2.34567&quot;</span>
 <span class="k">end</span></code></pre>
 <h2><a id="currencies" class="anchor" href="#currencies">
   <svg class="octicon-link" aria-hidden="true">
@@ -648,6 +696,7 @@ call <code>Money::Currency.all</code> or <code>.to_a</code>:</p>
 <li><code>:subunit_to_unit</code> — the proportion between the unit and the subunit</li>
 <li><code>:decimal_mark</code> — character between the whole and fraction amounts</li>
 <li><code>:thousands_separator</code> — character between each thousands place</li>
+<li><code>:format</code> — a format string passed to <code>Money#format</code></li>
 </ul>
 <p>All attributes except <code>:code</code> and <code>:subunit_to_unit</code> are optional.</p>
 <h4><a id="priority" class="anchor" href="#priority">
@@ -694,7 +743,7 @@ in conjunction with <code>Null</code> rate provider, which requires one to manua
 specify the exchange rate.</p>
 <p>Here's an example of how it works:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;EUR&quot;</span>] <span class="o">=</span> <span class="n">1.24515</span>
-<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.803115</span>
+<span class="t">Money</span>.default_exchange.rate_store[<span class="s">&quot;EUR&quot;</span>, <span class="s">&quot;USD&quot;</span>] <span class="o">=</span> <span class="n">0.80311</span>
 
 <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;USD&quot;</span>).exchange_to(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; Money(@amount=1.24, @currency=&quot;EUR&quot;)</span>
 <span class="t">Money</span>.new(<span class="n">1_00</span>, <span class="s">&quot;EUR&quot;</span>).exchange_to(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; Money(@amount=0.8, @currency=&quot;USD&quot;)</span></code></pre>
@@ -754,31 +803,35 @@ which are used in order to fetch the exchange rate.</p>
     <use href="#octicon-link"/>
   </svg>
 </a>Disabling Currency Conversion</h3>
-<p>If you want to prevent automatic currency conversion:</p>
+<p>If you want to prevent automatic currency conversion, you can do so globally:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.disallow_currency_conversion!</code></pre>
+<p>Or use the block-scoped version:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.disallow_currency_conversion <span class="k">do</span>
+  <span class="c"># ...</span>
+<span class="k">end</span></code></pre>
 <h2><a id="rounding" class="anchor" href="#rounding">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Rounding</h2>
 <p>By default, <code><a href="Money.html">Money</a></code> rounds to the nearest cent:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).to_s <span class="c"># =&gt; &quot;$2.35&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).format <span class="c"># =&gt; &quot;$2.35&quot;</span></code></pre>
 <p>You can change the rounding precision:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>).to_s <span class="c"># =&gt; &quot;$2.30&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>).format <span class="c"># =&gt; &quot;$2.30&quot;</span></code></pre>
 <p>You can change the rounding mode:</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>, <span class="n">:to_positive</span>).to_s <span class="c"># =&gt; &quot;$2.40&quot;</span>
-<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>, <span class="n">:to_negative</span>).to_s <span class="c"># =&gt; &quot;$2.30&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>, <span class="n">:to_positive</span>).format <span class="c"># =&gt; &quot;$2.40&quot;</span>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">1</span>, <span class="n">:to_negative</span>).format <span class="c"># =&gt; &quot;$2.30&quot;</span></code></pre>
 <p>To keep extra digits, enable infinite precision:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.infinite_precision <span class="o">=</span> <span class="n">true</span>
 
-<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).to_s                    <span class="c"># =&gt; &quot;$2.34567&quot;</span>
-<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>).to_s           <span class="c"># =&gt; &quot;$2.3457&quot;</span>
-<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>, <span class="n">:to_zero</span>).to_s <span class="c"># =&gt; &quot;$2.3456&quot;</span>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).format                    <span class="c"># =&gt; &quot;$2.34567&quot;</span>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>).format           <span class="c"># =&gt; &quot;$2.3457&quot;</span>
+<span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>, <span class="n">:to_zero</span>).format <span class="c"># =&gt; &quot;$2.3456&quot;</span>
 
 <span class="c"># or</span>
 
 <span class="t">Money</span>.with_rounding_mode(<span class="n">:to_zero</span>) <span class="k">do</span>
-  <span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>).to_s         <span class="c"># =&gt; &quot;$2.3456&quot;</span>
+  <span class="t">Money</span>.new(<span class="n">2.34567</span>, <span class="s">&quot;USD&quot;</span>).round(<span class="n">4</span>).format         <span class="c"># =&gt; &quot;$2.3456&quot;</span>
 <span class="k">end</span></code></pre>
 <h3><a id="nearest-cash-value" class="anchor" href="#nearest-cash-value">
   <svg class="octicon-link" aria-hidden="true">
@@ -862,7 +915,8 @@ and <code>options</code> - optional hash that's being passed to the provider ini
         api_key: valid-api-key
   YAML</span>
 
-provider.<span class="k">class</span> <span class="c"># =&gt; Money::Currency::RateProvider::Compound</span></code></pre>
+<span class="k">typeof</span>(provider) <span class="c"># =&gt; Money::Currency::RateProvider</span>
+provider.<span class="k">class</span>   <span class="c"># =&gt; Money::Currency::RateProvider::Compound</span></code></pre>
 <p>For specific providers you pass the <code>options</code> directly:</p>
 <pre><code class="language-crystal">compound_provider <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span><span class="t">::</span><span class="t">Compound</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
 <span class="s">  providers:
@@ -934,9 +988,16 @@ references are shared.</p>
   </svg>
 </a>Formatting</h2>
 <p>There are several formatting rules for when <code>Money#format</code> is called. For more info, check out the <a href="https://github.com/crystal-money/money/blob/master/src/money/money/formatting.cr">formatting module source</a>, or the <a href="https://crystal-money.github.io/money/Money/Formatting.html">docs</a>.</p>
+<p>Here are some examples:</p>
+<pre><code class="language-crystal">money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1_23</span>, <span class="s">&quot;USD&quot;</span>)    <span class="c"># =&gt; Money(@amount=1.23 @currency=&quot;USD&quot;)</span>
+money.format                      <span class="c"># =&gt; &quot;$1.23&quot;</span>
+money.format(sign_positive: <span class="n">true</span>) <span class="c"># =&gt; &quot;+$1.23&quot;</span>
+money.format(no_cents: <span class="n">true</span>)      <span class="c"># =&gt; &quot;$1&quot;</span>
+money.format(disambiguate: <span class="n">true</span>)  <span class="c"># =&gt; &quot;US$1.23&quot;</span>
+money.to_s                        <span class="c"># =&gt; &quot;1.23 USD&quot;</span></code></pre>
 <p>If you want to format money according to the EU's <a href="https://style-guide.europa.eu/en/content/-/isg/topic?identifier=7.3.3-rules-for-expressing-monetary-units#id370303__id370303_PositionISO">Rules for expressing monetary units</a>:</p>
-<pre><code class="language-crystal">money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1_23</span>, <span class="s">&quot;GBP&quot;</span>)                       <span class="c"># =&gt; Money(@amount=1.23 @currency=&quot;GBP&quot;)</span>
-money.format(format: <span class="s">&quot;%{currency} %{sign}%{amount}&quot;</span>) <span class="c"># =&gt; &quot;GBP 1.23&quot;</span></code></pre>
+<pre><code class="language-crystal">money <span class="o">=</span> <span class="t">Money</span>.new(<span class="n">1_23</span>, <span class="s">&quot;GBP&quot;</span>)               <span class="c"># =&gt; Money(@amount=1.23 @currency=&quot;GBP&quot;)</span>
+money.format(<span class="s">&quot;%{currency} %{sign}%{amount}&quot;</span>) <span class="c"># =&gt; &quot;GBP 1.23&quot;</span></code></pre>
 <h2><a id="parsing" class="anchor" href="#parsing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

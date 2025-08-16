@@ -267,6 +267,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/Validation" data-name="money::currency::validation">
+      <a href="../Money/Currency/Validation.html">Validation</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -411,7 +416,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/71b8ba4/src/money/money/parse.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/79c2f43/src/money/money/parse.cr#L2" target="_blank">
         money/money/parse.cr
       </a>
     
@@ -440,14 +445,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#parse</strong>(str : String, *, allow_ambiguous = <span class="n">true</span>) : Money</a>
+        <a href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3ABool%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#parse</strong>(str : String, *, allow_ambiguous : Bool = <span class="n">true</span>) : Money</a>
         
-          <div class="summary"><p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string.</p></div>
+          <div class="summary"><p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method" class="signature"><strong>#parse?</strong>(str : String, *, allow_ambiguous = <span class="n">true</span>) : Money | Nil</a>
+        <a href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3ABool%3Dtrue%29%3AMoney%7CNil-instance-method" class="signature"><strong>#parse?</strong>(str : String, *, allow_ambiguous : Bool = <span class="n">true</span>) : Money | Nil</a>
         
           <div class="summary"><p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p></div>
         
@@ -477,54 +482,71 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="parse(str:String,*,allow_ambiguous=true):Money-instance-method">
+    <div class="entry-detail" id="parse(str:String,*,allow_ambiguous:Bool=true):Money-instance-method">
       <div class="signature">
         
-        def <strong>parse</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a>
+        def <strong>parse</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous : Bool = <span class="n">true</span>) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string.</p>
-<p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first matching
-currency for ambiguous values, otherwise raises <code><a href="../Money/Parse/Error.html">Error</a></code>.</p>
-<pre><code class="language-crystal"><span class="t">Money</span>.parse(<span class="s">&quot;10.00 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
-<span class="t">Money</span>.parse(<span class="s">&quot;$10.00&quot;</span>)    <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
-<span class="t">Money</span>.parse(<span class="s">&quot;10.00&quot;</span>)     <span class="c"># raises Money::Parse::Error</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/71b8ba4/src/money/money/parse.cr#L23" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="parse?(str:String,*,allow_ambiguous=true):Money|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>parse?</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous = <span class="n">true</span>) : <a href="../Money.html">Money</a> | Nil
-
-        <a class="method-permalink" href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3Dtrue%29%3AMoney%7CNil-instance-method">#</a>
+        <a class="method-permalink" href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3ABool%3Dtrue%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p>
-<p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first
-matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;10.00 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
 <span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>)    <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
 <span class="t">Money</span>.parse?(<span class="s">&quot;10.00&quot;</span>)     <span class="c"># =&gt; nil</span></code></pre>
+<p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first
+matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>, allow_ambiguous: <span class="n">true</span>)  <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>, allow_ambiguous: <span class="n">false</span>) <span class="c"># =&gt; nil</span></code></pre>
+<p>Thousands separator and decimal mark are guessed from the string.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10,00&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+
+<span class="t">Money</span>.parse?(<span class="s">&quot;$100,000&quot;</span>) <span class="c"># =&gt; Money(@amount=100000.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$100.000&quot;</span>) <span class="c"># =&gt; Money(@amount=100000.0, @currency=&quot;USD&quot;)</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Raises <code><a href="../Money/Parse/Error.html">Money::Parse::Error</a></code> on failure instead of returning <code>nil</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/71b8ba4/src/money/money/parse.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/79c2f43/src/money/money/parse.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse?(str:String,*,allow_ambiguous:Bool=true):Money|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>parse?</strong>(str : <a href="../String.html">String</a>, *, allow_ambiguous : Bool = <span class="n">true</span>) : <a href="../Money.html">Money</a> | Nil
+
+        <a class="method-permalink" href="#parse%3F%28str%3AString%2C%2A%2Callow_ambiguous%3ABool%3Dtrue%29%3AMoney%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="../Money.html">Money</a></code> instance from a string, or returns <code>nil</code> on failure.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;10.00 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>)    <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;10.00&quot;</span>)     <span class="c"># =&gt; nil</span></code></pre>
+<p>If <code>allow_ambiguous</code> is <code>true</code> (default), returns the first
+matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>, allow_ambiguous: <span class="n">true</span>)  <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>, allow_ambiguous: <span class="n">false</span>) <span class="c"># =&gt; nil</span></code></pre>
+<p>Thousands separator and decimal mark are guessed from the string.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.parse?(<span class="s">&quot;$10.00&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$10,00&quot;</span>) <span class="c"># =&gt; Money(@amount=10.0, @currency=&quot;USD&quot;)</span>
+
+<span class="t">Money</span>.parse?(<span class="s">&quot;$100,000&quot;</span>) <span class="c"># =&gt; Money(@amount=100000.0, @currency=&quot;USD&quot;)</span>
+<span class="t">Money</span>.parse?(<span class="s">&quot;$100.000&quot;</span>) <span class="c"># =&gt; Money(@amount=100000.0, @currency=&quot;USD&quot;)</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/79c2f43/src/money/money/parse.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
