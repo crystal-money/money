@@ -58,7 +58,7 @@ class Money::Currency
     # `RateProviderRequiredOptionError` if the variable is not set.
     protected def option_from_env(key : String) : String
       ENV[key]? ||
-        raise RateProviderRequiredOptionError.new \
+        raise RequiredOptionError.new \
           "Environment variable #{key.inspect} is required"
     end
 
@@ -81,5 +81,6 @@ class Money::Currency
   end
 end
 
+require "./rate_provider/error"
 require "./rate_provider/http"
 require "./rate_provider/*"

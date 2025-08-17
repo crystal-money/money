@@ -46,7 +46,7 @@ class Money::Currency
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"].as_bool
-          raise RateProviderResponseError.new(
+          raise ResponseError.new(
             result["error"],
             result["description"]?)
         end
