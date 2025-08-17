@@ -66,28 +66,6 @@ struct Money
     end
   end
 
-  # Raised when a rate provider returns an error.
-  class RateProviderResponseError < Error
-    def initialize(code, detail = nil)
-      if detail.to_s.presence
-        super("Rate provider error (#{code}): #{detail}")
-      else
-        super("Rate provider error (#{code})")
-      end
-    end
-  end
-
-  # Raised when a request to a rate provider fails.
-  class RateProviderRequestError < Error
-    def initialize(status)
-      super("Request failed with status: #{status}")
-    end
-  end
-
-  # Raised when a rate provider is missing a required option.
-  class RateProviderRequiredOptionError < Error
-  end
-
   # Raised by `Currency::Exchange::SingleCurrency` when trying to exchange currencies.
   class DifferentCurrencyError < Error
     def initialize(base : Currency, target : Currency)
