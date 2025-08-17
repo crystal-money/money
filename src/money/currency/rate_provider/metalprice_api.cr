@@ -28,7 +28,7 @@ class Money::Currency
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"].as_bool
-          raise RateProviderError.new(
+          raise RateProviderResponseError.new(
             result.dig("error", "statusCode"),
             result.dig?("error", "message"))
         end
@@ -53,7 +53,7 @@ class Money::Currency
         result = JSON.parse(response.body_io).as_h
 
         unless result["success"].as_bool
-          raise RateProviderError.new(
+          raise RateProviderResponseError.new(
             result.dig("error", "statusCode"),
             result.dig?("error", "message"))
         end

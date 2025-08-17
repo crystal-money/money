@@ -67,7 +67,7 @@ struct Money
   end
 
   # Raised when a rate provider returns an error.
-  class RateProviderError < Error
+  class RateProviderResponseError < Error
     def initialize(code, detail = nil)
       if detail.to_s.presence
         super("Rate provider error (#{code}): #{detail}")
