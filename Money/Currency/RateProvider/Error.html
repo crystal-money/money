@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::HTTP - money master</title>
+  <title>Money::Currency::RateProvider::Error - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -177,7 +177,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/Error" data-name="money::currency::rateprovider::error">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/Error" data-name="money::currency::rateprovider::error">
       <a href="../../../Money/Currency/RateProvider/Error.html">Error</a>
       
     </li>
@@ -212,7 +212,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
+  <li class=" " data-id="money/Money/Currency/RateProvider/HTTP" data-name="money::currency::rateprovider::http">
       <a href="../../../Money/Currency/RateProvider/HTTP.html">HTTP</a>
       
     </li>
@@ -387,25 +387,14 @@
 <h1 class="type-name">
 
   <span class="kind">
-    module
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>HTTP
+    class
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Error
 
 </h1>
 
 
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Error.html">Money::Currency::RateProvider::Error</a></li><li class="superclass"><a href="../../../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
-
-
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
-
-  <p>Module containing common HTTP methods used by currency rate providers.</p>
 
 
 
@@ -420,48 +409,24 @@
 
 
   <h2>
-    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Direct including types
+    Direct Known Subclasses
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/AbstractAPI.html">Money::Currency::RateProvider::AbstractAPI</a></li>
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/RequestError.html">Money::Currency::RateProvider::RequestError</a></li>
     
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Coinlayer.html">Money::Currency::RateProvider::Coinlayer</a></li>
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/RequiredOptionError.html">Money::Currency::RateProvider::RequiredOptionError</a></li>
     
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/CurrencyAPI.html">Money::Currency::RateProvider::CurrencyAPI</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/CurrencyBeacon.html">Money::Currency::RateProvider::CurrencyBeacon</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/CurrencyLayer.html">Money::Currency::RateProvider::CurrencyLayer</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ECB.html">Money::Currency::RateProvider::ECB</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ExchangeRateAPI.html">Money::Currency::RateProvider::ExchangeRateAPI</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/Fixer.html">Money::Currency::RateProvider::Fixer</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FloatRates.html">Money::Currency::RateProvider::FloatRates</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FreecurrencyAPI.html">Money::Currency::RateProvider::FreecurrencyAPI</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FXFeed.html">Money::Currency::RateProvider::FXFeed</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/FXRatesAPI.html">Money::Currency::RateProvider::FXRatesAPI</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/MetalpriceAPI.html">Money::Currency::RateProvider::MetalpriceAPI</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/MoneyMorph.html">Money::Currency::RateProvider::MoneyMorph</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/OpenExchangeRates.html">Money::Currency::RateProvider::OpenExchangeRates</a></li>
-    
-      <li class="other-type"><a href="../../../Money/Currency/RateProvider/UniRateAPI.html">Money::Currency::RateProvider::UniRateAPI</a></li>
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ResponseError.html">Money::Currency::RateProvider::ResponseError</a></li>
     
   </ul>
+
+
 
 
 
@@ -476,8 +441,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/2ca9e62/src/money/currency/rate_provider/http.cr#L8" target="_blank">
-        money/currency/rate_provider/http.cr
+      <a href="https://github.com/crystal-money/money/blob/2ca9e62/src/money/currency/rate_provider.cr#L3" target="_blank">
+        money/currency/rate_provider.cr
       </a>
     
     <br/>
@@ -494,28 +459,61 @@
   
 
   
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
-        
-          <div class="summary"><p>Returns the host URI used by the HTTP <code>#client</code> instance.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
 
   <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
     
   </div>
 
@@ -526,37 +524,6 @@
   
 
   
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="host:URI-instance-method">
-      <div class="signature">
-        abstract 
-        def <strong>host</strong> : URI
-
-        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns the host URI used by the HTTP <code>#client</code> instance.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/2ca9e62/src/money/currency/rate_provider/http.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
 </div>
