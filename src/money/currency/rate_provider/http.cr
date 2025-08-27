@@ -20,7 +20,8 @@ class Money::Currency
       path : String,
       params : Hash | NamedTuple? = nil,
       headers : ::HTTP::Headers? = nil,
-      body = nil, &
+      body = nil,
+      & : ::HTTP::Client::Response -> _
     )
       path += "?#{URI::Params.encode(params)}" if params
 
@@ -36,7 +37,8 @@ class Money::Currency
     protected def request(
       path : String,
       params : Hash | NamedTuple? = nil,
-      headers : ::HTTP::Headers? = nil, &
+      headers : ::HTTP::Headers? = nil,
+      & : ::HTTP::Client::Response -> _
     )
       request("GET", path, params, headers) do |response|
         yield response
