@@ -6,16 +6,16 @@ class Money::Currency
     macro inherited
       {% @type.raise "abstract rate providers are not allowed" if @type.abstract? %}
       {%
-        superclass_name = @type.superclass.name
+        base_namespace = "Money::Currency::RateProvider".id
         name = @type.name
         name =
-          if name.starts_with?("#{superclass_name}::")
-            name[superclass_name.size + 2..].underscore
+          if name.starts_with?("#{base_namespace}::")
+            name[base_namespace.size + 2..].underscore
           else
-            @type.raise "class must be placed inside `#{superclass_name}` namespace"
+            @type.raise "class must be placed inside `#{base_namespace}` namespace"
           end
       %}
-      {{ superclass_name }}.registry[{{ name.stringify }}] = self
+      {{ base_namespace }}.registry[{{ name.stringify }}] = self
 
       # Returns the provider key.
       def self.key : String
