@@ -26,8 +26,4 @@ class Money::Currency
       }.to_yaml(yaml)
     end
   end
-
-  module RateProvider::Converter
-    extend Money::Converter::YAML(RateProvider)
-  end
 end

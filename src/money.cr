@@ -6,5 +6,6 @@ end
 
 require "./core_ext/*"
 require "./money/error"
+require "./money/registry"
 require "./money/converter/*"
 require "./money/*"

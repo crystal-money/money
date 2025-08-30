@@ -36,8 +36,4 @@ class Money::Currency
       }.to_json(json)
     end
   end
-
-  module RateProvider::Converter
-    extend Money::Converter::JSON(RateProvider)
-  end
 end

@@ -1,58 +1,8 @@
 class Money::Currency
   abstract class RateProvider
-    # All registered rate providers.
-    class_getter registry = {} of String => RateProvider.class
+    extend Money::Registry
 
-    macro inherited
-      {% @type.raise "abstract rate providers are not allowed" if @type.abstract? %}
-      {%
-        base_namespace = "Money::Currency::RateProvider".id
-        name = @type.name
-        name =
-          if name.starts_with?("#{base_namespace}::")
-            name[base_namespace.size + 2..].underscore
-          else
-            @type.raise "class must be placed inside `#{base_namespace}` namespace"
-          end
-      %}
-      {{ base_namespace }}.registry[{{ name.stringify }}] = self
-
-      # Returns the provider key.
-      def self.key : String
-        {{ name.stringify }}
-      end
-    end
-
-    if_defined?(:JSON) do
-      include JSON::Serializable
-
-      # Alias of `Converter.from_json`.
-      def self.new(pull : JSON::PullParser)
-        Converter.from_json(pull)
-      end
-    end
-
-    if_defined?(:YAML) do
-      include YAML::Serializable
-
-      # Alias of `Converter.from_yaml`.
-      def self.new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
-        Converter.from_yaml(ctx, node)
-      end
-    end
-
-    # Returns the rate provider class for the given *name* if found,
-    # `nil` otherwise.
-    def self.find?(name : String | Symbol) : RateProvider.class | Nil
-      registry[name.to_s.underscore]?
-    end
-
-    # Returns the rate provider class for the given *name* if found,
-    # raises `UnknownRateProviderError` otherwise.
-    def self.find(name : String | Symbol) : RateProvider.class
-      find?(name) ||
-        raise UnknownRateProviderError.new(name)
-    end
+    alias Registry::NotFoundError = UnknownRateProviderError
 
     # Returns the value of the environment variable *key* or raises
     # `RateProviderRequiredOptionError` if the variable is not set.
