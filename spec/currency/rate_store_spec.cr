@@ -2,14 +2,22 @@ require "../spec_helper"
 
 class Money::Currency
   class RateStore::Dummy < RateStore
-    @rates = Hash({Currency, Currency}, Rate).new
+    getter? foo_option : Bool
+
+    @[JSON::Field(ignore: true)]
+    @[YAML::Field(ignore: true)]
+    @rates = {} of String => Rate
+
+    def initialize(*, ttl : Time::Span? = nil, @foo_option = false)
+      super(ttl: ttl)
+    end
 
     protected def set_rate(rate : Rate) : Nil
-      @rates[{rate.base, rate.target}] = rate
+      @rates["%s_%s" % {rate.base.code, rate.target.code}] = rate
     end
 
     protected def get_rate?(base : Currency, target : Currency) : Rate?
-      @rates[{base, target}]?
+      @rates["%s_%s" % {base.code, target.code}]?
     end
 
     protected def each_rate(& : Rate ->)
@@ -21,7 +29,7 @@ class Money::Currency
     end
 
     protected def clear_rates(base : Currency) : Nil
-      @rates.reject! { |(from, _), _| from == base }
+      @rates.reject! { |_, rate| rate.base == base }
     end
   end
 end
@@ -30,6 +38,148 @@ describe Money::Currency::RateStore do
   usd = Money::Currency.find("USD")
   cad = Money::Currency.find("CAD")
   eur = Money::Currency.find("EUR")
+
+  context "JSON serialization" do
+    dummy_store_json = <<-JSON
+      {
+        "ttl": "1 hour, 15 minutes",
+        "foo_option": true
+      }
+      JSON
+
+    describe ".from_json" do
+      context "(generic)" do
+        it "returns unserialized object" do
+          store = Money::Currency::RateStore.from_json <<-JSON
+            {
+              "name": "Dummy",
+              "options": {
+                "ttl": "1 hour, 15 minutes",
+                "foo_option": true
+              }
+            }
+            JSON
+
+          store = store.should be_a Money::Currency::RateStore::Dummy
+          store.foo_option?.should be_true
+          store.ttl.should eq 1.hour + 15.minutes
+        end
+      end
+
+      it "returns unserialized object" do
+        store =
+          Money::Currency::RateStore::Dummy.from_json(dummy_store_json)
+
+        store.foo_option?.should be_true
+        store.ttl.should eq 1.hour + 15.minutes
+      end
+    end
+
+    describe "#to_json" do
+      it "works as intended" do
+        Money::Currency::RateStore::Dummy
+          .from_json(dummy_store_json).to_pretty_json
+          .should eq dummy_store_json
+      end
+    end
+  end
+
+  context "YAML serialization" do
+    dummy_store_yaml = <<-YAML
+      ---
+      ttl: 1 hour, 15 minutes
+      foo_option: true\n
+      YAML
+
+    describe ".from_yaml" do
+      context "(generic)" do
+        it "returns unserialized object" do
+          store = Money::Currency::RateStore.from_yaml <<-YAML
+            name: Dummy
+            options:
+              ttl: 1 hour, 15 minutes
+              foo_option: true
+            YAML
+
+          store = store.should be_a Money::Currency::RateStore::Dummy
+          store.foo_option?.should be_true
+          store.ttl.should eq 1.hour + 15.minutes
+        end
+      end
+
+      it "returns unserialized object" do
+        store =
+          Money::Currency::RateStore::Dummy.from_yaml(dummy_store_yaml)
+
+        store.foo_option?.should be_true
+        store.ttl.should eq 1.hour + 15.minutes
+      end
+    end
+
+    describe "#to_yaml" do
+      it "works as intended" do
+        Money::Currency::RateStore::Dummy
+          .from_yaml(dummy_store_yaml).to_yaml
+          .should eq dummy_store_yaml
+      end
+    end
+  end
+
+  context ".key" do
+    it "returns store key" do
+      Money::Currency::RateStore::Dummy.key.should eq "dummy"
+    end
+  end
+
+  context ".registry" do
+    it "registers subclasses in stores" do
+      Money::Currency::RateStore.registry.has_key?("dummy").should be_true
+      Money::Currency::RateStore.registry["dummy"]
+        .should eq Money::Currency::RateStore::Dummy
+    end
+  end
+
+  context ".find?" do
+    it "returns store by CamelCase name (string)" do
+      Money::Currency::RateStore.find?("Dummy")
+        .should eq Money::Currency::RateStore::Dummy
+    end
+
+    it "returns store by snake_case name (string)" do
+      Money::Currency::RateStore.find?("dummy")
+        .should eq Money::Currency::RateStore::Dummy
+
+      Money::Currency::RateStore.find?("DUMMY")
+        .should eq Money::Currency::RateStore::Dummy
+    end
+
+    it "returns store by snake_case name (symbol)" do
+      Money::Currency::RateStore.find?(:dummy)
+        .should eq Money::Currency::RateStore::Dummy
+    end
+
+    it "returns nil for unknown store" do
+      Money::Currency::RateStore.find?("foo").should be_nil
+    end
+  end
+
+  context ".find" do
+    it "returns store by name (string)" do
+      Money::Currency::RateStore.find("dummy")
+        .should eq Money::Currency::RateStore::Dummy
+    end
+
+    it "returns store by name (symbol)" do
+      Money::Currency::RateStore.find(:dummy)
+        .should eq Money::Currency::RateStore::Dummy
+    end
+
+    it "raises ArgumentError for unknown store" do
+      expect_raises(Money::UnknownRateStoreError, "Unknown rate store: foo") do
+        Money::Currency::RateStore.find("foo")
+      end
+    end
+  end
 
   it "registers and retrieves a rate using #[]= and #[]?" do
     store = Money::Currency::RateStore::Dummy.new

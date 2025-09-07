@@ -21,8 +21,24 @@ class Money::Currency
   # store.save
   # ```
   class RateStore::File < RateStore::Memory
-    def initialize(@filepath : Path | String, *, ttl : Time::Span? = nil)
+    getter filepath : Path
+
+    def filepath=(filepath : Path)
+      filepath = filepath.expand(home: true)
+      return if @filepath == filepath
+
+      @filepath = filepath
+      load
+    end
+
+    def initialize(filepath : Path | String, *, ttl : Time::Span? = nil)
+      @filepath = Path[filepath]
       super(ttl: ttl)
+    end
+
+    protected def after_initialize
+      super
+      @filepath = filepath.expand(home: true)
       load
     end
 
@@ -40,9 +56,9 @@ class Money::Currency
       # Intentionally omits `mutable` argument so that the file
       # is not saved immediately after (re)loading
       transaction do
-        return unless ::File.exists?(@filepath)
+        return unless ::File.exists?(filepath)
 
-        ::File.open(@filepath) do |file|
+        ::File.open(filepath) do |file|
           rates =
             Array(Rate).from_json(file)
 
@@ -57,7 +73,11 @@ class Money::Currency
       # Intentionally omits `mutable` argument so that it won't
       # trigger an infinite loop from within `transaction`
       transaction do
-        ::File.open(@filepath, "w") do |file|
+        # Create directory if it doesn't exist
+        ::Dir.mkdir_p(filepath.dirname)
+
+        # Save rates to a JSON file
+        ::File.open(filepath, "w") do |file|
           rates.to_pretty_json(file)
         end
       end

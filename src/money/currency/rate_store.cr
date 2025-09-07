@@ -1,21 +1,35 @@
 class Money::Currency
   abstract class RateStore
+    extend Money::Registry
+
+    alias Registry::NotFoundError = UnknownRateStoreError
+
     include Enumerable(Rate)
 
-    @mutex = Mutex.new(:reentrant)
-    @ttl : Time::Span?
+    if_defined?(:JSON) { @[JSON::Field(ignore: true)] }
+    if_defined?(:YAML) { @[YAML::Field(ignore: true)] }
+    private getter! mutex : Mutex
+
+    if_defined?(:JSON) { @[JSON::Field(converter: Time::Span::StringConverter)] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Time::Span::StringConverter)] }
+    property ttl : Time::Span?
 
     def initialize(*, @ttl : Time::Span? = nil)
+      after_initialize
+    end
+
+    protected def after_initialize
+      @mutex = Mutex.new(:reentrant)
     end
 
     # Wraps block execution in a concurrency-safe transaction.
     def transaction(*, mutable : Bool = false, & : -> _)
-      @mutex.synchronize { yield }
+      mutex.synchronize { yield }
     end
 
     # Returns `true` if the rate is stale.
     protected def stale_rate?(rate : Rate) : Bool
-      !!@ttl.try { |ttl| rate.updated_at < Time.utc - ttl }
+      !!ttl.try { |ttl| rate.updated_at < Time.utc - ttl }
     end
 
     # See also `#[]=`.

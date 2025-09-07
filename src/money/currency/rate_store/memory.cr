@@ -14,26 +14,31 @@ class Money::Currency
   class RateStore::Memory < RateStore
     private INDEX_KEY_SEPARATOR = '_'
 
-    @index = {} of String => Rate
+    private getter! index : Hash(String, Rate)
+
+    protected def after_initialize
+      super
+      @index ||= {} of String => Rate
+    end
 
     protected def set_rate(rate : Rate) : Nil
-      @index[rate_key_for(rate.base, rate.target)] = rate
+      index[rate_key_for(rate.base, rate.target)] = rate
     end
 
     protected def get_rate?(base : Currency, target : Currency) : Rate?
-      @index[rate_key_for(base, target)]?
+      index[rate_key_for(base, target)]?
     end
 
     protected def each_rate(& : Rate ->)
-      @index.each_value { |rate| yield rate }
+      index.each_value { |rate| yield rate }
     end
 
     protected def clear_rates : Nil
-      @index.clear
+      index.clear
     end
 
     protected def clear_rates(base : Currency) : Nil
-      @index.reject! { |_, rate| rate.base == base }
+      index.reject! { |_, rate| rate.base == base }
     end
 
     private def rate_key_for(base : Currency, target : Currency)
