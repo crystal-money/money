@@ -79,15 +79,48 @@ describe Time::Span::StringConverter do
   end
 
   describe ".dump" do
-    it "serializes Time::Span value into a string" do
-      Time::Span::StringConverter.dump(1.day + 2.hours + 2.minutes + 4.seconds)
-        .should eq "1 day, 2 hours, 2 minutes, 4 seconds"
+    context "(format: :text)" do
+      it "serializes Time::Span value into a string" do
+        Time::Span::StringConverter.dump(1.day + 2.hours + 3.minutes + 4.seconds)
+          .should eq "1 day, 2 hours, 3 minutes, 4 seconds"
 
-      Time::Span::StringConverter.dump(7.days)
-        .should eq "7 days"
+        Time::Span::StringConverter.dump(7.days)
+          .should eq "7 days"
 
-      Time::Span::StringConverter.dump(Time::Span.zero)
-        .should be_empty
+        Time::Span::StringConverter.dump(1.hour + 15.minutes)
+          .should eq "1 hour, 15 minutes"
+      end
+
+      it "serializes empty Time::Span value into an empty string" do
+        Time::Span::StringConverter.dump(Time::Span.zero).should be_empty
+      end
+
+      pending "serializes negative Time::Span value into a string" do
+        Time::Span::StringConverter.dump(-(2.hours + 5.minutes))
+          .should eq "-2 hours, 5 minutes"
+      end
+    end
+
+    context "(format: :code)" do
+      it "serializes Time::Span value into a string" do
+        Time::Span::StringConverter.dump(1.day + 2.hours + 3.minutes + 4.seconds, :code)
+          .should eq "1.day + 2.hours + 3.minutes + 4.seconds"
+
+        Time::Span::StringConverter.dump(7.days, :code)
+          .should eq "7.days"
+
+        Time::Span::StringConverter.dump(1.hour + 15.minutes, :code)
+          .should eq "1.hour + 15.minutes"
+      end
+
+      it "serializes empty Time::Span value into an empty string" do
+        Time::Span::StringConverter.dump(Time::Span.zero, :code).should be_empty
+      end
+
+      pending "serializes negative Time::Span value into a string" do
+        Time::Span::StringConverter.dump(-(2.hours + 5.minutes), :code)
+          .should eq "-(2.hours + 5.minutes)"
+      end
     end
   end
 end

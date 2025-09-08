@@ -6,6 +6,11 @@ module Time::Span::StringConverter
     (?:(?<seconds>\d+)(?:s|\s*sec(?:onds?)?))?
   }ix
 
+  enum Format
+    Text
+    Code
+  end
+
   extend self
 
   # Parses a time span *string* into a `Time::Span`, or returns `nil` if the
@@ -48,9 +53,10 @@ module Time::Span::StringConverter
   # Returns given time span *value* in the textual format.
   #
   # ```
-  # dump(1.day + 3.hours + 15.minutes) # => "1 day, 3 hours, 15 minutes"
+  # dump(1.hour + 15.minutes)        # => "1 hour, 15 minutes"
+  # dump(1.hour + 15.minutes, :code) # => "1.hour + 15.minutes"
   # ```
-  def dump(value : Time::Span) : String
+  def dump(value : Time::Span, format : Format = :text) : String
     parts = [] of {Int32, String}
 
     {% for part in %w[days hours minutes seconds] %}
@@ -61,7 +67,10 @@ module Time::Span::StringConverter
       end
     {% end %}
 
-    parts.join(", ", &.join(' '))
+    case format
+    in .text? then parts.join(", ", &.join(' '))
+    in .code? then parts.join(" + ", &.join('.'))
+    end
   end
 
   if_defined?(:JSON) do
