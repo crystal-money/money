@@ -12,8 +12,6 @@ class Money::Currency
   # end
   # ```
   class RateStore::Memory < RateStore
-    private INDEX_KEY_SEPARATOR = '_'
-
     private getter! index : Hash(String, Rate)
 
     protected def after_initialize
@@ -42,7 +40,7 @@ class Money::Currency
     end
 
     private def rate_key_for(base : Currency, target : Currency)
-      {base.code, target.code}.join(INDEX_KEY_SEPARATOR)
+      "#{base.code}_#{target.code}"
     end
   end
 end
