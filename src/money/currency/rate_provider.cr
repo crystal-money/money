@@ -5,7 +5,7 @@ class Money::Currency
     alias Registry::NotFoundError = UnknownRateProviderError
 
     # Returns the value of the environment variable *key* or raises
-    # `RateProviderRequiredOptionError` if the variable is not set.
+    # `RequiredOptionError` if the variable is not set.
     protected def option_from_env(key : String) : String
       ENV[key]? ||
         raise RequiredOptionError.new \
