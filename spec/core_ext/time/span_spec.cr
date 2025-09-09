@@ -98,7 +98,8 @@ describe Time::Span::StringConverter do
       end
 
       it "serializes empty Time::Span value into an empty string" do
-        Time::Span::StringConverter.dump(Time::Span.zero).should be_empty
+        Time::Span::StringConverter.dump(Time::Span.zero)
+          .should be_empty
       end
 
       it "serializes negative Time::Span value into a string" do
@@ -120,7 +121,8 @@ describe Time::Span::StringConverter do
       end
 
       it "serializes empty Time::Span value into an empty string" do
-        Time::Span::StringConverter.dump(Time::Span.zero, :code).should be_empty
+        Time::Span::StringConverter.dump(Time::Span.zero, :code)
+          .should be_empty
       end
 
       it "serializes negative Time::Span value into a string" do

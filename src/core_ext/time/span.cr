@@ -17,19 +17,24 @@ module Time::Span::StringConverter
   # Parses a time span *string* into a `Time::Span`, or returns `nil` if the
   # string is invalid.
   #
-  # Valid examples:
+  # Allowed suffixes:
+  #
+  # - day: `d`, `day(s)`
+  # - hour: `h`, `hour(s)`
+  # - minute: `m`, `min`, `minute(s)`
+  # - second: `s`, `sec`, `second(s)`
+  #
+  # Valid string examples:
+  #
+  # - `1d2h3m4s`
+  # - `1d 2h 3m 4s`
+  # - `1d 2h 3 min 4 sec`
+  # - `1 day 2 hours 3 minutes 4 seconds`
+  # - `1 day, 2 hours, 3 minutes, 4 seconds`
   #
   # ```
-  # "1d2h3m4s"
-  # "1d 2h 3m 4s"
-  # "1d 2h 3 min 4 sec"
-  # "1 day 2 hours 3 minutes 4 seconds"
-  # "1 day, 2 hours, 3 minutes, 4 seconds"
-  # ```
-  #
-  # ```
-  # parse?("1 day, 8 minutes")    # => 1.00:08:00
-  # parse?("3 hours, 15 minutes") # => 03:15:00
+  # Time::Span::StringConverter.parse?("1 day, 8 minutes")    # => 1.00:08:00
+  # Time::Span::StringConverter.parse?("3 hours, 15 minutes") # => 03:15:00
   # ```
   def parse?(string : String) : Time::Span?
     return unless string = string.strip.presence
@@ -56,8 +61,8 @@ module Time::Span::StringConverter
   # Returns given time span *value* in the textual format.
   #
   # ```
-  # dump(1.hour + 15.minutes)        # => "1 hour, 15 minutes"
-  # dump(1.hour + 15.minutes, :code) # => "1.hour + 15.minutes"
+  # Time::Span::StringConverter.dump(1.hour + 15.minutes)        # => "1 hour, 15 minutes"
+  # Time::Span::StringConverter.dump(1.hour + 15.minutes, :code) # => "1.hour + 15.minutes"
   # ```
   def dump(value : Time::Span, format : Format = :text) : String
     is_negative = value.negative?
