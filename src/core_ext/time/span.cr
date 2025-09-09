@@ -1,5 +1,6 @@
 module Time::Span::StringConverter
   private PATTERN = %r{
+    (?:(?<sign>[+-])\s*)?
     (?:(?<days>\d+)(?:d|\s*days?),?\s*)?
     (?:(?<hours>\d+)(?:h|\s*hours?),?\s*)?
     (?:(?<minutes>\d+)(?:m|\s*min(?:utes?)?),?\s*)?
@@ -33,13 +34,15 @@ module Time::Span::StringConverter
   def parse?(string : String) : Time::Span?
     return unless string = string.strip.presence
     return unless match = string.match_full(PATTERN)
+    return unless match["days"]? || match["hours"]? || match["minutes"]? || match["seconds"]?
 
-    Time::Span.new(
+    span = Time::Span.new(
       days: match["days"]?.try(&.to_i) || 0,
       hours: match["hours"]?.try(&.to_i) || 0,
       minutes: match["minutes"]?.try(&.to_i) || 0,
       seconds: match["seconds"]?.try(&.to_i) || 0,
     )
+    match["sign"]? == "-" ? -span : span
   end
 
   # :ditto:
@@ -57,6 +60,9 @@ module Time::Span::StringConverter
   # dump(1.hour + 15.minutes, :code) # => "1.hour + 15.minutes"
   # ```
   def dump(value : Time::Span, format : Format = :text) : String
+    is_negative = value.negative?
+    value = value.abs
+
     parts = [] of {Int32, String}
 
     {% for part in %w[days hours minutes seconds] %}
@@ -67,9 +73,19 @@ module Time::Span::StringConverter
       end
     {% end %}
 
+    return "" if parts.empty?
+
+    result =
+      case format
+      in .text? then parts.join(", ", &.join(' '))
+      in .code? then parts.join(" + ", &.join('.'))
+      end
+
+    return result unless is_negative
+
     case format
-    in .text? then parts.join(", ", &.join(' '))
-    in .code? then parts.join(" + ", &.join('.'))
+    in .text? then "-#{result}"
+    in .code? then "-(#{result})"
     end
   end
 
