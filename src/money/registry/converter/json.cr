@@ -1,7 +1,7 @@
 {% skip_file unless @top_level.has_constant?(:JSON) %}
 
 struct Money
-  module Converter::JSON(V)
+  module Registry::Converter::JSON(V)
     private struct Wrapper
       include ::JSON::Serializable
 

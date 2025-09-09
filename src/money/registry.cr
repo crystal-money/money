@@ -53,7 +53,7 @@ struct Money
     macro setup_serializable(klass)
       if_defined?(:JSON) do
         module Converter
-          extend Money::Converter::JSON({{ klass }})
+          extend Money::Registry::Converter::JSON({{ klass }})
         end
 
         include JSON::Serializable
@@ -66,7 +66,7 @@ struct Money
 
       if_defined?(:YAML) do
         module Converter
-          extend Money::Converter::YAML({{ klass }})
+          extend Money::Registry::Converter::YAML({{ klass }})
         end
 
         include YAML::Serializable
@@ -79,3 +79,5 @@ struct Money
     end
   end
 end
+
+require "./registry/**"

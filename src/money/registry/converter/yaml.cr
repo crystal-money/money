@@ -1,7 +1,7 @@
 {% skip_file unless @top_level.has_constant?(:YAML) %}
 
 struct Money
-  module Converter::YAML(V)
+  module Registry::Converter::YAML(V)
     private struct Wrapper
       include ::YAML::Serializable
 
