@@ -3,6 +3,8 @@
 require "big/yaml"
 
 struct Money
+  include YAML::Serializable
+
   def self.new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
     if node.is_a?(YAML::Nodes::Scalar)
       parse(node.value)

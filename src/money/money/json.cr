@@ -3,6 +3,8 @@
 require "big/json"
 
 struct Money
+  include JSON::Serializable
+
   def self.new(pull : JSON::PullParser)
     if pull.kind.string?
       parse(pull.read_string)
