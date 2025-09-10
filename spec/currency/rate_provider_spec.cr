@@ -281,8 +281,8 @@ describe Money::Currency::RateProvider do
         .should eq Money::Currency::RateProvider::DummyFX
     end
 
-    it "raises ArgumentError for unknown provider" do
-      expect_raises(Money::UnknownRateProviderError, "Unknown rate provider: foo") do
+    it "raises exception for unknown provider" do
+      expect_raises(Money::Currency::RateProvider::Registry::NotFoundError, "Unknown rate provider: foo") do
         Money::Currency::RateProvider.find("foo")
       end
     end

@@ -2,7 +2,12 @@ class Money::Currency
   abstract class RateProvider
     extend Money::Registry
 
-    alias Registry::NotFoundError = UnknownRateProviderError
+    # Raised when trying to find an unknown rate provider.
+    class Registry::NotFoundError < Error
+      def initialize(key)
+        super("Unknown rate provider: #{key}")
+      end
+    end
 
     # Returns the value of the environment variable *key* or raises
     # `RequiredOptionError` if the variable is not set.

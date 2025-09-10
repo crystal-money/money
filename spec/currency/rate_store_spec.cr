@@ -174,8 +174,8 @@ describe Money::Currency::RateStore do
         .should eq Money::Currency::RateStore::Dummy
     end
 
-    it "raises ArgumentError for unknown store" do
-      expect_raises(Money::UnknownRateStoreError, "Unknown rate store: foo") do
+    it "raises exception for unknown store" do
+      expect_raises(Money::Currency::RateStore::Registry::NotFoundError, "Unknown rate store: foo") do
         Money::Currency::RateStore.find("foo")
       end
     end

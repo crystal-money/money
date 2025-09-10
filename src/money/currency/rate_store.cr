@@ -2,7 +2,12 @@ class Money::Currency
   abstract class RateStore
     extend Money::Registry
 
-    alias Registry::NotFoundError = UnknownRateStoreError
+    # Raised when trying to find an unknown rate store.
+    class Registry::NotFoundError < Error
+      def initialize(key)
+        super("Unknown rate store: #{key}")
+      end
+    end
 
     include Enumerable(Rate)
 
