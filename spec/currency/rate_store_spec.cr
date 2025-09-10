@@ -175,7 +175,7 @@ describe Money::Currency::RateStore do
     end
 
     it "raises exception for unknown store" do
-      expect_raises(Money::Currency::RateStore::Registry::NotFoundError, "Unknown rate store: foo") do
+      expect_raises(Money::Currency::RateStore::NotFoundError, "Unknown rate store: foo") do
         Money::Currency::RateStore.find("foo")
       end
     end

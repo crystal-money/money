@@ -282,7 +282,7 @@ describe Money::Currency::RateProvider do
     end
 
     it "raises exception for unknown provider" do
-      expect_raises(Money::Currency::RateProvider::Registry::NotFoundError, "Unknown rate provider: foo") do
+      expect_raises(Money::Currency::RateProvider::NotFoundError, "Unknown rate provider: foo") do
         Money::Currency::RateProvider.find("foo")
       end
     end

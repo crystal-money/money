@@ -3,9 +3,9 @@ class Money::Currency
     extend Money::Registry
 
     # Raised when trying to find an unknown rate store.
-    class Registry::NotFoundError < Error
-      def initialize(key)
-        super("Unknown rate store: #{key}")
+    class NotFoundError < Registry::NotFoundError
+      def initialize(*, key : String)
+        @message = "Unknown rate store: #{key}"
       end
     end
 

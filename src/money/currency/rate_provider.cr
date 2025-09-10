@@ -3,9 +3,9 @@ class Money::Currency
     extend Money::Registry
 
     # Raised when trying to find an unknown rate provider.
-    class Registry::NotFoundError < Error
-      def initialize(key)
-        super("Unknown rate provider: #{key}")
+    class NotFoundError < Registry::NotFoundError
+      def initialize(*, key : String)
+        @message = "Unknown rate provider: #{key}"
       end
     end
 

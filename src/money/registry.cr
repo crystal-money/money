@@ -2,8 +2,8 @@ struct Money
   module Registry
     # Raised when trying to find an unknown object.
     class NotFoundError < Error
-      def initialize(key)
-        super("Object not found: #{key}")
+      def initialize(*, key : String)
+        @message = "Object not found: #{key}"
       end
     end
 
@@ -43,10 +43,14 @@ struct Money
       end
 
       # Returns the `{{ klass }}.class` for the given *name* if found,
-      # raises `Registry::NotFoundError` otherwise.
+      # raises `Money::Registry::NotFoundError` otherwise.
       def self.find(name : String | Symbol) : {{ klass }}.class
         find?(name) ||
-          raise Registry::NotFoundError.new(name)
+          \{% if @type.has_constant?(:NotFoundError) %}
+            raise NotFoundError.new(key: name.to_s)
+          \{% else %}
+            raise Money::Registry::NotFoundError.new(key: name.to_s)
+          \{% end %}
       end
     end
 
