@@ -237,6 +237,21 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Currency/RateProvider/Registry" data-name="money::currency::rateprovider::registry">
+      <a href="../../Money/Currency/RateProvider/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Registry/NotFoundError" data-name="money::currency::rateprovider::registry::notfounderror">
+      <a href="../../Money/Currency/RateProvider/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/RequestError" data-name="money::currency::rateprovider::requesterror">
       <a href="../../Money/Currency/RateProvider/RequestError.html">RequestError</a>
       
@@ -267,6 +282,11 @@
       
         <ul>
   
+  <li class=" " data-id="money/Money/Currency/RateStore/Converter" data-name="money::currency::ratestore::converter">
+      <a href="../../Money/Currency/RateStore/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateStore/File" data-name="money::currency::ratestore::file">
       <a href="../../Money/Currency/RateStore/File.html">File</a>
       
@@ -274,6 +294,21 @@
   
   <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../Money/Currency/RateStore/Memory.html">Memory</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Currency/RateStore/Registry" data-name="money::currency::ratestore::registry">
+      <a href="../../Money/Currency/RateStore/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateStore/Registry/NotFoundError" data-name="money::currency::ratestore::registry::notfounderror">
+      <a href="../../Money/Currency/RateStore/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -332,6 +367,36 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Registry" data-name="money::registry">
+      <a href="../../Money/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="money/Money/Registry/Converter" data-name="money::registry::converter">
+      <a href="../../Money/Registry/Converter.html">Converter</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Registry/Converter/JSON" data-name="money::registry::converter::json(v)">
+      <a href="../../Money/Registry/Converter/JSON.html">JSON</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Registry/NotFoundError" data-name="money::registry::notfounderror">
+      <a href="../../Money/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Rounding" data-name="money::rounding">
       <a href="../../Money/Rounding.html">Rounding</a>
       
@@ -354,11 +419,6 @@
   
   <li class=" " data-id="money/Money/UnknownRateError" data-name="money::unknownrateerror">
       <a href="../../Money/UnknownRateError.html">UnknownRateError</a>
-      
-    </li>
-  
-  <li class=" " data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
-      <a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a>
       
     </li>
   
@@ -419,6 +479,20 @@
   </ul>
 
 
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Money/Registry.html">Money::Registry</a></li>
+    
+  </ul>
 
 
 
@@ -485,14 +559,14 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider.cr#L2" target="_blank">
         money/currency/rate_provider.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider/error.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider/error.cr#L2" target="_blank">
         money/currency/rate_provider/error.cr
       </a>
     
@@ -517,7 +591,7 @@
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
-          <div class="summary"><p>Alias of <code><a href="../../Money/Currency/RateProvider/Converter.html#from_json%28pull%3AJSON%3A%3APullParser%29%3ARateProvider-class-method">Converter.from_json</a></code>.</p></div>
+          <div class="summary"><p>Alias of <code>Converter.from_json</code>.</p></div>
         
       </li>
     
@@ -536,23 +610,23 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#find%28name%3AString%7CSymbol%29%3ARateProvider.class-class-method" class="signature"><strong>.find</strong>(name : String | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span></a>
+        <a href="#find%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class-class-method" class="signature"><strong>.find</strong>(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span></a>
         
-          <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a></code> otherwise.</p></div>
+          <div class="summary"><p>Returns the <code>Money::Currency::RateProvider.class</code> for the given <em>name</em> if found, raises <code><a href="../../Money/Currency/RateProvider/Registry/NotFoundError.html">Registry::NotFoundError</a></code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find%3F%28name%3AString%7CSymbol%29%3ARateProvider.class%7CNil-class-method" class="signature"><strong>.find?</strong>(name : String | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil</a>
+        <a href="#find%3F%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class%7CNil-class-method" class="signature"><strong>.find?</strong>(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span> | Nil</a>
         
-          <div class="summary"><p>Returns the rate provider class for the given <em>name</em> if found, <code>nil</code> otherwise.</p></div>
+          <div class="summary"><p>Returns the <code>Money::Currency::RateProvider.class</code> for the given <em>name</em> if found, <code>nil</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#registry-class-method" class="signature"><strong>.registry</strong></a>
         
-          <div class="summary"><p>All registered rate providers.</p></div>
+          <div class="summary"><p>All registered objects.</p></div>
         
       </li>
     
@@ -667,13 +741,11 @@
       
         <div class="doc">
           
-          <p>Alias of <code><a href="../../Money/Currency/RateProvider/Converter.html#from_json%28pull%3AJSON%3A%3APullParser%29%3ARateProvider-class-method">Converter.from_json</a></code>.</p>
+          <p>Alias of <code>Converter.from_json</code>.</p>
         </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -690,46 +762,42 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="find(name:String|Symbol):RateProvider.class-class-method">
+    <div class="entry-detail" id="find(name:String|Symbol):Money::Currency::RateProvider.class-class-method">
       <div class="signature">
         
-        def self.<strong>find</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span>
+        def self.<strong>find</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span>
 
-        <a class="method-permalink" href="#find%28name%3AString%7CSymbol%29%3ARateProvider.class-class-method">#</a>
+        <a class="method-permalink" href="#find%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns the rate provider class for the given <em>name</em> if found,
-raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a></code> otherwise.</p>
+          <p>Returns the <code>Money::Currency::RateProvider.class</code> for the given <em>name</em> if found,
+raises <code><a href="../../Money/Currency/RateProvider/Registry/NotFoundError.html">Registry::NotFoundError</a></code> otherwise.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L52" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="find?(name:String|Symbol):RateProvider.class|Nil-class-method">
+    <div class="entry-detail" id="find?(name:String|Symbol):Money::Currency::RateProvider.class|Nil-class-method">
       <div class="signature">
         
-        def self.<strong>find?</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">RateProvider</span>.<span class="k">class</span> | Nil
+        def self.<strong>find?</strong>(name : <a href="../../String.html">String</a> | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span> | Nil
 
-        <a class="method-permalink" href="#find%3F%28name%3AString%7CSymbol%29%3ARateProvider.class%7CNil-class-method">#</a>
+        <a class="method-permalink" href="#find%3F%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class%7CNil-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Returns the rate provider class for the given <em>name</em> if found,
+          <p>Returns the <code>Money::Currency::RateProvider.class</code> for the given <em>name</em> if found,
 <code>nil</code> otherwise.</p>
         </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -744,13 +812,11 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       
         <div class="doc">
           
-          <p>All registered rate providers.</p>
+          <p>All registered objects.</p>
         </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -785,7 +851,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -806,7 +872,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -827,7 +893,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -848,7 +914,7 @@ raises <code><a href="../../Money/UnknownRateProviderError.html">UnknownRateProv
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_provider.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_provider.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>

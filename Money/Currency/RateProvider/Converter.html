@@ -237,6 +237,21 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Currency/RateProvider/Registry" data-name="money::currency::rateprovider::registry">
+      <a href="../../../Money/Currency/RateProvider/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Registry/NotFoundError" data-name="money::currency::rateprovider::registry::notfounderror">
+      <a href="../../../Money/Currency/RateProvider/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/RequestError" data-name="money::currency::rateprovider::requesterror">
       <a href="../../../Money/Currency/RateProvider/RequestError.html">RequestError</a>
       
@@ -267,6 +282,11 @@
       
         <ul>
   
+  <li class=" " data-id="money/Money/Currency/RateStore/Converter" data-name="money::currency::ratestore::converter">
+      <a href="../../../Money/Currency/RateStore/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateStore/File" data-name="money::currency::ratestore::file">
       <a href="../../../Money/Currency/RateStore/File.html">File</a>
       
@@ -274,6 +294,21 @@
   
   <li class=" " data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../../Money/Currency/RateStore/Memory.html">Memory</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Currency/RateStore/Registry" data-name="money::currency::ratestore::registry">
+      <a href="../../../Money/Currency/RateStore/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateStore/Registry/NotFoundError" data-name="money::currency::ratestore::registry::notfounderror">
+      <a href="../../../Money/Currency/RateStore/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -332,6 +367,36 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Registry" data-name="money::registry">
+      <a href="../../../Money/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="money/Money/Registry/Converter" data-name="money::registry::converter">
+      <a href="../../../Money/Registry/Converter.html">Converter</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Registry/Converter/JSON" data-name="money::registry::converter::json(v)">
+      <a href="../../../Money/Registry/Converter/JSON.html">JSON</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Registry/NotFoundError" data-name="money::registry::notfounderror">
+      <a href="../../../Money/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Rounding" data-name="money::rounding">
       <a href="../../../Money/Rounding.html">Rounding</a>
       
@@ -354,11 +419,6 @@
   
   <li class=" " data-id="money/Money/UnknownRateError" data-name="money::unknownrateerror">
       <a href="../../../Money/UnknownRateError.html">UnknownRateError</a>
-      
-    </li>
-  
-  <li class=" " data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
-      <a href="../../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a>
       
     </li>
   
@@ -404,6 +464,20 @@
 
 
 
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../../Money/Registry/Converter/JSON.html">Money::Registry::Converter::JSON</a>(<a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>)</li>
+    
+  </ul>
+
 
 
 
@@ -420,13 +494,6 @@
     Defined in:
   </h2>
   
-    
-      <a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/json.cr#L40" target="_blank">
-        money/currency/json.cr
-      </a>
-    
-    <br/>
-  
 
 
 
@@ -435,28 +502,6 @@
   
 
   
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#from_json%28pull%3AJSON%3A%3APullParser%29%3ARateProvider-class-method" class="signature"><strong>.from_json</strong>(pull : JSON::PullParser) : RateProvider</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_json%28provider%3ARateProvider%2Cjson%3AJSON%3A%3ABuilder%29-class-method" class="signature"><strong>.to_json</strong>(provider : RateProvider, json : JSON::Builder)</a>
-        
-      </li>
-    
-  </ul>
-
 
   
 
@@ -470,48 +515,6 @@
   
 
   
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="from_json(pull:JSON::PullParser):RateProvider-class-method">
-      <div class="signature">
-        
-        def self.<strong>from_json</strong>(pull : JSON::PullParser) : <a href="../../../Money/Currency/RateProvider.html">RateProvider</a>
-
-        <a class="method-permalink" href="#from_json%28pull%3AJSON%3A%3APullParser%29%3ARateProvider-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/json.cr#L48" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_json(provider:RateProvider,json:JSON::Builder)-class-method">
-      <div class="signature">
-        
-        def self.<strong>to_json</strong>(provider : <a href="../../../Money/Currency/RateProvider.html">RateProvider</a>, json : JSON::Builder)
-
-        <a class="method-permalink" href="#to_json%28provider%3ARateProvider%2Cjson%3AJSON%3A%3ABuilder%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/json.cr#L61" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
   
 

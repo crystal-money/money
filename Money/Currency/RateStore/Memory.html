@@ -237,6 +237,21 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Currency/RateProvider/Registry" data-name="money::currency::rateprovider::registry">
+      <a href="../../../Money/Currency/RateProvider/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/Registry/NotFoundError" data-name="money::currency::rateprovider::registry::notfounderror">
+      <a href="../../../Money/Currency/RateProvider/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/RequestError" data-name="money::currency::rateprovider::requesterror">
       <a href="../../../Money/Currency/RateProvider/RequestError.html">RequestError</a>
       
@@ -267,6 +282,11 @@
       
         <ul>
   
+  <li class=" " data-id="money/Money/Currency/RateStore/Converter" data-name="money::currency::ratestore::converter">
+      <a href="../../../Money/Currency/RateStore/Converter.html">Converter</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateStore/File" data-name="money::currency::ratestore::file">
       <a href="../../../Money/Currency/RateStore/File.html">File</a>
       
@@ -274,6 +294,21 @@
   
   <li class=" current" data-id="money/Money/Currency/RateStore/Memory" data-name="money::currency::ratestore::memory">
       <a href="../../../Money/Currency/RateStore/Memory.html">Memory</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Currency/RateStore/Registry" data-name="money::currency::ratestore::registry">
+      <a href="../../../Money/Currency/RateStore/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateStore/Registry/NotFoundError" data-name="money::currency::ratestore::registry::notfounderror">
+      <a href="../../../Money/Currency/RateStore/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -332,6 +367,36 @@
       
     </li>
   
+  <li class="parent " data-id="money/Money/Registry" data-name="money::registry">
+      <a href="../../../Money/Registry.html">Registry</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="money/Money/Registry/Converter" data-name="money::registry::converter">
+      <a href="../../../Money/Registry/Converter.html">Converter</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Registry/Converter/JSON" data-name="money::registry::converter::json(v)">
+      <a href="../../../Money/Registry/Converter/JSON.html">JSON</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="money/Money/Registry/NotFoundError" data-name="money::registry::notfounderror">
+      <a href="../../../Money/Registry/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Rounding" data-name="money::rounding">
       <a href="../../../Money/Rounding.html">Rounding</a>
       
@@ -354,11 +419,6 @@
   
   <li class=" " data-id="money/Money/UnknownRateError" data-name="money::unknownrateerror">
       <a href="../../../Money/UnknownRateError.html">UnknownRateError</a>
-      
-    </li>
-  
-  <li class=" " data-id="money/Money/UnknownRateProviderError" data-name="money::unknownrateprovidererror">
-      <a href="../../../Money/UnknownRateProviderError.html">UnknownRateProviderError</a>
       
     </li>
   
@@ -456,7 +516,7 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/f8ec13c/src/money/currency/rate_store/memory.cr#L14" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_store/memory.cr#L14" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -468,8 +528,46 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
   
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
   
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#key%3AString-class-method" class="signature"><strong>.key</strong> : String</a>
+        
+          <div class="summary"><p>Returns the class key.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
   
 
@@ -520,7 +618,17 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   
     <a href="../../../Money/Currency/RateStore.html#transaction%28%2A%2Cmutable%3ABool%3Dfalse%2C%26%3A-%3E_%29-instance-method" class="tooltip">
       <span>transaction(*, mutable : Bool = <span class="n">false</span>, & :  -> _)</span>
-    transaction</a>
+    transaction</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateStore.html#ttl%3ATime%3A%3ASpan%7CNil-instance-method" class="tooltip">
+      <span>ttl : Time::Span | Nil</span>
+    ttl</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateStore.html#ttl%3D%28ttl%3ATime%3A%3ASpan%7CNil%29-instance-method" class="tooltip">
+      <span>ttl=(ttl : Time::Span | Nil)</span>
+    ttl=</a>
     
   
 
@@ -530,11 +638,43 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#new%28%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method" class="tooltip">
-      <span>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
+    <a href="../../../Money/Currency/RateStore.html#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="tooltip">
+      <span>new(pull : JSON::PullParser)<br/>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
     new</a>
     
   
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateStore.html#find%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateStore.class-class-method" class="tooltip">
+      <span>find(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>.<span class="k">class</span></span>
+    find</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateStore.html#find%3F%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateStore.class%7CNil-class-method" class="tooltip">
+      <span>find?(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>.<span class="k">class</span> | Nil</span>
+    find?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateStore.html#registry-class-method" class="tooltip">
+      <span>registry</span>
+    registry</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+
+      
 
 
       
@@ -586,8 +726,78 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </div>
 
   
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.98</span>
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.98</span>
+
+<span class="c"># Iterates rates</span>
+store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o">|</span>
+  puts rate
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="key:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>key</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#key%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the class key.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/35929a9/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
