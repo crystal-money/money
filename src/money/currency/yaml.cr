@@ -26,33 +26,4 @@ class Money::Currency
       }.to_yaml(yaml)
     end
   end
-
-  module RateProvider::Converter
-    private struct YAMLWrapper
-      include YAML::Serializable
-
-      getter! name : String
-      getter options : Hash(String, YAML::Any::Type)?
-    end
-
-    def self.from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : RateProvider
-      wrapper = YAMLWrapper.new(ctx, node)
-
-      klass =
-        RateProvider.find(wrapper.name)
-
-      if options = wrapper.options
-        klass.from_yaml(options.to_yaml)
-      else
-        klass.from_yaml("{}")
-      end
-    end
-
-    def self.to_yaml(provider : RateProvider, yaml : YAML::Nodes::Builder)
-      {
-        name:    provider.class.key,
-        options: provider,
-      }.to_yaml(yaml)
-    end
-  end
 end

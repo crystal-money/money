@@ -36,33 +36,4 @@ class Money::Currency
       }.to_json(json)
     end
   end
-
-  module RateProvider::Converter
-    private struct JSONWrapper
-      include JSON::Serializable
-
-      getter name : String
-      getter options : Hash(String, JSON::Any::Type)?
-    end
-
-    def self.from_json(pull : JSON::PullParser) : RateProvider
-      wrapper = JSONWrapper.new(pull)
-
-      klass =
-        RateProvider.find(wrapper.name)
-
-      if options = wrapper.options
-        klass.from_json(options.to_json)
-      else
-        klass.from_json("{}")
-      end
-    end
-
-    def self.to_json(provider : RateProvider, json : JSON::Builder)
-      {
-        name:    provider.class.key,
-        options: provider,
-      }.to_json(json)
-    end
-  end
 end
