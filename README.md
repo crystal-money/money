@@ -544,7 +544,7 @@ Money.new(10_08, "CHF").round_to_nearest_cash_value
 
 ## JSON/YAML Serialization
 
-`Money`, `Money::Currency`, `Money::Currency::Rate` and `Money::Currency::RateProvider` implements `JSON::Serializable` and `YAML::Serializable`:
+`Money`, `Money::Currency`, `Money::Currency::Rate`, `Money::Currency::RateStore` and `Money::Currency::RateProvider` implements `JSON::Serializable` and `YAML::Serializable`:
 
 ### `Money`
 
@@ -590,6 +590,63 @@ rate = Money::Currency::Rate.new(
 
 rate.to_json # => "{\"base\":\"USD\",\"target\":\"EUR\",\"value\":1.25,\"updated_at\":\"2025-05-22T00:00:00.000Z\"}"
 rate.to_yaml # => "---\nbase: USD\ntarget: EUR\nvalue: 1.25\nupdated_at: 2025-05-22\n"
+```
+
+### `Money::Currency::RateStore`
+
+You can use `.from_json` and `.from_yaml` methods to deserialize generic
+rate store instances providing the `name` (in _CamelCase_ or _snake_case_)
+and `options` - optional hash that's being passed to the store initializer.
+
+```crystal
+store = Money::Currency::RateStore.from_yaml <<-YAML
+  name: File
+  options:
+    filename: ~/.cache/money/currency-rate-store.json
+    ttl: 1 hour, 11 minutes
+  YAML
+
+typeof(store) # => Money::Currency::RateStore
+store.class   # => Money::Currency::RateStore::File
+```
+
+For specific stores you pass the `options` directly:
+
+```crystal
+file_store = Money::Currency::RateStore::File.from_yaml <<-YAML
+  filename: ~/.cache/money/currency-rate-store.json
+  ttl: 1 hour, 11 minutes
+  YAML
+```
+
+#### Using with `JSON::Serializable` and `YAML::Serializable`
+
+In order to (de)serialize generic `Money::Currency::RateStore` instances,
+you need to add a `JSON/YAML::Field` annotation with a custom converter —
+`Money::Currency::RateStore::Converter`.
+
+```crystal
+class FooWithGenericStore
+  include JSON::Serializable
+  include YAML::Serializable
+
+  @[JSON::Field(converter: Money::Currency::RateStore::Converter)]
+  @[YAML::Field(converter: Money::Currency::RateStore::Converter)]
+  property store : Money::Currency::RateStore
+
+  def initialize(@store)
+  end
+end
+
+foo = FooWithGenericStore.from_yaml <<-YAML
+  store:
+    name: File
+    options:
+      filename: ~/.cache/money/currency-rate-store.json
+      ttl: 1 hour, 11 minutes
+  YAML
+
+foo.store.class # => Money::Currency::RateStore::File
 ```
 
 ### `Money::Currency::RateProvider`
