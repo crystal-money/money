@@ -2,26 +2,23 @@
 
 struct Money
   module Registry::Converter::YAML(V)
-    private struct Wrapper
+    private struct Wrapper(T)
       include ::YAML::Serializable
 
       getter! name : String
       getter options : Hash(String, ::YAML::Any::Type)?
+
+      def deserialize : T
+        klass = T.find(name)
+        klass.from_yaml(options.try(&.to_yaml) || "{}")
+      end
     end
 
     extend self
 
     def from_yaml(ctx : ::YAML::ParseContext, node : ::YAML::Nodes::Node) : V
-      wrapper = Wrapper.new(ctx, node)
-
-      klass =
-        V.find(wrapper.name)
-
-      if options = wrapper.options
-        klass.from_yaml(options.to_yaml)
-      else
-        klass.from_yaml("{}")
-      end
+      wrapper = Wrapper(V).new(ctx, node)
+      wrapper.deserialize
     end
 
     def to_yaml(value : V, yaml : ::YAML::Nodes::Builder)

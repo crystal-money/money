@@ -2,26 +2,23 @@
 
 struct Money
   module Registry::Converter::JSON(V)
-    private struct Wrapper
+    private struct Wrapper(T)
       include ::JSON::Serializable
 
       getter name : String
       getter options : Hash(String, ::JSON::Any::Type)?
+
+      def deserialize : T
+        klass = T.find(name)
+        klass.from_json(options.try(&.to_json) || "{}")
+      end
     end
 
     extend self
 
     def from_json(pull : ::JSON::PullParser) : V
-      wrapper = Wrapper.new(pull)
-
-      klass =
-        V.find(wrapper.name)
-
-      if options = wrapper.options
-        klass.from_json(options.to_json)
-      else
-        klass.from_json("{}")
-      end
+      wrapper = Wrapper(V).new(pull)
+      wrapper.deserialize
     end
 
     def to_json(value : V, json : ::JSON::Builder)
