@@ -1,4 +1,5 @@
 require "./currency/type"
+require "./currency/error"
 require "./currency/enumeration"
 require "./currency/loader"
 require "./currency/exchange"

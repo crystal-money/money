@@ -28,15 +28,15 @@ class Money::Currency
     end
 
     # Looks up a currency with the given *key* and returns a `Currency` instance
-    # on success, raises `UnknownCurrencyError` otherwise.
+    # on success, raises `NotFoundError` otherwise.
     #
     # ```
     # Money::Currency.find("EUR") # => #<Money::Currency @code="EUR">
-    # Money::Currency.find("FOO") # raises Money::UnknownCurrencyError
+    # Money::Currency.find("FOO") # raises Money::Currency::NotFoundError
     # ```
     def find(key : String | Symbol) : Currency
       find?(key) ||
-        raise UnknownCurrencyError.new(key)
+        raise Currency::NotFoundError.new(key.to_s)
     end
 
     # Alias of `#find`.

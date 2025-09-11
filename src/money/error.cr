@@ -45,13 +45,6 @@ struct Money
     end
   end
 
-  # Raised when trying to find an unknown currency.
-  class UnknownCurrencyError < Error
-    def initialize(key)
-      super("Unknown currency: #{key}")
-    end
-  end
-
   # Raised when trying to find an unknown exchange rate.
   class UnknownRateError < Error
     def initialize(base, target)

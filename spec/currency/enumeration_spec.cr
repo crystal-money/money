@@ -41,8 +41,8 @@ describe Money::Currency::Enumeration do
       Money::Currency.find("USD").should be Money::Currency.registry["USD"]
     end
 
-    it "raises UnknownCurrency with unknown currency" do
-      expect_raises(Money::UnknownCurrencyError, "Unknown currency: zZz") do
+    it "raises NotFoundError with unknown currency" do
+      expect_raises(Money::Currency::NotFoundError, "Unknown currency: zZz") do
         Money::Currency.find("zZz")
       end
     end
@@ -91,8 +91,8 @@ describe Money::Currency::Enumeration do
   end
 
   describe ".[]" do
-    it "raises UnknownCurrencyError for invalid codes" do
-      expect_raises(Money::UnknownCurrencyError) { Money::Currency[:foo] }
+    it "raises NotFoundError for invalid codes" do
+      expect_raises(Money::Currency::NotFoundError) { Money::Currency[:foo] }
     end
 
     it "returns passed object if object is Currency" do

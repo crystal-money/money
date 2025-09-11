@@ -20,8 +20,8 @@ describe Money::Currency do
       it "returns Currency object using Currency.find when known key is given" do
         Money::Currency.from_yaml("USD").should eq Money::Currency.find("USD")
       end
-      it "raises UnknownCurrencyError when unknown key is given" do
-        expect_raises(Money::UnknownCurrencyError) do
+      it "raises NotFoundError when unknown key is given" do
+        expect_raises(Money::Currency::NotFoundError) do
           Money::Currency.from_yaml("FOO")
         end
       end
