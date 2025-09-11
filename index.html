@@ -899,7 +899,7 @@ which are used in order to fetch the exchange rate.</p>
     <use href="#octicon-link"/>
   </svg>
 </a>JSON/YAML Serialization</h2>
-<p><code><a href="Money.html">Money</a></code>, <code><a href="Money/Currency.html">Money::Currency</a></code>, <code><a href="Money/Currency/Rate.html">Money::Currency::Rate</a></code> and <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code> implements <code>JSON::Serializable</code> and <code>YAML::Serializable</code>:</p>
+<p><code><a href="Money.html">Money</a></code>, <code><a href="Money/Currency.html">Money::Currency</a></code>, <code><a href="Money/Currency/Rate.html">Money::Currency::Rate</a></code>, <code><a href="Money/Currency/RateStore.html">Money::Currency::RateStore</a></code> and <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code> implements <code>JSON::Serializable</code> and <code>YAML::Serializable</code>:</p>
 <h3><a id="money" class="anchor" href="#money">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -946,6 +946,57 @@ which are used in order to fetch the exchange rate.</p>
 
 rate.to_json <span class="c"># =&gt; &quot;{\&quot;base\&quot;:\&quot;USD\&quot;,\&quot;target\&quot;:\&quot;EUR\&quot;,\&quot;value\&quot;:1.25,\&quot;updated_at\&quot;:\&quot;2025-05-22T00:00:00.000Z\&quot;}&quot;</span>
 rate.to_yaml <span class="c"># =&gt; &quot;---\nbase: USD\ntarget: EUR\nvalue: 1.25\nupdated_at: 2025-05-22\n&quot;</span></code></pre>
+<h3><a id="moneycurrencyrate-store" class="anchor" href="#moneycurrencyrate-store">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code><a href="Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
+<p>You can use <code>.from_json</code> and <code>.from_yaml</code> methods to deserialize generic
+rate store instances providing the <code>name</code> (in <em>CamelCase</em> or <em>snake_case</em>)
+and <code>options</code> - optional hash that's being passed to the store initializer.</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
+<span class="s">  name: File
+  options:
+    filename: ~/.cache/money/currency-rate-store.json
+    ttl: 1 hour, 11 minutes
+  YAML</span>
+
+<span class="k">typeof</span>(store) <span class="c"># =&gt; Money::Currency::RateStore</span>
+store.<span class="k">class</span>   <span class="c"># =&gt; Money::Currency::RateStore::File</span></code></pre>
+<p>For specific stores you pass the <code>options</code> directly:</p>
+<pre><code class="language-crystal">file_store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">File</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
+<span class="s">  filename: ~/.cache/money/currency-rate-store.json
+  ttl: 1 hour, 11 minutes
+  YAML</span></code></pre>
+<h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Using with <code>JSON::Serializable</code> and <code>YAML::Serializable</code></h4>
+<p>In order to (de)serialize generic <code><a href="Money/Currency/RateStore.html">Money::Currency::RateStore</a></code> instances,
+you need to add a <code>JSON/YAML::Field</code> annotation with a custom converter —
+<code><a href="Money/Currency/RateStore/Converter.html">Money::Currency::RateStore::Converter</a></code>.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">FooWithGenericStore</span>
+  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Converter</span>)]
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Converter</span>)]
+  property store : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@store)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+foo <span class="o">=</span> <span class="t">FooWithGenericStore</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
+<span class="s">  store:
+    name: File
+    options:
+      filename: ~/.cache/money/currency-rate-store.json
+      ttl: 1 hour, 11 minutes
+  YAML</span>
+
+foo.store.<span class="k">class</span> <span class="c"># =&gt; Money::Currency::RateStore::File</span></code></pre>
 <h3><a id="moneycurrencyrate-provider" class="anchor" href="#moneycurrencyrate-provider">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -979,7 +1030,7 @@ compound_provider.providers <span class="o">&lt;&lt;</span> <span class="t">Mone
   YAML</span>
 
 compound_provider.providers.size <span class="c"># =&gt; 3</span></code></pre>
-<h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
+<h4><a id="using-with-jsonserializable-and-yamlserializable-1" class="anchor" href="#using-with-jsonserializable-and-yamlserializable-1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
