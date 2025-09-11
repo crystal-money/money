@@ -367,6 +367,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Registry/Converter/YAML" data-name="money::registry::converter::yaml(v)">
+      <a href="../../../Money/Registry/Converter/YAML.html">YAML</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -488,7 +493,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">
         money/currency/rate_provider/uni_rate_api.cr
       </a>
     
@@ -528,6 +533,13 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p><a href="https://unirateapi.com/">UniRateAPI</a> currency rate provider.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
@@ -674,8 +686,8 @@
   <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateProvider.html#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="tooltip">
-      <span>new(pull : JSON::PullParser)</span>
+    <a href="../../../Money/Currency/RateProvider.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(pull : JSON::PullParser)</span>
     new</a>
     
   
@@ -746,6 +758,19 @@
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -757,6 +782,27 @@
 </a>
     Constructor Detail
   </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://unirateapi.com/">UniRateAPI</a> currency rate provider.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
       <div class="signature">
@@ -774,7 +820,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -790,7 +836,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -823,7 +869,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -853,7 +899,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -869,7 +915,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -890,7 +936,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -911,7 +957,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -936,7 +982,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -952,7 +998,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_provider/uni_rate_api.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_provider/uni_rate_api.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

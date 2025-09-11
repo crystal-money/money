@@ -367,6 +367,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Registry/Converter/YAML" data-name="money::registry::converter::yaml(v)">
+      <a href="../../../Money/Registry/Converter/YAML.html">YAML</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -496,7 +501,7 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store/memory.cr#L14" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store/memory.cr#L14" target="_blank">
         money/currency/rate_store/memory.cr
       </a>
     
@@ -517,6 +522,13 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
@@ -618,8 +630,8 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
   <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateStore.html">Money::Currency::RateStore</a></code></h3>
   
   
-    <a href="../../../Money/Currency/RateStore.html#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="tooltip">
-      <span>new(pull : JSON::PullParser)<br/>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
+    <a href="../../../Money/Currency/RateStore.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(pull : JSON::PullParser)<br/>new(*, ttl : Time::Span | Nil = <span class="n">nil</span>)</span>
     new</a>
     
   
@@ -703,6 +715,19 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -714,6 +739,35 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
 </a>
     Constructor Detail
   </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Class for in-memory concurrency-safe storage of exchange rate pairs.</p>
+<pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">Memory</span>.new
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="o">=</span> <span class="n">0.98</span>
+store[<span class="s">&quot;USD&quot;</span>, <span class="s">&quot;CAD&quot;</span>] <span class="c"># =&gt; 0.98</span>
+
+<span class="c"># Iterates rates</span>
+store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o">|</span>
+  puts rate
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
       <div class="signature">
@@ -739,7 +793,7 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -772,7 +826,7 @@ store.each <span class="k">do</span> <span class="o">|</span>rate<span class="o"
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store/memory.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>

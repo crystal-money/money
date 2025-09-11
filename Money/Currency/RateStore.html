@@ -367,6 +367,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Registry/Converter/YAML" data-name="money::registry::converter::yaml(v)">
+      <a href="../../Money/Registry/Converter/YAML.html">YAML</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -458,6 +463,8 @@
     
       <li class="other-type">JSON::Serializable</li>
     
+      <li class="other-type">YAML::Serializable</li>
+    
   </ul>
 
 
@@ -507,7 +514,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L2" target="_blank">
         money/currency/rate_store.cr
       </a>
     
@@ -528,6 +535,13 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>Alias of <code>Converter.from_yaml</code>.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
@@ -730,6 +744,19 @@
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -741,6 +768,25 @@
 </a>
     Constructor Detail
   </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Alias of <code>Converter.from_yaml</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
       <div class="signature">
@@ -772,7 +818,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -889,7 +935,7 @@ store <span class="o">&lt;&lt;</span> <span class="t">Rate</span>.new(
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -923,7 +969,7 @@ store <span class="o">&lt;&lt;</span> [
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -950,7 +996,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -974,7 +1020,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1000,7 +1046,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1021,7 +1067,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L188" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L188" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1042,7 +1088,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L178" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L178" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1066,7 +1112,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1087,7 +1133,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L170" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L170" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1108,7 +1154,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1124,7 +1170,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1140,7 +1186,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>

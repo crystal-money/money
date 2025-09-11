@@ -367,6 +367,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Registry/Converter/YAML" data-name="money::registry::converter::yaml(v)">
+      <a href="../../Money/Registry/Converter/YAML.html">YAML</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -458,6 +463,8 @@
     
       <li class="other-type">JSON::Serializable</li>
     
+      <li class="other-type">YAML::Serializable</li>
+    
   </ul>
 
 
@@ -479,15 +486,22 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/json.cr#L27" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/json.cr#L27" target="_blank">
         money/currency/json.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L2" target="_blank">
         money/currency/rate.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/yaml.cr#L17" target="_blank">
+        money/currency/yaml.cr
       </a>
     
     <br/>
@@ -510,6 +524,11 @@
     
       <li class="entry-summary">
         <a href="#new%28base%3AMoney%3A%3ACurrency%2Ctarget%3AMoney%3A%3ACurrency%2Cvalue%3ABigDecimal%2Cupdated_at%3ATime%3DTime.utc%29-class-method" class="signature"><strong>.new</strong>(base : Money::Currency, target : Money::Currency, value : BigDecimal, updated_at : Time = <span class="t">Time</span>.utc)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
         
       </li>
     
@@ -576,6 +595,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_yaml</strong>(yaml : YAML::Nodes::Builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#updated_at%3ATime-instance-method" class="signature"><strong>#updated_at</strong> : Time</a>
         
       </li>
@@ -590,6 +614,19 @@
 
 
   <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
     
       
 
@@ -679,7 +716,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/yaml.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -695,7 +748,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/json.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/json.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -746,7 +799,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -762,7 +815,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -787,7 +840,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -803,7 +856,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -819,7 +872,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/json.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/json.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -835,7 +888,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -851,7 +904,23 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_yaml(yaml:YAML::Nodes::Builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_yaml</strong>(yaml : YAML::Nodes::Builder)
+
+        <a class="method-permalink" href="#to_yaml%28yaml%3AYAML%3A%3ANodes%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/yaml.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -867,7 +936,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -883,7 +952,7 @@ or <code>nil</code> if the two objects are not comparable.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/rate.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/f78e486/src/money/currency/rate.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
