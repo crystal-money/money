@@ -1,5 +1,8 @@
 require "big"
 require "json"
+{% if flag?(:docs) %}
+  require "yaml"
+{% end %}
 
 struct Money
 end
