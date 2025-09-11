@@ -127,6 +127,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/NotFoundError" data-name="money::currency::notfounderror">
+      <a href="../../Money/Currency/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
       <a href="../../Money/Currency/Rate.html">Rate</a>
       
@@ -392,11 +397,6 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
-      <a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a>
-      
-    </li>
-  
   <li class=" " data-id="money/Money/UnknownRateError" data-name="money::unknownrateerror">
       <a href="../../Money/UnknownRateError.html">UnknownRateError</a>
       
@@ -475,7 +475,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L2" target="_blank">
         money/currency/enumeration.cr
       </a>
     
@@ -548,7 +548,7 @@
       <li class="entry-summary">
         <a href="#find%28key%3AString%7CSymbol%29%3ACurrency-instance-method" class="signature"><strong>#find</strong>(key : String | Symbol) : Currency</a>
         
-          <div class="summary"><p>Looks up a currency with the given <em>key</em> and returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p></div>
+          <div class="summary"><p>Looks up a currency with the given <em>key</em> and returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance on success, raises <code>NotFoundError</code> otherwise.</p></div>
         
       </li>
     
@@ -612,7 +612,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -633,7 +633,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -654,7 +654,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -675,7 +675,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -696,7 +696,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -717,7 +717,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -733,15 +733,15 @@
         <div class="doc">
           
           <p>Looks up a currency with the given <em>key</em> and returns a <code><a href="../../Money/Currency.html">Currency</a></code> instance
-on success, raises <code><a href="../../Money/UnknownCurrencyError.html">UnknownCurrencyError</a></code> otherwise.</p>
+on success, raises <code>NotFoundError</code> otherwise.</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;EUR&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;EUR&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># raises Money::UnknownCurrencyError</span></code></pre>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;FOO&quot;</span>) <span class="c"># raises Money::Currency::NotFoundError</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -765,7 +765,7 @@ on success, <code>nil</code> otherwise.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e1fe8d4/src/money/currency/enumeration.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/5d1288c/src/money/currency/enumeration.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>

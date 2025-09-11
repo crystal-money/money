@@ -127,6 +127,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/NotFoundError" data-name="money::currency::notfounderror">
+      <a href="Money/Currency/NotFoundError.html">NotFoundError</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/Rate" data-name="money::currency::rate">
       <a href="Money/Currency/Rate.html">Rate</a>
       
@@ -389,11 +394,6 @@
   
   <li class=" " data-id="money/Money/UndefinedSmallestDenominationError" data-name="money::undefinedsmallestdenominationerror">
       <a href="Money/UndefinedSmallestDenominationError.html">UndefinedSmallestDenominationError</a>
-      
-    </li>
-  
-  <li class=" " data-id="money/Money/UnknownCurrencyError" data-name="money::unknowncurrencyerror">
-      <a href="Money/UnknownCurrencyError.html">UnknownCurrencyError</a>
       
     </li>
   
@@ -669,7 +669,7 @@ currency.fiat?  <span class="c"># =&gt; true</span></code></pre>
 <p><code>Money::Currency.find</code> and <code>Money::Currency.[]</code> methods let you find a currency by its code:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:usd</span>]       <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
-<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:foo</span>]       <span class="c"># raises Money::UnknownCurrencyError</span></code></pre>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:foo</span>]       <span class="c"># raises Money::Currency::NotFoundError</span></code></pre>
 <p>There are also <code>Money::Currency.find?</code> and <code>Money::Currency.[]?</code> non-raising methods:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find?(<span class="s">&quot;USD&quot;</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>[<span class="n">:usd</span>]?       <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
