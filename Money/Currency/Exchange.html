@@ -449,6 +449,22 @@
 
 
 
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">JSON::Serializable</li>
+    
+      <li class="other-type">YAML::Serializable</li>
+    
+  </ul>
+
 
 
 
@@ -482,8 +498,22 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L2" target="_blank">
         money/currency/exchange.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/json.cr#L40" target="_blank">
+        money/currency/json.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/yaml.cr#L30" target="_blank">
+        money/currency/yaml.cr
       </a>
     
     <br/>
@@ -503,6 +533,16 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new%28rate_store%3AMoney%3A%3ACurrency%3A%3ARateStore%7CNil%3Dnil%2Crate_provider%3AMoney%3A%3ACurrency%3A%3ARateProvider%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(rate_store : Money::Currency::RateStore | Nil = <span class="n">nil</span>, rate_provider : Money::Currency::RateProvider | Nil = <span class="n">nil</span>)</a>
@@ -558,28 +598,20 @@
       <li class="entry-summary">
         <a href="#rate_provider%3ARateProvider-instance-method" class="signature"><strong>#rate_provider</strong> : RateProvider</a>
         
-          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p></div>
-        
       </li>
     
       <li class="entry-summary">
         <a href="#rate_provider%3D%28rate_provider%3ARateProvider%7CNil%29-instance-method" class="signature"><strong>#rate_provider=</strong>(rate_provider : RateProvider | Nil)</a>
-        
-          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#rate_store%3ARateStore-instance-method" class="signature"><strong>#rate_store</strong> : RateStore</a>
         
-          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
-        
       </li>
     
       <li class="entry-summary">
         <a href="#rate_store%3D%28rate_store%3ARateStore%7CNil%29-instance-method" class="signature"><strong>#rate_store=</strong>(rate_store : RateStore | Nil)</a>
-        
-          <div class="summary"><p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p></div>
         
       </li>
     
@@ -622,6 +654,32 @@
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -634,6 +692,38 @@
     Constructor Detail
   </h2>
   
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/yaml.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/json.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="new(rate_store:Money::Currency::RateStore|Nil=nil,rate_provider:Money::Currency::RateProvider|Nil=nil)-class-method">
       <div class="signature">
         
@@ -645,7 +735,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -682,7 +772,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -704,7 +794,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -726,7 +816,7 @@ or raises <code><a href="../../Money/UnknownRateError.html">UnknownRateError</a>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -748,7 +838,7 @@ or <code>nil</code> if not found.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -761,16 +851,10 @@ or <code>nil</code> if not found.</p>
         <a class="method-permalink" href="#rate_provider%3ARateProvider-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p>
-<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_provider</code> if set to <code>nil</code> (the default).</p>
-        </div>
-      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -783,16 +867,10 @@ or <code>nil</code> if not found.</p>
         <a class="method-permalink" href="#rate_provider%3D%28rate_provider%3ARateProvider%7CNil%29-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>An exchange <code><a href="../../Money/Currency/RateProvider.html">RateProvider</a></code> object, used to fetch exchange rate pairs.</p>
-<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_provider</code> if set to <code>nil</code> (the default).</p>
-        </div>
-      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -805,16 +883,10 @@ or <code>nil</code> if not found.</p>
         <a class="method-permalink" href="#rate_store%3ARateStore-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p>
-<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_store</code> if set to <code>nil</code> (the default).</p>
-        </div>
-      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -827,16 +899,10 @@ or <code>nil</code> if not found.</p>
         <a class="method-permalink" href="#rate_store%3D%28rate_store%3ARateStore%7CNil%29-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>An exchange <code><a href="../../Money/Currency/RateStore.html">RateStore</a></code> object, used to persist exchange rate pairs.</p>
-<p><span class="flag purple">NOTE</span>  Will return <code>Money.default_rate_store</code> if set to <code>nil</code> (the default).</p>
-        </div>
-      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -857,7 +923,7 @@ or <code>nil</code> if not found.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5aa5b32/src/money/currency/exchange.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d982f17/src/money/currency/exchange.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -899,7 +899,7 @@ which are used in order to fetch the exchange rate.</p>
     <use href="#octicon-link"/>
   </svg>
 </a>JSON/YAML Serialization</h2>
-<p><code><a href="Money.html">Money</a></code>, <code><a href="Money/Currency.html">Money::Currency</a></code>, <code><a href="Money/Currency/Rate.html">Money::Currency::Rate</a></code>, <code><a href="Money/Currency/RateStore.html">Money::Currency::RateStore</a></code> and <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code> implements <code>JSON::Serializable</code> and <code>YAML::Serializable</code>:</p>
+<p><code><a href="Money.html">Money</a></code>, <code><a href="Money/Currency.html">Money::Currency</a></code>, <code><a href="Money/Currency/Exchange.html">Money::Currency::Exchange</a></code>, <code><a href="Money/Currency/Rate.html">Money::Currency::Rate</a></code>, <code><a href="Money/Currency/RateStore.html">Money::Currency::RateStore</a></code> and <code><a href="Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code> implements <code>JSON::Serializable</code> and <code>YAML::Serializable</code>:</p>
 <h3><a id="money" class="anchor" href="#money">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -932,6 +932,28 @@ which are used in order to fetch the exchange rate.</p>
 
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.from_json(<span class="s">%(&quot;USD&quot;)</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.from_yaml(<span class="s">&quot;USD&quot;</span>)    <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span></code></pre>
+<h3><a id="moneycurrencyexchange" class="anchor" href="#moneycurrencyexchange">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code><a href="Money/Currency/Exchange.html">Money::Currency::Exchange</a></code></h3>
+<pre><code class="language-crystal">exchange <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Exchange</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
+<span class="s">  rate_store:
+    name: File
+    options:
+      filepath: ~/.cache/money/currency-rates.json
+      ttl: 1 hour, 11 minutes
+
+  rate_provider:
+    name: Compound
+    options:
+      providers:
+      - name: ECB
+      - name: FloatRates
+      - name: UniRateAPI
+        options:
+          api_key: valid-api-key
+  YAML</span></code></pre>
 <h3><a id="moneycurrencyrate" class="anchor" href="#moneycurrencyrate">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -957,7 +979,7 @@ and <code>options</code> - optional hash that's being passed to the store initia
 <pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
 <span class="s">  name: File
   options:
-    filename: ~/.cache/money/currency-rate-store.json
+    filepath: ~/.cache/money/currency-rates.json
     ttl: 1 hour, 11 minutes
   YAML</span>
 
@@ -965,7 +987,7 @@ and <code>options</code> - optional hash that's being passed to the store initia
 store.<span class="k">class</span>   <span class="c"># =&gt; Money::Currency::RateStore::File</span></code></pre>
 <p>For specific stores you pass the <code>options</code> directly:</p>
 <pre><code class="language-crystal">file_store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">File</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
-<span class="s">  filename: ~/.cache/money/currency-rate-store.json
+<span class="s">  filepath: ~/.cache/money/currency-rates.json
   ttl: 1 hour, 11 minutes
   YAML</span></code></pre>
 <h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
@@ -992,7 +1014,7 @@ foo <span class="o">=</span> <span class="t">FooWithGenericStore</span>.from_yam
 <span class="s">  store:
     name: File
     options:
-      filename: ~/.cache/money/currency-rate-store.json
+      filepath: ~/.cache/money/currency-rates.json
       ttl: 1 hour, 11 minutes
   YAML</span>
 
