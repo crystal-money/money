@@ -1,6 +1,54 @@
 require "../spec_helper"
 
+private record FooWithExchange, exchange : Money::Currency::Exchange do
+  include JSON::Serializable
+  include YAML::Serializable
+end
+
 describe Money::Currency::Exchange do
+  context "JSON serialization" do
+    foo_json = <<-JSON
+      {
+        "exchange": {
+          "rate_store": {
+            "name": "memory",
+            "options": {
+              "index": {}
+            }
+          },
+          "rate_provider": {
+            "name": "null",
+            "options": {}
+          }
+        }
+      }
+      JSON
+
+    it "de/serializes correctly" do
+      FooWithExchange.from_json(foo_json).to_pretty_json
+        .should eq foo_json
+    end
+  end
+
+  context "YAML serialization" do
+    foo_yaml = <<-YAML
+      ---
+      exchange:
+        rate_store:
+          name: memory
+          options:
+            index: {}
+        rate_provider:
+          name: "null"
+          options: {}\n
+      YAML
+
+    it "de/serializes correctly" do
+      FooWithExchange.from_yaml(foo_yaml).to_yaml
+        .should eq foo_yaml
+    end
+  end
+
   context "#initialize" do
     it "sets the rate store" do
       rate_store =

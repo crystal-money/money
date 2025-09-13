@@ -26,4 +26,8 @@ class Money::Currency
       }.to_yaml(yaml)
     end
   end
+
+  class Exchange
+    include YAML::Serializable
+  end
 end

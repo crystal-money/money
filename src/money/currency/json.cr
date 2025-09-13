@@ -36,4 +36,8 @@ class Money::Currency
       }.to_json(json)
     end
   end
+
+  class Exchange
+    include JSON::Serializable
+  end
 end

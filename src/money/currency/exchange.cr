@@ -3,6 +3,12 @@ class Money::Currency
     # An exchange `RateStore` object, used to persist exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_store` if set to `nil` (the default).
+    if_defined?(:JSON) do
+      @[JSON::Field(converter: Money::Currency::RateStore::Converter)]
+    end
+    if_defined?(:YAML) do
+      @[YAML::Field(converter: Money::Currency::RateStore::Converter)]
+    end
     property rate_store : RateStore?
 
     # :ditto:
@@ -13,6 +19,12 @@ class Money::Currency
     # An exchange `RateProvider` object, used to fetch exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_provider` if set to `nil` (the default).
+    if_defined?(:JSON) do
+      @[JSON::Field(converter: Money::Currency::RateProvider::Converter)]
+    end
+    if_defined?(:YAML) do
+      @[YAML::Field(converter: Money::Currency::RateProvider::Converter)]
+    end
     property rate_provider : RateProvider?
 
     # :ditto:
@@ -22,6 +34,8 @@ class Money::Currency
 
     # A concurrency-safe mutex used to synchronize access to the
     # `#rate_store` and `#rate_provider` objects.
+    if_defined?(:JSON) { @[JSON::Field(ignore: true)] }
+    if_defined?(:YAML) { @[YAML::Field(ignore: true)] }
     @mutex = Mutex.new
 
     def initialize(@rate_store = nil, @rate_provider = nil)

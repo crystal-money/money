@@ -544,7 +544,7 @@ Money.new(10_08, "CHF").round_to_nearest_cash_value
 
 ## JSON/YAML Serialization
 
-`Money`, `Money::Currency`, `Money::Currency::Rate`, `Money::Currency::RateStore` and `Money::Currency::RateProvider` implements `JSON::Serializable` and `YAML::Serializable`:
+`Money`, `Money::Currency`, `Money::Currency::Exchange`, `Money::Currency::Rate`, `Money::Currency::RateStore` and `Money::Currency::RateProvider` implements `JSON::Serializable` and `YAML::Serializable`:
 
 ### `Money`
 
@@ -576,6 +576,28 @@ Money::Currency.from_yaml("{ code: FOO, ... }")    # => #<Money::Currency @code=
 
 Money::Currency.from_json(%("USD")) # => #<Money::Currency @code="USD">
 Money::Currency.from_yaml("USD")    # => #<Money::Currency @code="USD">
+```
+
+### `Money::Currency::Exchange`
+
+```crystal
+exchange = Money::Currency::Exchange.from_yaml <<-YAML
+  rate_store:
+    name: File
+    options:
+      filepath: ~/.cache/money/currency-rates.json
+      ttl: 1 hour, 11 minutes
+
+  rate_provider:
+    name: Compound
+    options:
+      providers:
+      - name: ECB
+      - name: FloatRates
+      - name: UniRateAPI
+        options:
+          api_key: valid-api-key
+  YAML
 ```
 
 ### `Money::Currency::Rate`
