@@ -624,7 +624,7 @@ and `options` - optional hash that's being passed to the store initializer.
 store = Money::Currency::RateStore.from_yaml <<-YAML
   name: File
   options:
-    filename: ~/.cache/money/currency-rate-store.json
+    filepath: ~/.cache/money/currency-rates.json
     ttl: 1 hour, 11 minutes
   YAML
 
@@ -636,7 +636,7 @@ For specific stores you pass the `options` directly:
 
 ```crystal
 file_store = Money::Currency::RateStore::File.from_yaml <<-YAML
-  filename: ~/.cache/money/currency-rate-store.json
+  filepath: ~/.cache/money/currency-rates.json
   ttl: 1 hour, 11 minutes
   YAML
 ```
@@ -664,7 +664,7 @@ foo = FooWithGenericStore.from_yaml <<-YAML
   store:
     name: File
     options:
-      filename: ~/.cache/money/currency-rate-store.json
+      filepath: ~/.cache/money/currency-rates.json
       ttl: 1 hour, 11 minutes
   YAML
 
