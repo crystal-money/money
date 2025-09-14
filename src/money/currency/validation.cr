@@ -22,28 +22,31 @@ class Money::Currency
                 code.chars.all? { |char| char.ascii_uppercase? || char.ascii_number? }
 
       raise ArgumentError.new \
-        "Code must be all uppercase letters and/or digits: #{code.inspect}"
+        "Code must be all uppercase 3+ letters and/or digits: #{code.inspect}"
     end
 
     private def validate_subunit_to_unit
-      return if subunit_to_unit.positive?
+      return unless value = subunit_to_unit
 
-      raise ArgumentError.new \
-        "Subunit to unit value must be positive: #{subunit_to_unit}"
+      value.positive? ||
+        raise ArgumentError.new \
+          "Subunit to unit value must be positive: #{value}"
     end
 
     private def validate_iso_numeric
-      return if !(value = iso_numeric) || value.positive?
+      return unless value = iso_numeric
 
-      raise ArgumentError.new \
-        "ISO numeric value must be positive: #{value}"
+      value.positive? ||
+        raise ArgumentError.new \
+          "ISO numeric value must be positive: #{value}"
     end
 
     private def validate_smallest_denomination
-      return if !(value = smallest_denomination) || value.positive?
+      return unless value = smallest_denomination
 
-      raise ArgumentError.new \
-        "Smallest denomination value must be positive: #{value}"
+      value.positive? ||
+        raise ArgumentError.new \
+          "Smallest denomination value must be positive: #{value}"
     end
   end
 end
