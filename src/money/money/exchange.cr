@@ -9,7 +9,7 @@ struct Money
     # Money.new(1_00, "USD").exchange_to("EUR") # => Money(@amount=1.23, @currency="EUR")
     # Money.new(1_00, "EUR").exchange_to("USD") # => Money(@amount=0.82, @currency="USD")
     # ```
-    def exchange_to(other_currency : String | Symbol | Currency) : Money
+    def exchange_to(other_currency : String | Symbol | Currency, exchange = Money.default_exchange) : Money
       other_currency = Currency[other_currency]
       case
       when other_currency == currency

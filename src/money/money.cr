@@ -96,6 +96,19 @@ struct Money
     end
   end
 
+  # Sets the given currency *exchange* within the lifetime of the given block.
+  #
+  # See also `Money.default_exchange`.
+  def self.with_default_exchange(exchange : Currency::Exchange, &)
+    prev_default_exchange = default_exchange
+    self.default_exchange = exchange
+    begin
+      yield
+    ensure
+      self.default_exchange = prev_default_exchange
+    end
+  end
+
   # Disallows currency conversion within the lifetime of the given block.
   #
   # See also `Money.disallow_currency_conversion!`.
@@ -122,11 +135,10 @@ struct Money
   # Money.new(0, "USD")    # => Money(@amount=0.0 @currency="USD")
   # Money.new(1_50, "USD") # => Money(@amount=1.5 @currency="USD")
   # ```
-  def self.new(value : Int = 0, currency = Money.default_currency, exchange = nil)
+  def self.new(value : Int = 0, currency = Money.default_currency)
     new(
       fractional: value,
       currency: currency,
-      exchange: exchange,
     )
   end
 
@@ -141,11 +153,10 @@ struct Money
   # WARNING: Floating points cannot guarantee precision. Therefore, they
   # should only be used when you no longer need to represent currency or
   # working with another system that requires floats.
-  def self.new(value : Number, currency = Money.default_currency, exchange = nil)
+  def self.new(value : Number, currency = Money.default_currency)
     new(
       amount: value,
       currency: currency,
-      exchange: exchange,
     )
   end
 
@@ -155,28 +166,15 @@ struct Money
   # The money's currency.
   getter currency : Currency
 
-  # The `Currency::Exchange` object which currency exchanges are performed with.
-  #
-  # NOTE: Will return `Money.default_exchange` if set to `nil` (the default).
-  if_defined?(:JSON) { @[JSON::Field(ignore: true)] }
-  if_defined?(:YAML) { @[YAML::Field(ignore: true)] }
-  property exchange : Currency::Exchange?
-
-  # :ditto:
-  def exchange : Currency::Exchange
-    @exchange || Money.default_exchange
-  end
-
   # Creates a new `Money` object of value given as an *amount*
   # of the given *currency*.
   #
   # ```
   # Money.new(amount: 13.37) # => Money(@amount=13.37)
   # ```
-  def initialize(*, amount : Number, currency = Money.default_currency, exchange = nil)
+  def initialize(*, amount : Number, currency = Money.default_currency)
     @currency = Currency[currency]
     @amount = amount.to_big_d
-    @exchange = exchange
   end
 
   # Creates a new `Money` object of value given as a *fractional*
@@ -185,17 +183,16 @@ struct Money
   # ```
   # Money.new(fractional: 13_37) # => Money(@amount=13.37)
   # ```
-  def initialize(*, fractional : Number, currency = Money.default_currency, exchange = nil)
+  def initialize(*, fractional : Number, currency = Money.default_currency)
     @currency = Currency[currency]
     @amount = fractional.to_big_d / @currency.subunit_to_unit
-    @exchange = exchange
   end
 
-  # Returns a new `Money` instance with same `currency` and `exchange`
-  # properties set as in `self`.
+  # Returns a new `Money` instance with same `currency` property set
+  # as in `self`.
   protected def copy_with(**options) : Money
     options =
-      {currency: @currency, exchange: @exchange}.merge(options)
+      {currency: @currency}.merge(options)
 
     Money.new(**options)
   end

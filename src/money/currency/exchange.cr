@@ -63,7 +63,7 @@ class Money::Currency
       amount =
         from.amount * exchange_rate(from.currency, to)
 
-      Money.new(amount: amount, currency: to, exchange: self)
+      Money.new(amount: amount, currency: to)
     end
 
     # Returns the exchange rate between *base* and *target* currency,

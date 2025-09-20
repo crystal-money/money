@@ -69,7 +69,7 @@ describe Money::Arithmetic do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
       exchange.rate_store["EUR", "USD"] = 10
 
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(10_00, "USD") + Money.new(90, "EUR")).should eq Money.new(19_00, "USD")
       end
     end
@@ -89,7 +89,7 @@ describe Money::Arithmetic do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
       exchange.rate_store["EUR", "USD"] = 10
 
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(10_00, "USD") - Money.new(90, "EUR")).should eq Money.new(1_00, "USD")
       end
     end
@@ -138,7 +138,7 @@ describe Money::Arithmetic do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
       exchange.rate_store["EUR", "USD"] = 2
 
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         tests = {
           {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: 1.625},
           {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: -1.625},
@@ -181,7 +181,7 @@ describe Money::Arithmetic do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
       exchange.rate_store["EUR", "USD"] = 2
 
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         tests = {
           {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: {1, Money.new(5, "USD")}},
           {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: {-2, Money.new(-3, "USD")}},
@@ -224,7 +224,7 @@ describe Money::Arithmetic do
       exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
       exchange.rate_store["EUR", "USD"] = 2
 
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         tests = {
           {a: Money.new(13, "USD"), b: Money.new(4, "EUR"), c: Money.new(5, "USD")},
           {a: Money.new(13, "USD"), b: Money.new(-4, "EUR"), c: Money.new(-3, "USD")},

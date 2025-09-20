@@ -82,7 +82,7 @@ describe Money do
 
     it "sets the value to the given Currency::Exchange object" do
       exchange = Money::Currency::Exchange::SingleCurrency.new
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         Money.default_exchange.should be exchange
       end
     end
@@ -127,24 +127,20 @@ describe Money do
 
   describe ".without_currency_conversion" do
     it "disallows conversions within the yielded block" do
-      with_default_exchange do
-        prev_exchange = Money.default_exchange
+      prev_exchange = Money.default_exchange
 
-        Money.without_currency_conversion do
-          expect_raises(Money::DifferentCurrencyError) do
-            Money.new(100, "USD") + Money.new(100, "EUR")
-          end
+      Money.without_currency_conversion do
+        expect_raises(Money::DifferentCurrencyError) do
+          Money.new(100, "USD") + Money.new(100, "EUR")
         end
-        Money.default_exchange.should eq prev_exchange
       end
+      Money.default_exchange.should eq prev_exchange
     end
   end
 
   describe ".disallow_currency_conversion!" do
     it "disallows conversions when doing money arithmetic" do
-      with_default_exchange do
-        Money.disallow_currency_conversion!
-
+      Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
         expect_raises(Money::DifferentCurrencyError) do
           Money.new(100, "USD") + Money.new(100, "EUR")
         end
@@ -163,11 +159,6 @@ describe Money do
   end
 
   describe "#==" do
-    it "returns true even if exchange differs" do
-      Money.new(1_00, "USD", Money::Currency::Exchange.new)
-        .should eq Money.new(1_00, "USD", Money::Currency::Exchange.new)
-    end
-
     it "returns true if amounts and currencies are equal" do
       Money.new(1_00, "USD").should eq Money.new(1_00, "USD")
       Money.new(1_00, "USD").should_not eq Money.new(5_00, "USD")
@@ -179,11 +170,6 @@ describe Money do
     exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
     exchange.rate_store["EUR", "USD"] = 2
 
-    it "returns true even if exchange differs" do
-      (Money.new(1_00, "USD", Money::Currency::Exchange.new) =~
-        Money.new(1_00, "USD", Money::Currency::Exchange.new)).should be_true
-    end
-
     it "returns true if both amounts are zero, even if currency differs" do
       (Money.zero("USD") =~ Money.zero("USD")).should be_true
       (Money.zero("USD") =~ Money.zero("EUR")).should be_true
@@ -191,7 +177,7 @@ describe Money do
     end
 
     it "returns true if converted amount is equal" do
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(2_00, "USD") =~ Money.new(1_00, "EUR")).should be_true
         (Money.new(6_00, "USD") =~ Money.new(1_00, "EUR")).should be_false
       end
@@ -214,7 +200,7 @@ describe Money do
     end
 
     it "converts other object amount to current currency, then compares the two object amounts (different currency)" do
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(150_00, "USD") <=> Money.new(100_00, "EUR")).should eq 0
         (Money.new(200_00, "USD") <=> Money.new(200_00, "EUR")).should be < 0
         (Money.new(800_00, "USD") <=> Money.new(400_00, "EUR")).should be > 0
@@ -231,8 +217,7 @@ describe Money do
       context "when currencies differ" do
         context "when both values are 1_00" do
           it "raises currency error" do
-            with_default_exchange do
-              Money.disallow_currency_conversion!
+            Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
               expect_raises(Money::DifferentCurrencyError) do
                 Money.us_dollar(1_00) <=> Money.euro(1_00)
               end
@@ -242,8 +227,7 @@ describe Money do
 
         context "when both values are 0" do
           it "considers them equal" do
-            with_default_exchange do
-              Money.disallow_currency_conversion!
+            Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
               (Money.us_dollar(0) <=> Money.euro(0)).should eq 0
             end
           end
@@ -280,24 +264,6 @@ describe Money do
       Money.new(1_00, "EUR").copy_with(fractional: 3_00)
         .should eq Money.new(3_00, "EUR")
     end
-
-    it "copies the exchange" do
-      exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      money = Money.new(1_00, "EUR", exchange)
-      money.exchange.should be exchange
-
-      money.copy_with(fractional: 3_00).exchange
-        .should be exchange
-    end
-
-    it "does not materialize the `exchange` property" do
-      money = Money.new(1_00, "EUR")
-      money.@exchange.should be_nil
-
-      money.copy_with(fractional: 3_00).@exchange
-        .should be_nil
-    end
   end
 
   describe "#with_currency" do
@@ -312,7 +278,6 @@ describe Money do
 
       new_money.should eq Money.new(10_00, "EUR")
       new_money.amount.should eq money.amount
-      new_money.exchange.should eq money.exchange
     end
   end
 
@@ -379,27 +344,6 @@ describe Money do
 
     it "returns Currency object passed in #initialize" do
       Money.new(currency: "EUR").currency.should be Money::Currency.find("EUR")
-    end
-  end
-
-  describe "#exchange" do
-    it "returns default Currency::Exchange object" do
-      Money.new.exchange.should be Money.default_exchange
-    end
-
-    it "returns Currency::Exchange object passed in #initialize" do
-      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
-        Money.new(exchange: exchange).exchange.should be exchange
-      end
-    end
-
-    it "takes Currency::Exchange object" do
-      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
-        Money.new.tap do |money|
-          money.exchange = exchange
-          money.exchange.should be exchange
-        end
-      end
     end
   end
 end

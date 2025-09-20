@@ -24,16 +24,6 @@ ensure
   end
 end
 
-def with_default_exchange(exchange = nil, &)
-  previous_exchange = Money.default_exchange
-  begin
-    Money.default_exchange = exchange if exchange
-    yield
-  ensure
-    Money.default_exchange = previous_exchange
-  end
-end
-
 Spec.around_each do |example|
   Money.default_currency = "USD"
   example.run
