@@ -1,0 +1,13 @@
+{
+  "type": "fiat",
+  "iso_numeric": 532,
+  "code": "XCG",
+  "name": "Caribbean Guilder",
+  "symbol": "Cg",
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}
