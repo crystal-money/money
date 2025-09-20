@@ -82,7 +82,7 @@ describe Money do
 
     it "sets the value to the given Currency::Exchange object" do
       exchange = Money::Currency::Exchange::SingleCurrency.new
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         Money.default_exchange.should be exchange
       end
     end
@@ -127,24 +127,20 @@ describe Money do
 
   describe ".without_currency_conversion" do
     it "disallows conversions within the yielded block" do
-      with_default_exchange do
-        prev_exchange = Money.default_exchange
+      prev_exchange = Money.default_exchange
 
-        Money.without_currency_conversion do
-          expect_raises(Money::DifferentCurrencyError) do
-            Money.new(100, "USD") + Money.new(100, "EUR")
-          end
+      Money.without_currency_conversion do
+        expect_raises(Money::DifferentCurrencyError) do
+          Money.new(100, "USD") + Money.new(100, "EUR")
         end
-        Money.default_exchange.should eq prev_exchange
       end
+      Money.default_exchange.should eq prev_exchange
     end
   end
 
   describe ".disallow_currency_conversion!" do
     it "disallows conversions when doing money arithmetic" do
-      with_default_exchange do
-        Money.disallow_currency_conversion!
-
+      Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
         expect_raises(Money::DifferentCurrencyError) do
           Money.new(100, "USD") + Money.new(100, "EUR")
         end
@@ -181,7 +177,7 @@ describe Money do
     end
 
     it "returns true if converted amount is equal" do
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(2_00, "USD") =~ Money.new(1_00, "EUR")).should be_true
         (Money.new(6_00, "USD") =~ Money.new(1_00, "EUR")).should be_false
       end
@@ -204,7 +200,7 @@ describe Money do
     end
 
     it "converts other object amount to current currency, then compares the two object amounts (different currency)" do
-      with_default_exchange(exchange) do
+      Money.with_default_exchange(exchange) do
         (Money.new(150_00, "USD") <=> Money.new(100_00, "EUR")).should eq 0
         (Money.new(200_00, "USD") <=> Money.new(200_00, "EUR")).should be < 0
         (Money.new(800_00, "USD") <=> Money.new(400_00, "EUR")).should be > 0
@@ -221,8 +217,7 @@ describe Money do
       context "when currencies differ" do
         context "when both values are 1_00" do
           it "raises currency error" do
-            with_default_exchange do
-              Money.disallow_currency_conversion!
+            Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
               expect_raises(Money::DifferentCurrencyError) do
                 Money.us_dollar(1_00) <=> Money.euro(1_00)
               end
@@ -232,8 +227,7 @@ describe Money do
 
         context "when both values are 0" do
           it "considers them equal" do
-            with_default_exchange do
-              Money.disallow_currency_conversion!
+            Money.with_default_exchange(Money::Currency::Exchange::SingleCurrency.new) do
               (Money.us_dollar(0) <=> Money.euro(0)).should eq 0
             end
           end

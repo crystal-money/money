@@ -96,6 +96,19 @@ struct Money
     end
   end
 
+  # Sets the given currency *exchange* within the lifetime of the given block.
+  #
+  # See also `Money.default_exchange`.
+  def self.with_default_exchange(exchange : Currency::Exchange, &)
+    prev_default_exchange = default_exchange
+    self.default_exchange = exchange
+    begin
+      yield
+    ensure
+      self.default_exchange = prev_default_exchange
+    end
+  end
+
   # Disallows currency conversion within the lifetime of the given block.
   #
   # See also `Money.disallow_currency_conversion!`.
