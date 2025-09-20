@@ -6,6 +6,11 @@ describe Money::Exchange do
   exchange.rate_store["USD", "EUR"] = 3.21
 
   describe "#exchange_to" do
+    it "exchanges the amount properly with given exchange" do
+      Money.new(100_00, "EUR").exchange_to("USD", exchange).should eq Money.new(123_00, "USD")
+      Money.new(100_00, "USD").exchange_to("EUR", exchange).should eq Money.new(321_00, "EUR")
+    end
+
     it "exchanges the amount properly" do
       with_default_exchange(exchange) do
         Money.new(100_00, "EUR").exchange_to("USD").should eq Money.new(123_00, "USD")

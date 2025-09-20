@@ -65,20 +65,6 @@ describe Money::Constructors do
         end
       end
     end
-
-    context "given a exchange is not provided" do
-      it "should return the default exchange" do
-        Money.new.exchange.should be Money.default_exchange
-      end
-    end
-
-    context "given a exchange is provided" do
-      exchange = Money::Currency::Exchange::SingleCurrency.new
-
-      it "should return given exchange" do
-        Money.new(exchange: exchange).exchange.should be exchange
-      end
-    end
   end
 
   describe ".from_amount" do
@@ -146,19 +132,9 @@ describe Money::Constructors do
       Money.zero.should eq Money.new(0)
     end
 
-    it "uses default Currency::Exchange object" do
-      Money.zero.exchange.should be Money.default_exchange
-    end
-
     it "uses given Currency object" do
       Money::Currency.find("EUR").tap do |currency|
         Money.zero(currency: currency).currency.should be currency
-      end
-    end
-
-    it "uses given Currency::Exchange object" do
-      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
-        Money.zero(exchange: exchange).exchange.should be exchange
       end
     end
   end

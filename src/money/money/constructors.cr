@@ -9,11 +9,10 @@ struct Money
     # ```
     #
     # See also `#initialize`.
-    def from_amount(amount : Number | String, currency = Money.default_currency, exchange = nil) : Money
+    def from_amount(amount : Number | String, currency = Money.default_currency) : Money
       new(
         amount: amount.to_big_d,
         currency: currency,
-        exchange: exchange,
       )
     end
 
@@ -26,11 +25,10 @@ struct Money
     # ```
     #
     # See also `#initialize`.
-    def from_fractional(fractional : Number | String, currency = Money.default_currency, exchange = nil) : Money
+    def from_fractional(fractional : Number | String, currency = Money.default_currency) : Money
       new(
         fractional: fractional.to_big_d,
         currency: currency,
-        exchange: exchange,
       )
     end
 
@@ -40,8 +38,8 @@ struct Money
     # Money.zero       # => Money(@amount=0.0)
     # Money.zero(:pln) # => Money(@amount=0.0 @currency="PLN")
     # ```
-    def zero(currency = Money.default_currency, exchange = nil) : Money
-      new(0, currency, exchange)
+    def zero(currency = Money.default_currency) : Money
+      new(0, currency)
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -50,8 +48,8 @@ struct Money
     # ```
     # Money.us_dollar(1_00) # => Money(@amount=1.0 @currency="USD")
     # ```
-    def us_dollar(value, exchange = nil) : Money
-      new(value, "USD", exchange)
+    def us_dollar(value) : Money
+      new(value, "USD")
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -60,8 +58,8 @@ struct Money
     # ```
     # Money.euro(1_00) # => Money(@amount=1.0 @currency="EUR")
     # ```
-    def euro(value, exchange = nil) : Money
-      new(value, "EUR", exchange)
+    def euro(value) : Money
+      new(value, "EUR")
     end
 
     # Creates a new `Money` object of the given value, using the
@@ -70,8 +68,8 @@ struct Money
     # ```
     # Money.bitcoin(100) # => Money(@amount=0.000001 @currency="BTC")
     # ```
-    def bitcoin(value, exchange = nil) : Money
-      new(value, "BTC", exchange)
+    def bitcoin(value) : Money
+      new(value, "BTC")
     end
   end
 end

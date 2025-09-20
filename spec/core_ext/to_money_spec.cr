@@ -6,14 +6,6 @@ describe String do
       "10.00 USD".to_money?.should eq Money.from_amount(10, "USD")
     end
 
-    it "returns a Money object with given exchange" do
-      exchange =
-        Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      money = "10.00 USD".to_money?(exchange).should_not be_nil
-      money.exchange.should be exchange
-    end
-
     context "when :allow_ambiguous is true (default)" do
       it "returns a first matching currency for ambiguous values" do
         "$10.00".to_money?.should eq Money.from_amount(10, "USD")
@@ -34,14 +26,6 @@ describe String do
   describe "#to_money" do
     it "returns a Money object" do
       "10.00 USD".to_money.should eq Money.from_amount(10, "USD")
-    end
-
-    it "returns a Money object with given exchange" do
-      exchange =
-        Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      "10.00 USD".to_money(exchange).exchange
-        .should be exchange
     end
 
     context "when :allow_ambiguous is true (default)" do
@@ -78,14 +62,6 @@ describe Number do
       111.to_money?("PLN").should eq Money.from_amount(111, "PLN")
     end
 
-    it "returns a Money object with given exchange" do
-      exchange =
-        Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      money = 111.to_money?(exchange: exchange).should_not be_nil
-      money.exchange.should be exchange
-    end
-
     it "returns `nil` for invalid values" do
       Float64::INFINITY.to_money?.should be_nil
       Float64::NAN.to_money?.should be_nil
@@ -101,14 +77,6 @@ describe Number do
 
     it "returns a Money object with given currency" do
       111.to_money("PLN").should eq Money.from_amount(111, "PLN")
-    end
-
-    it "returns a Money object with given exchange" do
-      exchange =
-        Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      111.to_money(exchange: exchange).exchange
-        .should be exchange
     end
 
     it "raises ArgumentError for invalid values" do

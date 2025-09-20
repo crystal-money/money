@@ -163,11 +163,6 @@ describe Money do
   end
 
   describe "#==" do
-    it "returns true even if exchange differs" do
-      Money.new(1_00, "USD", Money::Currency::Exchange.new)
-        .should eq Money.new(1_00, "USD", Money::Currency::Exchange.new)
-    end
-
     it "returns true if amounts and currencies are equal" do
       Money.new(1_00, "USD").should eq Money.new(1_00, "USD")
       Money.new(1_00, "USD").should_not eq Money.new(5_00, "USD")
@@ -178,11 +173,6 @@ describe Money do
   describe "#=~" do
     exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
     exchange.rate_store["EUR", "USD"] = 2
-
-    it "returns true even if exchange differs" do
-      (Money.new(1_00, "USD", Money::Currency::Exchange.new) =~
-        Money.new(1_00, "USD", Money::Currency::Exchange.new)).should be_true
-    end
 
     it "returns true if both amounts are zero, even if currency differs" do
       (Money.zero("USD") =~ Money.zero("USD")).should be_true
@@ -280,24 +270,6 @@ describe Money do
       Money.new(1_00, "EUR").copy_with(fractional: 3_00)
         .should eq Money.new(3_00, "EUR")
     end
-
-    it "copies the exchange" do
-      exchange = Money::Currency::Exchange.new(Money::Currency::RateStore::Memory.new)
-
-      money = Money.new(1_00, "EUR", exchange)
-      money.exchange.should be exchange
-
-      money.copy_with(fractional: 3_00).exchange
-        .should be exchange
-    end
-
-    it "does not materialize the `exchange` property" do
-      money = Money.new(1_00, "EUR")
-      money.@exchange.should be_nil
-
-      money.copy_with(fractional: 3_00).@exchange
-        .should be_nil
-    end
   end
 
   describe "#with_currency" do
@@ -312,7 +284,6 @@ describe Money do
 
       new_money.should eq Money.new(10_00, "EUR")
       new_money.amount.should eq money.amount
-      new_money.exchange.should eq money.exchange
     end
   end
 
@@ -379,27 +350,6 @@ describe Money do
 
     it "returns Currency object passed in #initialize" do
       Money.new(currency: "EUR").currency.should be Money::Currency.find("EUR")
-    end
-  end
-
-  describe "#exchange" do
-    it "returns default Currency::Exchange object" do
-      Money.new.exchange.should be Money.default_exchange
-    end
-
-    it "returns Currency::Exchange object passed in #initialize" do
-      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
-        Money.new(exchange: exchange).exchange.should be exchange
-      end
-    end
-
-    it "takes Currency::Exchange object" do
-      Money::Currency::Exchange::SingleCurrency.new.tap do |exchange|
-        Money.new.tap do |money|
-          money.exchange = exchange
-          money.exchange.should be exchange
-        end
-      end
     end
   end
 end
