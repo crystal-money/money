@@ -471,7 +471,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L2" target="_blank">
         money/money/constructors.cr
       </a>
     
@@ -500,42 +500,42 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#bitcoin%28value%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#bitcoin</strong>(value, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#bitcoin%28value%29%3AMoney-instance-method" class="signature"><strong>#bitcoin</strong>(value) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object of the given value, using the Bitcoin cryptocurrency.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#euro%28value%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#euro</strong>(value, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#euro%28value%29%3AMoney-instance-method" class="signature"><strong>#euro</strong>(value) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object of the given value, using the Euro currency.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from_amount%28amount%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#from_amount</strong>(amount : Number | String, currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#from_amount%28amount%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%29%3AMoney-instance-method" class="signature"><strong>#from_amount</strong>(amount : Number | String, currency = <span class="t">Money</span>.default_currency) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object of value given in the <em>unit</em> of the given <em>currency</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from_fractional%28fractional%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#from_fractional</strong>(fractional : Number | String, currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#from_fractional%28fractional%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%29%3AMoney-instance-method" class="signature"><strong>#from_fractional</strong>(fractional : Number | String, currency = <span class="t">Money</span>.default_currency) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object of value given in the fractional <em>unit</em> of the given <em>currency</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#us_dollar%28value%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#us_dollar</strong>(value, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#us_dollar%28value%29%3AMoney-instance-method" class="signature"><strong>#us_dollar</strong>(value) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object of the given value, using the American dollar currency.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#zero%28currency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method" class="signature"><strong>#zero</strong>(currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : Money</a>
+        <a href="#zero%28currency%3DMoney.default_currency%29%3AMoney-instance-method" class="signature"><strong>#zero</strong>(currency = <span class="t">Money</span>.default_currency) : Money</a>
         
           <div class="summary"><p>Creates a new <code><a href="../Money.html">Money</a></code> object with value <code>0</code>.</p></div>
         
@@ -565,12 +565,12 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="bitcoin(value,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="bitcoin(value):Money-instance-method">
       <div class="signature">
         
-        def <strong>bitcoin</strong>(value, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>bitcoin</strong>(value) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#bitcoin%28value%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#bitcoin%28value%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -583,17 +583,17 @@ Bitcoin cryptocurrency.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="euro(value,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="euro(value):Money-instance-method">
       <div class="signature">
         
-        def <strong>euro</strong>(value, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>euro</strong>(value) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#euro%28value%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#euro%28value%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -606,17 +606,17 @@ Euro currency.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from_amount(amount:Number|String,currency=Money.default_currency,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="from_amount(amount:Number|String,currency=Money.default_currency):Money-instance-method">
       <div class="signature">
         
-        def <strong>from_amount</strong>(amount : <a href="../Number.html">Number</a> | <a href="../String.html">String</a>, currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>from_amount</strong>(amount : <a href="../Number.html">Number</a> | <a href="../String.html">String</a>, currency = <span class="t">Money</span>.default_currency) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#from_amount%28amount%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#from_amount%28amount%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -631,17 +631,17 @@ Euro currency.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from_fractional(fractional:Number|String,currency=Money.default_currency,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="from_fractional(fractional:Number|String,currency=Money.default_currency):Money-instance-method">
       <div class="signature">
         
-        def <strong>from_fractional</strong>(fractional : <a href="../Number.html">Number</a> | <a href="../String.html">String</a>, currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>from_fractional</strong>(fractional : <a href="../Number.html">Number</a> | <a href="../String.html">String</a>, currency = <span class="t">Money</span>.default_currency) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#from_fractional%28fractional%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#from_fractional%28fractional%3ANumber%7CString%2Ccurrency%3DMoney.default_currency%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -656,17 +656,17 @@ the given <em>currency</em>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="us_dollar(value,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="us_dollar(value):Money-instance-method">
       <div class="signature">
         
-        def <strong>us_dollar</strong>(value, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>us_dollar</strong>(value) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#us_dollar%28value%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#us_dollar%28value%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -679,17 +679,17 @@ American dollar currency.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="zero(currency=Money.default_currency,exchange=nil):Money-instance-method">
+    <div class="entry-detail" id="zero(currency=Money.default_currency):Money-instance-method">
       <div class="signature">
         
-        def <strong>zero</strong>(currency = <span class="t">Money</span>.default_currency, exchange = <span class="n">nil</span>) : <a href="../Money.html">Money</a>
+        def <strong>zero</strong>(currency = <span class="t">Money</span>.default_currency) : <a href="../Money.html">Money</a>
 
-        <a class="method-permalink" href="#zero%28currency%3DMoney.default_currency%2Cexchange%3Dnil%29%3AMoney-instance-method">#</a>
+        <a class="method-permalink" href="#zero%28currency%3DMoney.default_currency%29%3AMoney-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -702,7 +702,7 @@ American dollar currency.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/96634d8/src/money/money/constructors.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/be2667b/src/money/money/constructors.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
