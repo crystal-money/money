@@ -73,7 +73,7 @@ struct Money
   # Sets the given infinite precision value within the lifetime of the given block.
   #
   # See also `Money.infinite_precision?`.
-  def self.with_infinite_precision(enabled = true, &)
+  def self.with_infinite_precision(enabled : Bool = true, &)
     prev_infinite_precision = infinite_precision?
     self.infinite_precision = enabled
     begin
@@ -135,6 +135,8 @@ struct Money
   # Money.new(0, "USD")    # => Money(@amount=0.0 @currency="USD")
   # Money.new(1_50, "USD") # => Money(@amount=1.5 @currency="USD")
   # ```
+  #
+  # See also `Money.from_fractional`.
   def self.new(value : Int = 0, currency = Money.default_currency)
     new(
       fractional: value,
@@ -153,6 +155,8 @@ struct Money
   # WARNING: Floating points cannot guarantee precision. Therefore, they
   # should only be used when you no longer need to represent currency or
   # working with another system that requires floats.
+  #
+  # See also `Money.from_amount`.
   def self.new(value : Number, currency = Money.default_currency)
     new(
       amount: value,
@@ -199,7 +203,9 @@ struct Money
 
   def_equals_and_hash amount, currency
 
-  # Compares two `Money` objects. Returns `0` if the two objects are equal,
+  # Compares two `Money` objects.
+  #
+  # Returns `0` if the two objects are equal,
   # a negative number if this object is considered less than *other* or
   # a positive number if this object is considered greater than *other*.
   #
@@ -215,7 +221,9 @@ struct Money
     end
   end
 
-  # Compares two `Money` objects. Returns `true` if `self` is equal to *other*,
+  # Loosely compares two `Money` objects.
+  #
+  # Returns `true` if `self` is equal to *other*,
   # `false` otherwise.
   #
   # NOTE: Two `Money` objects with `0` amount are considered equal,

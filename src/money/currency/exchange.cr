@@ -3,12 +3,8 @@ class Money::Currency
     # An exchange `RateStore` object, used to persist exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_store` if set to `nil` (the default).
-    if_defined?(:JSON) do
-      @[JSON::Field(converter: Money::Currency::RateStore::Converter)]
-    end
-    if_defined?(:YAML) do
-      @[YAML::Field(converter: Money::Currency::RateStore::Converter)]
-    end
+    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::RateStore::Converter)] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::RateStore::Converter)] }
     property rate_store : RateStore?
 
     # :ditto:
@@ -19,12 +15,8 @@ class Money::Currency
     # An exchange `RateProvider` object, used to fetch exchange rate pairs.
     #
     # NOTE: Will return `Money.default_rate_provider` if set to `nil` (the default).
-    if_defined?(:JSON) do
-      @[JSON::Field(converter: Money::Currency::RateProvider::Converter)]
-    end
-    if_defined?(:YAML) do
-      @[YAML::Field(converter: Money::Currency::RateProvider::Converter)]
-    end
+    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::RateProvider::Converter)] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::RateProvider::Converter)] }
     property rate_provider : RateProvider?
 
     # :ditto:

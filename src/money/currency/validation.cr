@@ -15,6 +15,12 @@ class Money::Currency
       validate_smallest_denomination
     end
 
+    private def validate_positive_number(value : Number?, label : String)
+      if value && !value.positive?
+        raise ArgumentError.new "#{label} value must be positive: #{value}"
+      end
+    end
+
     private def validate_code
       return if code.presence &&
                 code.size >= 3 &&
@@ -26,27 +32,15 @@ class Money::Currency
     end
 
     private def validate_subunit_to_unit
-      return unless value = subunit_to_unit
-
-      value.positive? ||
-        raise ArgumentError.new \
-          "Subunit to unit value must be positive: #{value}"
+      validate_positive_number subunit_to_unit, "Subunit to unit"
     end
 
     private def validate_iso_numeric
-      return unless value = iso_numeric
-
-      value.positive? ||
-        raise ArgumentError.new \
-          "ISO numeric value must be positive: #{value}"
+      validate_positive_number iso_numeric, "ISO numeric"
     end
 
     private def validate_smallest_denomination
-      return unless value = smallest_denomination
-
-      value.positive? ||
-        raise ArgumentError.new \
-          "Smallest denomination value must be positive: #{value}"
+      validate_positive_number smallest_denomination, "Smallest denomination"
     end
   end
 end

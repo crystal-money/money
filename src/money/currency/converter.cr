@@ -16,7 +16,7 @@ class Money::Currency
   #
   # foo = FooWithCurrency.new(Money::Currency.find("USD"))
   # foo.to_json # => "{\"currency\":\"USD\"}"
-  # foo.to_yaml # => "currency: USD"
+  # foo.to_yaml # => "---\ncurrency: USD\n"
   # ```
   module Converter
     extend self
@@ -27,7 +27,7 @@ class Money::Currency
       end
 
       def to_json(currency : Currency, json : JSON::Builder)
-        json.string currency.to_s
+        json.string(currency.to_s)
       end
     end
 
@@ -40,7 +40,7 @@ class Money::Currency
       end
 
       def to_yaml(currency : Currency, yaml : YAML::Nodes::Builder)
-        yaml.scalar currency.to_s
+        yaml.scalar(currency.to_s)
       end
     end
   end
