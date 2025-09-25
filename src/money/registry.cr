@@ -17,23 +17,25 @@ struct Money
       class_getter registry = {} of String => {{ klass }}.class
 
       macro inherited
-        \{% @type.raise "abstract descendants are not allowed" if @type.abstract? %}
         {{ %({% base_namespace = #{klass}.id %}).id }}
-        \{%
-          name = @type.name
-          name =
-            if name.starts_with?("#{base_namespace}::")
-              name[base_namespace.size + 2..].underscore
-            else
-              @type.raise "class #{@type} must be placed inside #{base_namespace} namespace"
-            end
-        \%}
-        \{{ base_namespace }}.registry[\{{ name.stringify }}] = self
+        {% verbatim do %}
+          {% @type.raise "abstract descendants are not allowed" if @type.abstract? %}
+          {%
+            name = @type.name
+            name =
+              if name.starts_with?("#{base_namespace}::")
+                name[base_namespace.size + 2..].underscore
+              else
+                @type.raise "class #{@type} must be placed inside #{base_namespace} namespace"
+              end
+          %}
+          {{ base_namespace }}.registry[{{ name.stringify }}] = self
 
-        # Returns the class key.
-        def self.key : String
-          \{{ name.stringify }}
-        end
+          # Returns the class key.
+          def self.key : String
+            {{ name.stringify }}
+          end
+        {% end %}
       end
 
       # Returns the `{{ klass }}.class` for the given *name* if found,
@@ -45,12 +47,14 @@ struct Money
       # Returns the `{{ klass }}.class` for the given *name* if found,
       # raises `Money::Registry::NotFoundError` otherwise.
       def self.find(name : String | Symbol) : {{ klass }}.class
-        find?(name) ||
-          \{% if @type.has_constant?(:NotFoundError) %}
-            raise NotFoundError.new(key: name.to_s)
-          \{% else %}
-            raise Money::Registry::NotFoundError.new(key: name.to_s)
-          \{% end %}
+        {% verbatim do %}
+          find?(name) ||
+            {% if @type.has_constant?(:NotFoundError) %}
+              raise NotFoundError.new(key: name.to_s)
+            {% else %}
+              raise Money::Registry::NotFoundError.new(key: name.to_s)
+            {% end %}
+        {% end %}
       end
     end
 
