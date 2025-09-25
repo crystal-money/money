@@ -12,6 +12,7 @@ struct Money
       Money::Registry.setup_serializable {{ @type }}
     end
 
+    # :nodoc:
     macro setup(klass)
       # All registered objects.
       class_getter registry = {} of String => {{ klass }}.class
@@ -58,6 +59,7 @@ struct Money
       end
     end
 
+    # :nodoc:
     macro setup_serializable(klass)
       if_defined?(:JSON) do
         module Converter
