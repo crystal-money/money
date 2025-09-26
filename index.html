@@ -946,7 +946,7 @@ which are used in order to fetch the exchange rate.</p>
 <span class="s">  rate_store:
     name: File
     options:
-      filepath: ~/.cache/money/currency-rates.json
+      path: ~/.cache/money/currency-rates.json
       ttl: 1 hour, 11 minutes
 
   rate_provider:
@@ -984,7 +984,7 @@ and <code>options</code> - optional hash that's being passed to the store initia
 <pre><code class="language-crystal">store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
 <span class="s">  name: File
   options:
-    filepath: ~/.cache/money/currency-rates.json
+    path: ~/.cache/money/currency-rates.json
     ttl: 1 hour, 11 minutes
   YAML</span>
 
@@ -992,7 +992,7 @@ and <code>options</code> - optional hash that's being passed to the store initia
 store.<span class="k">class</span>   <span class="c"># =&gt; Money::Currency::RateStore::File</span></code></pre>
 <p>For specific stores you pass the <code>options</code> directly:</p>
 <pre><code class="language-crystal">file_store <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateStore</span><span class="t">::</span><span class="t">File</span>.from_yaml <span class="s">&lt;&lt;-YAML</span>
-<span class="s">  filepath: ~/.cache/money/currency-rates.json
+<span class="s">  path: ~/.cache/money/currency-rates.json
   ttl: 1 hour, 11 minutes
   YAML</span></code></pre>
 <h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
@@ -1019,7 +1019,7 @@ foo <span class="o">=</span> <span class="t">FooWithGenericStore</span>.from_yam
 <span class="s">  store:
     name: File
     options:
-      filepath: ~/.cache/money/currency-rates.json
+      path: ~/.cache/money/currency-rates.json
       ttl: 1 hour, 11 minutes
   YAML</span>
 

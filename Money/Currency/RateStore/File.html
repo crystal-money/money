@@ -498,7 +498,7 @@ store.save</code></pre>
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L23" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L23" target="_blank">
         money/currency/rate_store/file.cr
       </a>
     
@@ -535,7 +535,7 @@ store.save</code></pre>
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28filepath%3APath%7CString%2C%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(filepath : Path | String, *, ttl : Time::Span | Nil = <span class="n">nil</span>)</a>
+        <a href="#new%28path%3APath%7CString%2C%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(path : Path | String, *, ttl : Time::Span | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -577,19 +577,19 @@ store.save</code></pre>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#filepath%3APath-instance-method" class="signature"><strong>#filepath</strong> : Path</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#filepath%3D%28filepath%3APath%29-instance-method" class="signature"><strong>#filepath=</strong>(filepath : Path)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#load%3ANil-instance-method" class="signature"><strong>#load</strong> : Nil</a>
         
           <div class="summary"><p>Loads rates from a JSON file.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3APath-instance-method" class="signature"><strong>#path</strong> : Path</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path%3D%28path%3APath%29-instance-method" class="signature"><strong>#path=</strong>(path : Path)</a>
         
       </li>
     
@@ -846,7 +846,7 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -881,23 +881,23 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(filepath:Path|String,*,ttl:Time::Span|Nil=nil)-class-method">
+    <div class="entry-detail" id="new(path:Path|String,*,ttl:Time::Span|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(filepath : Path | <a href="../../../String.html">String</a>, *, ttl : Time::Span | Nil = <span class="n">nil</span>)
+        def self.<strong>new</strong>(path : Path | <a href="../../../String.html">String</a>, *, ttl : Time::Span | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28filepath%3APath%7CString%2C%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28path%3APath%7CString%2C%2A%2Cttl%3ATime%3A%3ASpan%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -930,7 +930,7 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -949,38 +949,6 @@ store.save</code></pre>
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="filepath:Path-instance-method">
-      <div class="signature">
-        
-        def <strong>filepath</strong> : Path
-
-        <a class="method-permalink" href="#filepath%3APath-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L24" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="filepath=(filepath:Path)-instance-method">
-      <div class="signature">
-        
-        def <strong>filepath=</strong>(filepath : Path)
-
-        <a class="method-permalink" href="#filepath%3D%28filepath%3APath%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L26" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="load:Nil-instance-method">
       <div class="signature">
         
@@ -997,7 +965,39 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:Path-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : Path
+
+        <a class="method-permalink" href="#path%3APath-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path=(path:Path)-instance-method">
+      <div class="signature">
+        
+        def <strong>path=</strong>(path : Path)
+
+        <a class="method-permalink" href="#path%3D%28path%3APath%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1018,7 +1018,7 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1039,7 +1039,7 @@ store.save</code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/57945e2/src/money/currency/rate_store/file.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d01e89e/src/money/currency/rate_store/file.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
