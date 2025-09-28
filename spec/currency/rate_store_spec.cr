@@ -31,6 +31,10 @@ class Money::Currency
     protected def clear_rates(base : Currency) : Nil
       @rates.reject! { |_, rate| rate.base == base }
     end
+
+    protected def clear_stale_rates : Nil
+      @rates.reject! { |_, rate| stale_rate?(rate) }
+    end
   end
 end
 

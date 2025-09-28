@@ -39,6 +39,10 @@ class Money::Currency
       index.reject! { |_, rate| rate.base == base }
     end
 
+    protected def clear_stale_rates : Nil
+      index.reject! { |_, rate| stale_rate?(rate) }
+    end
+
     private def rate_key_for(base : Currency, target : Currency)
       "#{base.code}_#{target.code}"
     end

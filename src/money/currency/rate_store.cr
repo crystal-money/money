@@ -192,6 +192,18 @@ class Money::Currency
         clear_rates(base)
       end
     end
+
+    # See also `#compact`.
+    protected abstract def clear_stale_rates : Nil
+
+    # Removes stale rates (only if `#ttl` is set).
+    def compact : Nil
+      return unless ttl
+
+      transaction(mutable: true) do
+        clear_stale_rates
+      end
+    end
   end
 end
 
