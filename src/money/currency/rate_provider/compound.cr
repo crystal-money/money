@@ -11,7 +11,7 @@ class Money::Currency
     if_defined?(:YAML) do
       @[YAML::Field(converter: YAML::ArrayConverter(Money::Currency::RateProvider::Converter))]
     end
-    property providers : Array(RateProvider)
+    getter providers : Array(RateProvider)
 
     def initialize(@providers = [] of RateProvider)
     end

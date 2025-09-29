@@ -7,10 +7,10 @@ class Money::Currency
 
     Log = ::Log.for(self)
 
-    property api_key : String do
+    getter api_key : String do
       option_from_env("UNIRATE_API_KEY")
     end
-    property host : URI do
+    getter host : URI do
       URI.parse("https://api.unirateapi.com")
     end
 

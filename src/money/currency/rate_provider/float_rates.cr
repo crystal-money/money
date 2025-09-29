@@ -8,7 +8,7 @@ class Money::Currency
 
     Log = ::Log.for(self)
 
-    property host : URI do
+    getter host : URI do
       URI.parse("https://www.floatrates.com")
     end
 

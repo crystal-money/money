@@ -7,13 +7,13 @@ class Money::Currency
 
     Log = ::Log.for(self)
 
-    property app_id : String do
+    getter app_id : String do
       option_from_env("OPEN_EXCHANGE_RATES_APP_ID")
     end
-    property host : URI do
+    getter host : URI do
       URI.parse("https://openexchangerates.org")
     end
-    property? show_alternative = true
+    getter? show_alternative = true
 
     def initialize(
       *,

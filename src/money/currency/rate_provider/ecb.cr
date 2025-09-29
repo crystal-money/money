@@ -11,7 +11,7 @@ class Money::Currency
 
     private BASE_CURRENCY_CODE = "EUR"
 
-    property host : URI do
+    getter host : URI do
       URI.parse("https://www.ecb.europa.eu")
     end
 

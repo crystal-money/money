@@ -7,10 +7,10 @@ class Money::Currency
 
     Log = ::Log.for(self)
 
-    property access_key : String do
+    getter access_key : String do
       option_from_env("FIXER_ACCESS_KEY")
     end
-    property host : URI do
+    getter host : URI do
       URI.parse("https://data.fixer.io")
     end
 
