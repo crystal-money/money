@@ -174,23 +174,24 @@ class Money::Currency
     # See also `#clear`.
     protected abstract def clear_rates : Nil
 
-    # Empties currency rate index.
-    def clear : Nil
+    # See also `#clear(base)`.
+    protected abstract def clear_rates(base : Currency?, target : Currency?) : Nil
+
+    # Removes rates for the given *base* (and if given, *target*) currencies.
+    # Removes all rates if no arguments are given.
+    def clear(base : Currency? = nil, target : Currency? = nil) : Nil
       transaction(mutable: true) do
-        clear_rates
+        if base || target
+          clear_rates(base, target)
+        else
+          clear_rates
+        end
       end
     end
 
-    # See also `#clear(base)`.
-    protected abstract def clear_rates(base : Currency) : Nil
-
-    # Removes rates for the given *base* currency.
-    def clear(base : String | Symbol | Currency) : Nil
-      base = Currency[base]
-
-      transaction(mutable: true) do
-        clear_rates(base)
-      end
+    # :nodoc:
+    def clear(base = nil, target = nil) : Nil
+      clear(base && Currency[base], target && Currency[target])
     end
 
     # See also `#compact`.

@@ -35,8 +35,11 @@ class Money::Currency
       index.clear
     end
 
-    protected def clear_rates(base : Currency) : Nil
-      index.reject! { |_, rate| rate.base == base }
+    protected def clear_rates(base : Currency?, target : Currency?) : Nil
+      index.reject! do |_, rate|
+        (!base || (base && rate.base == base)) &&
+          (!target || (target && rate.target == target))
+      end
     end
 
     protected def clear_stale_rates : Nil

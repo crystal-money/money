@@ -160,4 +160,43 @@ describe Money::Currency::RateStore::Memory do
       store.size.should eq 1
     end
   end
+
+  describe "#clear(_, target)" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "EUR"] = 1.0
+    store["USD", "CAD"] = 0.9
+    store["CAD", "USD"] = 1.1
+
+    it "clears rates only for the given target currency" do
+      store.size.should eq 3
+      store.clear(nil, "USD")
+      store.size.should eq 2
+    end
+  end
+
+  describe "#clear(base, target)" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "EUR"] = 1.0
+    store["USD", "CAD"] = 0.9
+    store["CAD", "USD"] = 1.1
+
+    it "clears rate only for the given base and target currencies" do
+      store.size.should eq 3
+      store.clear("USD", "EUR")
+      store.size.should eq 2
+    end
+  end
+
+  describe "#clear(nil, nil)" do
+    store = Money::Currency::RateStore::Memory.new
+    store["USD", "EUR"] = 1.0
+    store["USD", "CAD"] = 0.9
+    store["CAD", "USD"] = 1.1
+
+    it "clears all rates" do
+      store.size.should eq 3
+      store.clear(nil, nil)
+      store.size.should eq 0
+    end
+  end
 end

@@ -28,8 +28,11 @@ class Money::Currency
       @rates.clear
     end
 
-    protected def clear_rates(base : Currency) : Nil
-      @rates.reject! { |_, rate| rate.base == base }
+    protected def clear_rates(base : Currency?, target : Currency?) : Nil
+      @rates.reject! do |_, rate|
+        (!base || (base && rate.base == base)) &&
+          (!target || (target && rate.target == target))
+      end
     end
 
     protected def clear_stale_rates : Nil
@@ -257,7 +260,43 @@ describe Money::Currency::RateStore do
 
     store[usd, cad]?.should be_nil
     store[usd, eur]?.should be_nil
-    store[cad, usd]?.should eq 0.8.to_big_d
+    store[cad, usd]?.should_not be_nil
+  end
+
+  it "clears rates for a target currency with #clear(_, target)" do
+    store = Money::Currency::RateStore::Dummy.new
+    store[usd, cad] = 1.2
+    store[usd, eur] = 1.5
+    store[cad, usd] = 0.8
+
+    store.clear(nil, usd)
+
+    store[usd, cad]?.should_not be_nil
+    store[usd, eur]?.should_not be_nil
+    store[cad, usd]?.should be_nil
+  end
+
+  it "clears rates with #clear(base, target)" do
+    store = Money::Currency::RateStore::Dummy.new
+    store[usd, cad] = 1.2
+    store[usd, eur] = 1.5
+    store[cad, usd] = 0.8
+
+    store.clear(usd, eur)
+
+    store[usd, cad]?.should_not be_nil
+    store[usd, eur]?.should be_nil
+    store[cad, usd]?.should_not be_nil
+  end
+
+  it "clears all rates with #clear(nil, nil)" do
+    store = Money::Currency::RateStore::Dummy.new
+    store[usd, cad] = 1.2
+    store[usd, eur] = 1.5
+    store[cad, usd] = 0.8
+
+    store.clear(nil, nil)
+    store.size.should eq 0
   end
 
   it "returns `nil` for stale rates when ttl is set" do
