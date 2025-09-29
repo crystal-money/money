@@ -519,7 +519,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L2" target="_blank">
         money/currency/rate_store.cr
       </a>
     
@@ -647,16 +647,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#clear%28base%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method" class="signature"><strong>#clear</strong>(base : String | Symbol | Currency) : Nil</a>
+        <a href="#clear%28base%3ACurrency%7CNil%3Dnil%2Ctarget%3ACurrency%7CNil%3Dnil%29%3ANil-instance-method" class="signature"><strong>#clear</strong>(base : Currency | Nil = <span class="n">nil</span>, target : Currency | Nil = <span class="n">nil</span>) : Nil</a>
         
-          <div class="summary"><p>Removes rates for the given <em>base</em> currency.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#clear%3ANil-instance-method" class="signature"><strong>#clear</strong> : Nil</a>
-        
-          <div class="summary"><p>Empties currency rate index.</p></div>
+          <div class="summary"><p>Removes rates for the given <em>base</em> (and if given, <em>target</em>) currencies.</p></div>
         
       </li>
     
@@ -830,7 +823,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -947,7 +940,7 @@ store <span class="o">&lt;&lt;</span> <span class="t">Rate</span>.new(
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -981,7 +974,7 @@ store <span class="o">&lt;&lt;</span> [
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1008,7 +1001,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1032,7 +1025,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1058,49 +1051,29 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="clear(base:String|Symbol|Currency):Nil-instance-method">
+    <div class="entry-detail" id="clear(base:Currency|Nil=nil,target:Currency|Nil=nil):Nil-instance-method">
       <div class="signature">
         
-        def <strong>clear</strong>(base : <a href="../../String.html">String</a> | Symbol | <a href="../../Money/Currency.html">Currency</a>) : Nil
+        def <strong>clear</strong>(base : <a href="../../Money/Currency.html">Currency</a> | Nil = <span class="n">nil</span>, target : <a href="../../Money/Currency.html">Currency</a> | Nil = <span class="n">nil</span>) : Nil
 
-        <a class="method-permalink" href="#clear%28base%3AString%7CSymbol%7CCurrency%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#clear%28base%3ACurrency%7CNil%3Dnil%2Ctarget%3ACurrency%7CNil%3Dnil%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Removes rates for the given <em>base</em> currency.</p>
+          <p>Removes rates for the given <em>base</em> (and if given, <em>target</em>) currencies.
+Removes all rates if no arguments are given.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L188" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="clear:Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>clear</strong> : Nil
-
-        <a class="method-permalink" href="#clear%3ANil-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Empties currency rate index.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L178" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L182" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1121,7 +1094,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L201" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1145,7 +1118,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1166,7 +1139,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L170" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L170" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1187,7 +1160,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1203,7 +1176,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1219,7 +1192,7 @@ store[<span class="s">&quot;CAD&quot;</span>, <span class="s">&quot;USD&quot;</s
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/5446b22/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e7e04aa/src/money/currency/rate_store.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
