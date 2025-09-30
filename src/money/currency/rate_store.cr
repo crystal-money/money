@@ -177,6 +177,9 @@ class Money::Currency
     # See also `#clear(base)`.
     protected abstract def clear_rates(base : Currency?, target : Currency?) : Nil
 
+    # See also `#compact`.
+    protected abstract def clear_rates(rates : Enumerable(Rate)) : Nil
+
     # Removes rates for the given *base* (and if given, *target*) currencies.
     # Removes all rates if no arguments are given.
     def clear(base : Currency? = nil, target : Currency? = nil) : Nil
@@ -194,15 +197,19 @@ class Money::Currency
       clear(base && Currency[base], target && Currency[target])
     end
 
-    # See also `#compact`.
-    protected abstract def clear_stale_rates : Nil
-
     # Removes stale rates (only if `#ttl` is set).
     def compact : Nil
       return unless ttl
 
+      stale_rates = ([] of Rate).tap do |ary|
+        each(include_stale: true) do |rate|
+          ary << rate if stale_rate?(rate)
+        end
+      end
+      return if stale_rates.empty?
+
       transaction(mutable: true) do
-        clear_stale_rates
+        clear_rates(stale_rates)
       end
     end
   end

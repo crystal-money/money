@@ -42,8 +42,10 @@ class Money::Currency
       end
     end
 
-    protected def clear_stale_rates : Nil
-      index.reject! { |_, rate| stale_rate?(rate) }
+    protected def clear_rates(rates : Enumerable(Rate)) : Nil
+      index.reject! do |_, rate|
+        rate.in?(rates)
+      end
     end
 
     private def rate_key_for(base : Currency, target : Currency)
