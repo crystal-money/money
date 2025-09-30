@@ -157,10 +157,10 @@ class Money::Currency
     #   puts rate
     # end
     # ```
-    def each(& : Rate ->) : Nil
+    def each(*, include_stale : Bool = false, & : Rate ->) : Nil
       transaction do
         each_rate do |rate|
-          yield rate unless stale_rate?(rate)
+          yield rate if include_stale || !stale_rate?(rate)
         end
       end
     end

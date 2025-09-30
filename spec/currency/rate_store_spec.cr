@@ -240,6 +240,22 @@ describe Money::Currency::RateStore do
     ]
   end
 
+  it "hides stale rates by default" do
+    store = Money::Currency::RateStore::Dummy.new(ttl: -1.hour)
+    store[usd, cad] = 1.2
+    store[cad, usd] = 0.8
+
+    arr = [] of Money::Currency::Rate
+    store.each(include_stale: true) do |rate|
+      arr << rate
+    end
+    arr.map(&.to_s).should eq [
+      "USD -> CAD: 1.2",
+      "CAD -> USD: 0.8",
+    ]
+    store.to_a.should be_empty
+  end
+
   it "clears all rates with #clear" do
     store = Money::Currency::RateStore::Dummy.new
     store[usd, cad] = 1.2
