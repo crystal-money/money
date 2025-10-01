@@ -13,11 +13,11 @@ class Money::Currency
     end
 
     protected def set_rate(rate : Rate) : Nil
-      @rates["%s_%s" % {rate.base.code, rate.target.code}] = rate
+      @rates[Rate.key(rate.base, rate.target)] = rate
     end
 
     protected def get_rate?(base : Currency, target : Currency) : Rate?
-      @rates["%s_%s" % {base.code, target.code}]?
+      @rates[Rate.key(base, target)]?
     end
 
     protected def each_rate(& : Rate ->)

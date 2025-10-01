@@ -2,6 +2,11 @@ class Money::Currency
   struct Rate
     include Comparable(Rate)
 
+    # :nodoc:
+    def self.key(base : Currency, target : Currency) : String
+      "#{base.code}_#{target.code}"
+    end
+
     getter base : Currency
     getter target : Currency
     getter value : BigDecimal

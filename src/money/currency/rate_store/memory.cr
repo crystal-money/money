@@ -20,11 +20,11 @@ class Money::Currency
     end
 
     protected def set_rate(rate : Rate) : Nil
-      index[rate_key_for(rate.base, rate.target)] = rate
+      index[Rate.key(rate.base, rate.target)] = rate
     end
 
     protected def get_rate?(base : Currency, target : Currency) : Rate?
-      index[rate_key_for(base, target)]?
+      index[Rate.key(base, target)]?
     end
 
     protected def each_rate(& : Rate ->)
@@ -46,10 +46,6 @@ class Money::Currency
       index.reject! do |_, rate|
         rate.in?(rates)
       end
-    end
-
-    private def rate_key_for(base : Currency, target : Currency)
-      "#{base.code}_#{target.code}"
     end
   end
 end
