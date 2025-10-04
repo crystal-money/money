@@ -8,7 +8,7 @@ struct Money
       getter! name : String
       getter options : Hash(String, ::YAML::Any::Type)?
 
-      def deserialize : T
+      def unbox : T
         klass = T.find(name)
         klass.from_yaml(options.try(&.to_yaml) || "{}")
       end
@@ -18,7 +18,7 @@ struct Money
 
     def from_yaml(ctx : ::YAML::ParseContext, node : ::YAML::Nodes::Node) : V
       wrapper = Wrapper(V).new(ctx, node)
-      wrapper.deserialize
+      wrapper.unbox
     end
 
     def to_yaml(value : V, yaml : ::YAML::Nodes::Builder)

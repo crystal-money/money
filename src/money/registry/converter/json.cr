@@ -8,7 +8,7 @@ struct Money
       getter name : String
       getter options : Hash(String, ::JSON::Any::Type)?
 
-      def deserialize : T
+      def unbox : T
         klass = T.find(name)
         klass.from_json(options.try(&.to_json) || "{}")
       end
@@ -18,7 +18,7 @@ struct Money
 
     def from_json(pull : ::JSON::PullParser) : V
       wrapper = Wrapper(V).new(pull)
-      wrapper.deserialize
+      wrapper.unbox
     end
 
     def to_json(value : V, json : ::JSON::Builder)
