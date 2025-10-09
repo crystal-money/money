@@ -5,7 +5,7 @@ class Money::Currency
     # Raised when trying to find an unknown rate store.
     class NotFoundError < Registry::NotFoundError
       def initialize(*, key : String)
-        @message = "Unknown rate store: #{key}"
+        super("Unknown rate store: #{key}")
       end
     end
 

@@ -2,8 +2,12 @@ struct Money
   module Registry
     # Raised when trying to find an unknown object.
     class NotFoundError < Error
+      def initialize(message : String = "Object not found")
+        super(message)
+      end
+
       def initialize(*, key : String)
-        @message = "Object not found: #{key}"
+        super("Object not found: #{key}")
       end
     end
 
