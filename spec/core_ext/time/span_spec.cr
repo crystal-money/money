@@ -95,6 +95,9 @@ describe Time::Span::StringConverter do
 
         Time::Span::StringConverter.dump(1.hour + 15.minutes)
           .should eq "1 hour, 15 minutes"
+
+        Time::Span::StringConverter.dump(1.hour + 15.nanoseconds)
+          .should eq "1 hour, 15 nanoseconds"
       end
 
       it "serializes empty Time::Span value into an empty string" do
@@ -118,6 +121,9 @@ describe Time::Span::StringConverter do
 
         Time::Span::StringConverter.dump(1.hour + 15.minutes, :code)
           .should eq "1.hour + 15.minutes"
+
+        Time::Span::StringConverter.dump(1.hour + 15.nanoseconds, :code)
+          .should eq "1.hour + 15.nanoseconds"
       end
 
       it "serializes empty Time::Span value into an empty string" do

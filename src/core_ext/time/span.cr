@@ -5,7 +5,8 @@ module Time::Span::StringConverter
     (?:(?<days>\d+)(?:d|\s*days?),?\s*)?
     (?:(?<hours>\d+)(?:h|\s*hours?),?\s*)?
     (?:(?<minutes>\d+)(?:m|\s*min(?:utes?)?),?\s*)?
-    (?:(?<seconds>\d+)(?:s|\s*sec(?:onds?)?))?
+    (?:(?<seconds>\d+)(?:s|\s*sec(?:onds?)?),?\s*)?
+    (?:(?<nanoseconds>\d+)(?:ns|\s*nanoseconds?))?
   }ix
 
   enum Format
@@ -25,6 +26,7 @@ module Time::Span::StringConverter
   # - hour: `h`, `hour(s)`
   # - minute: `m`, `min`, `minute(s)`
   # - second: `s`, `sec`, `second(s)`
+  # - nanosecond: `ns`, `nanosecond(s)`
   #
   # Valid string examples:
   #
@@ -43,16 +45,17 @@ module Time::Span::StringConverter
     return unless match = string.match_full(PATTERN)
 
     {% begin %}
-      {% for part in %w[weeks days hours minutes seconds] %}
+      {% for part in %w[weeks days hours minutes seconds nanoseconds] %}
         {{ part.id }} = match[{{ part }}]?.try(&.to_i)
       {% end %}
-      return unless weeks || days || hours || minutes || seconds
+      return unless weeks || days || hours || minutes || seconds || nanoseconds
 
       span = Time::Span.new(
         days: (weeks || 0) * 7 + (days || 0),
         hours: hours || 0,
         minutes: minutes || 0,
         seconds: seconds || 0,
+        nanoseconds: nanoseconds || 0,
       )
       match["sign"]? == "-" ? -span : span
     {% end %}
@@ -78,7 +81,7 @@ module Time::Span::StringConverter
 
     parts = [] of {Int32, String}
 
-    {% for part in %w[weeks days hours minutes seconds] %}
+    {% for part in %w[weeks days hours minutes seconds nanoseconds] %}
       %part = value.total_{{ part.id }}.to_i
       if %part.positive?
         parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
