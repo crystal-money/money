@@ -90,8 +90,8 @@ describe Time::Span::StringConverter do
         Time::Span::StringConverter.dump(1.day + 2.hours + 3.minutes + 4.seconds)
           .should eq "1 day, 2 hours, 3 minutes, 4 seconds"
 
-        Time::Span::StringConverter.dump(7.days)
-          .should eq "7 days"
+        Time::Span::StringConverter.dump(11.days)
+          .should eq "1 week, 4 days"
 
         Time::Span::StringConverter.dump(1.hour + 15.minutes)
           .should eq "1 hour, 15 minutes"
@@ -113,8 +113,8 @@ describe Time::Span::StringConverter do
         Time::Span::StringConverter.dump(1.day + 2.hours + 3.minutes + 4.seconds, :code)
           .should eq "1.day + 2.hours + 3.minutes + 4.seconds"
 
-        Time::Span::StringConverter.dump(7.days, :code)
-          .should eq "7.days"
+        Time::Span::StringConverter.dump(11.days, :code)
+          .should eq "1.week + 4.days"
 
         Time::Span::StringConverter.dump(1.hour + 15.minutes, :code)
           .should eq "1.hour + 15.minutes"

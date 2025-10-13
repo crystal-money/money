@@ -1,6 +1,7 @@
 module Time::Span::StringConverter
   private PATTERN = %r{
     (?:(?<sign>[+-])\s*)?
+    (?:(?<weeks>\d+)(?:w|\s*weeks?),?\s*)?
     (?:(?<days>\d+)(?:d|\s*days?),?\s*)?
     (?:(?<hours>\d+)(?:h|\s*hours?),?\s*)?
     (?:(?<minutes>\d+)(?:m|\s*min(?:utes?)?),?\s*)?
@@ -19,6 +20,7 @@ module Time::Span::StringConverter
   #
   # Allowed suffixes:
   #
+  # - week: `w`, `week(s)`
   # - day: `d`, `day(s)`
   # - hour: `h`, `hour(s)`
   # - minute: `m`, `min`, `minute(s)`
@@ -26,11 +28,11 @@ module Time::Span::StringConverter
   #
   # Valid string examples:
   #
-  # - `1d2h3m4s`
-  # - `1d 2h 3m 4s`
-  # - `1d 2h 3 min 4 sec`
-  # - `1 day 2 hours 3 minutes 4 seconds`
-  # - `1 day, 2 hours, 3 minutes, 4 seconds`
+  # - `1w2d3h4m5s`
+  # - `1w 2d 3h 4m 5s`
+  # - `1w 2d 3h 4 min 5 sec`
+  # - `1 week 2 days 3 hours 4 minutes 5 seconds`
+  # - `1 week, 2 days, 3 hours, 4 minutes, 5 seconds`
   #
   # ```
   # Time::Span::StringConverter.parse?("1 day, 8 minutes")    # => 1.00:08:00
@@ -41,13 +43,13 @@ module Time::Span::StringConverter
     return unless match = string.match_full(PATTERN)
 
     {% begin %}
-      {% for part in %w[days hours minutes seconds] %}
+      {% for part in %w[weeks days hours minutes seconds] %}
         {{ part.id }} = match[{{ part }}]?.try(&.to_i)
       {% end %}
-      return unless days || hours || minutes || seconds
+      return unless weeks || days || hours || minutes || seconds
 
       span = Time::Span.new(
-        days: days || 0,
+        days: (weeks || 0) * 7 + (days || 0),
         hours: hours || 0,
         minutes: minutes || 0,
         seconds: seconds || 0,
@@ -76,7 +78,7 @@ module Time::Span::StringConverter
 
     parts = [] of {Int32, String}
 
-    {% for part in %w[days hours minutes seconds] %}
+    {% for part in %w[weeks days hours minutes seconds] %}
       %part = value.total_{{ part.id }}.round(:to_zero).to_i
       if %part.positive?
         parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
