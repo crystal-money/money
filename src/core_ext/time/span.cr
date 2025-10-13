@@ -79,7 +79,7 @@ module Time::Span::StringConverter
     parts = [] of {Int32, String}
 
     {% for part in %w[weeks days hours minutes seconds] %}
-      %part = value.total_{{ part.id }}.round(:to_zero).to_i
+      %part = value.total_{{ part.id }}.to_i
       if %part.positive?
         parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
         value -= %part.{{ part.id }}
