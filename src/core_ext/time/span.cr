@@ -39,15 +39,21 @@ module Time::Span::StringConverter
   def parse?(string : String) : Time::Span?
     return unless string = string.strip.presence
     return unless match = string.match_full(PATTERN)
-    return unless match["days"]? || match["hours"]? || match["minutes"]? || match["seconds"]?
 
-    span = Time::Span.new(
-      days: match["days"]?.try(&.to_i) || 0,
-      hours: match["hours"]?.try(&.to_i) || 0,
-      minutes: match["minutes"]?.try(&.to_i) || 0,
-      seconds: match["seconds"]?.try(&.to_i) || 0,
-    )
-    match["sign"]? == "-" ? -span : span
+    {% begin %}
+      {% for part in %w[days hours minutes seconds] %}
+        {{ part.id }} = match[{{ part }}]?.try(&.to_i)
+      {% end %}
+      return unless days || hours || minutes || seconds
+
+      span = Time::Span.new(
+        days: days || 0,
+        hours: hours || 0,
+        minutes: minutes || 0,
+        seconds: seconds || 0,
+      )
+      match["sign"]? == "-" ? -span : span
+    {% end %}
   end
 
   # :ditto:
