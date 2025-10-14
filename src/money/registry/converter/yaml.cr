@@ -5,7 +5,7 @@ struct Money
     private struct Wrapper(T)
       include ::YAML::Serializable
 
-      getter! name : String
+      getter name : String
       getter options : Hash(String, ::YAML::Any::Type)?
 
       def unbox : T
