@@ -81,15 +81,17 @@ module Time::Span::StringConverter
 
     parts = [] of {Int32, String}
 
-    {% for part in %w[weeks days hours minutes seconds nanoseconds] %}
-      %part = value.total_{{ part.id }}.to_i
-      if %part.positive?
-        parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
-        value -= %part.{{ part.id }}
-      end
-    {% end %}
-
-    return "" if parts.empty?
+    if value.zero?
+      parts << {0, "seconds"}
+    else
+      {% for part in %w[weeks days hours minutes seconds nanoseconds] %}
+        %part = value.total_{{ part.id }}.to_i
+        if %part.positive?
+          parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
+          value -= %part.{{ part.id }}
+        end
+      {% end %}
+    end
 
     result =
       case format

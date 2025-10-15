@@ -100,9 +100,9 @@ describe Time::Span::StringConverter do
           .should eq "1 hour, 15 nanoseconds"
       end
 
-      it "serializes empty Time::Span value into an empty string" do
+      it "serializes Time::Span with zero value into a string" do
         Time::Span::StringConverter.dump(Time::Span.zero)
-          .should be_empty
+          .should eq "0 seconds"
       end
 
       it "serializes negative Time::Span value into a string" do
@@ -126,9 +126,9 @@ describe Time::Span::StringConverter do
           .should eq "1.hour + 15.nanoseconds"
       end
 
-      it "serializes empty Time::Span value into an empty string" do
+      it "serializes Time::Span with zero value into a string" do
         Time::Span::StringConverter.dump(Time::Span.zero, :code)
-          .should be_empty
+          .should eq "0.seconds"
       end
 
       it "serializes negative Time::Span value into a string" do
