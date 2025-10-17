@@ -85,10 +85,10 @@ module Time::Span::StringConverter
       parts << {0, "seconds"}
     else
       {% for part in %w[weeks days hours minutes seconds nanoseconds] %}
-        %part = value.total_{{ part.id }}.to_i
-        if %part.positive?
-          parts << { %part, {{ part }}[..(%part == 1 ? -2 : nil)] }
-          value -= %part.{{ part.id }}
+        part = value.total_{{ part.id }}.to_i
+        if part.positive?
+          parts << { part, {{ part }}[..(part == 1 ? -2 : nil)] }
+          value -= part.{{ part.id }}
         end
       {% end %}
     end
