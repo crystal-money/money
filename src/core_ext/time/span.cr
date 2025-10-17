@@ -17,7 +17,7 @@ module Time::Span::StringConverter
   extend self
 
   # Parses a time span *string* into a `Time::Span`, or returns `nil` if the
-  # string is invalid.
+  # provided *string* is invalid.
   #
   # Allowed suffixes:
   #

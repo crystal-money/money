@@ -58,9 +58,16 @@ describe Time::Span::StringConverter do
       assert_parses.call "4 days 3 hour 2 minute 1second"
       assert_parses.call "4 day, 3 hours, 2 minutes, 1 second"
       assert_parses.call "+4 days, 3 hours, 2 minutes, 1 second"
+      assert_parses.call "+ 4 days, 3 hours, 2 minutes, 1 second"
+
+      Time::Span::StringConverter.parse?("- 1 day, 2 hours")
+        .should eq -(1.day + 2.hours)
 
       Time::Span::StringConverter.parse?("-1 day, 2 hours")
         .should eq -(1.day + 2.hours)
+
+      Time::Span::StringConverter.parse?("0 seconds")
+        .should eq Time::Span.zero
     end
 
     it "returns nil / raises ArgumentError for invalid inputs" do
