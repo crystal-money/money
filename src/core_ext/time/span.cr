@@ -118,8 +118,8 @@ module Time::Span::StringConverter
   end
 
   if_defined?(:YAML) do
-    def from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node) : Time::Span
-      unless node.is_a?(YAML::Nodes::Scalar)
+    def from_yaml(ctx : ::YAML::ParseContext, node : ::YAML::Nodes::Node) : Time::Span
+      unless node.is_a?(::YAML::Nodes::Scalar)
         node.raise "Expected scalar, not #{node.kind}"
       end
       parse(node.value)
