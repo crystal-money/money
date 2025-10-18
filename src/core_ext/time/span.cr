@@ -103,7 +103,7 @@ module Time::Span::StringConverter
 
     case format
     in .text? then "-#{result}"
-    in .code? then "-(#{result})"
+    in .code? then "-#{parts.size > 1 ? "(#{result})" : result}"
     end
   end
 

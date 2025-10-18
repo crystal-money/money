@@ -115,6 +115,9 @@ describe Time::Span::StringConverter do
       it "serializes negative Time::Span value into a string" do
         Time::Span::StringConverter.dump(-(2.hours + 5.minutes))
           .should eq "-2 hours, 5 minutes"
+
+        Time::Span::StringConverter.dump(-5.minutes)
+          .should eq "-5 minutes"
       end
     end
 
@@ -141,6 +144,9 @@ describe Time::Span::StringConverter do
       it "serializes negative Time::Span value into a string" do
         Time::Span::StringConverter.dump(-(2.hours + 5.minutes), :code)
           .should eq "-(2.hours + 5.minutes)"
+
+        Time::Span::StringConverter.dump(-5.minutes, :code)
+          .should eq "-5.minutes"
       end
     end
   end
