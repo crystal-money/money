@@ -3,6 +3,7 @@ require "json"
 {% if flag?(:docs) %}
   require "yaml"
 {% end %}
+require "tssc"
 
 struct Money
 end
