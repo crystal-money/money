@@ -2,6 +2,8 @@ require "log"
 
 class Money::Currency
   # [CoinGecko](https://www.coingecko.com/) currency rate provider.
+  #
+  # NOTE: Supports only `BTC`-based conversions.
   class RateProvider::CoinGecko < RateProvider
     include RateProvider::HTTP
     include RateProvider::OneToMany
