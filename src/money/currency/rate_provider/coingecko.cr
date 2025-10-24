@@ -23,7 +23,7 @@ class Money::Currency
 
     # <https://docs.coingecko.com/v3.0.1/reference/exchange-rates>
     protected def exchange_rates : Array(NativeRate)
-      Log.debug { "Fetching exchange rates" }
+      Log.debug { "Fetching exchange rates for #{base_currency_code}" }
 
       request("/api/v3/exchange_rates") do |response|
         result = JSON.parse(response.body_io).as_h

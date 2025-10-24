@@ -25,7 +25,7 @@ class Money::Currency
 
     # <https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html>
     protected def exchange_rates : Array(NativeRate)
-      Log.debug { "Fetching exchange rates" }
+      Log.debug { "Fetching exchange rates for #{base_currency_code}" }
 
       request("/stats/eurofxref/eurofxref-daily.xml") do |response|
         result = XML.parse(response.body_io)
