@@ -4,6 +4,7 @@ class Money::Currency
   # ```
   # require "json"
   # require "yaml"
+  # require "money"
   #
   # record FooWithCurrency, currency : Money::Currency do
   #   include JSON::Serializable
