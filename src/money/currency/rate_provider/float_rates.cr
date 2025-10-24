@@ -25,7 +25,7 @@ class Money::Currency
           result.xpath_nodes("//li/a[starts-with(@href, 'https://www.floatrates.com/daily/')]")
 
         currencies.map do |node|
-          node["href"].match!(/(\w+)\.json$/)[1].upcase
+          node["href"].match!(/(?<code>\w+)\.json$/)["code"].upcase
         end
       end
     end

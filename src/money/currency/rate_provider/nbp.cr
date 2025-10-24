@@ -2,7 +2,7 @@ require "log"
 
 class Money::Currency
   # Currency rate provider using data sourced from a daily feed of
-  # [Polish National Bank](https://nbp.pl).
+  # [Polish National Bank](https://nbp.pl/).
   #
   # NOTE: Supports only `PLN`-targeted conversions.
   class RateProvider::NBP < RateProvider

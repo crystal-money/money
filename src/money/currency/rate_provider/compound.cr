@@ -17,11 +17,11 @@ class Money::Currency
     end
 
     def base_currency_codes : Array(String)
-      currency_codes "Fetching base currency codes failed", &.base_currency_codes
+      currency_codes "Fetching base currencies failed", &.base_currency_codes
     end
 
     def target_currency_codes : Array(String)
-      currency_codes "Fetching target currency codes failed", &.target_currency_codes
+      currency_codes "Fetching target currencies failed", &.target_currency_codes
     end
 
     private def currency_codes(failure_msg : String, &) : Array(String)

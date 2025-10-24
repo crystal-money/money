@@ -3,7 +3,7 @@ require "log"
 
 class Money::Currency
   # Currency rate provider using data sourced from a daily feed of
-  # [European Central Bank](https://www.ecb.europa.eu).
+  # [European Central Bank](https://www.ecb.europa.eu/).
   #
   # NOTE: Supports only `EUR`-based conversions.
   class RateProvider::ECB < RateProvider
