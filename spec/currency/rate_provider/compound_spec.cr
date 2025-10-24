@@ -11,12 +11,18 @@ class Money::Currency
       @target_currency_codes = %w[],
       @rates = {} of String => Rate,
       *,
-      @simulate_error = false,
+      @simulate_fx_error = false,
+      @simulate_codes_error = false,
     )
     end
 
+    def base_currency_codes : Array(String)
+      raise "Simulated error (#{object_id})" if @simulate_codes_error
+      previous_def
+    end
+
     def exchange_rate?(base : Currency, target : Currency) : Rate?
-      raise "Simulated error (#{object_id})" if @simulate_error
+      raise "Simulated error (#{object_id})" if @simulate_fx_error
       @rates["%s_%s" % {base.code, target.code}]?
     end
   end
@@ -72,7 +78,8 @@ describe Money::Currency::RateProvider::Compound do
                   "updated_at": "2025-05-22T00:00:00Z"
                 }
               },
-              "simulate_error": false
+              "simulate_fx_error": false,
+              "simulate_codes_error": false
             }
           }
         ]
@@ -94,13 +101,35 @@ describe Money::Currency::RateProvider::Compound do
 
   describe "#base_currency_codes" do
     it "returns unique base currency codes from all providers" do
-      subject.base_currency_codes.sort.should eq ["EUR", "USD"]
+      subject.base_currency_codes.sort.should eq %w[EUR USD]
+    end
+
+    it "skips providers that raise exceptions and continues" do
+      error_provider =
+        Money::Currency::RateProvider::CompoundDummy.new(simulate_codes_error: true)
+
+      compound_with_error = Money::Currency::RateProvider::Compound.new(
+        [error_provider, provider2] of Money::Currency::RateProvider
+      )
+      compound_with_error.base_currency_codes
+        .should eq %w[EUR]
     end
   end
 
   describe "#target_currency_codes" do
     it "returns unique target currency codes from all providers" do
-      subject.target_currency_codes.sort.should eq ["CAD", "USD"]
+      subject.target_currency_codes.sort.should eq %w[CAD USD]
+    end
+
+    it "skips providers that raise exceptions and continues" do
+      error_provider =
+        Money::Currency::RateProvider::CompoundDummy.new(simulate_codes_error: true)
+
+      compound_with_error = Money::Currency::RateProvider::Compound.new(
+        [error_provider, provider2] of Money::Currency::RateProvider
+      )
+      compound_with_error.target_currency_codes
+        .should eq %w[USD]
     end
   end
 
@@ -116,12 +145,13 @@ describe Money::Currency::RateProvider::Compound do
 
     it "skips providers that raise exceptions and continues" do
       error_provider =
-        Money::Currency::RateProvider::CompoundDummy.new(simulate_error: true)
+        Money::Currency::RateProvider::CompoundDummy.new(simulate_fx_error: true)
 
       compound_with_error = Money::Currency::RateProvider::Compound.new(
         [error_provider, provider2] of Money::Currency::RateProvider
       )
-      compound_with_error.exchange_rate?(eur, usd).should eq rate_eur_usd
+      compound_with_error.exchange_rate?(eur, usd)
+        .should eq rate_eur_usd
     end
 
     it "raises an exception if no rate is found and any matching provider raises" do
@@ -129,7 +159,7 @@ describe Money::Currency::RateProvider::Compound do
         Money::Currency::RateProvider::CompoundDummy.new(
           base_currency_codes: %w[USD],
           target_currency_codes: %w[EUR],
-          simulate_error: true,
+          simulate_fx_error: true,
         )
       compound_with_error = Money::Currency::RateProvider::Compound.new(
         [error_provider, error_provider, provider2] of Money::Currency::RateProvider

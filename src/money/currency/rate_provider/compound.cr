@@ -17,11 +17,31 @@ class Money::Currency
     end
 
     def base_currency_codes : Array(String)
-      providers.flat_map(&.base_currency_codes).uniq!
+      providers
+        .compact_map do |provider|
+          provider.base_currency_codes
+        rescue ex
+          Log.debug(exception: ex) do
+            "Fetching base currency codes failed (#{provider.class})"
+          end
+          nil
+        end
+        .flatten
+        .uniq!
     end
 
     def target_currency_codes : Array(String)
-      providers.flat_map(&.target_currency_codes).uniq!
+      providers
+        .compact_map do |provider|
+          provider.target_currency_codes
+        rescue ex
+          Log.debug(exception: ex) do
+            "Fetching target currency codes failed (#{provider.class})"
+          end
+          nil
+        end
+        .flatten
+        .uniq!
     end
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
