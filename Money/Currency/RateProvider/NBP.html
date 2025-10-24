@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::Converter - money master</title>
+  <title>Money::Currency::RateProvider::NBP - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -167,7 +167,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/Converter" data-name="money::currency::rateprovider::converter">
+  <li class=" " data-id="money/Money/Currency/RateProvider/Converter" data-name="money::currency::rateprovider::converter">
       <a href="../../../Money/Currency/RateProvider/Converter.html">Converter</a>
       
     </li>
@@ -257,7 +257,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/NBP" data-name="money::currency::rateprovider::nbp">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/NBP" data-name="money::currency::rateprovider::nbp">
       <a href="../../../Money/Currency/RateProvider/NBP.html">NBP</a>
       
     </li>
@@ -477,16 +477,29 @@
 <h1 class="type-name">
 
   <span class="kind">
-    module
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Converter
+    class
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>NBP
 
 </h1>
 
 
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/NBP.html">Money::Currency::RateProvider::NBP</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Currency rate provider using data sourced from a daily feed of
+<a href="https://nbp.pl">Polish National Bank</a>.</p>
+<p><span class="flag purple">NOTE</span>  Supports only <code>PLN</code>-targeted conversions.</p>
 
 
 
@@ -495,20 +508,22 @@
 
 
   <h2>
-    <a id="extended-modules" class="anchor" href="#extended-modules">
+    <a id="included-modules" class="anchor" href="#included-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Extended Modules
+    Included Modules
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../../Money/Registry/Converter/JSON.html">Money::Registry::Converter::JSON</a>(<a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>)</li>
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li>
     
-      <li class="other-type"><a href="../../../Money/Registry/Converter/YAML.html">Money::Registry::Converter::YAML</a>(<a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>)</li>
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/ManyToOne.html">Money::Currency::RateProvider::ManyToOne</a></li>
     
   </ul>
+
+
 
 
 
@@ -526,31 +541,461 @@
     Defined in:
   </h2>
   
+    
+      <a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L8" target="_blank">
+        money/currency/rate_provider/nbp.cr
+      </a>
+    
+    <br/>
+  
 
 
 
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Log">
+        <strong>Log</strong> = <code><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>)</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p>Currency rate provider using data sourced from a daily feed of <a href="https://nbp.pl">Polish National Bank</a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p>Currency rate provider using data sourced from a daily feed of <a href="https://nbp.pl">Polish National Bank</a>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#key%3AString-class-method" class="signature"><strong>.key</strong> : String</a>
+        
+          <div class="summary"><p>Returns the class key.</p></div>
+        
+      </li>
+    
+  </ul>
 
 
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
+        
+          <div class="summary"><p>Returns the host URI used by the HTTP <code>#client</code> instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#target_currency_code%3AString-instance-method" class="signature"><strong>#target_currency_code</strong> : String</a>
+        
+      </li>
+    
+  </ul>
 
-  
-
-  
 
 
   <div class="methods-inherited">
     
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Currency/RateProvider/ManyToOne.html">Money::Currency::RateProvider::ManyToOne</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider/ManyToOne.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/ManyToOne.html#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, target : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/ManyToOne.html#target_currency_code%3AString-instance-method" class="tooltip">
+      <span>target_currency_code : String</span>
+    target_currency_code</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/ManyToOne.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider/HTTP.html#host%3AURI-instance-method" class="tooltip">
+      <span>host : URI</span>
+    host</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, target : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#supports_currency_pair%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ABool-instance-method" class="tooltip">
+      <span>supports_currency_pair?(base : Currency, target : Currency) : Bool</span>
+    supports_currency_pair?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(pull : JSON::PullParser)<br/>new(*, __pull_for_json_serializable pull : JSON::PullParser)<br/>new(*, __context_for_yaml_serializable ctx : YAML::ParseContext, __node_for_yaml_serializable node : YAML::Nodes::Node)</span>
+    new</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#find%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class-class-method" class="tooltip">
+      <span>find(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span></span>
+    find</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#find%3F%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class%7CNil-class-method" class="tooltip">
+      <span>find?(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span> | Nil</span>
+    find?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#registry-class-method" class="tooltip">
+      <span>registry</span>
+    registry</a>
+    
+  
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Currency rate provider using data sourced from a daily feed of
+<a href="https://nbp.pl">Polish National Bank</a>.</p>
+<p><span class="flag purple">NOTE</span>  Supports only <code>PLN</code>-targeted conversions.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Currency rate provider using data sourced from a daily feed of
+<a href="https://nbp.pl">Polish National Bank</a>.</p>
+<p><span class="flag purple">NOTE</span>  Supports only <code>PLN</code>-targeted conversions.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="key:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>key</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#key%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the class key.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
   
 
   
-
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
   
+    <div class="entry-detail" id="host:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>host</strong> : URI
+
+        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a>
+            </div>
+          
+          <p>Returns the host URI used by the HTTP <code>#client</code> instance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="target_currency_code:String-instance-method">
+      <div class="signature">
+        
+        def <strong>target_currency_code</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#target_currency_code%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/3f017bd/src/money/currency/rate_provider/nbp.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
