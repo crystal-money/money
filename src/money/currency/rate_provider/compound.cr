@@ -17,26 +17,20 @@ class Money::Currency
     end
 
     def base_currency_codes : Array(String)
-      providers
-        .compact_map do |provider|
-          provider.base_currency_codes
-        rescue ex
-          Log.debug(exception: ex) do
-            "Fetching base currency codes failed (#{provider.class})"
-          end
-          nil
-        end
-        .flatten
-        .uniq!
+      currency_codes "Fetching base currency codes failed", &.base_currency_codes
     end
 
     def target_currency_codes : Array(String)
+      currency_codes "Fetching target currency codes failed", &.target_currency_codes
+    end
+
+    private def currency_codes(failure_msg : String, &) : Array(String)
       providers
         .compact_map do |provider|
-          provider.target_currency_codes
+          yield provider
         rescue ex
           Log.debug(exception: ex) do
-            "Fetching target currency codes failed (#{provider.class})"
+            "#{failure_msg} (#{provider.class})"
           end
           nil
         end
