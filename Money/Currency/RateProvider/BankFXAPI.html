@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::CBR - money master</title>
+  <title>Money::Currency::RateProvider::BankFXAPI - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -152,12 +152,12 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/BankFXAPI" data-name="money::currency::rateprovider::bankfxapi">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/BankFXAPI" data-name="money::currency::rateprovider::bankfxapi">
       <a href="../../../Money/Currency/RateProvider/BankFXAPI.html">BankFXAPI</a>
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/CBR" data-name="money::currency::rateprovider::cbr">
+  <li class=" " data-id="money/Money/Currency/RateProvider/CBR" data-name="money::currency::rateprovider::cbr">
       <a href="../../../Money/Currency/RateProvider/CBR.html">CBR</a>
       
     </li>
@@ -488,12 +488,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>CBR
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>BankFXAPI
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/CBR.html">Money::Currency::RateProvider::CBR</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/BankFXAPI.html">Money::Currency::RateProvider::BankFXAPI</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -507,9 +507,7 @@
     Overview
   </h2>
 
-  <p>Currency rate provider using data sourced from a daily feed of
-<a href="https://www.cbr.ru">Bank of Russia</a>.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>RUB</code>-targeted conversions.</p>
+  <p><a href="https://bankfxapi.com/">BankFXApi</a> currency rate provider.</p>
 
 
 
@@ -552,8 +550,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L9" target="_blank">
-        money/currency/rate_provider/cbr.cr
+      <a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L5" target="_blank">
+        money/currency/rate_provider/bank_fx_api.cr
       </a>
     
     <br/>
@@ -596,19 +594,19 @@
       <li class="entry-summary">
         <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
         
-          <div class="summary"><p>Currency rate provider using data sourced from a daily feed of <a href="https://www.cbr.ru">Bank of Russia</a>.</p></div>
+          <div class="summary"><p><a href="https://bankfxapi.com/">BankFXApi</a> currency rate provider.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
-          <div class="summary"><p>Currency rate provider using data sourced from a daily feed of <a href="https://www.cbr.ru">Bank of Russia</a>.</p></div>
+          <div class="summary"><p><a href="https://bankfxapi.com/">BankFXApi</a> currency rate provider.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
+        <a href="#new%28%2A%2Cbank%3ANil%7CString%3Dnil%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, bank : Nil | String = <span class="n">nil</span>, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -648,6 +646,16 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#api_key%3AString-instance-method" class="signature"><strong>#api_key</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bank%3AString-instance-method" class="signature"><strong>#bank</strong> : String</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
@@ -865,15 +873,13 @@
       
         <div class="doc">
           
-          <p>Currency rate provider using data sourced from a daily feed of
-<a href="https://www.cbr.ru">Bank of Russia</a>.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>RUB</code>-targeted conversions.</p>
+          <p><a href="https://bankfxapi.com/">BankFXApi</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -888,31 +894,29 @@
       
         <div class="doc">
           
-          <p>Currency rate provider using data sourced from a daily feed of
-<a href="https://www.cbr.ru">Bank of Russia</a>.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>RUB</code>-targeted conversions.</p>
+          <p><a href="https://bankfxapi.com/">BankFXApi</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
+    <div class="entry-detail" id="new(*,bank:Nil|String=nil,api_key:Nil|String=nil,host:Nil|URI=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
+        def self.<strong>new</strong>(*, bank : Nil | <a href="../../../String.html">String</a> = <span class="n">nil</span>, api_key : Nil | <a href="../../../String.html">String</a> = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28%2A%2Cbank%3ANil%7CString%3Dnil%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -945,7 +949,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -963,6 +967,38 @@
 </a>
     Instance Method Detail
   </h2>
+  
+    <div class="entry-detail" id="api_key:String-instance-method">
+      <div class="signature">
+        
+        def <strong>api_key</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#api_key%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bank:String-instance-method">
+      <div class="signature">
+        
+        def <strong>bank</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#bank%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="host:URI-instance-method">
       <div class="signature">
@@ -984,7 +1020,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1000,7 +1036,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/cbr.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/e697995/src/money/currency/rate_provider/bank_fx_api.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
