@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::FXFeed - money master</title>
+  <title>Money::Currency::RateProvider::CoinGecko - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -152,7 +152,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/CoinGecko" data-name="money::currency::rateprovider::coingecko">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/CoinGecko" data-name="money::currency::rateprovider::coingecko">
       <a href="../../../Money/Currency/RateProvider/CoinGecko.html">CoinGecko</a>
       
     </li>
@@ -217,7 +217,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/FXFeed" data-name="money::currency::rateprovider::fxfeed">
+  <li class=" " data-id="money/Money/Currency/RateProvider/FXFeed" data-name="money::currency::rateprovider::fxfeed">
       <a href="../../../Money/Currency/RateProvider/FXFeed.html">FXFeed</a>
       
     </li>
@@ -458,12 +458,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>FXFeed
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>CoinGecko
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/FXFeed.html">Money::Currency::RateProvider::FXFeed</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/CoinGecko.html">Money::Currency::RateProvider::CoinGecko</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -477,7 +477,7 @@
     Overview
   </h2>
 
-  <p><a href="https://fxfeed.io/">FXFeed</a> currency rate provider.</p>
+  <p><a href="https://www.coingecko.com/">CoinGecko</a> currency rate provider.</p>
 
 
 
@@ -496,6 +496,8 @@
   <ul class="other-types-list">
     
       <li class="other-type"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li>
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/OneToMany.html">Money::Currency::RateProvider::OneToMany</a></li>
     
   </ul>
 
@@ -518,8 +520,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L5" target="_blank">
-        money/currency/rate_provider/fx_feed.cr
+      <a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L5" target="_blank">
+        money/currency/rate_provider/coingecko.cr
       </a>
     
     <br/>
@@ -562,19 +564,19 @@
       <li class="entry-summary">
         <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
         
-          <div class="summary"><p><a href="https://fxfeed.io/">FXFeed</a> currency rate provider.</p></div>
+          <div class="summary"><p><a href="https://www.coingecko.com/">CoinGecko</a> currency rate provider.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
-          <div class="summary"><p><a href="https://fxfeed.io/">FXFeed</a> currency rate provider.</p></div>
+          <div class="summary"><p><a href="https://www.coingecko.com/">CoinGecko</a> currency rate provider.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, api_key : Nil | String = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)</a>
+        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -616,21 +618,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#api_key%3AString-instance-method" class="signature"><strong>#api_key</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p><a href="https://fxfeed.io/docs#latest-currency-data">https://fxfeed.io/docs#latest-currency-data</a></p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
-        
-          <div class="summary"><p><a href="https://fxfeed.io/docs#latest-currency-data">https://fxfeed.io/docs#latest-currency-data</a></p></div>
+        <a href="#base_currency_code%3AString-instance-method" class="signature"><strong>#base_currency_code</strong> : String</a>
         
       </li>
     
@@ -646,6 +634,43 @@
 
 
   <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Currency/RateProvider/OneToMany.html">Money::Currency::RateProvider::OneToMany</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#base_currency_code%3AString-instance-method" class="tooltip">
+      <span>base_currency_code : String</span>
+    base_currency_code</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, target : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
     
       
 
@@ -808,13 +833,13 @@
       
         <div class="doc">
           
-          <p><a href="https://fxfeed.io/">FXFeed</a> currency rate provider.</p>
+          <p><a href="https://www.coingecko.com/">CoinGecko</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -829,29 +854,29 @@
       
         <div class="doc">
           
-          <p><a href="https://fxfeed.io/">FXFeed</a> currency rate provider.</p>
+          <p><a href="https://www.coingecko.com/">CoinGecko</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(*,api_key:Nil|String=nil,host:Nil|URI=nil)-class-method">
+    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(*, api_key : Nil | <a href="../../../String.html">String</a> = <span class="n">nil</span>, host : Nil | URI = <span class="n">nil</span>)
+        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28%2A%2Capi_key%3ANil%7CString%3Dnil%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -884,7 +909,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -903,60 +928,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="api_key:String-instance-method">
+    <div class="entry-detail" id="base_currency_code:String-instance-method">
       <div class="signature">
         
-        def <strong>api_key</strong> : <a href="../../../String.html">String</a>
+        def <strong>base_currency_code</strong> : <a href="../../../String.html">String</a>
 
-        <a class="method-permalink" href="#api_key%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#base_currency_code%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
-      <div class="signature">
-        
-        def <strong>base_currency_codes</strong> : Array(<a href="../../../String.html">String</a>)
-
-        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p><a href="https://fxfeed.io/docs#latest-currency-data">https://fxfeed.io/docs#latest-currency-data</a></p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L21" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="exchange_rate?(base:Currency,target:Currency):Rate|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, target : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
-
-        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p><a href="https://fxfeed.io/docs#latest-currency-data">https://fxfeed.io/docs#latest-currency-data</a></p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -981,7 +964,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/fx_feed.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/coingecko.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -152,6 +152,11 @@
       
     </li>
   
+  <li class=" " data-id="money/Money/Currency/RateProvider/CoinGecko" data-name="money::currency::rateprovider::coingecko">
+      <a href="../../../Money/Currency/RateProvider/CoinGecko.html">CoinGecko</a>
+      
+    </li>
+  
   <li class=" " data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
       <a href="../../../Money/Currency/RateProvider/Coinlayer.html">Coinlayer</a>
       
@@ -244,6 +249,21 @@
   
   <li class=" " data-id="money/Money/Currency/RateProvider/Null" data-name="money::currency::rateprovider::null">
       <a href="../../../Money/Currency/RateProvider/Null.html">Null</a>
+      
+    </li>
+  
+  <li class="parent " data-id="money/Money/Currency/RateProvider/OneToMany" data-name="money::currency::rateprovider::onetomany">
+      <a href="../../../Money/Currency/RateProvider/OneToMany.html">OneToMany</a>
+      
+        <ul>
+  
+  <li class=" " data-id="money/Money/Currency/RateProvider/OneToMany/NativeRate" data-name="money::currency::rateprovider::onetomany::nativerate">
+      <a href="../../../Money/Currency/RateProvider/OneToMany/NativeRate.html">NativeRate</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -478,6 +498,8 @@
     
       <li class="other-type"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li>
     
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/OneToMany.html">Money::Currency::RateProvider::OneToMany</a></li>
+    
   </ul>
 
 
@@ -499,7 +521,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">
         money/currency/rate_provider/ecb.cr
       </a>
     
@@ -597,16 +619,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported base currency codes.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
-        
-          <div class="summary"><p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p></div>
+        <a href="#base_currency_code%3AString-instance-method" class="signature"><strong>#base_currency_code</strong> : String</a>
         
       </li>
     
@@ -617,18 +630,48 @@
         
       </li>
     
-      <li class="entry-summary">
-        <a href="#target_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#target_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported target currency codes.</p></div>
-        
-      </li>
-    
   </ul>
 
 
 
   <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Currency/RateProvider/OneToMany.html">Money::Currency::RateProvider::OneToMany</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#base_currency_code%3AString-instance-method" class="tooltip">
+      <span>base_currency_code : String</span>
+    base_currency_code</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, target : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider/OneToMany.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
     
       
 
@@ -798,7 +841,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -820,7 +863,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -836,7 +879,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -869,7 +912,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -888,52 +931,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
+    <div class="entry-detail" id="base_currency_code:String-instance-method">
       <div class="signature">
         
-        def <strong>base_currency_codes</strong> : Array(<a href="../../../String.html">String</a>)
+        def <strong>base_currency_code</strong> : <a href="../../../String.html">String</a>
 
-        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#base_currency_code%3AString-instance-method">#</a>
       </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported base currency codes.</p>
-        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L21" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="exchange_rate?(base:Currency,target:Currency):Rate|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, target : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
-
-        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns the exchange rate between <em>base</em> and <em>target</em> currency, or <code>nil</code> if not found.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -958,32 +967,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L14" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="target_currency_codes:Array(String)-instance-method">
-      <div class="signature">
-        
-        def <strong>target_currency_codes</strong> : Array(<a href="../../../String.html">String</a>)
-
-        <a class="method-permalink" href="#target_currency_codes%3AArray%28String%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported target currency codes.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/e8cf189/src/money/currency/rate_provider/ecb.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/4218cfe/src/money/currency/rate_provider/ecb.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
