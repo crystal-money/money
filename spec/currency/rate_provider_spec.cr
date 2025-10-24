@@ -8,14 +8,18 @@ class Money::Currency
     getter rates = {} of String => Rate
 
     def initialize(*, @foo_option = false)
+      usd = Currency.find("USD")
+      cad = Currency.find("CAD")
+      eur = Currency.find("EUR")
+
       @rates = {
-        "USD_CAD" => Rate.new(Currency.find("USD"), Currency.find("CAD"), 1.25.to_big_d),
-        "EUR_USD" => Rate.new(Currency.find("EUR"), Currency.find("USD"), 1.1.to_big_d),
+        Rate.key(usd, cad) => Rate.new(usd, cad, 1.25.to_big_d),
+        Rate.key(eur, usd) => Rate.new(eur, usd, 1.1.to_big_d),
       }
     end
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
-      @rates["%s_%s" % {base.code, target.code}]?
+      @rates[Rate.key(base, target)]?
     end
   end
 end

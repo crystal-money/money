@@ -23,7 +23,7 @@ class Money::Currency
 
     def exchange_rate?(base : Currency, target : Currency) : Rate?
       raise "Simulated error (#{object_id})" if @simulate_fx_error
-      @rates["%s_%s" % {base.code, target.code}]?
+      @rates[Rate.key(base, target)]?
     end
   end
 end
@@ -43,12 +43,12 @@ describe Money::Currency::RateProvider::Compound do
   provider1 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR USD],
     target_currency_codes: %w[USD CAD],
-    rates: {"USD_CAD" => rate_usd_cad},
+    rates: {Money::Currency::Rate.key(usd, cad) => rate_usd_cad},
   )
   provider2 = Money::Currency::RateProvider::CompoundDummy.new(
     base_currency_codes: %w[EUR],
     target_currency_codes: %w[USD],
-    rates: {"EUR_USD" => rate_eur_usd},
+    rates: {Money::Currency::Rate.key(eur, usd) => rate_eur_usd},
   )
 
   subject = Money::Currency::RateProvider::Compound.new(
