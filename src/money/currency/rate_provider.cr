@@ -36,8 +36,5 @@ class Money::Currency
   end
 end
 
-require "./rate_provider/error"
-require "./rate_provider/http"
-require "./rate_provider/one_to_many"
-require "./rate_provider/many_to_one"
 require "./rate_provider/*"
+require "./rate_provider/providers/*"
