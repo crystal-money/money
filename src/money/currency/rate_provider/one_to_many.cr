@@ -1,7 +1,7 @@
 class Money::Currency
   module RateProvider::OneToMany
-    protected record NativeRate,
-      target_code : String,
+    protected record Rate,
+      currency_code : String,
       value : BigDecimal
 
     abstract def base_currency_code : String
@@ -11,22 +11,22 @@ class Money::Currency
     end
 
     getter target_currency_codes : Array(String) do
-      exchange_rates.map(&.target_code)
+      exchange_rates.map(&.currency_code)
     end
 
-    def exchange_rate?(base : Currency, target : Currency) : Rate?
+    def exchange_rate?(base : Currency, target : Currency) : Currency::Rate?
       return unless base.code == base_currency_code
-      return unless rate = exchange_rate?(target)
+      return unless rate = exchange_rate?(target: target)
 
-      Rate.new(base, target, rate)
+      Currency::Rate.new(base, target, rate)
     end
 
-    protected def exchange_rate?(target : Currency) : BigDecimal?
+    protected def exchange_rate?(*, target : Currency) : BigDecimal?
       exchange_rates
-        .find(&.target_code.==(target.code))
+        .find(&.currency_code.==(target.code))
         .try(&.value)
     end
 
-    protected abstract def exchange_rates : Array(NativeRate)
+    protected abstract def exchange_rates : Array(Rate)
   end
 end

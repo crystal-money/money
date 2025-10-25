@@ -23,8 +23,8 @@ class Money::Currency
     end
 
     # <https://api.nbp.pl/en.html>
-    protected def exchange_rates : Array(NativeRate)
-      Log.debug { "Fetching exchange rates for #{target_currency_code}" }
+    protected def exchange_rates : Array(Rate)
+      Log.debug { "Fetching rates for target currency #{target_currency_code}" }
 
       params = {
         "format": "json",
@@ -37,7 +37,7 @@ class Money::Currency
           .as_a
 
         rates.map do |rate|
-          NativeRate.new(rate["code"].as_s, rate["mid"].to_s.to_big_d)
+          Rate.new(rate["code"].as_s, rate["mid"].to_s.to_big_d)
         end
       end
     end

@@ -24,8 +24,8 @@ class Money::Currency
     end
 
     # <https://www.cbr.ru/development/SXML/>
-    protected def exchange_rates : Array(NativeRate)
-      Log.debug { "Fetching exchange rates for #{target_currency_code}" }
+    protected def exchange_rates : Array(Rate)
+      Log.debug { "Fetching rates for target currency #{target_currency_code}" }
 
       request("/scripts/XML_daily.asp") do |response|
         result = XML.parse(response.body_io)
@@ -36,10 +36,7 @@ class Money::Currency
           next unless currency_code = node.xpath_string("string(CharCode)").presence
           next unless rate = node.xpath_string("string(VunitRate)").presence
 
-          NativeRate.new(
-            currency_code,
-            rate.sub(',', '.').to_big_d,
-          )
+          Rate.new(currency_code, rate.sub(',', '.').to_big_d)
         end
       end
     end
