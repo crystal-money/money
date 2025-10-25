@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::Coinlayer - money master</title>
+  <title>Money::Currency::RateProvider::Exchangerate - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -162,7 +162,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
+  <li class=" " data-id="money/Money/Currency/RateProvider/Coinlayer" data-name="money::currency::rateprovider::coinlayer">
       <a href="../../../Money/Currency/RateProvider/Coinlayer.html">Coinlayer</a>
       
     </li>
@@ -202,7 +202,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/Exchangerate" data-name="money::currency::rateprovider::exchangerate">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/Exchangerate" data-name="money::currency::rateprovider::exchangerate">
       <a href="../../../Money/Currency/RateProvider/Exchangerate.html">Exchangerate</a>
       
     </li>
@@ -488,12 +488,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Coinlayer
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Exchangerate
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Coinlayer.html">Money::Currency::RateProvider::Coinlayer</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Exchangerate.html">Money::Currency::RateProvider::Exchangerate</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -507,7 +507,7 @@
     Overview
   </h2>
 
-  <p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p>
+  <p><a href="https://exchangerate.host/">Exchangerate</a> currency rate provider.</p>
 
 
 
@@ -548,8 +548,8 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L5" target="_blank">
-        money/currency/rate_provider/providers/coinlayer.cr
+      <a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L5" target="_blank">
+        money/currency/rate_provider/providers/exchangerate.cr
       </a>
     
     <br/>
@@ -592,14 +592,14 @@
       <li class="entry-summary">
         <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
         
-          <div class="summary"><p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p></div>
+          <div class="summary"><p><a href="https://exchangerate.host/">Exchangerate</a> currency rate provider.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
         
-          <div class="summary"><p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p></div>
+          <div class="summary"><p><a href="https://exchangerate.host/">Exchangerate</a> currency rate provider.</p></div>
         
       </li>
     
@@ -653,14 +653,14 @@
       <li class="entry-summary">
         <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
         
-          <div class="summary"><p>Returns an array of supported base currency codes.</p></div>
+          <div class="summary"><p><a href="https://exchangerate.host/documentation#supported_currencies">https://exchangerate.host/documentation#supported_currencies</a></p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
         
-          <div class="summary"><p><a href="https://coinlayer.com/documentation#live">https://coinlayer.com/documentation#live</a></p></div>
+          <div class="summary"><p><a href="https://exchangerate.host/documentation#real_time_rates">https://exchangerate.host/documentation#real_time_rates</a></p></div>
         
       </li>
     
@@ -668,13 +668,6 @@
         <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
         
           <div class="summary"><p>Returns the host URI used by the HTTP <code>#client</code> instance.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#target_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#target_currency_codes</strong> : Array(String)</a>
-        
-          <div class="summary"><p>Returns an array of supported target currency codes.</p></div>
         
       </li>
     
@@ -845,13 +838,13 @@
       
         <div class="doc">
           
-          <p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p>
+          <p><a href="https://exchangerate.host/">Exchangerate</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -866,13 +859,13 @@
       
         <div class="doc">
           
-          <p><a href="https://coinlayer.com/">Coinlayer</a> currency rate provider.</p>
+          <p><a href="https://exchangerate.host/">Exchangerate</a> currency rate provider.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -888,7 +881,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -921,7 +914,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -951,7 +944,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -966,17 +959,13 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported base currency codes.</p>
+          <p><a href="https://exchangerate.host/documentation#supported_currencies">https://exchangerate.host/documentation#supported_currencies</a></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -991,13 +980,13 @@
       
         <div class="doc">
           
-          <p><a href="https://coinlayer.com/documentation#live">https://coinlayer.com/documentation#live</a></p>
+          <p><a href="https://exchangerate.host/documentation#real_time_rates">https://exchangerate.host/documentation#real_time_rates</a></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1022,32 +1011,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L13" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="target_currency_codes:Array(String)-instance-method">
-      <div class="signature">
-        
-        def <strong>target_currency_codes</strong> : Array(<a href="../../../String.html">String</a>)
-
-        <a class="method-permalink" href="#target_currency_codes%3AArray%28String%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a>
-            </div>
-          
-          <p>Returns an array of supported target currency codes.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/coinlayer.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/d4060a8/src/money/currency/rate_provider/providers/exchangerate.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
