@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::ManyToOne::NativeRate - money master</title>
+  <title>Money::Currency::RateProvider::ManyToOne::Rate - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../../";
   </script>
@@ -242,8 +242,8 @@
       
         <ul>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/ManyToOne/NativeRate" data-name="money::currency::rateprovider::manytoone::nativerate">
-      <a href="../../../../Money/Currency/RateProvider/ManyToOne/NativeRate.html">NativeRate</a>
+  <li class=" current" data-id="money/Money/Currency/RateProvider/ManyToOne/Rate" data-name="money::currency::rateprovider::manytoone::rate">
+      <a href="../../../../Money/Currency/RateProvider/ManyToOne/Rate.html">Rate</a>
       
     </li>
   
@@ -282,8 +282,8 @@
       
         <ul>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/OneToMany/NativeRate" data-name="money::currency::rateprovider::onetomany::nativerate">
-      <a href="../../../../Money/Currency/RateProvider/OneToMany/NativeRate.html">NativeRate</a>
+  <li class=" " data-id="money/Money/Currency/RateProvider/OneToMany/Rate" data-name="money::currency::rateprovider::onetomany::rate">
+      <a href="../../../../Money/Currency/RateProvider/OneToMany/Rate.html">Rate</a>
       
     </li>
   
@@ -483,12 +483,12 @@
 
   <span class="kind">
     struct
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>ManyToOne::<wbr>NativeRate
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>ManyToOne::<wbr>Rate
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../../Money/Currency/RateProvider/ManyToOne/NativeRate.html">Money::Currency::RateProvider::ManyToOne::NativeRate</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../../Money/Currency/RateProvider/ManyToOne/Rate.html">Money::Currency::RateProvider::ManyToOne::Rate</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -518,7 +518,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/fc9cfa1/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/b1d2285/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">
         money/currency/rate_provider/many_to_one.cr
       </a>
     
@@ -541,7 +541,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28base_code%3AString%2Cvalue%3ABigDecimal%29-class-method" class="signature"><strong>.new</strong>(base_code : String, value : BigDecimal)</a>
+        <a href="#new%28currency_code%3AString%2Cvalue%3ABigDecimal%29-class-method" class="signature"><strong>.new</strong>(currency_code : String, value : BigDecimal)</a>
         
       </li>
     
@@ -564,17 +564,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#base_code%3AString-instance-method" class="signature"><strong>#base_code</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#copy_with%28base_code_base_code%3D%40base_code%2Cvalue_value%3D%40value%29-instance-method" class="signature"><strong>#copy_with</strong>(base_code _base_code = @base_code, value _value = @value)</a>
+        <a href="#copy_with%28currency_code_currency_code%3D%40currency_code%2Cvalue_value%3D%40value%29-instance-method" class="signature"><strong>#copy_with</strong>(currency_code _currency_code = @currency_code, value _value = @value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#currency_code%3AString-instance-method" class="signature"><strong>#currency_code</strong> : String</a>
         
       </li>
     
@@ -640,18 +640,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(base_code:String,value:BigDecimal)-class-method">
+    <div class="entry-detail" id="new(currency_code:String,value:BigDecimal)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(base_code : <a href="../../../../String.html">String</a>, value : BigDecimal)
+        def self.<strong>new</strong>(currency_code : <a href="../../../../String.html">String</a>, value : BigDecimal)
 
-        <a class="method-permalink" href="#new%28base_code%3AString%2Cvalue%3ABigDecimal%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28currency_code%3AString%2Cvalue%3ABigDecimal%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/fc9cfa1/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/b1d2285/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,20 +672,6 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="base_code:String-instance-method">
-      <div class="signature">
-        
-        def <strong>base_code</strong> : <a href="../../../../String.html">String</a>
-
-        <a class="method-permalink" href="#base_code%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="clone-instance-method">
       <div class="signature">
         
@@ -697,23 +683,37 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/fc9cfa1/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/b1d2285/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="copy_with(base_code_base_code=@base_code,value_value=@value)-instance-method">
+    <div class="entry-detail" id="copy_with(currency_code_currency_code=@currency_code,value_value=@value)-instance-method">
       <div class="signature">
         
-        def <strong>copy_with</strong>(base_code _base_code = @base_code, value _value = @value)
+        def <strong>copy_with</strong>(currency_code _currency_code = @currency_code, value _value = @value)
 
-        <a class="method-permalink" href="#copy_with%28base_code_base_code%3D%40base_code%2Cvalue_value%3D%40value%29-instance-method">#</a>
+        <a class="method-permalink" href="#copy_with%28currency_code_currency_code%3D%40currency_code%2Cvalue_value%3D%40value%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/fc9cfa1/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/b1d2285/src/money/currency/rate_provider/many_to_one.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="currency_code:String-instance-method">
+      <div class="signature">
+        
+        def <strong>currency_code</strong> : <a href="../../../../String.html">String</a>
+
+        <a class="method-permalink" href="#currency_code%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
