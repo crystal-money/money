@@ -518,7 +518,7 @@
   </h2>
 
   <p><a href="https://www.bitpay.com/">BitPay</a> currency rate provider.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>BTC</code>-based conversions.</p>
+<p><span class="flag purple">NOTE</span>  Supports only some of the crypto-based conversions.</p>
 
 
 
@@ -561,7 +561,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">
         money/currency/rate_provider/providers/bitpay.cr
       </a>
     
@@ -617,7 +617,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
+        <a href="#new%28%2A%2Cbase_currency_code%3AString%3D%22BTC%22%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, base_currency_code : String = <span class="s">&quot;BTC&quot;</span>, host : Nil | URI = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -660,6 +660,8 @@
     
       <li class="entry-summary">
         <a href="#base_currency_code%3AString-instance-method" class="signature"><strong>#base_currency_code</strong> : String</a>
+        
+          <div class="summary"><p>Supported currencies: <code>BTC</code>, <code>BCH</code>, <code>ETH</code>, <code>XRP</code>, <code>DOGE</code>, <code>LTC</code></p></div>
         
       </li>
     
@@ -875,13 +877,13 @@
         <div class="doc">
           
           <p><a href="https://www.bitpay.com/">BitPay</a> currency rate provider.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>BTC</code>-based conversions.</p>
+<p><span class="flag purple">NOTE</span>  Supports only some of the crypto-based conversions.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -897,29 +899,29 @@
         <div class="doc">
           
           <p><a href="https://www.bitpay.com/">BitPay</a> currency rate provider.</p>
-<p><span class="flag purple">NOTE</span>  Supports only <code>BTC</code>-based conversions.</p>
+<p><span class="flag purple">NOTE</span>  Supports only some of the crypto-based conversions.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
+    <div class="entry-detail" id="new(*,base_currency_code:String=&quot;BTC&quot;,host:Nil|URI=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
+        def self.<strong>new</strong>(*, base_currency_code : <a href="../../../String.html">String</a> = <span class="s">&quot;BTC&quot;</span>, host : Nil | URI = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28%2A%2Cbase_currency_code%3AString%3D%22BTC%22%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -952,7 +954,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -979,10 +981,15 @@
         <a class="method-permalink" href="#base_currency_code%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Supported currencies: <code>BTC</code>, <code>BCH</code>, <code>ETH</code>, <code>XRP</code>, <code>DOGE</code>, <code>LTC</code></p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1007,7 +1014,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/03f19c7/src/money/currency/rate_provider/providers/bitpay.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/eb09355/src/money/currency/rate_provider/providers/bitpay.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
