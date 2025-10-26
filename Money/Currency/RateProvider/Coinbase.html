@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../../js/doc.js"></script>
 
   <meta name="repository-name" content="money">
-  <title>Money::Currency::RateProvider::ResponseError - money master</title>
+  <title>Money::Currency::RateProvider::Coinbase - money master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../../";
   </script>
@@ -162,7 +162,7 @@
       
     </li>
   
-  <li class=" " data-id="money/Money/Currency/RateProvider/Coinbase" data-name="money::currency::rateprovider::coinbase">
+  <li class=" current" data-id="money/Money/Currency/RateProvider/Coinbase" data-name="money::currency::rateprovider::coinbase">
       <a href="../../../Money/Currency/RateProvider/Coinbase.html">Coinbase</a>
       
     </li>
@@ -327,7 +327,7 @@
       
     </li>
   
-  <li class=" current" data-id="money/Money/Currency/RateProvider/ResponseError" data-name="money::currency::rateprovider::responseerror">
+  <li class=" " data-id="money/Money/Currency/RateProvider/ResponseError" data-name="money::currency::rateprovider::responseerror">
       <a href="../../../Money/Currency/RateProvider/ResponseError.html">ResponseError</a>
       
     </li>
@@ -503,12 +503,12 @@
 
   <span class="kind">
     class
-  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>ResponseError
+  </span> Money::<wbr>Currency::<wbr>RateProvider::<wbr>Coinbase
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/ResponseError.html">Money::Currency::RateProvider::ResponseError</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider/Error.html">Money::Currency::RateProvider::Error</a></li><li class="superclass"><a href="../../../Money/Error.html">Money::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Money/Currency/RateProvider/Coinbase.html">Money::Currency::RateProvider::Coinbase</a></li><li class="superclass"><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -522,13 +522,27 @@
     Overview
   </h2>
 
-  <p>Raised when a rate provider returns an error.</p>
+  <p><a href="https://www.coinbase.com/">Coinbase</a> currency rate provider.</p>
 
 
 
 
 
 
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></li>
+    
+  </ul>
 
 
 
@@ -549,14 +563,33 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/error.cr#L19" target="_blank">
-        money/currency/rate_provider/error.cr
+      <a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L5" target="_blank">
+        money/currency/rate_provider/providers/coinbase.cr
       </a>
     
     <br/>
   
 
 
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Log">
+        <strong>Log</strong> = <code><span class="t">::</span><span class="t">Log</span>.<span class="k">for</span>(<span class="k">self</span>)</code>
+      </dt>
+      
+    
+  </dl>
 
 
 
@@ -572,7 +605,42 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28code%2Cdetail%3Dnil%29-class-method" class="signature"><strong>.new</strong>(code, detail = <span class="n">nil</span>)</a>
+        <a href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+          <div class="summary"><p><a href="https://www.coinbase.com/">Coinbase</a> currency rate provider.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+          <div class="summary"><p><a href="https://www.coinbase.com/">Coinbase</a> currency rate provider.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, host : Nil | URI = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#key%3AString-class-method" class="signature"><strong>.key</strong> : String</a>
+        
+          <div class="summary"><p>Returns the class key.</p></div>
         
       </li>
     
@@ -582,19 +650,124 @@
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#base_currency_codes%3AArray%28String%29-instance-method" class="signature"><strong>#base_currency_codes</strong> : Array(String)</a>
+        
+          <div class="summary"><p><a href="https://docs.cdp.coinbase.com/coinbase-app/track-apis/currencies">https://docs.cdp.coinbase.com/coinbase-app/track-apis/currencies</a></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="signature"><strong>#exchange_rate?</strong>(base : Currency, target : Currency) : Rate | Nil</a>
+        
+          <div class="summary"><p><a href="https://docs.cdp.coinbase.com/coinbase-app/track-apis/exchange-rates#data-api-exchange-rates">https://docs.cdp.coinbase.com/coinbase-app/track-apis/exchange-rates#data-api-exchange-rates</a></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#host%3AURI-instance-method" class="signature"><strong>#host</strong> : URI</a>
+        
+          <div class="summary"><p>Returns the host URI used by the HTTP <code>#client</code> instance.</p></div>
+        
+      </li>
+    
+  </ul>
 
-  
 
 
   <div class="methods-inherited">
     
       
 
+  <h3>Instance methods inherited from module <code><a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider/HTTP.html#host%3AURI-instance-method" class="tooltip">
+      <span>host : URI</span>
+    host</a>
+    
+  
+
 
       
 
 
       
+
+
+      
+
+
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#base_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>base_currency_codes : Array(String)</span>
+    base_currency_codes</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method" class="tooltip">
+      <span>exchange_rate?(base : Currency, target : Currency) : Rate | Nil</span>
+    exchange_rate?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#supports_currency_pair%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ABool-instance-method" class="tooltip">
+      <span>supports_currency_pair?(base : Currency, target : Currency) : Bool</span>
+    supports_currency_pair?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#target_currency_codes%3AArray%28String%29-instance-method" class="tooltip">
+      <span>target_currency_codes : Array(String)</span>
+    target_currency_codes</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method" class="tooltip">
+      <span>new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)<br/>new(pull : JSON::PullParser)<br/>new(*, __pull_for_json_serializable pull : JSON::PullParser)<br/>new(*, __context_for_yaml_serializable ctx : YAML::ParseContext, __node_for_yaml_serializable node : YAML::Nodes::Node)</span>
+    new</a>
+    
+  
+
+
+      
+
+  <h3>Class methods inherited from class <code><a href="../../../Money/Currency/RateProvider.html">Money::Currency::RateProvider</a></code></h3>
+  
+  
+    <a href="../../../Money/Currency/RateProvider.html#find%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class-class-method" class="tooltip">
+      <span>find(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span></span>
+    find</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#find%3F%28name%3AString%7CSymbol%29%3AMoney%3A%3ACurrency%3A%3ARateProvider.class%7CNil-class-method" class="tooltip">
+      <span>find?(name : String | Symbol) : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">RateProvider</span>.<span class="k">class</span> | Nil</span>
+    find?</a>, 
+    
+  
+    <a href="../../../Money/Currency/RateProvider.html#registry-class-method" class="tooltip">
+      <span>registry</span>
+    registry</a>
+    
+  
 
 
       
@@ -665,18 +838,93 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(code,detail=nil)-class-method">
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(code, detail = <span class="n">nil</span>)
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
 
-        <a class="method-permalink" href="#new%28code%2Cdetail%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28ctx%3AYAML%3A%3AParseContext%2Cnode%3AYAML%3A%3ANodes%3A%3ANode%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://www.coinbase.com/">Coinbase</a> currency rate provider.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://www.coinbase.com/">Coinbase</a> currency rate provider.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*,host:Nil|URI=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, host : Nil | URI = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Chost%3ANil%7CURI%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/error.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="key:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>key</strong> : <a href="../../../String.html">String</a>
+
+        <a class="method-permalink" href="#key%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the class key.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -686,8 +934,83 @@
   
 
   
-
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
   
+    <div class="entry-detail" id="base_currency_codes:Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>base_currency_codes</strong> : Array(<a href="../../../String.html">String</a>)
+
+        <a class="method-permalink" href="#base_currency_codes%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://docs.cdp.coinbase.com/coinbase-app/track-apis/currencies">https://docs.cdp.coinbase.com/coinbase-app/track-apis/currencies</a></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="exchange_rate?(base:Currency,target:Currency):Rate|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>exchange_rate?</strong>(base : <a href="../../../Money/Currency.html">Currency</a>, target : <a href="../../../Money/Currency.html">Currency</a>) : <a href="../../../Money/Currency/Rate.html">Rate</a> | Nil
+
+        <a class="method-permalink" href="#exchange_rate%3F%28base%3ACurrency%2Ctarget%3ACurrency%29%3ARate%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><a href="https://docs.cdp.coinbase.com/coinbase-app/track-apis/exchange-rates#data-api-exchange-rates">https://docs.cdp.coinbase.com/coinbase-app/track-apis/exchange-rates#data-api-exchange-rates</a></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="host:URI-instance-method">
+      <div class="signature">
+        
+        def <strong>host</strong> : URI
+
+        <a class="method-permalink" href="#host%3AURI-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../../../Money/Currency/RateProvider/HTTP.html">Money::Currency::RateProvider::HTTP</a>
+            </div>
+          
+          <p>Returns the host URI used by the HTTP <code>#client</code> instance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/46d3f9a/src/money/currency/rate_provider/providers/coinbase.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
