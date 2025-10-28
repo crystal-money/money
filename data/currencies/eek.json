@@ -1,0 +1,14 @@
+{
+  "archived_at": "2011-01-01",
+  "type": "fiat",
+  "iso_numeric": 233,
+  "code": "EEK",
+  "name": "Estonian Kroon",
+  "symbol": "KR",
+  "subunit": "Sent",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 5
+}

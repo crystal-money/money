@@ -1,0 +1,16 @@
+{
+  "archived_at": "2007-07-01",
+  "type": "fiat",
+  "iso_numeric": 288,
+  "code": "GHS",
+  "name": "Ghanaian Cedi",
+  "symbol": "₵",
+  "disambiguate_symbol": "GH₵",
+  "alternate_symbols": ["GH₵"],
+  "subunit": "Pesewa",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

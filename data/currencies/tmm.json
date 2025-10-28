@@ -1,0 +1,15 @@
+{
+  "archived_at": "2009-01-01",
+  "type": "fiat",
+  "code": "TMM",
+  "iso_numeric": 795,
+  "name": "Turkmenistani Manat",
+  "symbol": "m",
+  "disambiguate_symbol": "TMM",
+  "subunit": "Tennesi",
+  "subunit_to_unit": 100,
+  "symbol_first": false,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

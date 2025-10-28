@@ -1,0 +1,15 @@
+{
+  "archived_at": "2006-01-01",
+  "type": "fiat",
+  "code": "MTL",
+  "iso_numeric": 470,
+  "name": "Maltese Lira",
+  "symbol": "₤",
+  "alternate_symbols": ["Lm"],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 1
+}

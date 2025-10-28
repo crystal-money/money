@@ -1,0 +1,17 @@
+{
+  "archived_at": "2008-08-01",
+  "type": "fiat",
+  "iso_numeric": 942,
+  "code": "ZWN",
+  "name": "Zimbabwean Dollar",
+  "symbol": "$",
+  "disambiguate_symbol": "ZWN",
+  "alternate_symbols": ["Z$"],
+  "subunit": "Cent",
+  "subunit_to_unit": 100,
+  "symbol_first": true,
+  "html_entity": "$",
+  "decimal_mark": ".",
+  "thousands_separator": ",",
+  "smallest_denomination": 100
+}
