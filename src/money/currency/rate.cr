@@ -30,7 +30,7 @@ class Money::Currency
       raise ArgumentError.new("Invalid rate: #{value}") unless value.positive?
     end
 
-    def_hash base, target, value, updated_at
+    def_equals_and_hash base, target, value, updated_at
 
     def <=>(other : Rate) : Int32
       {base, target, other.updated_at, other.value} <=>
