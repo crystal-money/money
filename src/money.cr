@@ -4,6 +4,7 @@ require "json"
   require "yaml"
 {% end %}
 require "tssc"
+require "atomic_write"
 
 struct Money
 end
