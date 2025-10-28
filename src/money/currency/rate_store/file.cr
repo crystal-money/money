@@ -77,7 +77,7 @@ class Money::Currency
         ::Dir.mkdir_p(path.dirname)
 
         # Save rates to a JSON file
-        ::File.open(path, "w") do |file|
+        ::File.atomic_write(path) do |file|
           rates.to_pretty_json(file)
         end
       end
