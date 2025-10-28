@@ -54,6 +54,11 @@ struct Money
       end
     end
 
+    # When was the currency archived, if at all?
+    if_defined?(:JSON) { @[JSON::Field(converter: Time::Format.new("%F"))] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Time::Format.new("%F"))] }
+    getter archived_at : Time?
+
     # Currency type.
     getter type : Type?
 
@@ -101,6 +106,7 @@ struct Money
 
     def initialize(
       *,
+      @archived_at = nil,
       @type = nil,
       @priority = nil,
       @iso_numeric = nil,
@@ -157,6 +163,18 @@ struct Money
     @[AlwaysInline]
     def decimal_places : Int32
       exponent
+    end
+
+    # Returns `true` if the currency is historical.
+    #
+    # ```
+    # Money::Currency.find(:usd).historical? # => false
+    # Money::Currency.find(:vef).historical? # => true
+    # ```
+    #
+    # See also `#archived_at`.
+    def historical? : Bool
+      !!archived_at
     end
 
     # Returns `true` if iso currency.

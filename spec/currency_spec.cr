@@ -260,6 +260,20 @@ describe Money::Currency do
     end
   end
 
+  describe "#archived_at" do
+    it "works as documented" do
+      Money::Currency.find(:usd).archived_at.should be_nil
+      Money::Currency.find(:xfu).archived_at.should eq Time.utc(2013, 11, 7)
+    end
+  end
+
+  describe "#historical?" do
+    it "works as documented" do
+      Money::Currency.find(:usd).historical?.should be_false
+      Money::Currency.find(:xfu).historical?.should be_true
+    end
+  end
+
   describe "#symbol" do
     it "works as documented" do
       Money::Currency.find(:usd).symbol.should eq "$"
