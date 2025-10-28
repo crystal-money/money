@@ -168,6 +168,8 @@ struct Money
   getter amount : BigDecimal
 
   # The money's currency.
+  if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::Converter)] }
+  if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::Converter)] }
   getter currency : Currency
 
   # Creates a new `Money` object of value given as an *amount*

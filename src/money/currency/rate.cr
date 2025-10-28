@@ -7,8 +7,14 @@ class Money::Currency
       "#{base.code}_#{target.code}"
     end
 
+    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::Converter)] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::Converter)] }
     getter base : Currency
+
+    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::Converter)] }
+    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::Converter)] }
     getter target : Currency
+
     getter value : BigDecimal
     getter updated_at : Time
 

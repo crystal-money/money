@@ -26,15 +26,6 @@ class Money::Currency
 
   struct Rate
     include JSON::Serializable
-
-    def to_json(json : JSON::Builder)
-      {
-        base:       base.to_s,
-        target:     target.to_s,
-        value:      value,
-        updated_at: updated_at,
-      }.to_json(json)
-    end
   end
 
   class Exchange

@@ -16,15 +16,6 @@ class Money::Currency
 
   struct Rate
     include YAML::Serializable
-
-    def to_yaml(yaml : YAML::Nodes::Builder)
-      {
-        base:       base.to_s,
-        target:     target.to_s,
-        value:      value,
-        updated_at: updated_at,
-      }.to_yaml(yaml)
-    end
   end
 
   class Exchange

@@ -12,11 +12,4 @@ struct Money
       previous_def
     end
   end
-
-  def to_yaml(yaml : YAML::Nodes::Builder)
-    {
-      amount:   amount,
-      currency: currency.to_s,
-    }.to_yaml(yaml)
-  end
 end

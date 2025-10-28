@@ -22,11 +22,4 @@ struct Money
   def to_json_object_key : String
     to_s
   end
-
-  def to_json(json : JSON::Builder)
-    {
-      amount:   amount,
-      currency: currency.to_s,
-    }.to_json(json)
-  end
 end
