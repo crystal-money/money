@@ -24,7 +24,7 @@ class Money::Currency
     end
 
     # <https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html>
-    protected def exchange_rates : Array(Rate)
+    protected def target_exchange_rates : Array(Rate)
       Log.debug { "Fetching rates for base currency #{base_currency_code}" }
 
       request("/stats/eurofxref/eurofxref-daily.xml") do |response|
@@ -33,7 +33,7 @@ class Money::Currency
           result.xpath_nodes("//*[@currency and @rate]")
 
         rates.map do |node|
-          Rate.new(node["currency"], node["rate"].to_big_d)
+          Rate.new(base_currency_code, node["currency"], node["rate"].to_big_d)
         end
       end
     end

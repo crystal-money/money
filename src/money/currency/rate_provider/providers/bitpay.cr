@@ -23,13 +23,13 @@ class Money::Currency
     end
 
     # <https://developer.bitpay.com/reference/retrieve-all-the-rates-for-a-given-cryptocurrency>
-    protected def exchange_rates : Array(Rate)
+    protected def target_exchange_rates : Array(Rate)
       Log.debug { "Fetching rates for base currency #{base_currency_code}" }
 
       request("/api/rates/%s" % base_currency_code) do |response|
         result = JSON.parse(response.body_io).as_a
         result.map do |rate|
-          Rate.new(rate["code"].as_s, rate["rate"].to_s.to_big_d)
+          Rate.new(base_currency_code, rate["code"].as_s, rate["rate"].to_s.to_big_d)
         end
       end
     end

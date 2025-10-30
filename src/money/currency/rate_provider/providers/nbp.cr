@@ -23,7 +23,7 @@ class Money::Currency
     end
 
     # <https://api.nbp.pl/en.html>
-    protected def exchange_rates : Array(Rate)
+    protected def base_exchange_rates : Array(Rate)
       Log.debug { "Fetching rates for target currency #{target_currency_code}" }
 
       params = {
@@ -37,7 +37,7 @@ class Money::Currency
           .as_a
 
         rates.map do |rate|
-          Rate.new(rate["code"].as_s, rate["mid"].to_s.to_big_d)
+          Rate.new(rate["code"].as_s, target_currency_code, rate["mid"].to_s.to_big_d)
         end
       end
     end

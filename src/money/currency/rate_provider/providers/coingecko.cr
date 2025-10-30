@@ -22,7 +22,7 @@ class Money::Currency
     end
 
     # <https://docs.coingecko.com/v3.0.1/reference/exchange-rates>
-    protected def exchange_rates : Array(Rate)
+    protected def target_exchange_rates : Array(Rate)
       Log.debug { "Fetching rates for base currency #{base_currency_code}" }
 
       request("/api/v3/exchange_rates") do |response|
@@ -31,7 +31,7 @@ class Money::Currency
           result["rates"].as_h
 
         rates.map do |currency_code, rate|
-          Rate.new(currency_code.upcase, rate["value"].to_s.to_big_d)
+          Rate.new(base_currency_code, currency_code.upcase, rate["value"].to_s.to_big_d)
         end
       end
     end
