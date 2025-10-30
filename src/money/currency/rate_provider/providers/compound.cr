@@ -26,15 +26,15 @@ class Money::Currency
 
     private def currency_codes(failure_msg : String, &) : Array(String)
       providers
-        .compact_map do |provider|
-          yield provider
+        .each_with_object([] of String) do |provider, currency_codes|
+          if codes = yield provider
+            currency_codes.concat(codes)
+          end
         rescue ex
           Log.debug(exception: ex) do
             "#{failure_msg} (#{provider.class})"
           end
-          nil
         end
-        .flatten
         .uniq!
     end
 
