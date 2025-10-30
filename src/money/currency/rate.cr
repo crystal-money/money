@@ -7,14 +7,17 @@ class Money::Currency
       "#{base.code}_#{target.code}"
     end
 
-    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::Converter)] }
-    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::Converter)] }
-    getter base : Currency
+    # :nodoc:
+    def self.key(base : String, target : String) : String
+      "#{base}_#{target}"
+    end
 
-    if_defined?(:JSON) { @[JSON::Field(converter: Money::Currency::Converter)] }
-    if_defined?(:YAML) { @[YAML::Field(converter: Money::Currency::Converter)] }
-    getter target : Currency
+    def self.new(base : Currency, target : Currency, value, updated_at = Time.utc) : Rate
+      new(base.code, target.code, value, updated_at)
+    end
 
+    getter base : String
+    getter target : String
     getter value : BigDecimal
     getter updated_at : Time
 

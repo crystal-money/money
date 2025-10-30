@@ -88,10 +88,10 @@ describe Money::Currency::Rate do
       ),
     ]
     rates.sort.map(&.to_s(include_updated_at: true)).should eq [
+      "CAD -> USD: 1.0 (2025-05-22 00:00:00 UTC)",
       "USD -> CAD: 1.0 (2025-05-23 00:00:00 UTC)",
       "USD -> CAD: 1.1 (2025-05-22 00:00:00 UTC)",
       "USD -> CAD: 1.0 (2025-05-22 00:00:00 UTC)",
-      "CAD -> USD: 1.0 (2025-05-22 00:00:00 UTC)",
     ]
   end
 
@@ -101,11 +101,11 @@ describe Money::Currency::Rate do
   end
 
   it "#base" do
-    rate.base.should eq Money::Currency.find("USD")
+    rate.base.should eq "USD"
   end
 
   it "#target" do
-    rate.target.should eq Money::Currency.find("CAD")
+    rate.target.should eq "CAD"
   end
 
   it "#value" do
