@@ -267,6 +267,13 @@ describe Money::Currency do
     end
   end
 
+  describe "#replaced_by" do
+    it "works as documented" do
+      Money::Currency.find(:usd).replaced_by.should be_nil
+      Money::Currency.find(:xfu).replaced_by.should eq "EUR"
+    end
+  end
+
   describe "#historical?" do
     it "works as documented" do
       Money::Currency.find(:usd).historical?.should be_false

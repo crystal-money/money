@@ -59,6 +59,9 @@ struct Money
     if_defined?(:YAML) { @[YAML::Field(converter: Time::Format.new("%F"))] }
     getter archived_at : Time?
 
+    # Currency code that replaced this currency.
+    getter replaced_by : String?
+
     # Currency type.
     getter type : Type?
 
