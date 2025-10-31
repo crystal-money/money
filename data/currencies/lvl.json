@@ -1,5 +1,6 @@
 {
   "archived_at": "2014-01-01",
+  "replaced_by": "EUR",
   "type": "fiat",
   "iso_numeric": 428,
   "code": "LVL",

@@ -1,5 +1,6 @@
 {
   "archived_at": "2015-01-01",
+  "replaced_by": "EUR",
   "type": "fiat",
   "iso_numeric": 440,
   "code": "LTL",

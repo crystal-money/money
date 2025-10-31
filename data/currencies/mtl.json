@@ -1,5 +1,6 @@
 {
   "archived_at": "2006-01-01",
+  "replaced_by": "EUR",
   "type": "fiat",
   "code": "MTL",
   "iso_numeric": 470,

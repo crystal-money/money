@@ -1,5 +1,6 @@
 {
   "archived_at": "2023-01-01",
+  "replaced_by": "EUR",
   "type": "fiat",
   "iso_numeric": 191,
   "code": "HRK",
