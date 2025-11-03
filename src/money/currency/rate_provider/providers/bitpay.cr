@@ -26,11 +26,17 @@ class Money::Currency
     protected def target_exchange_rates : Array(Rate)
       Log.debug { "Fetching rates for base currency #{base_currency_code}" }
 
-      request("/api/rates/%s" % base_currency_code) do |response|
+      path =
+        "/api/rates/%s" % URI.encode_path_segment(base_currency_code)
+
+      request(path) do |response|
         result = JSON.parse(response.body_io).as_a
-        result.map do |rate|
-          Rate.new(base_currency_code, rate["code"].as_s, rate["rate"].to_s.to_big_d)
-        end
+        rates =
+          result.map do |rate|
+            Rate.new(base_currency_code, rate["code"].as_s, rate["rate"].to_s.to_big_d)
+          end
+
+        rates
       end
     end
   end

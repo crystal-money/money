@@ -36,7 +36,10 @@ class Money::Currency
           next unless currency_code = node.xpath_string("string(CharCode)").presence
           next unless rate = node.xpath_string("string(VunitRate)").presence
 
-          Rate.new(currency_code, target_currency_code, rate.sub(',', '.').to_big_d)
+          rate =
+            rate.sub(',', '.').to_big_d
+
+          Rate.new(currency_code, target_currency_code, rate)
         end
       end
     end

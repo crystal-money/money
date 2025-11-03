@@ -23,8 +23,9 @@ class Money::Currency
       body = nil,
       & : ::HTTP::Client::Response -> _
     )
-      path += "?#{URI::Params.encode(params)}" if params && !params.empty?
-
+      if params && !params.empty?
+        path += "?#{URI::Params.encode(params)}"
+      end
       client.exec(method, path, headers, body) do |response|
         unless response.success?
           raise RequestError.new(response.status)
