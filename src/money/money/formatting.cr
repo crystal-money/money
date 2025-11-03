@@ -249,8 +249,8 @@ struct Money
 
     private def format_symbol(*, disambiguate, symbol) : String?
       symbol = transform_bool(symbol) do
-        if disambiguate && currency.disambiguate_symbol
-          currency.disambiguate_symbol
+        if disambiguate
+          currency.disambiguate_symbol || currency.code
         else
           currency.symbol || '¤'
         end
