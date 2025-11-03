@@ -178,7 +178,7 @@ struct Money
         thousands_separator: thousands_separator,
       )
       symbol = format_symbol(
-        symbol: symbol,
+        symbol,
         disambiguate: disambiguate,
       )
 
@@ -214,7 +214,8 @@ struct Money
       unit, subunit = format_unit(
         thousands_separator: thousands_separator,
       )
-      subunit = format_subunit(subunit,
+      subunit = format_subunit(
+        subunit,
         no_cents: no_cents,
         no_cents_if_whole: no_cents_if_whole,
         drop_trailing_zeros: drop_trailing_zeros,
@@ -247,7 +248,7 @@ struct Money
       subunit.presence
     end
 
-    private def format_symbol(*, disambiguate, symbol) : String?
+    private def format_symbol(symbol, *, disambiguate) : String?
       symbol = transform_bool(symbol) do
         if disambiguate
           currency.disambiguate_symbol || currency.code
