@@ -4,7 +4,6 @@
   "code": "BSD",
   "name": "Bahamian Dollar",
   "symbol": "$",
-  "disambiguate_symbol": "BSD",
   "alternate_symbols": ["B$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,

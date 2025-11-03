@@ -3,7 +3,6 @@
   "code": "IMP",
   "name": "Isle of Man Pound",
   "symbol": "£",
-  "disambiguate_symbol": "IMP",
   "alternate_symbols": ["M£"],
   "subunit": "Penny",
   "subunit_to_unit": 100,

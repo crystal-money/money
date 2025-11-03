@@ -5,7 +5,6 @@
   "code": "JPY",
   "name": "Japanese Yen",
   "symbol": "¥",
-  "disambiguate_symbol": "JPY",
   "alternate_symbols": ["円", "圓"],
   "subunit_to_unit": 1,
   "symbol_first": true,

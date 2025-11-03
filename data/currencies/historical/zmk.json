@@ -6,7 +6,6 @@
   "code": "ZMK",
   "name": "Zambian Kwacha",
   "symbol": "ZK",
-  "disambiguate_symbol": "ZMK",
   "subunit": "Ngwee",
   "subunit_to_unit": 100,
   "symbol_first": false,

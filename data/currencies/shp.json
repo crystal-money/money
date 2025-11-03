@@ -4,7 +4,6 @@
   "code": "SHP",
   "name": "Saint Helenian Pound",
   "symbol": "£",
-  "disambiguate_symbol": "SHP",
   "subunit": "Penny",
   "subunit_to_unit": 100,
   "symbol_first": false,

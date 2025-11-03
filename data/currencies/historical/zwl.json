@@ -6,7 +6,6 @@
   "code": "ZWL",
   "name": "Zimbabwean Dollar",
   "symbol": "$",
-  "disambiguate_symbol": "ZWL",
   "alternate_symbols": ["Z$"],
   "subunit": "Cent",
   "subunit_to_unit": 100,

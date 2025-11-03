@@ -4,7 +4,6 @@
   "code": "BYN",
   "name": "Belarusian Ruble",
   "symbol": "Br",
-  "disambiguate_symbol": "BYN",
   "alternate_symbols": ["бел. руб.", "б.р.", "руб.", "р."],
   "subunit": "Kapeyka",
   "subunit_to_unit": 100,

@@ -4,7 +4,6 @@
   "type": "fiat",
   "code": "XFU",
   "name": "UIC Franc",
-  "disambiguate_symbol": "XFU",
   "subunit_to_unit": 100,
   "symbol_first": true,
   "decimal_mark": ".",

@@ -3,7 +3,6 @@
   "code": "USDC",
   "name": "USD Coin",
   "symbol": "USDC",
-  "disambiguate_symbol": "USDC",
   "subunit": "Cent",
   "subunit_to_unit": 1000000,
   "symbol_first": false,
