@@ -253,6 +253,12 @@ describe Money::Currency do
     end
   end
 
+  describe ".historical" do
+    it "works as documented" do
+      Money::Currency.historical.should contain Money::Currency.find(:vef)
+    end
+  end
+
   describe "#to_s" do
     it "works as documented" do
       Money::Currency.find(:usd).to_s.should eq "USD"

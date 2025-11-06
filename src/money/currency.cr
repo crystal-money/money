@@ -148,6 +148,11 @@ struct Money
       end
     {% end %}
 
+    # Returns an array of historical currencies.
+    def self.historical : Array(Currency)
+      self.select(&.historical?)
+    end
+
     # Returns the relation between subunit and unit as a base 10 exponent.
     #
     # ```
