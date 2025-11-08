@@ -76,10 +76,17 @@ class Money::Currency
         # Create directory if it doesn't exist
         ::Dir.mkdir_p(path.dirname)
 
-        # Save rates to a JSON file
-        ::File.atomic_write(path) do |file|
-          rates.to_pretty_json(file)
-        end
+        {% if flag?(:windows) %}
+          # Save rates to a JSON file
+          ::File.open(path, "w") do |file|
+            rates.to_pretty_json(file)
+          end
+        {% else %}
+          # Save rates to a JSON file
+          ::File.atomic_write(path) do |file|
+            rates.to_pretty_json(file)
+          end
+        {% end %}
       end
     end
   end
