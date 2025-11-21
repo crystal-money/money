@@ -301,10 +301,12 @@ describe Money do
     end
 
     context "loading a serialized Money via JSON" do
-      money = Money.from_json(%q({
-        "amount": "33.00",
-        "currency": "EUR"
-      }))
+      money = Money.from_json(<<-JSON)
+        {
+          "amount": "33.00",
+          "currency": "EUR"
+        }
+        JSON
 
       it "loads fractional" do
         money.fractional.should eq 33_00
