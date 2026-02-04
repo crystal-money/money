@@ -7,9 +7,9 @@ struct Money
     # - `1` if the money amount is positive
     #
     # ```
-    # Money.new(-100).sign # => -1
-    # Money.new(0).sign    # => 0
-    # Money.new(100).sign  # => 1
+    # Money.new(-1_00).sign # => -1
+    # Money.new(0).sign     # => 0
+    # Money.new(1_00).sign  # => 1
     # ```
     def sign : Int32
       amount.sign
@@ -18,9 +18,9 @@ struct Money
     # Returns `true` if the money amount is greater than 0, `false` otherwise.
     #
     # ```
-    # Money.new(-100).positive? # => false
-    # Money.new(0).positive?    # => false
-    # Money.new(100).positive?  # => true
+    # Money.new(-1_00).positive? # => false
+    # Money.new(0).positive?     # => false
+    # Money.new(1_00).positive?  # => true
     # ```
     def positive?
       amount.positive?
@@ -29,9 +29,9 @@ struct Money
     # Returns `true` if the money amount is less than 0, `false` otherwise.
     #
     # ```
-    # Money.new(-100).negative? # => true
-    # Money.new(0).negative?    # => false
-    # Money.new(100).negative?  # => false
+    # Money.new(-1_00).negative? # => true
+    # Money.new(0).negative?     # => false
+    # Money.new(1_00).negative?  # => false
     # ```
     def negative?
       amount.negative?
@@ -40,9 +40,9 @@ struct Money
     # Returns `true` if the money amount is zero.
     #
     # ```
-    # Money.new(-100).zero? # => false
-    # Money.new(0).zero?    # => true
-    # Money.new(100).zero?  # => false
+    # Money.new(-1_00).zero? # => false
+    # Money.new(0).zero?     # => true
+    # Money.new(1_00).zero?  # => false
     # ```
     def zero?
       amount.zero?

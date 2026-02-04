@@ -70,6 +70,7 @@ Money.from_fractional(10_00, "USD")
 
 Money.new(fractional: 10_00.0, currency: "USD")
 Money.new(fractional: 10_00, currency: "USD")
+
 Money.new(10_00, "USD")
 ```
 
@@ -81,6 +82,7 @@ Money.from_amount(10, "USD")
 
 Money.new(amount: 10.0, currency: "USD")
 Money.new(amount: 10, currency: "USD")
+
 Money.new(10.0, "USD")
 ```
 
@@ -237,10 +239,11 @@ A `Money::Currency` instance holds all the info about the currency:
 
 ```crystal
 currency = Money::Currency.find("USD")
-currency.code   # => "USD"
-currency.name   # => "United States Dollar"
-currency.symbol # => "$"
-currency.fiat?  # => true
+currency.code         # => "USD"
+currency.name         # => "United States Dollar"
+currency.symbol       # => "$"
+currency.fiat?        # => true
+currency.historical?  # => false
 ```
 
 Most APIs let you use a `String`, `Symbol`, or a `Money::Currency`:
@@ -313,6 +316,23 @@ call `Money::Currency.all` or `.to_a`:
 Money::Currency.all # => [#<Money::Currency @code="USD">, #<Money::Currency @code="EUR">, ...]
 ```
 
+### Historical Currencies
+
+You can get all the historical (archived) currencies via `Money::Currency.historical`:
+
+```crystal
+Money::Currency.historical
+# => [#<Money::Currency @code="ANG">, #<Money::Currency @code="BYR">, ...]
+```
+
+You can check if a currency is historical via `Money::Currency#historical?`:
+
+```crystal
+Money::Currency.find("ANG").historical? # => true
+Money::Currency.find("ANG").archived_at # => 2025-04-01 00:00:00Z
+Money::Currency.find("ANG").replaced_by # => "XCG"
+```
+
 ### Registering a New Currency
 
 ```crystal
@@ -335,6 +355,8 @@ Money::Currency.register(currency)
 
 #### Currency Attributes
 
+- `:archived_at` — date (in ISO 8601 format) when the currency was archived
+- `:replaced_by` — currency code which replaced this currency
 - `:type` — a `Money::Currency::Type` - either `Metal`, `Fiat` or `Crypto`
 - `:priority` — a numerical value you can use to sort/group the currency list
 - `:code` — the international 3-letter code as defined by the ISO 4217 standard
@@ -457,7 +479,7 @@ Money.default_exchange = Money::Currency::Exchange.new(
 ```
 
 There are multiple providers available under the `Money::Currency::RateProvider`
-[namespace](https://github.com/crystal-money/money/tree/master/src/money/currency/rate_provider)
+[namespace](https://github.com/crystal-money/money/tree/master/src/money/currency/rate_provider/providers)
 which can be used OOTB to fetch exchange rates from different sources.
 
 You can choose one of them, roll your own, or combine them with the `Compound` provider:
@@ -576,6 +598,29 @@ Money::Currency.from_yaml("{ code: FOO, ... }")    # => #<Money::Currency @code=
 
 Money::Currency.from_json(%("USD")) # => #<Money::Currency @code="USD">
 Money::Currency.from_yaml("USD")    # => #<Money::Currency @code="USD">
+```
+
+#### Using with `JSON::Serializable` and `YAML::Serializable`
+
+In order to (de)serialize `Money::Currency` instances solely from/to currency codes,
+you need to add a `JSON/YAML::Field` annotation with the `Money::Currency::Converter`
+converter.
+
+```crystal
+class FooWithCurrency
+  include JSON::Serializable
+  include YAML::Serializable
+
+  @[JSON::Field(converter: Money::Currency::Converter)]
+  @[YAML::Field(converter: Money::Currency::Converter)]
+  property currency : Money::Currency
+
+  def initialize(@currency)
+  end
+end
+
+foo = FooWithCurrency.from_yaml("{ currency: USD }")
+foo.currency.code # => "USD"
 ```
 
 ### `Money::Currency::Exchange`
