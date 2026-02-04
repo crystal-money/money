@@ -551,6 +551,7 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
 
 <span class="t">Money</span>.new(fractional: <span class="n">10_00.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.new(fractional: <span class="n">10_00</span>, currency: <span class="s">&quot;USD&quot;</span>)
+
 <span class="t">Money</span>.new(<span class="n">10_00</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h4><a id="from-whole-amount" class="anchor" href="#from-whole-amount">
   <svg class="octicon-link" aria-hidden="true">
@@ -562,6 +563,7 @@ money.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
 
 <span class="t">Money</span>.new(amount: <span class="n">10.0</span>, currency: <span class="s">&quot;USD&quot;</span>)
 <span class="t">Money</span>.new(amount: <span class="n">10</span>, currency: <span class="s">&quot;USD&quot;</span>)
+
 <span class="t">Money</span>.new(<span class="n">10.0</span>, <span class="s">&quot;USD&quot;</span>)</code></pre>
 <h3><a id="comparing-money" class="anchor" href="#comparing-money">
   <svg class="octicon-link" aria-hidden="true">
@@ -701,10 +703,11 @@ is <strong>not</strong> preserved:</p>
 </a>Currencies</h2>
 <p>A <code><a href="Money/Currency.html">Money::Currency</a></code> instance holds all the info about the currency:</p>
 <pre><code class="language-crystal">currency <span class="o">=</span> <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;USD&quot;</span>)
-currency.code   <span class="c"># =&gt; &quot;USD&quot;</span>
-currency.name   <span class="c"># =&gt; &quot;United States Dollar&quot;</span>
-currency.symbol <span class="c"># =&gt; &quot;$&quot;</span>
-currency.fiat?  <span class="c"># =&gt; true</span></code></pre>
+currency.code         <span class="c"># =&gt; &quot;USD&quot;</span>
+currency.name         <span class="c"># =&gt; &quot;United States Dollar&quot;</span>
+currency.symbol       <span class="c"># =&gt; &quot;$&quot;</span>
+currency.fiat?        <span class="c"># =&gt; true</span>
+currency.historical?  <span class="c"># =&gt; false</span></code></pre>
 <p>Most APIs let you use a <code><a href="String.html">String</a></code>, <code>Symbol</code>, or a <code><a href="Money/Currency.html">Money::Currency</a></code>:</p>
 <pre><code class="language-crystal"><span class="c"># All of the following are equivalent:</span>
 
@@ -754,6 +757,18 @@ methods like <code>each</code>, <code>map</code>, <code>find</code>, <code>selec
 <p>To return an array of registered currencies (ordered by their priority),
 call <code>Money::Currency.all</code> or <code>.to_a</code>:</p>
 <pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.all <span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;USD&quot;&gt;, #&lt;Money::Currency @code=&quot;EUR&quot;&gt;, ...]</span></code></pre>
+<h3><a id="historical-currencies" class="anchor" href="#historical-currencies">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Historical Currencies</h3>
+<p>You can get all the historical (archived) currencies via <code>Money::Currency.historical</code>:</p>
+<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.historical
+<span class="c"># =&gt; [#&lt;Money::Currency @code=&quot;ANG&quot;&gt;, #&lt;Money::Currency @code=&quot;BYR&quot;&gt;, ...]</span></code></pre>
+<p>You can check if a currency is historical via <code>Money::Currency#historical?</code>:</p>
+<pre><code class="language-crystal"><span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;ANG&quot;</span>).historical? <span class="c"># =&gt; true</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;ANG&quot;</span>).archived_at <span class="c"># =&gt; 2025-04-01 00:00:00Z</span>
+<span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.find(<span class="s">&quot;ANG&quot;</span>).replaced_by <span class="c"># =&gt; &quot;XCG&quot;</span></code></pre>
 <h3><a id="registering-a-new-currency" class="anchor" href="#registering-a-new-currency">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -780,6 +795,8 @@ call <code>Money::Currency.all</code> or <code>.to_a</code>:</p>
   </svg>
 </a>Currency Attributes</h4>
 <ul>
+<li><code>:archived_at</code> — date (in ISO 8601 format) when the currency was archived</li>
+<li><code>:replaced_by</code> — currency code which replaced this currency</li>
 <li><code>:type</code> — a <code><a href="Money/Currency/Type.html">Money::Currency::Type</a></code> - either <code>Metal</code>, <code>Fiat</code> or <code>Crypto</code></li>
 <li><code>:priority</code> — a numerical value you can use to sort/group the currency list</li>
 <li><code>:code</code> — the international 3-letter code as defined by the ISO 4217 standard</li>
@@ -977,6 +994,28 @@ which are used in order to fetch the exchange rate.</p>
 
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.from_json(<span class="s">%(&quot;USD&quot;)</span>) <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span>
 <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>.from_yaml(<span class="s">&quot;USD&quot;</span>)    <span class="c"># =&gt; #&lt;Money::Currency @code=&quot;USD&quot;&gt;</span></code></pre>
+<h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Using with <code>JSON::Serializable</code> and <code>YAML::Serializable</code></h4>
+<p>In order to (de)serialize <code><a href="Money/Currency.html">Money::Currency</a></code> instances solely from/to currency codes,
+you need to add a <code>JSON/YAML::Field</code> annotation with the <code><a href="Money/Currency/Converter.html">Money::Currency::Converter</a></code>
+converter.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">FooWithCurrency</span>
+  <span class="k">include</span> <span class="t">JSON</span><span class="t">::</span><span class="t">Serializable</span>
+  <span class="k">include</span> <span class="t">YAML</span><span class="t">::</span><span class="t">Serializable</span>
+
+  @[<span class="t">JSON</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Converter</span>)]
+  @[<span class="t">YAML</span><span class="t">::</span><span class="t">Field</span>(converter: <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span><span class="t">::</span><span class="t">Converter</span>)]
+  property currency : <span class="t">Money</span><span class="t">::</span><span class="t">Currency</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@currency)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+foo <span class="o">=</span> <span class="t">FooWithCurrency</span>.from_yaml(<span class="s">&quot;{ currency: USD }&quot;</span>)
+foo.currency.code <span class="c"># =&gt; &quot;USD&quot;</span></code></pre>
 <h3><a id="moneycurrencyexchange" class="anchor" href="#moneycurrencyexchange">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -1035,7 +1074,7 @@ store.<span class="k">class</span>   <span class="c"># =&gt; Money::Currency::Ra
 <span class="s">  path: ~/.cache/money/currency-rates.json
   ttl: 1 hour, 11 minutes
   YAML</span></code></pre>
-<h4><a id="using-with-jsonserializable-and-yamlserializable" class="anchor" href="#using-with-jsonserializable-and-yamlserializable">
+<h4><a id="using-with-jsonserializable-and-yamlserializable-1" class="anchor" href="#using-with-jsonserializable-and-yamlserializable-1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
@@ -1097,7 +1136,7 @@ compound_provider.providers <span class="o">&lt;&lt;</span> <span class="t">Mone
   YAML</span>
 
 compound_provider.providers.size <span class="c"># =&gt; 3</span></code></pre>
-<h4><a id="using-with-jsonserializable-and-yamlserializable-1" class="anchor" href="#using-with-jsonserializable-and-yamlserializable-1">
+<h4><a id="using-with-jsonserializable-and-yamlserializable-2" class="anchor" href="#using-with-jsonserializable-and-yamlserializable-2">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
