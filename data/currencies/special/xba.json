@@ -1,7 +1,8 @@
 {
-  "iso_numeric": 957,
-  "code": "XBC",
-  "name": "European Unit of Account 9",
+  "type": "special",
+  "iso_numeric": 955,
+  "code": "XBA",
+  "name": "European Composite Unit",
   "subunit_to_unit": 1,
   "symbol_first": false,
   "decimal_mark": ".",

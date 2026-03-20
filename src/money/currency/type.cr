@@ -4,5 +4,6 @@ class Money::Currency
     Metal
     Fiat
     Crypto
+    Special
   end
 end

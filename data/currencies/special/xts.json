@@ -1,4 +1,5 @@
 {
+  "type": "special",
   "iso_numeric": 963,
   "code": "XTS",
   "name": "Codes specifically reserved for testing purposes",

@@ -1,7 +1,8 @@
 {
-  "iso_numeric": 955,
-  "code": "XBA",
-  "name": "European Composite Unit",
+  "type": "special",
+  "iso_numeric": 956,
+  "code": "XBB",
+  "name": "European Monetary Unit",
   "subunit_to_unit": 1,
   "symbol_first": false,
   "decimal_mark": ".",

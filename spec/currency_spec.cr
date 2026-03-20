@@ -303,10 +303,10 @@ describe Money::Currency do
 
   describe "#type" do
     it "works as documented" do
-      Money::Currency.find(:xts).type.should be_nil
       Money::Currency.find(:xau).type.should eq Money::Currency::Type::Metal
       Money::Currency.find(:usd).type.should eq Money::Currency::Type::Fiat
       Money::Currency.find(:btc).type.should eq Money::Currency::Type::Crypto
+      Money::Currency.find(:xdr).type.should eq Money::Currency::Type::Special
     end
   end
 
