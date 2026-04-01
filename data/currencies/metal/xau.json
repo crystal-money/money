@@ -2,7 +2,7 @@
   "type": "metal",
   "iso_numeric": 959,
   "code": "XAU",
-  "name": "Gold (Troy Ounce)",
+  "name": "Gold",
   "symbol": "oz t",
   "subunit": "Oz",
   "subunit_to_unit": 1,

@@ -2,7 +2,7 @@
   "type": "metal",
   "iso_numeric": 961,
   "code": "XAG",
-  "name": "Silver (Troy Ounce)",
+  "name": "Silver",
   "symbol": "oz t",
   "subunit": "Oz",
   "subunit_to_unit": 1,
