@@ -841,6 +841,16 @@ Money.parse("$12.34")    # => Money(@amount=12.34, @currency="USD")
 Money.parse("12.34 USD") # => Money(@amount=12.34, @currency="USD")
 ```
 
+There's also `Money.analyze` that returns an array of `Money` instances from a string:
+
+```crystal
+Money.analyze("$12.34")    # => [Money(@amount=12.34, @currency="USD"), ...]
+Money.analyze("12.34 USD") # => [Money(@amount=12.34, @currency="USD")]
+```
+
+> [!NOTE]
+> Returned `Money` instances are sorted by their currency priority.
+
 ## Contributors
 
 - [Sija](https://github.com/Sija) Sijawusz Pur Rahnama (creator & maintainer)
