@@ -96,7 +96,7 @@ struct Money
       matches = currencies.select(&.code.try(&matcher))
       matches = currencies.select(&.symbol.try(&matcher)) if matches.empty?
       matches = currencies.select(&.disambiguate_symbol.try(&matcher)) if matches.empty?
-      matches = currencies.select(&.alternate_symbols.try(&.find(&matcher))) if matches.empty?
+      matches = currencies.select(&.alternate_symbols.try(&.any?(&matcher))) if matches.empty?
 
       matches
     end
