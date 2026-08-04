@@ -490,7 +490,7 @@ describe Money::Formatting do
 
       # When we format the same amount in all known currencies, disambiguate
       # should return all different values
-      Money::Currency.all.each do |currency|
+      Money::Currency.each do |currency|
         format = Money.new(1_999_98, currency).format(disambiguate: true)
         if found = results[format]?
           fail "Format '#{format}' for #{currency} is ambiguous with currency #{found}"
