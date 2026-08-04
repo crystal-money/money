@@ -74,7 +74,7 @@ struct Money
       case matches.size
       when 0
         raise Error.new \
-          "Symbol #{symbol.inspect} didn't matched any currency"
+          "Symbol #{symbol.inspect} didn't match any currency"
       when 1
         matches.first
       else
