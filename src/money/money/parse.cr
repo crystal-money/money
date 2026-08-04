@@ -26,6 +26,13 @@ struct Money
     # Money.parse?("$10.00", allow_ambiguous: false) # => nil
     # ```
     #
+    # If `allow_ambiguous` is an `Enumerable`, returns the first
+    # matching currency from the list, otherwise returns `nil`.
+    #
+    # ```
+    # Money.parse?("$10.00", allow_ambiguous: %w[AUD CAD USD]) # => Money(@amount=10.0, @currency="USD")
+    # ```
+    #
     # Thousands separator and decimal mark are guessed from the string.
     #
     # ```
@@ -35,14 +42,14 @@ struct Money
     # Money.parse?("$100,000") # => Money(@amount=100000.0, @currency="USD")
     # Money.parse?("$100.000") # => Money(@amount=100000.0, @currency="USD")
     # ```
-    def parse?(str : String, *, allow_ambiguous : Bool = true) : Money?
+    def parse?(str : String, *, allow_ambiguous : Bool | Enumerable = true) : Money?
       parse(str, allow_ambiguous) { nil }
     end
 
     # :ditto:
     #
     # NOTE: Raises `Money::Parse::Error` on failure instead of returning `nil`.
-    def parse(str : String, *, allow_ambiguous : Bool = true) : Money
+    def parse(str : String, *, allow_ambiguous : Bool | Enumerable = true) : Money
       parse(str, allow_ambiguous) { |ex| raise ex }
     end
 
@@ -68,7 +75,7 @@ struct Money
       {amount, symbol}
     end
 
-    private def parse_currency(symbol : String, allow_ambiguous : Bool) : Currency
+    private def parse_currency(symbol : String, allow_ambiguous : Bool | Enumerable(Currency)) : Currency
       matches = parse_currencies(symbol)
 
       case matches.size
@@ -78,12 +85,23 @@ struct Money
       when 1
         matches.first
       else
-        unless allow_ambiguous
+        case allow_ambiguous
+        in false
           raise Error.new \
             "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
+        in true
+          matches.first
+        in Enumerable
+          matches.find(&.in?(allow_ambiguous)) ||
+            raise Error.new \
+              "None of the matches #{matches.map(&.to_s)} " \
+              "found in allowlist: #{allow_ambiguous.map(&.to_s)}"
         end
-        matches.first
       end
+    end
+
+    private def parse_currency(symbol : String, allow_ambiguous : Bool | Enumerable) : Currency
+      parse_currency(symbol, allow_ambiguous.map { |code| Currency[code] })
     end
 
     private def parse_currencies(symbol : String) : Array(Currency)

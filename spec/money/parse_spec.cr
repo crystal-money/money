@@ -97,15 +97,44 @@ describe Money::Parse do
       Money.parse?("-foo").should be_nil
     end
 
-    context "when :allow_ambiguous is true (default)" do
-      it "returns a first matching currency for ambiguous values" do
-        Money.parse?("$10.00").should eq Money.new(10_00, "USD")
+    context ":allow_ambiguous option" do
+      context "when `true` (default)" do
+        it "returns a first matching currency for ambiguous values" do
+          Money.parse?("$10.00", allow_ambiguous: true).should eq Money.new(10_00, "USD")
+          Money.parse?("$10.00").should eq Money.new(10_00, "USD")
+        end
       end
-    end
 
-    context "when :allow_ambiguous is false" do
-      it "returns nil for ambiguous values" do
-        Money.parse?("$10.00", allow_ambiguous: false).should be_nil
+      context "when `false`" do
+        it "returns nil for ambiguous values" do
+          Money.parse?("$10.00", allow_ambiguous: false).should be_nil
+        end
+      end
+
+      context "when `Enumerable`" do
+        it "returns a first matching currency from the given options (sorted by the priority)" do
+          Money.parse?("$10.00", allow_ambiguous: [
+            Money::Currency[:zwr],
+            Money::Currency[:usd],
+            Money::Currency[:ttd],
+          ]).should eq Money.new(10_00, "USD")
+        end
+
+        it "takes array of currency codes (as strings) as an argument value" do
+          Money.parse?("$10.00", allow_ambiguous: %w[
+            ZWR
+            USD
+            TTD
+          ]).should eq Money.new(10_00, "USD")
+        end
+
+        it "takes mixed array of currencies and currency codes as an argument value" do
+          Money.parse?("$10.00", allow_ambiguous: [
+            Money::Currency[:zwr],
+            "USD",
+            Money::Currency[:ttd],
+          ]).should eq Money.new(10_00, "USD")
+        end
       end
     end
   end
