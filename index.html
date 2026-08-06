@@ -1213,6 +1213,13 @@ money.format(<span class="s">&quot;%{currency} %{sign}%{amount}&quot;</span>) <s
 <p>You can parse a string with an amount and currency code or symbol:</p>
 <pre><code class="language-crystal"><span class="t">Money</span>.parse(<span class="s">&quot;$12.34&quot;</span>)    <span class="c"># =&gt; Money(@amount=12.34, @currency=&quot;USD&quot;)</span>
 <span class="t">Money</span>.parse(<span class="s">&quot;12.34 USD&quot;</span>) <span class="c"># =&gt; Money(@amount=12.34, @currency=&quot;USD&quot;)</span></code></pre>
+<p>There's also <code>Money.analyze</code> that returns an array of <code><a href="Money.html">Money</a></code> instances from a string:</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.analyze(<span class="s">&quot;$12.34&quot;</span>)    <span class="c"># =&gt; [Money(@amount=12.34, @currency=&quot;USD&quot;), ...]</span>
+<span class="t">Money</span>.analyze(<span class="s">&quot;12.34 USD&quot;</span>) <span class="c"># =&gt; [Money(@amount=12.34, @currency=&quot;USD&quot;)]</span></code></pre>
+<blockquote>
+<p>[!NOTE]
+Returned <code><a href="Money.html">Money</a></code> instances are sorted by their currency priority.</p>
+</blockquote>
 <h2><a id="contributors" class="anchor" href="#contributors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

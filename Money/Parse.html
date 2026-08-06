@@ -511,7 +511,7 @@
   </h2>
   
     
-      <a href="https://github.com/crystal-money/money/blob/886a0ec/src/money/money/parse.cr#L2" target="_blank">
+      <a href="https://github.com/crystal-money/money/blob/ba8628c/src/money/money/parse.cr#L2" target="_blank">
         money/money/parse.cr
       </a>
     
@@ -538,6 +538,20 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#analyze%28str%3AString%29%3AArray%28Money%29-instance-method" class="signature"><strong>#analyze</strong>(str : String) : Array(Money)</a>
+        
+          <div class="summary"><p>Creates an array of <code><a href="../Money.html">Money</a></code> instances from a string, or returns <code>nil</code> on failure.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#analyze%3F%28str%3AString%29%3AArray%28Money%29%7CNil-instance-method" class="signature"><strong>#analyze?</strong>(str : String) : Array(Money) | Nil</a>
+        
+          <div class="summary"><p>Creates an array of <code><a href="../Money.html">Money</a></code> instances from a string, or returns <code>nil</code> on failure.</p></div>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#parse%28str%3AString%2C%2A%2Callow_ambiguous%3ABool%3Dtrue%29%3AMoney-instance-method" class="signature"><strong>#parse</strong>(str : String, *, allow_ambiguous : Bool = <span class="n">true</span>) : Money</a>
@@ -577,6 +591,55 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="analyze(str:String):Array(Money)-instance-method">
+      <div class="signature">
+        
+        def <strong>analyze</strong>(str : <a href="../String.html">String</a>) : Array(<a href="../Money.html">Money</a>)
+
+        <a class="method-permalink" href="#analyze%28str%3AString%29%3AArray%28Money%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an array of <code><a href="../Money.html">Money</a></code> instances from a string, or returns <code>nil</code> on failure.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.analyze?(<span class="s">&quot;$10.00&quot;</span>)   <span class="c"># =&gt; [Money(@amount=10.0, @currency=&quot;USD&quot;), ...]</span>
+<span class="t">Money</span>.analyze?(<span class="s">&quot;US$10.00&quot;</span>) <span class="c"># =&gt; [Money(@amount=10.0, @currency=&quot;USD&quot;)]</span></code></pre>
+<p>See also <code>Money.parse?</code>.</p>
+<p><span class="flag purple">NOTE</span>  Raises <code><a href="../Money/Parse/Error.html">Money::Parse::Error</a></code> on failure instead of returning <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/ba8628c/src/money/money/parse.cr#L104" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="analyze?(str:String):Array(Money)|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>analyze?</strong>(str : <a href="../String.html">String</a>) : Array(<a href="../Money.html">Money</a>) | Nil
+
+        <a class="method-permalink" href="#analyze%3F%28str%3AString%29%3AArray%28Money%29%7CNil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates an array of <code><a href="../Money.html">Money</a></code> instances from a string, or returns <code>nil</code> on failure.</p>
+<pre><code class="language-crystal"><span class="t">Money</span>.analyze?(<span class="s">&quot;$10.00&quot;</span>)   <span class="c"># =&gt; [Money(@amount=10.0, @currency=&quot;USD&quot;), ...]</span>
+<span class="t">Money</span>.analyze?(<span class="s">&quot;US$10.00&quot;</span>) <span class="c"># =&gt; [Money(@amount=10.0, @currency=&quot;USD&quot;)]</span></code></pre>
+<p>See also <code>Money.parse?</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/crystal-money/money/blob/ba8628c/src/money/money/parse.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="parse(str:String,*,allow_ambiguous:Bool=true):Money-instance-method">
       <div class="signature">
         
@@ -607,7 +670,7 @@ matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/886a0ec/src/money/money/parse.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ba8628c/src/money/money/parse.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -641,7 +704,7 @@ matching currency for ambiguous values, otherwise returns <code>nil</code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/crystal-money/money/blob/886a0ec/src/money/money/parse.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/crystal-money/money/blob/ba8628c/src/money/money/parse.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
