@@ -1,6 +1,36 @@
 require "../spec_helper"
 
 describe Money::Parse do
+  describe ".analyze?" do
+    it "returns ambiguous values sorted by currency priority" do
+      moneys = Money.analyze?("$10").should_not be_nil
+      moneys.each do |money|
+        money.amount.should eq 10
+      end
+      moneys.map(&.currency.code).should eq %w[
+        USD AUD CAD ARS BBD BMD BND BSD BZD
+        CLP COP CUC CUP CVE DOP FJD GYD HKD
+        JMD KYD LRD MXN NAD NZD SBD SGD SRD
+        TTD TWD XCD ZWD ZWL ZWN ZWR
+      ]
+    end
+
+    it "returns unambiguous values as the single-value array" do
+      Money.analyze?("US$10").should eq [Money.from_amount(10.0, "USD")]
+      Money.analyze?("10 USD").should eq [Money.from_amount(10.0, "USD")]
+    end
+
+    it "returns nil when passed an invalid string" do
+      Money.analyze?("10+foo").should be_nil
+    end
+  end
+
+  describe ".analyze" do
+    it "raises when passed an invalid string" do
+      expect_raises(Money::Parse::Error) { Money.analyze("10+foo") }
+    end
+  end
+
   describe ".parse?" do
     it "parses symbol as prefix" do
       Money.parse?("$10").should eq Money.from_amount(10.0, "USD")

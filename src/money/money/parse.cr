@@ -86,6 +86,44 @@ struct Money
       end
     end
 
+    # Creates an array of `Money` instances from a string, or returns `nil` on failure.
+    #
+    # ```
+    # Money.analyze?("$10.00")   # => [Money(@amount=10.0, @currency="USD"), ...]
+    # Money.analyze?("US$10.00") # => [Money(@amount=10.0, @currency="USD")]
+    # ```
+    #
+    # See also `Money.parse?`.
+    def analyze?(str : String) : Array(Money)?
+      analyze(str) { nil }
+    end
+
+    # :ditto:
+    #
+    # NOTE: Raises `Money::Parse::Error` on failure instead of returning `nil`.
+    def analyze(str : String) : Array(Money)
+      analyze(str) { |ex| raise ex }
+    end
+
+    private def analyze(str : String, &)
+      amount, symbol = parse_amount_and_symbol(str)
+      currencies = parse_currencies(symbol)
+
+      if currencies.empty?
+        raise Error.new \
+          "Symbol #{symbol.inspect} didn't match any currency"
+      end
+
+      currencies.map do |currency|
+        Money.from_amount(
+          normalize_amount(amount, currency),
+          currency
+        )
+      end
+    rescue ex
+      yield Error.new "Cannot parse #{str.inspect}", ex
+    end
+
     private def parse_currencies(symbol : String) : Array(Currency)
       currencies = Currency.all
 
