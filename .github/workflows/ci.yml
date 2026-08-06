@@ -32,4 +32,4 @@ jobs:
         run: shards install
 
       - name: Run specs
-        run: crystal spec
+        run: crystal spec --order random
