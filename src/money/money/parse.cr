@@ -10,6 +10,39 @@ struct Money
         (?<symbol>[^0-9,._\s]+)\s*(?<amount>\d+(?:[.,_\s]\d+)*)
       )/x
 
+    # Creates an array of `Money` instances from a string, or returns `nil` on failure.
+    #
+    # ```
+    # Money.analyze?("$10.00")   # => [Money(@amount=10.0, @currency="USD"), ...]
+    # Money.analyze?("US$10.00") # => [Money(@amount=10.0, @currency="USD")]
+    # ```
+    #
+    # See also `Money.parse?`.
+    def analyze?(str : String) : Array(Money)?
+      analyze(str) { nil }
+    end
+
+    # :ditto:
+    #
+    # NOTE: Raises `Money::Parse::Error` on failure instead of returning `nil`.
+    def analyze(str : String) : Array(Money)
+      analyze(str) { |ex| raise ex }
+    end
+
+    private def analyze(str : String, &)
+      amount, symbol = parse_amount_and_symbol(str)
+      currencies = parse_currencies(symbol)
+
+      currencies.map do |currency|
+        Money.from_amount(
+          normalize_amount(amount, currency),
+          currency
+        )
+      end
+    rescue ex
+      yield Error.new "Cannot parse #{str.inspect}", ex
+    end
+
     # Creates a `Money` instance from a string, or returns `nil` on failure.
     #
     # ```
@@ -50,10 +83,10 @@ struct Money
       amount, symbol = parse_amount_and_symbol(str)
       currency = parse_currency(symbol, allow_ambiguous)
 
-      amount =
-        normalize_amount(amount, currency)
-
-      Money.from_amount(amount, currency)
+      Money.from_amount(
+        normalize_amount(amount, currency),
+        currency
+      )
     rescue ex
       yield Error.new "Cannot parse #{str.inspect}", ex
     end
@@ -71,48 +104,11 @@ struct Money
     private def parse_currency(symbol : String, allow_ambiguous : Bool) : Currency
       matches = parse_currencies(symbol)
 
-      if matches.size == 1
-        matches.first
-      else
-        unless allow_ambiguous
-          raise Error.new \
-            "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
-        end
-        matches.first
+      if matches.size > 1 && !allow_ambiguous
+        raise Error.new \
+          "Symbol #{symbol.inspect} matches multiple currencies: #{matches.map(&.to_s)}"
       end
-    end
-
-    # Creates an array of `Money` instances from a string, or returns `nil` on failure.
-    #
-    # ```
-    # Money.analyze?("$10.00")   # => [Money(@amount=10.0, @currency="USD"), ...]
-    # Money.analyze?("US$10.00") # => [Money(@amount=10.0, @currency="USD")]
-    # ```
-    #
-    # See also `Money.parse?`.
-    def analyze?(str : String) : Array(Money)?
-      analyze(str) { nil }
-    end
-
-    # :ditto:
-    #
-    # NOTE: Raises `Money::Parse::Error` on failure instead of returning `nil`.
-    def analyze(str : String) : Array(Money)
-      analyze(str) { |ex| raise ex }
-    end
-
-    private def analyze(str : String, &)
-      amount, symbol = parse_amount_and_symbol(str)
-      currencies = parse_currencies(symbol)
-
-      currencies.map do |currency|
-        Money.from_amount(
-          normalize_amount(amount, currency),
-          currency
-        )
-      end
-    rescue ex
-      yield Error.new "Cannot parse #{str.inspect}", ex
+      matches.first
     end
 
     private def parse_currencies(symbol : String) : Array(Currency)
