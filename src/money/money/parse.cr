@@ -71,11 +71,7 @@ struct Money
     private def parse_currency(symbol : String, allow_ambiguous : Bool) : Currency
       matches = parse_currencies(symbol)
 
-      case matches.size
-      when 0
-        raise Error.new \
-          "Symbol #{symbol.inspect} didn't match any currency"
-      when 1
+      if matches.size == 1
         matches.first
       else
         unless allow_ambiguous
@@ -109,11 +105,6 @@ struct Money
       amount, symbol = parse_amount_and_symbol(str)
       currencies = parse_currencies(symbol)
 
-      if currencies.empty?
-        raise Error.new \
-          "Symbol #{symbol.inspect} didn't match any currency"
-      end
-
       currencies.map do |currency|
         Money.from_amount(
           normalize_amount(amount, currency),
@@ -135,6 +126,11 @@ struct Money
       matches = currencies.select(&.symbol.try(&matcher)) if matches.empty?
       matches = currencies.select(&.disambiguate_symbol.try(&matcher)) if matches.empty?
       matches = currencies.select(&.alternate_symbols.try(&.any?(&matcher))) if matches.empty?
+
+      if matches.empty?
+        raise Error.new \
+          "Symbol #{symbol.inspect} didn't match any currency"
+      end
 
       matches
     end
