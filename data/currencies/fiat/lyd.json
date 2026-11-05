@@ -3,7 +3,7 @@
   "iso_numeric": 434,
   "code": "LYD",
   "name": "Libyan Dinar",
-  "symbol": "ل.د",
+  "symbol": "د.ل",
   "alternate_symbols": ["LD"],
   "subunit": "Dirham",
   "subunit_to_unit": 1000,
