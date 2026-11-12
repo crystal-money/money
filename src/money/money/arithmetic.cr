@@ -182,11 +182,13 @@ struct Money
     # Money.new(1_00).remainder(9) # => Money(@amount=0.01)
     # ```
     def remainder(other : Number) : Money
-      if (negative? && other.negative?) || (positive? && other.positive?)
-        modulo(other)
-      else
-        modulo(other) - copy_with(fractional: other)
-      end
+      modulo = modulo(other)
+
+      return modulo if modulo.zero?
+      return modulo if (negative? && other.negative?) ||
+                       (positive? && other.positive?)
+
+      modulo - copy_with(fractional: other)
     end
 
     # Returns a new `Money` object containing the percentage of the
